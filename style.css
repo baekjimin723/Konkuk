@@ -289,6 +289,87 @@ input,select {
 input:focus,select:focus {
   border-color:#2469ef
 }
+.address-picker {
+  margin:0
+}
+.address-input-wrap {
+  position:relative
+}
+.address-suggestions {
+  position:absolute;
+  z-index:10;
+  top:calc(100% + 4px);
+  left:0;
+  right:0;
+  max-height:280px;
+  overflow:auto;
+  margin:0;
+  padding:5px 0;
+  list-style:none;
+  background:#fff;
+  border:1px solid #dce5f4;
+  border-radius:8px;
+  box-shadow:0 10px 24px #193c7518
+}
+.address-suggestions.hidden {
+  display:none
+}
+.address-suggestions button {
+  display:flex;
+  width:100%;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:2px;
+  padding:10px 13px;
+  text-align:left
+}
+.address-suggestions button:hover,
+.address-suggestions button.active {
+  background:#eef5ff
+}
+.address-suggestions strong {
+  color:#234d8c;
+  font-size:12px
+}
+.address-suggestions span,
+.address-suggestions small {
+  color:#7c8ca5;
+  font-size:11px
+}
+.address-empty,
+.address-loading {
+  padding:13px;
+  color:#7c8ca5;
+  font-size:11px;
+  text-align:center
+}
+.spinner {
+  display:inline-block;
+  width:12px;
+  height:12px;
+  margin-right:5px;
+  vertical-align:-2px;
+  border:2px solid #dce7f8;
+  border-top-color:#2166ee;
+  border-radius:50%;
+  animation:address-spin .7s linear infinite
+}
+@keyframes address-spin {
+  to { transform:rotate(360deg) }
+}
+.selected-address {
+  display:grid;
+  gap:3px;
+  margin-top:14px;
+  padding:12px 14px;
+  background:#f2f8ff;
+  border-radius:8px;
+  color:#41658f;
+  font-size:11px
+}
+.selected-address strong {
+  color:#2166ee
+}
 .btn {
   border-radius:7px;
   background:#2166ee;
