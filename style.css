@@ -411,6 +411,27 @@ input:focus,select:focus {
 .money input {
   text-align:right
 }
+.address-card {
+  margin-bottom:20px
+}
+.address-card .money {
+  max-width:720px
+}
+.address-card .money input {
+  text-align:left
+}
+.rights-card {
+  margin-bottom:20px
+}
+.rights-meta {
+  color:#8291aa;
+  font-size:11px;
+  margin:-10px 0 12px
+}
+.rights-card td,
+.rights-card th {
+  white-space:nowrap
+}
 .side-note {
   background:linear-gradient(145deg,#e8f3ff,#f7fbff);
   padding:22px;
