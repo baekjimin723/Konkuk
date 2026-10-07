@@ -1212,3 +1212,179 @@ td{border-color:#e8edf4}
   .home-hero{grid-template-columns:1fr}
   .home-visual{min-height:300px;order:-1}
 }
+
+
+/* ===== Eligibility simulator 2026-10-07 ===== */
+
+/* Render uploaded images as actual image elements, not CSS re-creations */
+.home-visual{
+  min-height:430px;
+  overflow:hidden;
+  background:#eef5fb;
+  display:flex;
+  align-items:stretch;
+  justify-content:stretch
+}
+.home-visual-img{
+  display:block;
+  width:100%;
+  height:100%;
+  min-height:430px;
+  object-fit:cover;
+  object-position:center
+}
+.service-original-art{
+  display:block;
+  width:min(100%,941px);
+  height:auto;
+  object-fit:contain
+}
+
+/* My conditions / pre-application simulation */
+.condition-page{display:grid;gap:18px}
+.condition-heading{
+  padding:28px 32px;
+  border:1px solid #e2e9f3;
+  border-radius:12px;
+  background:linear-gradient(120deg,#fff,#f4f8fd)
+}
+.condition-heading h1{
+  margin:4px 0 8px;
+  font-size:31px;
+  line-height:1.3;
+  letter-spacing:-1.25px
+}
+.condition-heading p{margin:0;font-size:13px;color:#708096}
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:18px;
+  margin-bottom:20px
+}
+.section-head>div{display:flex;align-items:center;gap:10px}
+.section-head h2{margin:0}
+.section-head p{margin:0;font-size:11px;color:#8491a4}
+.section-no{
+  display:inline-grid;
+  place-items:center;
+  width:28px;height:28px;
+  border-radius:7px;
+  background:#edf4fd;
+  color:#1767df;
+  font-size:11px;
+  font-weight:700
+}
+.simulation-card{padding:28px 30px}
+.sim-qualifiers{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  margin-bottom:20px
+}
+.sim-qualifiers .field{
+  margin:0;
+  padding:15px;
+  border:1px solid #e2e9f3;
+  border-radius:9px;
+  background:#f9fbfd
+}
+.sim-qualifiers .field>span{min-height:39px;line-height:1.5}
+.asset-groups{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px
+}
+.asset-group{
+  border:1px solid #e2e9f3;
+  border-radius:10px;
+  padding:18px;
+  background:#fff
+}
+.asset-title{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:14px}
+.asset-title h3{margin:0;color:#223c5f;font-size:14px}
+.asset-title span{font-size:10px;color:#8a97a9;text-align:right}
+.asset-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px
+}
+.asset-field span{
+  display:block;
+  margin-bottom:5px;
+  color:#53677f;
+  font-size:11px;
+  font-weight:600
+}
+.asset-field>div{position:relative}
+.asset-field input{padding-right:45px;text-align:right}
+.asset-field em{
+  position:absolute;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:10px;
+  font-style:normal;
+  color:#8b98a9
+}
+.sim-calc-btn{margin-top:18px;width:100%;min-height:46px}
+.simulation-result{
+  margin-top:16px;
+  padding:20px;
+  border:1px solid #dce7f5;
+  border-radius:10px;
+  background:#f4f8fd
+}
+.simulation-result.good{background:#eff8f5;border-color:#d6eee5}
+.simulation-result.bad{background:#fff5f5;border-color:#f1dfe1}
+.sim-rank-label{font-size:10px;color:#7d8ca0;margin-bottom:3px}
+.simulation-result>strong{display:block;font-size:25px;color:#1767df}
+.simulation-result.good>strong{color:#13775d}
+.simulation-result.bad>strong{color:#a94b56}
+.simulation-result>p{font-size:12px;margin:4px 0 14px}
+.sim-totals{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px
+}
+.sim-totals span{
+  padding:11px 12px;
+  border-radius:7px;
+  background:#fff;
+  border:1px solid #e3eaf3;
+  font-size:10px;
+  color:#718095
+}
+.sim-totals b{display:block;margin-top:2px;font-size:13px;color:#233d60}
+.sim-criteria{
+  display:grid;
+  gap:6px;
+  margin-top:10px
+}
+.sim-criteria span{
+  position:relative;
+  padding-left:20px;
+  font-size:10px;
+  color:#6d7d91
+}
+.sim-criteria span:before{position:absolute;left:0;font-weight:700}
+.sim-criteria .pass:before{content:"✓";color:#148464}
+.sim-criteria .fail:before{content:"!";color:#b56a1f}
+.simulation-note{font-size:10px}
+.condition-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px
+}
+@media(max-width:900px){
+  .sim-qualifiers,.asset-groups,.condition-grid{grid-template-columns:1fr}
+  .asset-title{display:block}
+  .asset-title span{display:block;text-align:left;margin-top:3px}
+}
+@media(max-width:600px){
+  .condition-heading{padding:22px 20px}
+  .condition-heading h1{font-size:25px}
+  .simulation-card{padding:22px 18px}
+  .asset-grid{grid-template-columns:1fr}
+  .sim-totals{grid-template-columns:1fr}
+}
