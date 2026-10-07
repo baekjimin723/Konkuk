@@ -920,3 +920,295 @@ dialog::backdrop {
   .service-image-head{padding:22px 20px}
   .service-image-head h1{font-size:25px}
 }
+
+
+/* ===== Unified site system 2026-10-07 ===== */
+
+/* One typography + one visual system across every route */
+html{background:#f6f9fd}
+body{
+  background:#f6f9fd;
+  color:#17233b;
+  font-family:"Pretendard","Noto Sans KR","Malgun Gothic",Arial,sans-serif;
+  font-weight:400;
+  font-size:14px;
+  line-height:1.65;
+  letter-spacing:-.015em
+}
+button,input,select,textarea{font-family:inherit;font-weight:400}
+h1,h2,h3,strong{font-weight:700}
+h1{color:#14233d}
+h2{color:#1d3659}
+p{color:#667890}
+
+/* Header follows the home screen everywhere */
+header,
+.home-mode header,
+.service-mode header{
+  position:sticky;
+  top:0;
+  z-index:30;
+  width:100%;
+  height:84px;
+  padding:0 max(30px,calc((100vw - 1240px)/2));
+  gap:34px;
+  background:rgba(255,255,255,.97);
+  border-bottom:1px solid #e4ebf4;
+  backdrop-filter:blur(12px)
+}
+.logo{gap:9px}
+.logo strong,
+.home-mode .logo strong,
+.service-mode .logo strong{
+  font-size:23px;
+  letter-spacing:-.04em;
+  color:#123f89
+}
+.logo small,
+.home-mode .logo small,
+.service-mode .logo small{display:none}
+.brand-icon,
+.home-mode .brand-icon{width:32px;height:36px;color:#1767df}
+nav,
+.home-mode nav,
+.service-mode nav{
+  margin-left:12px;
+  gap:24px;
+  height:100%
+}
+nav button,
+.home-mode nav button,
+.service-mode nav button{
+  height:100%;
+  padding:0 2px;
+  font-size:13px;
+  font-weight:600;
+  color:#34445d;
+  border-bottom:2px solid transparent
+}
+nav button:hover{color:#1761d8}
+nav button.active{color:#1761d8;border-color:#1761d8}
+.user .pill{display:none}
+.avatar,
+.home-mode .avatar,
+.service-mode .avatar{
+  border-radius:8px;
+  padding:9px 14px;
+  background:#f2f5f9;
+  color:#44566f;
+  font-weight:600
+}
+
+/* Retire the old dashboard sidebar so the inner pages feel like the home page */
+.layout{
+  display:block;
+  max-width:none;
+  min-height:calc(100vh - 84px)
+}
+aside{display:none}
+main{
+  width:100%;
+  max-width:1240px;
+  margin:0 auto;
+  padding:30px 28px 46px;
+  min-width:0
+}
+.home-mode main,.service-mode main{max-width:none;padding:0}
+.breadcrumb{
+  margin:0 0 18px;
+  color:#8b99ac;
+  font-size:11px
+}
+.screen{animation:enter .18s ease}
+
+/* Inner-page opening area */
+.hero{
+  border:1px solid #e3eaf4;
+  border-radius:12px;
+  background:linear-gradient(120deg,#f7faff,#eef5fd);
+  padding:28px 32px;
+  margin-bottom:20px;
+  box-shadow:none
+}
+.hero h1{font-size:26px;letter-spacing:-1px}
+.hero svg{width:165px;height:110px}
+.eyebrow{color:#6780a4;letter-spacing:.13em}
+
+/* Headings and content cards use the same calm geometry as the home dashboard */
+.intro{
+  margin-bottom:18px;
+  padding:2px 2px 0
+}
+.intro h1{font-size:27px;line-height:1.35;letter-spacing:-1px}
+.intro p{font-size:13px;color:#718197}
+.intro>.pill{border-radius:6px;background:#f0f5fb;color:#48678f;padding:6px 10px}
+
+.card,
+.saved-row,
+.side-note,
+.deadline{
+  border:1px solid #e2e9f3;
+  border-radius:12px;
+  background:#fff;
+  box-shadow:none
+}
+.card{padding:26px}
+.card h2{font-size:17px;letter-spacing:-.35px}
+.conditions{background:#f7faff}
+.side-note{
+  background:#f7faff;
+  color:#536b89
+}
+.side-note h3{color:#274f85}
+.info,.summary{
+  border:1px solid #e1e9f4;
+  border-radius:8px;
+  background:#f4f8fd;
+  color:#607793
+}
+
+/* Forms and controls */
+.field>span{color:#52677f;font-size:12px;font-weight:600}
+input,select{
+  min-height:42px;
+  border:1px solid #dbe4ef;
+  border-radius:7px;
+  color:#263b58;
+  background:#fff
+}
+input:focus,select:focus{
+  border-color:#1767df;
+  box-shadow:0 0 0 3px rgba(23,103,223,.08)
+}
+.btn{
+  border-radius:7px;
+  background:#1767df;
+  color:#fff;
+  font-weight:600;
+  box-shadow:none
+}
+.btn:hover{background:#1058c5}
+.btn.secondary{
+  background:#fff;
+  border:1px solid #cddcf0;
+  color:#245b9f
+}
+.pill{
+  border-radius:6px;
+  background:#eef4fb;
+  color:#41658f;
+  font-weight:600
+}
+.pill.green{background:#edf8f4;color:#16795e}
+.pill.orange{background:#fff5e9;color:#a3650f}
+
+/* Tabs, tables and saved items */
+.tabs{gap:18px;border-color:#e1e8f2}
+.tabs button{
+  padding:11px 2px;
+  font-weight:600;
+  color:#6d7d91
+}
+.tabs .active{color:#1761d8;border-color:#1761d8}
+.table-wrap,.saved-row{background:#fff}
+table{font-size:12px}
+th{
+  background:#f6f9fd;
+  color:#536983;
+  font-weight:700
+}
+td{border-color:#e8edf4}
+.saved-row{padding:20px;margin-bottom:12px}
+.room{border-radius:8px}
+.track span.done{background:#1767df}
+
+/* D-day screen: remove the old pink theme so it belongs to this site */
+.deadline{
+  background:#f7faff;
+  border-color:#e1e9f4
+}
+.dday{color:#1767df}
+.progress{background:#e1e8f2}
+.progress i{background:#1767df}
+.metrics{gap:12px}
+.metric,
+.metric:nth-child(2),
+.metric:nth-child(3),
+.metric:nth-child(4){
+  border:1px solid #e2e9f3;
+  border-radius:9px;
+  background:#f7faff;
+  color:#50647e
+}
+.metric strong{color:#1767df}
+
+/* Agent page */
+.agent-banner{border-color:#e3e9f1}
+.agent-avatar{border-radius:10px;background:#eef5fd}
+.agent-metrics .metric{background:#f7faff}
+
+/* Home photo: show the approved image without chopping off its contents */
+.home-hero{grid-template-columns:1.16fr .84fr}
+.home-visual{
+  background-color:#f3f8fc;
+  background-image:url('hero-city-clean.jpg');
+  background-repeat:no-repeat;
+  background-position:center bottom;
+  background-size:contain
+}
+
+/* Service page uses the submitted artwork itself, not a recreated version */
+.service-mode{background:#f6f9fd}
+.service-image-page{max-width:1040px;margin:0 auto;padding:34px 28px 58px}
+.service-image-head{
+  padding:25px 28px;
+  margin-bottom:16px;
+  border:1px solid #e2e9f3;
+  border-radius:10px;
+  background:#fff
+}
+.service-image-head h1{font-size:27px;color:#14233d}
+.service-original-art{
+  display:block;
+  width:min(100%,760px);
+  height:auto;
+  margin:0 auto;
+  border:0;
+  background:#fff;
+  box-shadow:0 10px 30px rgba(31,63,105,.05)
+}
+
+/* Footer is consistent on every page */
+.notice,
+.home-mode .notice,
+.service-mode .notice{
+  max-width:1240px;
+  margin:22px auto 0;
+  padding:16px 28px 26px;
+  border-top:1px solid #e3eaf3;
+  color:#8997aa;
+  font-size:10px
+}
+
+/* Mobile */
+@media(max-width:1080px){
+  header,.home-mode header,.service-mode header{padding:0 22px;gap:20px}
+  nav,.home-mode nav,.service-mode nav{gap:14px}
+  nav button,.home-mode nav button,.service-mode nav button{font-size:12px}
+  main{padding:24px 20px 40px}
+  .home-hero{grid-template-columns:1fr 1fr}
+}
+@media(max-width:800px){
+  header,.home-mode header,.service-mode header{height:68px;padding:0 16px}
+  nav,.home-mode nav,.service-mode nav{display:none}
+  main{padding:18px 14px 34px}
+  .hero{padding:22px}
+  .hero svg{width:105px;height:88px}
+  .intro h1{font-size:23px}
+  .grid2,.grid-main{grid-template-columns:1fr}
+  .service-image-page{padding:18px 12px 36px}
+  .service-image-head{padding:21px 18px}
+  .service-original-art{width:100%}
+  .home-hero{grid-template-columns:1fr}
+  .home-visual{min-height:300px;order:-1}
+}
