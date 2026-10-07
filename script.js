@@ -14,9 +14,9 @@ const today=new Date();
 
 const plus=n=>{const d=new Date(today);d.setDate(d.getDate()+n);return iso(d)};
 
-const defaults={profile:{region:'서울특별시',people:'1',rank:'1',limit:12000,selected:plus(-17),deadline:plus(43)},price:15000,properties:[{id:1,name:'행복빌라 101호',address:'서울특별시 광진구 자양동 · 예시',price:15000,stage:'권리분석 요청'},{id:2,name:'한아름하우스 202호',address:'서울특별시 광진구 화양동 · 예시',price:11000,stage:'임대인 동의 확인'},{id:3,name:'드림아파트 305호',address:'서울특별시 광진구 구의동 · 예시',price:17000,stage:'중개사 문의'}],check:{area:49.5,type:'다세대',move:'확인 필요',rights:'확인 필요',consent:'확인 필요'}};
+const defaults={profile:{region:'서울특별시',people:'1',limit:12000,selected:plus(-17),deadline:plus(43)},simulation:{firstRank:'unknown',familyIncome100:'unknown',selfIncome100:'unknown',self:{deposit:0,stock:0,car:0,rentalDeposit:0,realEstate:0,debt:0},parents:{deposit:0,stock:0,car:0,rentalDeposit:0,realEstate:0,debt:0}},price:15000,properties:[{id:1,name:'행복빌라 101호',address:'서울특별시 광진구 자양동 · 예시',price:15000,stage:'권리분석 요청'},{id:2,name:'한아름하우스 202호',address:'서울특별시 광진구 화양동 · 예시',price:11000,stage:'임대인 동의 확인'},{id:3,name:'드림아파트 305호',address:'서울특별시 광진구 구의동 · 예시',price:17000,stage:'중개사 문의'}],check:{area:49.5,type:'다세대',move:'확인 필요',rights:'확인 필요',consent:'확인 필요'}};
 
-let state=structuredClone(defaults);try{const x=JSON.parse(localStorage.getItem('jeonse-on-v1'));if(x&&x.profile&&Array.isArray(x.properties)&&x.check)state=x}catch{}let page='home',filter='전체';
+let state=structuredClone(defaults);try{const x=JSON.parse(localStorage.getItem('jeonse-on-v1'));if(x&&x.profile&&Array.isArray(x.properties)&&x.check)state=x}catch{}state.profile={...defaults.profile,...state.profile};state.simulation={...structuredClone(defaults.simulation),...(state.simulation||{}),self:{...defaults.simulation.self,...((state.simulation||{}).self||{})},parents:{...defaults.simulation.parents,...((state.simulation||{}).parents||{})}};let page='home',filter='전체';
 
 let storageWarn=false;
 
@@ -43,6 +43,39 @@ const room='<div class="room"><svg aria-hidden="true"><use href="#room"/></svg><
 const header=(title,desc)=>`<div class="intro"><div><h1>${title}</h1><p>${desc}</p></div><span class="pill">나의 조건을 기준으로</span></div>`;
 
 const official='<div class="info">입력 정보에 따른 사전 확인 결과입니다. 최종 지원·계약 가능 여부는 사업시행기관의 권리분석과 승인에 따라 결정됩니다.</div>';
+const assetNum=v=>Math.max(0,Number(v)||0);
+function assetTotal(a){return Math.max(0,assetNum(a.deposit)+assetNum(a.stock)+assetNum(a.car)+assetNum(a.rentalDeposit)+assetNum(a.realEstate)-assetNum(a.debt))}
+function simulationResult(){
+  const s=state.simulation,self=assetTotal(s.self),parents=assetTotal(s.parents),family=self+parents;
+  const maxCar=Math.max(assetNum(s.self.car),assetNum(s.parents.car));
+  const secondAsset=family<=34500&&maxCar<=4542;
+  const thirdAsset=self<=25100&&assetNum(s.self.car)<=4542;
+  let rank='추가 확인 필요',tone='warn',reason='소득·자산 항목을 모두 확인하면 예상 순위를 안내합니다.';
+  if(s.firstRank==='yes'){rank='예상 1순위';tone='good';reason='수급자·지원대상 한부모가족·차상위계층 등 1순위 요건에 해당한다고 입력했습니다.'}
+  else if(s.familyIncome100==='yes'&&secondAsset){rank='예상 2순위';tone='good';reason='본인+부모 소득 100% 이하 및 2순위 자산기준을 충족하는 것으로 계산됐습니다.'}
+  else if(s.selfIncome100==='yes'&&thirdAsset){rank='예상 3순위';tone='good';reason='본인 소득 100% 이하 및 3순위 자산기준을 충족하는 것으로 계산됐습니다.'}
+  else if(s.firstRank==='no'&&s.familyIncome100==='no'&&s.selfIncome100==='no'){rank='현재 입력으로는 순위 산정 어려움';tone='bad';reason='입력한 소득 조건으로는 2·3순위 요건 충족이 확인되지 않습니다.'}
+  else if((s.familyIncome100==='yes'&&!secondAsset)||(s.selfIncome100==='yes'&&!thirdAsset)){rank='자산기준 확인 필요';tone='bad';reason='입력한 자산 또는 자동차 가액이 해당 순위의 기준을 넘는 항목이 있습니다.'}
+  return {rank,tone,reason,self,parents,family,maxCar,secondAsset,thirdAsset};
+}
+function simSelect(name,value){
+  return `<select name="${name}"><option value="unknown" ${value==='unknown'?'selected':''}>확인 필요</option><option value="yes" ${value==='yes'?'selected':''}>예</option><option value="no" ${value==='no'?'selected':''}>아니오</option></select>`;
+}
+function simAssetFields(prefix,a){
+  const items=[['deposit','예금'],['stock','주식·펀드'],['car','자동차'],['rentalDeposit','임차보증금'],['realEstate','부동산'],['debt','부채']];
+  return items.map(([k,label])=>`<label class="asset-field"><span>${label}</span><div><input name="${prefix}_${k}" type="number" min="0" step="1" value="${assetNum(a[k])}"><em>만원</em></div></label>`).join('');
+}
+function simulationResultHtml(){
+  const r=simulationResult();
+  return `<div class="simulation-result ${r.tone}">
+    <div class="sim-rank-label">모의계산 결과</div>
+    <strong>${r.rank}</strong>
+    <p>${r.reason}</p>
+    <div class="sim-totals"><span>본인 총자산 <b>${money(r.self)}</b></span><span>부모 총자산 <b>${money(r.parents)}</b></span><span>본인+부모 <b>${money(r.family)}</b></span></div>
+    <div class="sim-criteria"><span class="${r.secondAsset?'pass':'fail'}">2순위 자산기준 · 총자산 34,500만원 / 자동차 4,542만원 이하</span><span class="${r.thirdAsset?'pass':'fail'}">3순위 자산기준 · 본인 총자산 25,100만원 / 자동차 4,542만원 이하</span></div>
+  </div>`;
+}
+
 function render(){document.body.classList.toggle('home-mode',page==='home');document.body.classList.toggle('service-mode',page==='service');document.querySelectorAll('[data-page]').forEach(b=>{b.classList.toggle('active',b.dataset.page===page);if(b.dataset.page===page)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
 
 $('#crumb').textContent=titles[page];app.innerHTML='<section class="screen">'+views[page]()+'</section>';bind()}
@@ -60,7 +93,7 @@ const completeCount=state.properties.filter(x=>x.stage==='계약 완료').length
 return `<div class='home-shell'>
 <section class='home-hero'>
 <div class='home-hero-copy'><span class='home-badge'>청년전세ON</span><h1>조건 확인부터<br>계약 준비까지, <em>한곳에서</em></h1><p>청년전세임대 준비 과정을 더 쉽게 정리해주는 길잡이</p><div class='home-actions'><button class='home-primary' data-page='profile'>나의 조건부터 시작하기 <span>→</span></button><button class='home-secondary' data-page='check'>매물 확인 <span>→</span></button></div></div>
-<div class='home-visual' role='img' aria-label='도시의 아파트 풍경'></div>
+<div class='home-visual'><img class='home-visual-img' src='hero-city-clean.jpg' alt='청년전세ON 아파트 풍경'></div>
 </section>
 <section class='home-shortcuts'>
 <button data-page='profile'><i class='shortcut-icon shortcut-blue'>▤</i><span><strong>나의 조건</strong><small>지원 가능 여부 확인</small></span><b>›</b></button>
@@ -88,7 +121,65 @@ service:()=>`<div class="service-page service-image-page">
 </section>
 <img class="service-original-art" src="service-intro-original.jpg" alt="청년전세ON 서비스 소개">
 </div>`,
-profile:()=>{const p=state.profile;return `<div class="hero"><div><div class="eyebrow">YOUR JEONSE SUPPORT</div><h1>청년의 주거, 오늘도 더 가까이</h1><p class="small muted">나의 선정정보에서 시작하는 전세임대 길잡이</p></div>${town}</div>${header('사용자별 지원조건 자동 정리','선정통보를 받은 정보를 입력하면 나의 조건을 한 화면에 정리합니다.')}<div class="grid2"><form id="profile-form" class="card"><h2>선정정보 입력</h2><label class="field"><span>신청지역</span><select name="region">${opt(['서울특별시','경기도','인천광역시','그 외 지역'],p.region)}</select></label><div class="grid2"><label class="field"><span>입주인원</span><select name="people">${[1,2,3].map(n=>`<option value="${n}" ${p.people==n?'selected':''}>${n}인</option>`).join('')}</select></label><label class="field"><span>선정순위</span><select name="rank">${[1,2,3].map(n=>`<option value="${n}" ${p.rank==n?'selected':''}>${n}순위</option>`).join('')}</select></label></div><label class="field"><span>선정통보에 명시된 지원한도 (만원)</span><input name="limit" type="number" min="1" max="10000000" step="1" required value="${p.limit}"></label><p class="small muted" id="limit-help">초기값은 자료의 수도권 1인 예시입니다. 지역·인원을 바꿀 때는 해당 선정통보의 한도를 직접 입력해 주세요.</p><div class="grid2"><label class="field"><span>선정일</span><input type="date" name="selected" value="${p.selected}" required></label><label class="field"><span>계약기한</span><input type="date" name="deadline" value="${p.deadline}" required></label></div><button class="btn full">조건 저장하기 →</button></form><div class="card conditions"><h2>▤ &nbsp; 내 전세임대 지원조건</h2><p class="small muted">저장된 정보를 기준으로 표시합니다.</p><div class="keyrow big"><span>지원한도</span><strong>${money(p.limit)}</strong></div><div class="keyrow"><span>선정정보</span><strong>${p.region} · ${p.people}인 · ${p.rank}순위</strong></div><div class="keyrow"><span>전용면적 기준</span><strong>${areaMax()}㎡ 이하</strong></div><div class="keyrow"><span>최대 전세금 범위</span><strong>${money(max())}<br><span class="small">지원한도의 ${p.people==='1'?'150':'200'}%</span></strong></div><div class="keyrow"><span>계약기한</span><strong>${p.deadline}</strong></div><div class="keyrow"><span>자료상 주택유형</span><strong>단독 · 다가구 · 다세대 · 연립<br>아파트 · 주거용 오피스텔</strong></div><div class="info">면적과 초과부담 배수는 업로드된 활동자료의 일반 기준을 적용했습니다. 개별 공고의 예외나 변경 기준은 반영되지 않습니다.</div></div></div>`},
+profile:()=>{const p=state.profile,s=state.simulation,r=simulationResult();return `
+<div class="condition-page">
+  <div class="condition-heading">
+    <span class="eyebrow">MY ELIGIBILITY</span>
+    <h1>신청 전에, 내 조건부터 확인하세요.</h1>
+    <p>자산과 소득 조건을 입력하면 청년 전세임대의 예상 자격과 순위를 미리 확인할 수 있습니다.</p>
+  </div>
+
+  <form id="simulation-form" class="card simulation-card">
+    <div class="section-head">
+      <div><span class="section-no">01</span><h2>예상 자격·순위 모의계산</h2></div>
+      <p>금액은 모두 만원 단위로 입력해 주세요.</p>
+    </div>
+
+    <div class="sim-qualifiers">
+      <label class="field"><span>수급자·지원대상 한부모가족·차상위계층 등 1순위 요건에 해당하나요?</span>${simSelect('firstRank',s.firstRank)}</label>
+      <label class="field"><span>본인과 부모의 월평균 소득 합계가 해당 가구 100% 기준 이하인가요?</span>${simSelect('familyIncome100',s.familyIncome100)}</label>
+      <label class="field"><span>본인의 월평균 소득이 1인 가구 100% 기준 이하인가요?</span>${simSelect('selfIncome100',s.selfIncome100)}</label>
+    </div>
+
+    <div class="asset-groups">
+      <section class="asset-group">
+        <div class="asset-title"><h3>본인 자산</h3><span>3순위 판단에는 본인 자산을 사용합니다.</span></div>
+        <div class="asset-grid">${simAssetFields('self',s.self)}</div>
+      </section>
+      <section class="asset-group">
+        <div class="asset-title"><h3>부모 자산</h3><span>2순위 판단에는 본인과 부모 자산을 합산합니다.</span></div>
+        <div class="asset-grid">${simAssetFields('parents',s.parents)}</div>
+      </section>
+    </div>
+
+    <button class="btn sim-calc-btn" type="submit">예상 결과 계산하기</button>
+    <div id="simulation-result">${simulationResultHtml()}</div>
+    <div class="info simulation-note">본 기능은 신청 전 확인을 위한 모의계산입니다. 실제 순위는 공고일 기준 소득·자산 조사와 LH 심사 결과에 따라 달라질 수 있습니다. 2026년 공개 기준을 참고해 2순위는 본인+부모, 3순위는 본인 기준으로 계산합니다.</div>
+  </form>
+
+  <div class="condition-grid">
+    <form id="profile-form" class="card">
+      <div class="section-head"><div><span class="section-no">02</span><h2>선정 후 지원정보</h2></div></div>
+      <label class="field"><span>신청지역</span><select name="region">${opt(['서울특별시','경기도','인천광역시','그 외 지역'],p.region)}</select></label>
+      <label class="field"><span>입주인원</span><select name="people">${[1,2,3].map(n=>`<option value="${n}" ${p.people==n?'selected':''}>${n}인</option>`).join('')}</select></label>
+      <label class="field"><span>선정통보에 명시된 지원한도 (만원)</span><input name="limit" type="number" min="1" max="10000000" step="1" required value="${p.limit}"></label>
+      <p class="small muted" id="limit-help">지역·입주인원에 따라 실제 선정통보의 지원한도를 입력해 주세요.</p>
+      <div class="grid2"><label class="field"><span>선정일</span><input type="date" name="selected" value="${p.selected}" required></label><label class="field"><span>계약기한</span><input type="date" name="deadline" value="${p.deadline}" required></label></div>
+      <button class="btn full">지원정보 저장하기 →</button>
+    </form>
+
+    <div class="card conditions">
+      <div class="section-head"><div><span class="section-no">03</span><h2>내 전세임대 조건</h2></div></div>
+      <div class="keyrow big"><span>예상 순위</span><strong>${r.rank}</strong></div>
+      <div class="keyrow big"><span>지원한도</span><strong>${money(p.limit)}</strong></div>
+      <div class="keyrow"><span>기본정보</span><strong>${p.region} · ${p.people}인</strong></div>
+      <div class="keyrow"><span>전용면적 기준</span><strong>${areaMax()}㎡ 이하</strong></div>
+      <div class="keyrow"><span>최대 전세금 범위</span><strong>${money(max())}<br><span class="small">지원한도의 ${p.people==='1'?'150':'200'}%</span></strong></div>
+      <div class="keyrow"><span>계약기한</span><strong>${p.deadline}</strong></div>
+      <div class="info">예상 순위는 모의계산 결과이며 공식 선정순위가 아닙니다. 최종 자격은 해당 공고와 기관 심사를 확인해 주세요.</div>
+    </div>
+  </div>
+</div>`},
 calc:()=>`${header('추가부담 가능 범위 계산','매물의 전세보증금을 입력하고 한도 초과분과 허용범위를 확인하세요.')}<div class="grid-main"><div class="card"><h2>▦ &nbsp; 전세보증금 계산기</h2><div class="keyrow"><span>내 지원한도</span><strong>${money(state.profile.limit)}</strong></div><div class="keyrow"><span>입주인원</span><strong>${state.profile.people}인 · ${state.profile.people==='1'?'150':'200'}% 범위</strong></div><form id="calc-form" style="margin-top:22px"><label class="field"><span>매물 전세보증금</span><div class="money"><input name="price" type="number" min="1" max="10000000" step="1" required value="${state.price}"><span style="white-space:nowrap">만원</span><button class="btn" style="white-space:nowrap">계산하기</button></div></label></form><div id="calc-result" aria-live="polite">${calcResult()}</div>${official}</div><div class="side-note"><h3>계산 한 번으로<br>전세금 부담을 확인해요.</h3>${town}<h3>용어 안내</h3><p><b>최대 허용 전세금</b><br>지원한도 × 입주인원별 배수</p><p><b>한도 초과분</b><br>매물 전세금 − 지원한도<br>(한도 이내라면 0원)</p><p>기본 임대보증금, 월 임대료, 관리비 등은 별도입니다.</p></div></div>`,
 check:()=>`${header('사용자 조건에 따른 매물 확인','입력한 매물 정보와 나의 조건을 비교하고 추가 확인이 필요한 항목을 살펴보세요.')}<div class="card"><div class="listing-head">${room}<div><span class="pill">시연용 매물</span><h2>내가 확인 중인 매물</h2><p class="blue">전세보증금 ${money(state.price)}</p><p class="small muted">보증금은 추가부담 계산 화면과 연동됩니다.<br>확인하지 않은 항목은 ‘확인 필요’로 남겨두세요.</p><button class="btn secondary" data-page="calc">보증금 수정</button></div></div><h2>내 조건과 비교</h2><div class="table-wrap"><table><thead><tr><th>항목</th><th>내 조건</th><th>매물 정보 입력</th><th>결과</th></tr></thead><tbody><tr><td>전세보증금</td><td>최대 ${money(max())}</td><td>${money(state.price)}</td><td>${badge(state.price>max()?'미충족':state.price>state.profile.limit?'추가부담':'충족')}</td></tr><tr><td>전용면적</td><td>${areaMax()}㎡ 이하</td><td><input aria-label="전용면적 제곱미터" id="check-area" type="number" min="0.1" max="10000" step="0.1" value="${state.check.area}"></td><td id="area-status"></td></tr><tr><td>주택유형</td><td>자료상 지원 주택</td><td><select aria-label="주택유형" data-check="type">${opt(['단독','다가구','다세대','연립','아파트','주거용 오피스텔','근린생활시설','확인 필요'],state.check.type)}</select></td><td id="type-status"></td></tr>${[['move','전입신고','가능해야 함'],['rights','제한권리','등기사항 확인 필요'],['consent','임대인 동의','LH 계약방식 동의']].map(([k,n,c])=>`<tr><td>${n}</td><td>${c}</td><td><select aria-label="${n}" data-check="${k}">${opt(k==='rights'?['확인 필요','제한권리 없음','제한권리 있음']:['확인 필요','예','아니오'],state.check[k])}</select></td><td id="${k}-status"></td></tr>`).join('')}</tbody></table></div><div id="check-result" aria-live="polite"></div>${official}</div>`,
 saved:()=>`${header('나의 매물','관심매물부터 계약 완료까지, 여러 매물의 진행상태를 직접 관리하세요.')}<div class="intro"><p class="small muted">상태는 사용자 기록이며 기관의 공식 심사 조회 결과가 아닙니다.</p><button class="btn" id="add-property">＋ 매물 등록</button></div><div class="tabs" aria-label="매물 필터">${['전체','진행 중','완료','반려'].map(x=>`<button class="${filter===x?'active':''}" data-filter="${x}">${x}</button>`).join('')}</div>${state.properties.filter(x=>filter==='전체'||filter==='완료'&&x.stage==='계약 완료'||filter==='반려'&&x.stage==='반려'||filter==='진행 중'&&!['계약 완료','반려'].includes(x.stage)).map(x=>`<article class="saved-row">${room}<div><h3>${esc(x.name)}</h3><strong class="blue small">전세 ${money(x.price)}</strong><p class="small muted">${esc(x.address)}</p><span class="pill ${x.stage==='계약 완료'?'green':x.stage==='반려'?'orange':''}">${x.stage}</span><div class="track" aria-hidden="true">${Array.from({length:6},(_,i)=>`<span class="${i<=({'관심매물':0,'중개사 문의':1,'임대인 동의 확인':2,'권리분석 요청':3,'보완 요청':3,'승인':4,'반려':3,'계약 완료':5}[x.stage])?'done':''}"></span>`).join('')}</div></div><div class="saved-actions"><select aria-label="${esc(x.name)} 진행상태" data-stage="${x.id}">${opt(stages,x.stage)}</select><button class="btn secondary" data-load="${x.id}">이 매물 조건 확인 →</button><button class="small muted" data-delete="${x.id}">목록에서 삭제</button></div></article>`).join('')||'<div class="card empty">해당 상태의 매물이 없습니다.</div>'}`,
@@ -107,11 +198,12 @@ function go(p){if(!titles[p])return;page=p;history.replaceState(null,'','#'+p);r
 
 window.scrollTo({top:0,behavior:'instant'})}
 document.addEventListener('click',e=>{const b=e.target.closest('[data-page]');if(b)go(b.dataset.page)});
-function bind(){if(page==='profile'){const f=$('#profile-form');['region','people'].forEach(n=>f.elements[n].addEventListener('change',()=>{f.elements.limit.value='';
-
-$('#limit-help').textContent='변경한 지역·입주인원에 해당하는 선정통보의 지원한도를 입력해 주세요.'}));f.onsubmit=e=>{e.preventDefault();
-
-const d=Object.fromEntries(new FormData(f));if(d.deadline<d.selected){toast('계약기한은 선정일 이후로 입력해 주세요.');return}d.limit=Number(d.limit);state.profile=d;save();render();toast('지원조건을 저장했습니다.')}}if(page==='calc')$('#calc-form').onsubmit=e=>{e.preventDefault();state.price=Number(new FormData(e.target).get('price'));save();
+function bind(){if(page==='profile'){
+const f=$('#profile-form'),sf=$('#simulation-form');
+['region','people'].forEach(n=>f.elements[n].addEventListener('change',()=>{f.elements.limit.value='';$('#limit-help').textContent='변경한 지역·입주인원에 해당하는 선정통보의 지원한도를 입력해 주세요.'}));
+f.onsubmit=e=>{e.preventDefault();const d=Object.fromEntries(new FormData(f));if(d.deadline<d.selected){toast('계약기한은 선정일 이후로 입력해 주세요.');return}d.limit=Number(d.limit);state.profile={...state.profile,...d};save();render();toast('지원정보를 저장했습니다.')};
+sf.onsubmit=e=>{e.preventDefault();const d=Object.fromEntries(new FormData(sf));const read=(prefix,key)=>assetNum(d[prefix+'_'+key]);const keys=['deposit','stock','car','rentalDeposit','realEstate','debt'];state.simulation.firstRank=d.firstRank;state.simulation.familyIncome100=d.familyIncome100;state.simulation.selfIncome100=d.selfIncome100;keys.forEach(k=>{state.simulation.self[k]=read('self',k);state.simulation.parents[k]=read('parents',k)});save();$('#simulation-result').innerHTML=simulationResultHtml();toast('모의계산 결과를 반영했습니다.')};
+}if(page==='calc')$('#calc-form').onsubmit=e=>{e.preventDefault();state.price=Number(new FormData(e.target).get('price'));save();
 
 $('#calc-result').innerHTML=calcResult()};if(page==='check'){checkResult();
 
