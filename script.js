@@ -80,41 +80,13 @@ return `<div class='home-shell'>
 </div>
 </section>
 </div>`},
-service:()=>`<div class="service-page">
-<section class="service-hero">
+service:()=>`<div class="service-page service-image-page">
+<section class="service-image-head">
   <span class="service-kicker">SERVICE</span>
-  <h1>청년전세임대,<br><strong>계약 전부터 더 정확하게</strong></h1>
-  <p>선정 이후 실제 계약까지 필요한 판단 요소를 한곳에서 확인할 수 있도록 돕습니다.</p>
+  <h1>청년전세ON 서비스 소개</h1>
+  <p>선정 이후 실제 계약까지, 청년전세ON이 필요한 정보를 미리 확인할 수 있도록 돕습니다.</p>
 </section>
-<section class="service-story">
-  <article class="service-card service-card-wide">
-    <div class="service-no">01</div>
-    <div class="service-copy">
-      <h2>선정됐는데도,<br><strong>절반은 입주하지 못합니다.</strong></h2>
-      <p>청년 전세임대주택 제도는 주거 부담을 줄여주기 위한 정책이지만, 지원 자격을 얻고도 절반에 가까운 청년이 실제 입주로 이어지지 못하고 있습니다.</p>
-    </div>
-    <div class="service-stat"><span>실입주율</span><b>51<small>%</small></b><em>2024년</em></div>
-  </article>
-  <article class="service-card">
-    <div class="service-no">02</div>
-    <h2>집을 찾았다고<br><strong>끝이 아닙니다.</strong></h2>
-    <p>제한된 기간 동안 적합한 매물을 찾고, 임대인 동의와 권리분석, 내부 심사까지 확인해야 합니다.</p>
-    <div class="service-steps"><span>적합한 매물</span><span>임대인 동의</span><span>권리분석</span><span>내부 심사</span></div>
-  </article>
-  <article class="service-card service-quote">
-    <div class="service-no">03</div>
-    <h2>선정자 <strong>2명 중 1명</strong>은<br>원하는 집에 들어가지 못한 채<br>자격을 포기합니다.</h2>
-    <p>복잡한 절차와 정보 공백으로 인해 계약 직전까지도 판단하기 어려운 요소가 남습니다.</p>
-  </article>
-  <article class="service-card service-card-wide">
-    <div class="service-no">04</div>
-    <div class="service-copy">
-      <h2>그래서 우리는,<br><strong>계약하기 전에 미리 알 수 있게</strong> 만들었습니다.</h2>
-      <p>시장 정보와 제도 정보를 연결해 청년전세임대에 필요한 판단 요소를 사전에 확인할 수 있도록 돕습니다.</p>
-    </div>
-    <ul class="service-checks"><li>지역 요건 확인</li><li>임대인 동의 가능성 확인</li><li>권리분석 확인</li><li>내부 심사 준비</li></ul>
-  </article>
-</section>
+<img class="service-original-art" src="service-intro-original.jpg" alt="청년전세ON 서비스 소개">
 </div>`,
 profile:()=>{const p=state.profile;return `<div class="hero"><div><div class="eyebrow">YOUR JEONSE SUPPORT</div><h1>청년의 주거, 오늘도 더 가까이</h1><p class="small muted">나의 선정정보에서 시작하는 전세임대 길잡이</p></div>${town}</div>${header('사용자별 지원조건 자동 정리','선정통보를 받은 정보를 입력하면 나의 조건을 한 화면에 정리합니다.')}<div class="grid2"><form id="profile-form" class="card"><h2>선정정보 입력</h2><label class="field"><span>신청지역</span><select name="region">${opt(['서울특별시','경기도','인천광역시','그 외 지역'],p.region)}</select></label><div class="grid2"><label class="field"><span>입주인원</span><select name="people">${[1,2,3].map(n=>`<option value="${n}" ${p.people==n?'selected':''}>${n}인</option>`).join('')}</select></label><label class="field"><span>선정순위</span><select name="rank">${[1,2,3].map(n=>`<option value="${n}" ${p.rank==n?'selected':''}>${n}순위</option>`).join('')}</select></label></div><label class="field"><span>선정통보에 명시된 지원한도 (만원)</span><input name="limit" type="number" min="1" max="10000000" step="1" required value="${p.limit}"></label><p class="small muted" id="limit-help">초기값은 자료의 수도권 1인 예시입니다. 지역·인원을 바꿀 때는 해당 선정통보의 한도를 직접 입력해 주세요.</p><div class="grid2"><label class="field"><span>선정일</span><input type="date" name="selected" value="${p.selected}" required></label><label class="field"><span>계약기한</span><input type="date" name="deadline" value="${p.deadline}" required></label></div><button class="btn full">조건 저장하기 →</button></form><div class="card conditions"><h2>▤ &nbsp; 내 전세임대 지원조건</h2><p class="small muted">저장된 정보를 기준으로 표시합니다.</p><div class="keyrow big"><span>지원한도</span><strong>${money(p.limit)}</strong></div><div class="keyrow"><span>선정정보</span><strong>${p.region} · ${p.people}인 · ${p.rank}순위</strong></div><div class="keyrow"><span>전용면적 기준</span><strong>${areaMax()}㎡ 이하</strong></div><div class="keyrow"><span>최대 전세금 범위</span><strong>${money(max())}<br><span class="small">지원한도의 ${p.people==='1'?'150':'200'}%</span></strong></div><div class="keyrow"><span>계약기한</span><strong>${p.deadline}</strong></div><div class="keyrow"><span>자료상 주택유형</span><strong>단독 · 다가구 · 다세대 · 연립<br>아파트 · 주거용 오피스텔</strong></div><div class="info">면적과 초과부담 배수는 업로드된 활동자료의 일반 기준을 적용했습니다. 개별 공고의 예외나 변경 기준은 반영되지 않습니다.</div></div></div>`},
 calc:()=>`${header('추가부담 가능 범위 계산','매물의 전세보증금을 입력하고 한도 초과분과 허용범위를 확인하세요.')}<div class="grid-main"><div class="card"><h2>▦ &nbsp; 전세보증금 계산기</h2><div class="keyrow"><span>내 지원한도</span><strong>${money(state.profile.limit)}</strong></div><div class="keyrow"><span>입주인원</span><strong>${state.profile.people}인 · ${state.profile.people==='1'?'150':'200'}% 범위</strong></div><form id="calc-form" style="margin-top:22px"><label class="field"><span>매물 전세보증금</span><div class="money"><input name="price" type="number" min="1" max="10000000" step="1" required value="${state.price}"><span style="white-space:nowrap">만원</span><button class="btn" style="white-space:nowrap">계산하기</button></div></label></form><div id="calc-result" aria-live="polite">${calcResult()}</div>${official}</div><div class="side-note"><h3>계산 한 번으로<br>전세금 부담을 확인해요.</h3>${town}<h3>용어 안내</h3><p><b>최대 허용 전세금</b><br>지원한도 × 입주인원별 배수</p><p><b>한도 초과분</b><br>매물 전세금 − 지원한도<br>(한도 이내라면 0원)</p><p>기본 임대보증금, 월 임대료, 관리비 등은 별도입니다.</p></div></div>`,
