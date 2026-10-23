@@ -134,7 +134,7 @@ service:()=>`<div class="service-story-page">
   <section class="story-section story-one">
     <div class="story-copy">
       <div class="story-index"><span>01</span><i></i></div>
-      <h1>선정됐는데도,<br><em>절반</em>은 입주하지 못합니다.</h1>
+      <h1>선정됐는데도,<br><em>절반 가까이</em> 입주하지 못합니다.</h1>
       <p>청년 전세임대주택 제도는<br>주거 부담을 줄여주기 위한 좋은 정책이지만,</p>
       <p>지원 자격을 얻고도 절반에 가까운 청년<br>(2024년 실입주율 51%)이 실제 입주로<br>이어지지 못하고 있습니다.</p>
     </div>
@@ -170,7 +170,7 @@ service:()=>`<div class="service-story-page">
     <div class="story-index"><span>03</span><i></i></div>
     <div class="quote-wrap">
       <span class="quote-mark">“</span>
-      <p><strong>선정자 <em>3명 중 1명 이상</em>은</strong><br>선정 이후에도 실제 입주로<br><em>이어지지 못합니다.</em></p>
+      <p><strong>선정자 <em>2명 중 1명 가까이는</em></strong><br>선정 이후에도 실제 입주로<br><em>이어지지 못합니다.</em></p>
       <span class="quote-mark close">”</span>
     </div>
   </section>
