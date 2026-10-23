@@ -91,9 +91,8 @@ const activeCount=state.properties.filter(x=>!['계약 완료','반려'].include
 const analysisCount=state.properties.filter(x=>x.stage==='권리분석 요청').length;
 const completeCount=state.properties.filter(x=>x.stage==='계약 완료').length;
 return `<div class='home-shell'>
-<section class='home-hero'>
+<section class='home-hero home-hero-text-only'>
 <div class='home-hero-copy'><span class='home-badge'>청년전세ON</span><h1>조건 확인부터<br>계약 준비까지, <em>한곳에서</em></h1><p>청년전세임대 준비 과정을 더 쉽게 정리해주는 길잡이</p><div class='home-actions'><button class='home-primary' data-page='profile'>나의 조건부터 시작하기 <span>→</span></button><button class='home-secondary' data-page='check'>매물 확인 <span>→</span></button></div></div>
-<div class='home-visual'><img class='home-visual-img' src='hero-city-clean.jpg' alt='청년전세ON 아파트 풍경'></div>
 </section>
 <section class='home-shortcuts'>
 <button data-page='profile'><i class='shortcut-icon shortcut-blue'>▤</i><span><strong>나의 조건</strong><small>지원 가능 여부 확인</small></span><b>›</b></button>
@@ -115,11 +114,13 @@ return `<div class='home-shell'>
 </div>`},
 service:()=>`<div class="service-page service-image-page">
 <section class="service-image-head">
-  <span class="service-kicker">SERVICE</span>
-  <h1>청년전세ON 서비스 소개</h1>
-  <p>선정 이후 실제 계약까지, 청년전세ON이 필요한 정보를 미리 확인할 수 있도록 돕습니다.</p>
+  <span class="service-kicker">SERVICE STORY</span>
+  <h1>웹사이트 제작 계기</h1>
+  <p>청년전세ON이 필요한 이유와 해결하고자 하는 문제를 한눈에 정리했습니다.</p>
 </section>
-<img class="service-original-art" src="service-intro-original.jpg" alt="청년전세ON 서비스 소개">
+<figure class="service-artwork-frame">
+  <img class="service-original-art" src="service-intro-original.jpg" alt="청년전세ON 웹사이트 제작 계기 스토리">
+</figure>
 </div>`,
 profile:()=>{const p=state.profile,s=state.simulation,r=simulationResult();return `
 <div class="condition-page">
