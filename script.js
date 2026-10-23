@@ -151,7 +151,7 @@ service:()=>`<div class="service-story-page">
     <div class="story-copy">
       <div class="story-index"><span>02</span><i></i></div>
       <h2>집을 찾았다고<br><em>끝이 아닙니다.</em></h2>
-      <p>9개월의 주택물색기간 동안<br>적합한 매물을 찾고, 임대인 동의, 권리분석,<br>내부 심사까지...</p>
+      <p>선정 후 별도 안내되는 주택물색·계약 기간 동안<br>적합한 매물을 찾고, 임대인 동의, 권리분석,<br>내부 심사까지...</p>
       <p>주택 물색과 계약 준비 과정에서<br>실제 입주로 이어지지 못하는 사례가 발생합니다.</p>
     </div>
     <div class="story-person-visual" aria-hidden="true">
