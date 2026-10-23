@@ -6,7 +6,2296 @@
   <title>
    청년전세ON · 나의 전세임대 길잡이
   </title>
-  <link rel="stylesheet" href="style.css">
+  <style id="embedded-site-style">
+@font-face {
+  font-family: 'Paperlogy';
+  src: url('./Paperlogy-5Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  box-sizing:border-box
+}
+body {
+  margin:0;
+  background:#f5f8fd;
+  color:#233652;
+  font-family:Paperlogy,sans-serif;
+  font-weight:500;
+  font-size:14px;
+  line-height:1.6
+}
+button,input,select {
+  font:inherit
+}
+button,a,input,select {
+  outline-offset:4px
+}
+button {
+  cursor:pointer
+}
+button {
+  border:0;
+  background:none;
+  color:inherit
+}
+a {
+  color:inherit
+}
+header {
+  height:78px;
+  background:#fff;
+  border-bottom:1px solid #e2eaf6;
+  display:flex;
+  align-items:center;
+  padding:0 38px;
+  gap:60px
+}
+.logo {
+  display:flex;
+  gap:10px;
+  align-items:center;
+  white-space:nowrap
+}
+.logo strong {
+  font-size:22px;
+  color:#123c83
+}
+.logo small {
+  display:block;
+  font-size:10px;
+  color:#8291aa;
+  margin-top:-5px
+}
+.brand-icon {
+  width:36px;
+  height:40px;
+  color:#1964ef
+}
+nav {
+  display:flex;
+  gap:30px;
+  height:100%;
+  align-items:center
+}
+nav button {
+  height:100%;
+  border-bottom:3px solid transparent;
+  font-size:13px
+}
+nav button.active {
+  color:#1761e9;
+  border-color:#1761e9
+}
+.user {
+  margin-left:auto;
+  font-size:12px;
+  display:flex;
+  align-items:center;
+  gap:12px
+}
+.avatar {
+  background:#eaf1ff;
+  border-radius:50%;
+  padding:7px 11px;
+  color:#2765bf
+}
+.layout {
+  max-width:1480px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:228px 1fr;
+  min-height:calc(100vh - 78px)
+}
+aside {
+  padding:32px 20px;
+  border-right:1px solid #e5edf7;
+  background:#fafdff
+}
+.side-intro {
+  padding:0 10px 25px
+}
+.side-intro strong {
+  font-size:16px
+}
+.muted {
+  color:#76859d
+}
+.small {
+  font-size:12px
+}
+.side-nav {
+  display:grid;
+  gap:9px
+}
+.side-nav button {
+  text-align:left;
+  padding:13px 12px;
+  border-radius:8px;
+  font-size:12px;
+  display:flex;
+  align-items:center;
+  gap:10px
+}
+.side-nav button span {
+  width:20px;
+  text-align:center;
+  font-size:16px
+}
+.side-nav button.active {
+  background:#2166ee;
+  color:white;
+  box-shadow:0 6px 12px #2166ee20
+}
+.side-nav button:hover:not(.active) {
+  background:#eaf1fd
+}
+.side-promo {
+  background:linear-gradient(145deg,#e7f2ff,#f3f9ff);
+  margin-top:42px;
+  border-radius:12px;
+  padding:20px;
+  color:#2461bd
+}
+.side-promo svg {
+  width:100%;
+  height:115px;
+  margin-top:10px
+}
+main {
+  padding:28px 36px 34px;
+  min-width:0
+}
+.breadcrumb {
+  font-size:11px;
+  color:#8593aa;
+  margin-bottom:16px
+}
+.intro {
+  margin-bottom:24px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px
+}
+h1 {
+  font-size:25px;
+  line-height:1.45;
+  margin:0 0 7px;
+  color:#143365;
+  letter-spacing:-.8px
+}
+h2 {
+  font-size:17px;
+  line-height:1.5;
+  margin:0 0 18px;
+  color:#214579
+}
+h3 {
+  font-size:14px;
+  margin:0 0 10px
+}
+p {
+  margin:5px 0 12px
+}
+.intro p {
+  font-size:12px;
+  color:#7587a2;
+  margin:0
+}
+.blue {
+  color:#1a64ef
+}
+.pill {
+  display:inline-block;
+  background:#eaf2ff;
+  color:#2266d4;
+  border-radius:20px;
+  padding:4px 10px;
+  font-size:10px;
+  white-space:nowrap
+}
+.pill.green {
+  background:#e4f7ef;
+  color:#168362
+}
+.pill.orange {
+  background:#fff2dc;
+  color:#a96808
+}
+.card {
+  background:#fff;
+  border:1px solid #e4ecf8;
+  border-radius:12px;
+  padding:25px;
+  box-shadow:0 4px 15px #193c7504
+}
+.grid2 {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px
+}
+.grid-main {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 245px;
+  gap:20px
+}
+.hero {
+  border-radius:14px;
+  background:linear-gradient(110deg,#eaf3ff,#f7fbff);
+  padding:26px 30px;
+  margin-bottom:22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  overflow:hidden
+}
+.hero svg {
+  width:195px;
+  height:130px
+}
+.eyebrow {
+  font-size:10px;
+  letter-spacing:2px;
+  color:#759acb;
+  margin-bottom:7px
+}
+.steps {
+  display:flex;
+  gap:15px;
+  font-size:11px;
+  align-items:center;
+  color:#91a0b5
+}
+.steps b {
+  background:#eaf2ff;
+  color:#2166ee;
+  border-radius:50%;
+  padding:5px 9px;
+  margin-right:5px
+}
+.field {
+  display:block;
+  margin-bottom:17px
+}
+.field>span {
+  display:block;
+  font-size:12px;
+  color:#4b6385;
+  margin-bottom:7px
+}
+input,select {
+  width:100%;
+  border:1px solid #dce5f4;
+  border-radius:7px;
+  background:#fff;
+  color:#284265;
+  padding:10px 12px;
+  min-width:0
+}
+input:focus,select:focus {
+  border-color:#2469ef
+}
+.btn {
+  border-radius:7px;
+  background:#2166ee;
+  color:white;
+  padding:11px 18px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  font-size:12px;
+  box-shadow:0 4px 9px #2166ee15
+}
+.btn:hover {
+  background:#1454d0
+}
+.btn.secondary {
+  background:#fff;
+  color:#3467bd;
+  border:1px solid #dae6fa;
+  box-shadow:none
+}
+.btn.full {
+  width:100%
+}
+.info {
+  border-radius:8px;
+  background:#eef5ff;
+  padding:13px 15px;
+  color:#607b9e;
+  font-size:11px;
+  margin-top:18px
+}
+.conditions {
+  background:linear-gradient(160deg,#f5fbff,#edf5ff)
+}
+.keyrow {
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  padding:16px 0;
+  border-bottom:1px solid #dfeaf7;
+  font-size:12px
+}
+.keyrow:last-child {
+  border:0
+}
+.keyrow strong {
+  color:#2056a4;
+  text-align:right
+}
+.keyrow.big strong {
+  font-size:22px;
+  color:#1a64ef
+}
+.quick {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  margin-top:20px
+}
+.quick button {
+  text-align:left;
+  background:#fff;
+  border:1px solid #e4ecf8;
+  padding:16px;
+  border-radius:9px;
+  color:#345a93;
+  font-size:12px
+}
+.quick small {
+  display:block;
+  font-size:10px;
+  color:#8694ab;
+  margin-top:4px
+}
+.notice {
+  font-size:11px;
+  color:#7d8ca3;
+  margin-top:24px;
+  border-top:1px solid #e3ebf6;
+  padding-top:15px
+}
+.result {
+  background:#e7f8f1;
+  border-radius:9px;
+  padding:18px;
+  color:#148262;
+  margin-top:18px
+}
+.result.warn {
+  background:#fff5e4;
+  color:#9d650a
+}
+.result.bad {
+  background:#fff0f2;
+  color:#bb354c
+}
+.result strong {
+  display:block;
+  font-size:16px
+}
+.result p {
+  font-size:11px;
+  margin:5px 0 0
+}
+.summary {
+  background:#f3f8ff;
+  padding:18px;
+  border-radius:8px;
+  margin-top:20px
+}
+.summary .keyrow {
+  padding:10px 0
+}
+.money {
+  display:flex;
+  align-items:center;
+  gap:8px
+}
+.money input {
+  text-align:right
+}
+.side-note {
+  background:linear-gradient(145deg,#e8f3ff,#f7fbff);
+  padding:22px;
+  border-radius:12px;
+  color:#3e6294;
+  font-size:12px
+}
+.side-note svg {
+  height:140px;
+  width:100%
+}
+.side-note h3 {
+  color:#205cae
+}
+.side-note li {
+  margin-bottom:12px
+}
+ul {
+  padding-left:19px
+}
+.table-wrap {
+  overflow-x:auto
+}
+table {
+  width:100%;
+  border-collapse:collapse;
+  font-size:12px
+}
+th {
+  background:#f1f6fe;
+  font-size:11px;
+  color:#536d94;
+  padding:12px;
+  text-align:left
+}
+td {
+  padding:12px;
+  border-bottom:1px solid #eaf0f8
+}
+td select,td input {
+  padding:7px;
+  font-size:11px;
+  min-width:105px
+}
+.tabs {
+  display:flex;
+  gap:6px;
+  border-bottom:1px solid #e0e9f7;
+  margin-bottom:20px
+}
+.tabs button {
+  padding:12px 18px;
+  font-size:12px;
+  border-bottom:2px solid transparent
+}
+.tabs .active {
+  color:#2166ee;
+  border-color:#2166ee
+}
+.listing-head {
+  display:grid;
+  grid-template-columns:210px 1fr;
+  gap:25px;
+  margin-bottom:22px
+}
+.room {
+  height:170px;
+  background:linear-gradient(135deg,#edf3f3,#d5dfdc);
+  border-radius:9px;
+  overflow:hidden;
+  position:relative
+}
+.room svg {
+  width:100%;
+  height:100%
+}
+.listing-head h2 {
+  font-size:22px;
+  margin:8px 0
+}
+.deadline {
+  border:1px solid #ffdfeb;
+  background:linear-gradient(110deg,#fff1f5,#fff9fc);
+  border-radius:14px;
+  padding:26px 30px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  gap:35px
+}
+.dday {
+  font-size:54px;
+  color:#ff4269;
+  line-height:1.3
+}
+.progress {
+  background:#e4dce5;
+  border-radius:10px;
+  height:7px;
+  margin:15px 0
+}
+.progress i {
+  display:block;
+  background:#ff4a73;
+  height:100%;
+  border-radius:10px
+}
+.dates {
+  display:flex;
+  justify-content:space-between;
+  font-size:11px;
+  gap:12px
+}
+.metrics {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:13px
+}
+.metric {
+  background:#f2f8ff;
+  padding:20px 16px;
+  border-radius:10px;
+  font-size:12px
+}
+.metric strong {
+  display:block;
+  font-size:28px;
+  color:#2065e5;
+  margin-top:6px
+}
+.metric:nth-child(2) {
+  background:#fff7ec
+}
+.metric:nth-child(3) {
+  background:#f0f5ff
+}
+.metric:nth-child(4) {
+  background:#edf9f4
+}
+.saved-row {
+  padding:18px;
+  background:white;
+  border:1px solid #e4ecf8;
+  border-radius:10px;
+  margin-bottom:15px;
+  display:grid;
+  grid-template-columns:135px 1fr 175px;
+  gap:20px;
+  align-items:center
+}
+.saved-row .room {
+  height:110px
+}
+.saved-row h3 {
+  margin-bottom:3px
+}
+.track {
+  display:flex;
+  gap:5px;
+  margin-top:15px
+}
+.track span {
+  flex:1;
+  height:5px;
+  background:#dee6f1;
+  border-radius:4px
+}
+.track span.done {
+  background:#397bf3
+}
+.saved-actions {
+  display:grid;
+  gap:9px
+}
+.agent-banner {
+  display:flex;
+  gap:22px;
+  align-items:center;
+  padding-bottom:25px;
+  border-bottom:1px solid #e6eef8;
+  margin-bottom:25px
+}
+.agent-avatar {
+  width:120px;
+  height:120px;
+  flex-shrink:0;
+  border-radius:12px;
+  background:#eaf3ff;
+  display:grid;
+  place-items:center
+}
+.agent-avatar svg {
+  width:85px;
+  height:85px
+}
+.agent-metrics {
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:10px
+}
+.agent-metrics .metric {
+  padding:17px 12px;
+  font-size:10px
+}
+.empty {
+  text-align:center;
+  padding:40px;
+  color:#8392a9
+}
+.hidden {
+  display:none!important
+}
+dialog {
+  border:1px solid #dae5f6;
+  border-radius:16px;
+  width:min(520px,90vw);
+  padding:28px;
+  color:#233652;
+  font-family:inherit
+}
+dialog::backdrop {
+  background:#12244760
+}
+.toast {
+  position:fixed;
+  bottom:24px;
+  left:50%;
+  transform:translateX(-50%);
+  padding:12px 22px;
+  background:#193b6c;
+  color:white;
+  border-radius:10px;
+  font-size:12px;
+  z-index:20
+}
+.screen {
+  animation:enter .2s ease
+}
+@keyframes enter {
+  from {
+    opacity:.4;
+    transform:translateY(5px)
+  }
+  to {
+    opacity:1;
+    transform:none
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  .screen {
+    animation:none
+  }
+}
+@media(min-width:1450px) {
+  main {
+    padding:34px 44px
+  }
+}
+@media(max-width:1100px) {
+  header {
+    gap:30px;
+    padding:0 24px
+  }
+  nav {
+    gap:15px
+  }
+  .layout {
+    grid-template-columns:190px 1fr
+  }
+  aside {
+    padding:25px 12px
+  }
+  main {
+    padding:25px 22px
+  }
+  .grid-main {
+    grid-template-columns:1fr
+  }
+  .side-note {
+    display:none
+  }
+  .steps {
+    display:none
+  }
+  .saved-row {
+    grid-template-columns:110px 1fr
+  }
+  .saved-actions {
+    grid-column:2
+  }
+  .agent-metrics {
+    grid-template-columns:repeat(3,1fr)
+  }
+}
+@media(max-width:740px) {
+  header {
+    height:68px;
+    padding:0 18px
+  }
+  .logo strong {
+    font-size:19px
+  }
+  nav {
+    display:none
+  }
+  .user {
+    font-size:10px
+  }
+  .layout {
+    display:block
+  }
+  aside {
+    padding:12px;
+    border-right:0;
+    border-bottom:1px solid #e2eaf6
+  }
+  .side-intro,.side-promo {
+    display:none
+  }
+  .side-nav {
+    display:flex;
+    overflow:auto;
+    gap:6px
+  }
+  .side-nav button {
+    white-space:nowrap;
+    padding:9px 12px
+  }
+  .side-nav button span {
+    display:none
+  }
+  main {
+    padding:20px 16px
+  }
+  h1 {
+    font-size:22px
+  }
+  .grid2 {
+    grid-template-columns:1fr
+  }
+  .hero {
+    padding:22px
+  }
+  .hero svg {
+    width:100px;
+    height:100px
+  }
+  .hero h1 {
+    font-size:21px
+  }
+  .intro {
+    align-items:flex-start
+  }
+  .intro .pill {
+    display:none
+  }
+  .card {
+    padding:20px
+  }
+  .quick {
+    grid-template-columns:1fr
+  }
+  .deadline {
+    grid-template-columns:1fr;
+    gap:20px;
+    padding:24px
+  }
+  .metrics {
+    grid-template-columns:1fr 1fr
+  }
+  .listing-head {
+    grid-template-columns:1fr
+  }
+  .room {
+    height:190px
+  }
+  .saved-row {
+    grid-template-columns:85px 1fr;
+    gap:13px
+  }
+  .saved-row .room {
+    height:90px
+  }
+  .saved-actions {
+    grid-column:1/-1;
+    grid-template-columns:1fr 1fr
+  }
+  .agent-banner {
+    align-items:flex-start;
+    gap:15px
+  }
+  .agent-avatar {
+    width:65px;
+    height:65px
+  }
+  .agent-avatar svg {
+    width:50px;
+    height:50px
+  }
+  .agent-metrics {
+    grid-template-columns:1fr 1fr
+  }
+  .tabs button {
+    padding:10px 12px
+  }
+  .dates {
+    flex-wrap:wrap
+  }
+  .keyrow.big strong {
+    font-size:20px
+  }
+}
+
+
+/* ===== Home redesign 2026-10-07 ===== */
+.home-mode{background:#fff;color:#17233b;font-family:"Pretendard","Noto Sans KR","Malgun Gothic",Arial,sans-serif}
+.home-mode .layout{display:block;max-width:none;min-height:calc(100vh - 78px)}
+.home-mode aside,.home-mode .breadcrumb{display:none}
+.home-mode main{padding:0;min-width:0}
+.home-mode .notice{max-width:1240px;margin:18px auto 0;padding:16px 28px 28px;border-top:1px solid #e8eef7;color:#8b98ab}
+.home-mode header{position:sticky;top:0;z-index:30;height:84px;padding:0 max(38px,calc((100vw - 1240px)/2));background:rgba(255,255,255,.96);backdrop-filter:blur(14px)}
+.home-mode .logo strong{font-size:25px}.home-mode .logo small{display:none}.home-mode .brand-icon{width:34px;height:38px}
+.home-mode nav{margin-left:24px;gap:38px}.home-mode nav button{font-size:14px;font-weight:500}.home-mode .user .pill{display:none}.home-mode .avatar{border-radius:12px;padding:10px 15px;background:#f1f4f8;color:#233652}
+.home-shell{background:linear-gradient(180deg,#fff 0,#fff 47%,#f1f8ff 100%);padding:26px 28px 42px}
+.home-shell>section{max-width:1240px;margin-left:auto;margin-right:auto}
+.home-hero{min-height:430px;border:1px solid #edf2f8;border-radius:28px;overflow:hidden;display:grid;grid-template-columns:1.24fr .76fr;background:#fff;box-shadow:0 18px 50px rgba(31,74,139,.06)}
+.home-hero-copy{padding:54px 52px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;background:linear-gradient(112deg,#fff 0%,#fff 78%,#f4faff 100%)}
+.home-badge{display:inline-flex;padding:7px 13px;border-radius:999px;background:#eaf3ff;color:#1761e9;font-size:11px;margin-bottom:22px}
+.home-hero-copy h1{font-size:43px;line-height:1.22;letter-spacing:-1.8px;color:#111d35;margin:0 0 18px}.home-hero-copy h1 em{font-style:normal;color:#155fd9}
+.home-hero-copy p{font-size:16px;color:#74839a;margin:0;line-height:1.7}.home-actions{display:flex;gap:14px;margin-top:30px}.home-actions button{height:54px;padding:0 24px;border-radius:12px;font-size:14px;font-weight:500}.home-primary{background:#1464e9;color:#fff;box-shadow:0 9px 20px rgba(20,100,233,.18)}.home-secondary{background:#fff;color:#175cc9;border:1px solid #2b73eb}.home-actions span{margin-left:14px;font-size:18px}
+.home-visual{position:relative;min-height:430px;background-color:#eef5fb;background-image:url('hero-city-clean.jpg');background-repeat:no-repeat;background-position:center;background-size:cover}
+.home-shortcuts{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}.home-shortcuts button{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid #e4ecf7;border-radius:18px;padding:18px 20px;text-align:left;min-height:92px;box-shadow:0 8px 22px rgba(23,54,104,.03)}.home-shortcuts button>span{display:flex;flex-direction:column;min-width:0;flex:1}.home-shortcuts strong{font-size:14px;color:#17233b}.home-shortcuts small{font-size:11px;color:#8290a5;margin-top:3px}.home-shortcuts button>b{font-size:23px;color:#8b9aae;font-weight:400}.shortcut-icon{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;font-style:normal;font-size:20px;flex:0 0 46px}.shortcut-blue{background:#eaf3ff;color:#1563e8}.shortcut-green{background:#e8f8f2;color:#10a772}.shortcut-orange{background:#fff1e5;color:#f27a13}.shortcut-purple{background:#f3eaff;color:#7b3fe5}
+.home-dashboard{display:grid;grid-template-columns:1.35fr .95fr;gap:18px;margin-top:22px}.home-dday-card,.home-panel{background:#fff;border:1px solid #e4ecf7;border-radius:22px;box-shadow:0 12px 28px rgba(21,66,125,.045)}.home-dday-card{padding:24px}.home-panel{padding:20px}.home-card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.home-card-head h2{font-size:18px;color:#17233b;margin:0}.home-card-head p{font-size:11px;color:#8190a5;margin:5px 0 0}.home-card-head.compact{align-items:center;margin-bottom:14px}.home-card-head.compact h2{font-size:15px}.home-text-btn{font-size:11px;color:#1761e9;background:#f0f6ff;border-radius:10px;padding:8px 10px}
+.home-dday-center{margin-top:18px;background:linear-gradient(135deg,#f5faff,#edf5ff);border-radius:20px;text-align:center;padding:28px 24px}.home-dday-center>strong{display:block;font-size:58px;line-height:1;color:#145fe2;letter-spacing:-2px}.home-dday-center>span{display:block;margin-top:12px;color:#6f7f96;font-size:12px}.home-progress{height:8px;background:#dfe8f6;border-radius:999px;margin:20px 0 10px;overflow:hidden}.home-progress i{display:block;height:100%;background:linear-gradient(90deg,#2d7bf4,#1262e8);border-radius:inherit}.home-dday-center small{color:#8794a7;font-size:10px}.home-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}.home-stats button{border:1px solid #e5edf8;border-radius:14px;padding:14px 12px;background:#fff;text-align:left}.home-stats span{display:block;color:#8391a5;font-size:10px}.home-stats strong{display:block;margin-top:3px;font-size:22px;color:#17233b}
+.home-side-stack{display:grid;gap:18px}.home-recent{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.home-recent button{min-width:0;text-align:left}.home-recent .room{height:76px;border-radius:10px}.home-recent button>span{display:block;margin-top:7px}.home-recent small,.home-recent strong,.home-recent em{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.home-recent small{font-size:9px;color:#7f8da1}.home-recent strong{font-size:10px;color:#243652;margin:1px 0}.home-recent em{font-style:normal;font-size:9px;color:#1761e9}.home-empty{grid-column:1/-1;color:#8794a7;font-size:11px}
+.home-checklist{list-style:none;padding:0;margin:0}.home-checklist li{position:relative;padding:12px 26px 12px 31px;border-top:1px solid #edf1f7;font-size:11px;color:#52647f}.home-checklist li:first-child{border-top:0}.home-checklist li:before{content:'';position:absolute;left:0;top:11px;width:17px;height:17px;border:2px solid #c7d2e1;border-radius:50%}.home-checklist li.done:before{background:#1670ee;border-color:#1670ee}.home-checklist li.done:after{content:'✓';position:absolute;left:4px;top:9px;color:#fff;font-size:12px}
+@media(max-width:980px){.home-mode header{padding:0 22px}.home-mode nav{gap:16px;margin-left:0}.home-shell{padding:20px}.home-hero{grid-template-columns:1fr}.home-visual{min-height:300px;order:-1}.home-hero-copy{padding:38px}.home-hero-copy h1{font-size:35px}.home-shortcuts{grid-template-columns:1fr 1fr}.home-dashboard{grid-template-columns:1fr}}
+@media(max-width:740px){.home-mode header{height:68px}.home-mode nav{display:none}.home-shell{padding:12px 12px 28px}.home-hero{border-radius:20px}.home-visual{min-height:220px}.home-visual-copy{left:24px;top:28px;font-size:13px}.home-hero-copy{padding:28px 22px}.home-hero-copy h1{font-size:29px}.home-hero-copy p{font-size:13px}.home-actions{width:100%;flex-direction:column}.home-actions button{width:100%}.home-shortcuts{grid-template-columns:1fr}.home-dashboard{grid-template-columns:1fr}.home-recent{grid-template-columns:1fr 1fr 1fr}.home-mode .notice{padding:16px}}
+
+/* ===== Formal public pages refinement ===== */
+.home-mode .home-hero{border-radius:16px;box-shadow:0 8px 28px rgba(31,74,139,.045)}
+.home-mode .home-badge{border-radius:5px;background:#eef4fc;color:#315b91;letter-spacing:.02em}
+.home-mode .home-hero-copy h1{font-weight:700;letter-spacing:-1.5px;color:#14233d}
+.home-mode .home-actions button{border-radius:7px;font-weight:600}
+.home-mode .home-shortcuts button{border-radius:10px;box-shadow:none}
+.home-mode .shortcut-icon{border-radius:10px}
+.home-mode .home-dday-card,.home-mode .home-panel{border-radius:12px;box-shadow:none}
+.home-mode .home-dday-center{border-radius:10px;background:#f4f8fd}
+.home-mode .home-stats button{border-radius:8px}
+.home-mode .home-text-btn{border-radius:6px;background:#f3f6fa;color:#315b91}
+
+/* Service introduction page */
+.service-mode{background:#f6f9fd;font-family:"Pretendard","Noto Sans KR","Malgun Gothic",Arial,sans-serif}
+.service-mode .layout{display:block;max-width:none;min-height:calc(100vh - 78px)}
+.service-mode aside,.service-mode .breadcrumb{display:none}
+.service-mode main{padding:0;min-width:0}
+.service-mode header{position:sticky;top:0;z-index:30;height:84px;padding:0 max(38px,calc((100vw - 1180px)/2));background:#fff}
+.service-mode .logo small{display:none}
+.service-mode .user .pill{display:none}
+.service-mode .avatar{border-radius:8px;padding:9px 14px;background:#f1f4f8;color:#233652}
+.service-mode nav{margin-left:22px;gap:34px}
+.service-mode nav button{font-size:14px}
+.service-mode .notice{max-width:1180px;margin:18px auto 0;padding:16px 28px 28px;border-top:1px solid #e4ebf5}
+.service-page{max-width:1180px;margin:0 auto;padding:42px 28px 60px}
+.service-hero{padding:42px 44px;background:#fff;border:1px solid #e1e9f4;border-radius:12px;margin-bottom:18px}
+.service-kicker{font-size:11px;color:#55739b;letter-spacing:.12em}
+.service-hero h1{font-size:38px;line-height:1.28;letter-spacing:-1.5px;color:#172740;margin:12px 0 14px}
+.service-hero h1 strong{color:#1a61d8}
+.service-hero p{font-size:14px;color:#718197;margin:0}
+.service-story{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.service-card{position:relative;background:#fff;border:1px solid #e1e9f4;border-radius:12px;padding:30px 32px;min-height:260px;overflow:hidden}
+.service-card-wide{grid-column:1/-1;display:grid;grid-template-columns:1.25fr .75fr;align-items:center;gap:34px}
+.service-no{font-size:11px;color:#8a9ab0;margin-bottom:14px;letter-spacing:.08em}
+.service-card h2{font-size:24px;line-height:1.4;color:#172740;margin:0 0 14px;letter-spacing:-.8px}
+.service-card h2 strong{color:#1a61d8}
+.service-card p{font-size:13px;color:#708198;line-height:1.8;margin:0}
+.service-stat{width:190px;height:190px;border:16px solid #e9eef5;border-top-color:#1970e8;border-right-color:#1970e8;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;justify-self:center;color:#334b68}
+.service-stat span{font-size:12px}.service-stat b{font-size:48px;line-height:1;color:#1765dc;margin:6px 0}.service-stat b small{font-size:23px}.service-stat em{font-style:normal;font-size:11px;color:#8a99ac}
+.service-steps{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:24px}
+.service-steps span{padding:10px 12px;border:1px solid #dfe7f2;border-radius:6px;background:#f7f9fc;font-size:11px;color:#52667f}
+.service-quote{background:linear-gradient(145deg,#f8fbff,#fff)}
+.service-checks{list-style:none;padding:0;margin:0;display:grid;gap:11px;justify-self:end;width:min(100%,330px)}
+.service-checks li{position:relative;padding:11px 14px 11px 38px;border:1px solid #dfe7f2;border-radius:6px;color:#405875;font-size:12px;background:#f9fbfd}
+.service-checks li:before{content:"✓";position:absolute;left:14px;top:9px;color:#15966d;font-weight:700}
+@media(max-width:800px){
+  .service-mode header{padding:0 18px;height:68px}
+  .service-mode nav{display:none}
+  .service-page{padding:20px 14px 38px}
+  .service-hero{padding:28px 22px}
+  .service-hero h1{font-size:29px}
+  .service-story{grid-template-columns:1fr}
+  .service-card-wide{grid-column:auto;grid-template-columns:1fr}
+  .service-card{padding:24px 22px}
+  .service-stat{width:150px;height:150px;border-width:12px}
+  .service-checks{justify-self:stretch}
+}
+
+
+/* ===== Exact service artwork ===== */
+.service-image-page{max-width:1040px;margin:0 auto;padding:36px 28px 60px}
+.service-image-head{background:#fff;border:1px solid #e1e9f4;padding:28px 32px;margin-bottom:18px}
+.service-image-head h1{font-size:30px;line-height:1.35;letter-spacing:-1px;color:#172740;margin:9px 0 7px}
+.service-image-head p{font-size:13px;color:#718197;margin:0}
+.service-original-art{display:block;width:min(100%,941px);height:auto;margin:0 auto;background:#fff;border:1px solid #e1e9f4}
+@media(max-width:800px){
+  .service-image-page{padding:20px 14px 38px}
+  .service-image-head{padding:22px 20px}
+  .service-image-head h1{font-size:25px}
+}
+
+
+/* ===== Unified site system 2026-10-07 ===== */
+
+/* One typography + one visual system across every route */
+html{background:#f6f9fd}
+body{
+  background:#f6f9fd;
+  color:#17233b;
+  font-family:"Pretendard","Noto Sans KR","Malgun Gothic",Arial,sans-serif;
+  font-weight:400;
+  font-size:14px;
+  line-height:1.65;
+  letter-spacing:-.015em
+}
+button,input,select,textarea{font-family:inherit;font-weight:400}
+h1,h2,h3,strong{font-weight:700}
+h1{color:#14233d}
+h2{color:#1d3659}
+p{color:#667890}
+
+/* Header follows the home screen everywhere */
+header,
+.home-mode header,
+.service-mode header{
+  position:sticky;
+  top:0;
+  z-index:30;
+  width:100%;
+  height:84px;
+  padding:0 max(30px,calc((100vw - 1240px)/2));
+  gap:34px;
+  background:rgba(255,255,255,.97);
+  border-bottom:1px solid #e4ebf4;
+  backdrop-filter:blur(12px)
+}
+.logo{gap:9px}
+.logo strong,
+.home-mode .logo strong,
+.service-mode .logo strong{
+  font-size:23px;
+  letter-spacing:-.04em;
+  color:#123f89
+}
+.logo small,
+.home-mode .logo small,
+.service-mode .logo small{display:none}
+.brand-icon,
+.home-mode .brand-icon{width:32px;height:36px;color:#1767df}
+nav,
+.home-mode nav,
+.service-mode nav{
+  margin-left:12px;
+  gap:24px;
+  height:100%
+}
+nav button,
+.home-mode nav button,
+.service-mode nav button{
+  height:100%;
+  padding:0 2px;
+  font-size:13px;
+  font-weight:600;
+  color:#34445d;
+  border-bottom:2px solid transparent
+}
+nav button:hover{color:#1761d8}
+nav button.active{color:#1761d8;border-color:#1761d8}
+.user .pill{display:none}
+.avatar,
+.home-mode .avatar,
+.service-mode .avatar{
+  border-radius:8px;
+  padding:9px 14px;
+  background:#f2f5f9;
+  color:#44566f;
+  font-weight:600
+}
+
+/* Retire the old dashboard sidebar so the inner pages feel like the home page */
+.layout{
+  display:block;
+  max-width:none;
+  min-height:calc(100vh - 84px)
+}
+aside{display:none}
+main{
+  width:100%;
+  max-width:1240px;
+  margin:0 auto;
+  padding:30px 28px 46px;
+  min-width:0
+}
+.home-mode main,.service-mode main{max-width:none;padding:0}
+.breadcrumb{
+  margin:0 0 18px;
+  color:#8b99ac;
+  font-size:11px
+}
+.screen{animation:enter .18s ease}
+
+/* Inner-page opening area */
+.hero{
+  border:1px solid #e3eaf4;
+  border-radius:12px;
+  background:linear-gradient(120deg,#f7faff,#eef5fd);
+  padding:28px 32px;
+  margin-bottom:20px;
+  box-shadow:none
+}
+.hero h1{font-size:26px;letter-spacing:-1px}
+.hero svg{width:165px;height:110px}
+.eyebrow{color:#6780a4;letter-spacing:.13em}
+
+/* Headings and content cards use the same calm geometry as the home dashboard */
+.intro{
+  margin-bottom:18px;
+  padding:2px 2px 0
+}
+.intro h1{font-size:27px;line-height:1.35;letter-spacing:-1px}
+.intro p{font-size:13px;color:#718197}
+.intro>.pill{border-radius:6px;background:#f0f5fb;color:#48678f;padding:6px 10px}
+
+.card,
+.saved-row,
+.side-note,
+.deadline{
+  border:1px solid #e2e9f3;
+  border-radius:12px;
+  background:#fff;
+  box-shadow:none
+}
+.card{padding:26px}
+.card h2{font-size:17px;letter-spacing:-.35px}
+.conditions{background:#f7faff}
+.side-note{
+  background:#f7faff;
+  color:#536b89
+}
+.side-note h3{color:#274f85}
+.info,.summary{
+  border:1px solid #e1e9f4;
+  border-radius:8px;
+  background:#f4f8fd;
+  color:#607793
+}
+
+/* Forms and controls */
+.field>span{color:#52677f;font-size:12px;font-weight:600}
+input,select{
+  min-height:42px;
+  border:1px solid #dbe4ef;
+  border-radius:7px;
+  color:#263b58;
+  background:#fff
+}
+input:focus,select:focus{
+  border-color:#1767df;
+  box-shadow:0 0 0 3px rgba(23,103,223,.08)
+}
+.btn{
+  border-radius:7px;
+  background:#1767df;
+  color:#fff;
+  font-weight:600;
+  box-shadow:none
+}
+.btn:hover{background:#1058c5}
+.btn.secondary{
+  background:#fff;
+  border:1px solid #cddcf0;
+  color:#245b9f
+}
+.pill{
+  border-radius:6px;
+  background:#eef4fb;
+  color:#41658f;
+  font-weight:600
+}
+.pill.green{background:#edf8f4;color:#16795e}
+.pill.orange{background:#fff5e9;color:#a3650f}
+
+/* Tabs, tables and saved items */
+.tabs{gap:18px;border-color:#e1e8f2}
+.tabs button{
+  padding:11px 2px;
+  font-weight:600;
+  color:#6d7d91
+}
+.tabs .active{color:#1761d8;border-color:#1761d8}
+.table-wrap,.saved-row{background:#fff}
+table{font-size:12px}
+th{
+  background:#f6f9fd;
+  color:#536983;
+  font-weight:700
+}
+td{border-color:#e8edf4}
+.saved-row{padding:20px;margin-bottom:12px}
+.room{border-radius:8px}
+.track span.done{background:#1767df}
+
+/* D-day screen: remove the old pink theme so it belongs to this site */
+.deadline{
+  background:#f7faff;
+  border-color:#e1e9f4
+}
+.dday{color:#1767df}
+.progress{background:#e1e8f2}
+.progress i{background:#1767df}
+.metrics{gap:12px}
+.metric,
+.metric:nth-child(2),
+.metric:nth-child(3),
+.metric:nth-child(4){
+  border:1px solid #e2e9f3;
+  border-radius:9px;
+  background:#f7faff;
+  color:#50647e
+}
+.metric strong{color:#1767df}
+
+/* Agent page */
+.agent-banner{border-color:#e3e9f1}
+.agent-avatar{border-radius:10px;background:#eef5fd}
+.agent-metrics .metric{background:#f7faff}
+
+/* Home photo: show the approved image without chopping off its contents */
+.home-hero{grid-template-columns:1.16fr .84fr}
+.home-visual{
+  background-color:#f3f8fc;
+  background-image:url('hero-city-clean.jpg');
+  background-repeat:no-repeat;
+  background-position:center bottom;
+  background-size:contain
+}
+
+/* Service page uses the submitted artwork itself, not a recreated version */
+.service-mode{background:#f6f9fd}
+.service-image-page{max-width:1040px;margin:0 auto;padding:34px 28px 58px}
+.service-image-head{
+  padding:25px 28px;
+  margin-bottom:16px;
+  border:1px solid #e2e9f3;
+  border-radius:10px;
+  background:#fff
+}
+.service-image-head h1{font-size:27px;color:#14233d}
+.service-original-art{
+  display:block;
+  width:min(100%,760px);
+  height:auto;
+  margin:0 auto;
+  border:0;
+  background:#fff;
+  box-shadow:0 10px 30px rgba(31,63,105,.05)
+}
+
+/* Footer is consistent on every page */
+.notice,
+.home-mode .notice,
+.service-mode .notice{
+  max-width:1240px;
+  margin:22px auto 0;
+  padding:16px 28px 26px;
+  border-top:1px solid #e3eaf3;
+  color:#8997aa;
+  font-size:10px
+}
+
+/* Mobile */
+@media(max-width:1080px){
+  header,.home-mode header,.service-mode header{padding:0 22px;gap:20px}
+  nav,.home-mode nav,.service-mode nav{gap:14px}
+  nav button,.home-mode nav button,.service-mode nav button{font-size:12px}
+  main{padding:24px 20px 40px}
+  .home-hero{grid-template-columns:1fr 1fr}
+}
+@media(max-width:800px){
+  header,.home-mode header,.service-mode header{height:68px;padding:0 16px}
+  nav,.home-mode nav,.service-mode nav{display:none}
+  main{padding:18px 14px 34px}
+  .hero{padding:22px}
+  .hero svg{width:105px;height:88px}
+  .intro h1{font-size:23px}
+  .grid2,.grid-main{grid-template-columns:1fr}
+  .service-image-page{padding:18px 12px 36px}
+  .service-image-head{padding:21px 18px}
+  .service-original-art{width:100%}
+  .home-hero{grid-template-columns:1fr}
+  .home-visual{min-height:300px;order:-1}
+}
+
+
+/* ===== Eligibility simulator 2026-10-07 ===== */
+
+/* Render uploaded images as actual image elements, not CSS re-creations */
+.home-visual{
+  min-height:430px;
+  overflow:hidden;
+  background:#eef5fb;
+  display:flex;
+  align-items:stretch;
+  justify-content:stretch
+}
+.home-visual-img{
+  display:block;
+  width:100%;
+  height:100%;
+  min-height:430px;
+  object-fit:cover;
+  object-position:center
+}
+.service-original-art{
+  display:block;
+  width:min(100%,941px);
+  height:auto;
+  object-fit:contain
+}
+
+/* My conditions / pre-application simulation */
+.condition-page{display:grid;gap:18px}
+.condition-heading{
+  padding:28px 32px;
+  border:1px solid #e2e9f3;
+  border-radius:12px;
+  background:linear-gradient(120deg,#fff,#f4f8fd)
+}
+.condition-heading h1{
+  margin:4px 0 8px;
+  font-size:31px;
+  line-height:1.3;
+  letter-spacing:-1.25px
+}
+.condition-heading p{margin:0;font-size:13px;color:#708096}
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:18px;
+  margin-bottom:20px
+}
+.section-head>div{display:flex;align-items:center;gap:10px}
+.section-head h2{margin:0}
+.section-head p{margin:0;font-size:11px;color:#8491a4}
+.section-no{
+  display:inline-grid;
+  place-items:center;
+  width:28px;height:28px;
+  border-radius:7px;
+  background:#edf4fd;
+  color:#1767df;
+  font-size:11px;
+  font-weight:700
+}
+.simulation-card{padding:28px 30px}
+.sim-qualifiers{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  margin-bottom:20px
+}
+.sim-qualifiers .field{
+  margin:0;
+  padding:15px;
+  border:1px solid #e2e9f3;
+  border-radius:9px;
+  background:#f9fbfd
+}
+.sim-qualifiers .field>span{min-height:39px;line-height:1.5}
+.asset-groups{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px
+}
+.asset-group{
+  border:1px solid #e2e9f3;
+  border-radius:10px;
+  padding:18px;
+  background:#fff
+}
+.asset-title{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:14px}
+.asset-title h3{margin:0;color:#223c5f;font-size:14px}
+.asset-title span{font-size:10px;color:#8a97a9;text-align:right}
+.asset-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px
+}
+.asset-field span{
+  display:block;
+  margin-bottom:5px;
+  color:#53677f;
+  font-size:11px;
+  font-weight:600
+}
+.asset-field>div{position:relative}
+.asset-field input{padding-right:45px;text-align:right}
+.asset-field em{
+  position:absolute;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:10px;
+  font-style:normal;
+  color:#8b98a9
+}
+.sim-calc-btn{margin-top:18px;width:100%;min-height:46px}
+.simulation-result{
+  margin-top:16px;
+  padding:20px;
+  border:1px solid #dce7f5;
+  border-radius:10px;
+  background:#f4f8fd
+}
+.simulation-result.good{background:#eff8f5;border-color:#d6eee5}
+.simulation-result.bad{background:#fff5f5;border-color:#f1dfe1}
+.sim-rank-label{font-size:10px;color:#7d8ca0;margin-bottom:3px}
+.simulation-result>strong{display:block;font-size:25px;color:#1767df}
+.simulation-result.good>strong{color:#13775d}
+.simulation-result.bad>strong{color:#a94b56}
+.simulation-result>p{font-size:12px;margin:4px 0 14px}
+.sim-totals{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px
+}
+.sim-totals span{
+  padding:11px 12px;
+  border-radius:7px;
+  background:#fff;
+  border:1px solid #e3eaf3;
+  font-size:10px;
+  color:#718095
+}
+.sim-totals b{display:block;margin-top:2px;font-size:13px;color:#233d60}
+.sim-criteria{
+  display:grid;
+  gap:6px;
+  margin-top:10px
+}
+.sim-criteria span{
+  position:relative;
+  padding-left:20px;
+  font-size:10px;
+  color:#6d7d91
+}
+.sim-criteria span:before{position:absolute;left:0;font-weight:700}
+.sim-criteria .pass:before{content:"✓";color:#148464}
+.sim-criteria .fail:before{content:"!";color:#b56a1f}
+.simulation-note{font-size:10px}
+.condition-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px
+}
+@media(max-width:900px){
+  .sim-qualifiers,.asset-groups,.condition-grid{grid-template-columns:1fr}
+  .asset-title{display:block}
+  .asset-title span{display:block;text-align:left;margin-top:3px}
+}
+@media(max-width:600px){
+  .condition-heading{padding:22px 20px}
+  .condition-heading h1{font-size:25px}
+  .simulation-card{padding:22px 18px}
+  .asset-grid{grid-template-columns:1fr}
+  .sim-totals{grid-template-columns:1fr}
+}
+
+/* Hero image sizing correction */
+.home-visual-img{width:100%;height:430px;min-height:430px;object-fit:cover;object-position:center;display:block}
+@media(max-width:980px){.home-visual-img{height:300px;min-height:300px}}
+@media(max-width:800px){.home-visual-img{height:300px;min-height:300px}}
+
+
+/* ===== Home without photo + intact service story ===== */
+.home-hero.home-hero-text-only{
+  display:block;
+  min-height:auto;
+  max-width:1240px;
+  background:linear-gradient(135deg,#ffffff 0%,#f6f9fd 72%,#eef5fd 100%);
+  border:1px solid #e3eaf4;
+  overflow:hidden
+}
+.home-hero-text-only .home-hero-copy{
+  min-height:390px;
+  width:100%;
+  max-width:none;
+  padding:58px 64px;
+  background:
+    radial-gradient(circle at 88% 22%,rgba(31,103,223,.10) 0 72px,transparent 73px),
+    radial-gradient(circle at 94% 78%,rgba(37,172,138,.08) 0 112px,transparent 113px),
+    transparent
+}
+.home-hero-text-only .home-hero-copy h1{max-width:720px}
+.home-hero-text-only .home-hero-copy p{max-width:640px}
+.home-visual,.home-visual-img{display:none!important}
+
+.service-artwork-frame{
+  width:min(100%,941px);
+  margin:0 auto;
+  padding:0;
+  background:#fff;
+  border:0;
+  box-shadow:none
+}
+.service-original-art{
+  display:block;
+  width:100%;
+  max-width:941px;
+  height:auto;
+  margin:0 auto;
+  object-fit:contain;
+  object-position:center;
+  border:0;
+  box-shadow:none;
+  background:#fff
+}
+.service-image-page{
+  max-width:1040px;
+  margin:0 auto;
+  padding:34px 28px 60px
+}
+@media(max-width:800px){
+  .home-hero-text-only .home-hero-copy{min-height:auto;padding:38px 24px}
+  .service-image-page{padding:18px 10px 36px}
+  .service-artwork-frame{width:100%}
+  .service-original-art{width:100%;height:auto}
+}
+
+
+/* ===== Progressive disclosure 2026-10-23 ===== */
+.compact-page{gap:16px}
+.compact-heading{padding:24px 28px}
+.compact-heading h1{font-size:28px}
+.page-summary-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  margin:2px 0 4px
+}
+.page-summary-grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.page-summary-grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.summary-tile{
+  display:flex;
+  flex-direction:column;
+  min-height:112px;
+  padding:18px 20px;
+  border:1px solid #e2e9f3;
+  border-radius:11px;
+  background:#fff
+}
+.summary-tile>span{
+  color:#7a899d;
+  font-size:11px;
+  font-weight:600
+}
+.summary-tile>strong{
+  margin-top:6px;
+  color:#173c72;
+  font-size:21px;
+  line-height:1.35
+}
+.summary-tile>small{
+  margin-top:auto;
+  padding-top:7px;
+  color:#95a1b1;
+  font-size:10px
+}
+
+.feature-disclosure{
+  border:1px solid #dfe7f2;
+  border-radius:11px;
+  background:#fff;
+  overflow:hidden
+}
+.feature-disclosure+ .feature-disclosure{margin-top:10px}
+.feature-disclosure>summary{
+  list-style:none;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  min-height:86px;
+  padding:18px 22px;
+  cursor:pointer;
+  user-select:none
+}
+.feature-disclosure>summary::-webkit-details-marker{display:none}
+.feature-disclosure>summary:hover{background:#f8fbff}
+.feature-disclosure>summary>div{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  min-width:0
+}
+.feature-disclosure>summary>div>span:last-child{
+  display:flex;
+  flex-direction:column;
+  min-width:0
+}
+.feature-disclosure>summary strong{
+  color:#203b5f;
+  font-size:14px
+}
+.feature-disclosure>summary small{
+  margin-top:4px;
+  color:#7f8da1;
+  font-size:10.5px;
+  line-height:1.5
+}
+.feature-disclosure>summary>b{
+  flex:none;
+  padding:7px 11px;
+  border-radius:7px;
+  background:#f0f5fb;
+  color:#315f98;
+  font-size:10.5px;
+  font-weight:700
+}
+.feature-disclosure>summary>b:after{content:"  +" }
+.feature-disclosure[open]>summary{
+  border-bottom:1px solid #e6edf5;
+  background:#f8fbff
+}
+.feature-disclosure[open]>summary>b:after{content:"  −"}
+.disclosure-body{
+  padding:24px;
+  background:#fff
+}
+.disclosure-body.simulation-card{
+  border:0;
+  border-radius:0;
+  box-shadow:none
+}
+.compact-info{
+  color:#5d7089;
+  font-size:12px
+}
+.compact-info p{margin:0 0 14px}
+.compact-info p:last-child{margin-bottom:0}
+
+.listing-summary-card,
+.agent-summary-card{
+  display:grid;
+  align-items:center;
+  gap:20px;
+  margin-bottom:14px;
+  padding:20px 22px;
+  border:1px solid #e2e9f3;
+  border-radius:11px;
+  background:#fff
+}
+.listing-summary-card{
+  grid-template-columns:150px minmax(0,1fr) auto
+}
+.listing-summary-card .room{
+  width:150px;
+  height:98px;
+  border-radius:8px
+}
+.listing-summary-card h2,
+.agent-summary-card h2{
+  margin:6px 0 4px;
+  color:#1d3659;
+  font-size:16px
+}
+.agent-summary-card{
+  grid-template-columns:70px minmax(0,1fr)
+}
+.agent-summary-card .agent-avatar{
+  width:64px;
+  height:64px
+}
+.saved-top-action{
+  display:flex;
+  justify-content:flex-end;
+  margin:12px 0
+}
+.saved-top-action .btn{min-width:116px}
+
+@media(max-width:900px){
+  .page-summary-grid,
+  .page-summary-grid.two,
+  .page-summary-grid.three{grid-template-columns:1fr}
+  .summary-tile{min-height:92px}
+  .listing-summary-card{grid-template-columns:110px minmax(0,1fr)}
+  .listing-summary-card .room{width:110px;height:80px}
+  .listing-summary-card>.btn{grid-column:1/-1;width:100%}
+}
+@media(max-width:600px){
+  .compact-heading{padding:20px}
+  .compact-heading h1{font-size:24px}
+  .feature-disclosure>summary{padding:16px;align-items:flex-start}
+  .feature-disclosure>summary>div{align-items:flex-start}
+  .feature-disclosure>summary small{display:none}
+  .feature-disclosure>summary>b{margin-top:1px}
+  .disclosure-body{padding:18px 16px}
+  .listing-summary-card{grid-template-columns:1fr}
+  .listing-summary-card .room{width:100%;height:160px}
+}
+
+
+/* ===== Saved list visible + multi-agent cards 2026-10-23 ===== */
+.saved-section-head,
+.agent-intro-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  margin:22px 0 12px;
+  padding:0 2px
+}
+.saved-section-head>div,
+.agent-intro-row>div{
+  display:flex;
+  align-items:center;
+  gap:12px
+}
+.saved-section-head h2,
+.agent-intro-row h2{
+  margin:0;
+  font-size:17px;
+  color:#1d3659
+}
+.saved-section-head p,
+.agent-intro-row p{
+  margin:3px 0 0;
+  color:#8491a4;
+  font-size:10.5px
+}
+.saved-tabs{margin-bottom:12px}
+.saved-list{display:grid;gap:12px}
+
+.agent-card-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px
+}
+.agent-card{
+  border:1px solid #e1e9f3;
+  border-radius:12px;
+  background:#fff;
+  padding:20px;
+  min-width:0
+}
+.agent-card-top{
+  display:grid;
+  grid-template-columns:54px minmax(0,1fr);
+  gap:14px;
+  align-items:center
+}
+.agent-card-top .agent-avatar{
+  width:54px;
+  height:54px;
+  border-radius:10px
+}
+.agent-card-top h3{
+  margin:7px 0 2px;
+  font-size:15px;
+  color:#1f3859
+}
+.agent-card-top p{
+  margin:0;
+  color:#8491a4;
+  font-size:10.5px
+}
+.agent-card-stats{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:17px
+}
+.agent-card-stats>div{
+  padding:12px;
+  border-radius:8px;
+  background:#f7faff;
+  border:1px solid #e6edf5
+}
+.agent-card-stats span{
+  display:block;
+  color:#7a899d;
+  font-size:10px
+}
+.agent-card-stats strong{
+  display:block;
+  margin-top:3px;
+  color:#1767df;
+  font-size:20px
+}
+.agent-card-stats small{font-size:10px;margin-left:2px}
+.agent-card-foot{
+  margin-top:14px;
+  padding-top:12px;
+  border-top:1px solid #edf1f6;
+  color:#65768c;
+  font-size:10.5px
+}
+.agent-detail{margin-top:10px}
+.agent-detail>summary{
+  cursor:pointer;
+  list-style:none;
+  color:#315f98;
+  font-size:10.5px;
+  font-weight:700
+}
+.agent-detail>summary::-webkit-details-marker{display:none}
+.agent-detail>summary:after{content:" +"}
+.agent-detail[open]>summary:after{content:" −"}
+.agent-card-detail{
+  margin-top:10px;
+  padding:12px 14px;
+  border-radius:8px;
+  background:#f8fbff
+}
+.agent-card-detail .keyrow{padding:8px 0}
+.agent-note{margin-top:14px}
+
+@media(max-width:900px){
+  .agent-card-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .saved-section-head,
+  .agent-intro-row{align-items:flex-start}
+  .saved-section-head{flex-direction:column}
+  .saved-section-head .btn{width:100%}
+  .agent-card{padding:16px}
+}
+
+
+/* ===== Service story rebuilt from reference 2026-10-23 ===== */
+.service-story-page{
+  max-width:1080px;
+  margin:0 auto;
+  padding:36px 28px 70px;
+  color:#111c31
+}
+.story-section{
+  position:relative;
+  display:grid;
+  grid-template-columns:minmax(0,1.1fr) minmax(320px,.9fr);
+  align-items:center;
+  min-height:440px;
+  overflow:hidden;
+  background:#fff
+}
+.story-section+.story-section{border-top:1px solid #eef2f7}
+.story-copy{
+  position:relative;
+  z-index:2;
+  padding:58px 48px 54px 58px
+}
+.story-index{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:28px;
+  color:#9aa8bd;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.04em
+}
+.story-index i{
+  display:block;
+  width:38px;
+  height:1px;
+  background:#bfc9d7
+}
+.story-copy h1,
+.story-copy h2{
+  margin:0 0 30px;
+  color:#0f1b33;
+  font-weight:800;
+  letter-spacing:-1.7px;
+  line-height:1.24
+}
+.story-copy h1{font-size:42px}
+.story-copy h2{font-size:38px}
+.story-copy h1 em,
+.story-copy h2 em,
+.story-quote em{
+  color:#1670e8;
+  font-style:normal
+}
+.story-copy p{
+  margin:0 0 20px;
+  color:#425168;
+  font-size:17px;
+  line-height:1.75;
+  letter-spacing:-.3px
+}
+
+/* 01: 51% ring */
+.story-one{
+  background:
+    radial-gradient(circle at 85% 15%,rgba(22,112,232,.04),transparent 34%),
+    linear-gradient(180deg,#fff 0%,#fbfdff 100%)
+}
+.occupancy-ring{
+  justify-self:center;
+  position:relative;
+  width:260px;
+  aspect-ratio:1;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:conic-gradient(#1670e8 0 51%,#edf1f6 51% 100%);
+  transform:rotate(7deg)
+}
+.occupancy-ring:before{
+  content:"";
+  position:absolute;
+  inset:17px;
+  border-radius:50%;
+  background:#fff
+}
+.occupancy-ring-inner{
+  position:relative;
+  z-index:1;
+  transform:rotate(-7deg);
+  text-align:center
+}
+.occupancy-ring-inner span{
+  display:block;
+  color:#2d3a52;
+  font-size:18px;
+  font-weight:700
+}
+.occupancy-ring-inner strong{
+  display:block;
+  margin:2px 0 0;
+  color:#1670e8;
+  font-size:68px;
+  line-height:1
+}
+.occupancy-ring-inner strong small{
+  margin-left:2px;
+  font-size:30px
+}
+.occupancy-ring-inner b{
+  display:block;
+  margin-top:14px;
+  color:#a1adc0;
+  font-size:18px;
+  font-weight:600
+}
+
+/* 02: recreate the soft bedroom/person visual with CSS, no source image */
+.story-two{
+  background:linear-gradient(90deg,#fff 0 49%,#f8fbff 49% 100%)
+}
+.story-person-visual{
+  position:relative;
+  align-self:stretch;
+  min-height:440px;
+  overflow:hidden;
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.96) 0%,rgba(255,255,255,.6) 28%,rgba(238,246,253,.48) 65%,rgba(252,252,250,.9) 100%),
+    linear-gradient(180deg,#f9fcff 0%,#eef5fb 62%,#f8f5f0 62%,#f1ece6 100%)
+}
+.room-glow{
+  position:absolute;
+  width:260px;
+  height:340px;
+  left:20px;
+  top:18px;
+  background:linear-gradient(90deg,rgba(255,255,255,.95),rgba(228,242,253,.55),rgba(255,255,255,.2));
+  filter:blur(2px)
+}
+.room-glow:after{
+  content:"";
+  position:absolute;
+  width:8px;
+  height:100%;
+  left:54%;
+  background:rgba(255,255,255,.85)
+}
+.bed-shape{
+  position:absolute;
+  right:-30px;
+  bottom:-15px;
+  width:390px;
+  height:160px;
+  border-radius:52% 0 0 0;
+  background:linear-gradient(150deg,#f8f6f3,#e6e1dc 70%,#ddd6ce);
+  box-shadow:0 -14px 40px rgba(105,112,124,.08)
+}
+.person-shoulder{
+  position:absolute;
+  right:64px;
+  bottom:20px;
+  width:230px;
+  height:180px;
+  border-radius:55% 48% 12% 16%;
+  background:linear-gradient(135deg,#f5f1ea,#e8dfd4);
+  transform:rotate(-5deg);
+  box-shadow:inset -18px 0 34px rgba(163,147,129,.08)
+}
+.person-neck{
+  position:absolute;
+  right:180px;
+  bottom:178px;
+  width:38px;
+  height:44px;
+  border-radius:18px;
+  background:#d7a27c;
+  transform:rotate(8deg)
+}
+.person-head{
+  position:absolute;
+  right:142px;
+  bottom:210px;
+  width:92px;
+  height:112px;
+  border-radius:46% 48% 44% 46%;
+  background:linear-gradient(145deg,#e0ad86,#c9916e);
+  transform:rotate(-7deg)
+}
+.person-hair{
+  position:absolute;
+  right:142px;
+  bottom:252px;
+  width:95px;
+  height:80px;
+  border-radius:58% 52% 22% 44%;
+  background:linear-gradient(135deg,#5f362a,#2c1c19 76%);
+  transform:rotate(-9deg)
+}
+.person-bun{
+  position:absolute;
+  right:208px;
+  bottom:280px;
+  width:46px;
+  height:43px;
+  border-radius:50%;
+  background:#39231e;
+  box-shadow:7px -2px 0 #4d2d25
+}
+.person-arm{
+  position:absolute;
+  right:88px;
+  bottom:85px;
+  width:132px;
+  height:40px;
+  border-radius:24px;
+  background:#e3d8cb;
+  transform:rotate(-30deg);
+  transform-origin:right center
+}
+
+/* 03: quote band */
+.story-quote{
+  position:relative;
+  padding:28px 58px 40px;
+  background:linear-gradient(90deg,#eef6ff,#f8fbff 50%,#eef6ff);
+  border-top:1px solid #e6eef8;
+  border-bottom:1px solid #e6eef8
+}
+.story-quote .story-index{margin-bottom:8px}
+.quote-wrap{
+  display:grid;
+  grid-template-columns:80px minmax(0,1fr) 80px;
+  align-items:center;
+  max-width:780px;
+  margin:0 auto;
+  text-align:center
+}
+.quote-mark{
+  color:#cbd7e8;
+  font-size:76px;
+  font-family:Georgia,serif;
+  line-height:1
+}
+.quote-wrap p{
+  margin:0;
+  color:#33425a;
+  font-size:24px;
+  line-height:1.55;
+  letter-spacing:-.6px
+}
+.quote-wrap p strong{
+  color:#14233d;
+  font-size:32px
+}
+.quote-wrap p em{font-weight:800}
+
+/* 04: phone made from real DOM elements */
+.story-four{
+  min-height:500px;
+  background:
+    radial-gradient(circle at 82% 52%,rgba(22,112,232,.08) 0 165px,transparent 166px),
+    linear-gradient(180deg,#fff 0%,#fbfdff 100%)
+}
+.service-phone{
+  justify-self:center;
+  width:250px;
+  padding:20px 16px 18px;
+  border-radius:28px;
+  background:#fff;
+  border:1px solid #e8edf4;
+  box-shadow:0 24px 50px rgba(43,76,122,.15);
+  transform:rotate(5deg)
+}
+.service-phone-speaker{
+  width:46px;
+  height:5px;
+  margin:0 auto 12px;
+  border-radius:4px;
+  background:#e9eef5
+}
+.service-phone-card{
+  display:grid;
+  gap:5px;
+  color:#23344d
+}
+.phone-room{
+  position:relative;
+  height:105px;
+  overflow:hidden;
+  border-radius:11px;
+  background:#edf3f8
+}
+.phone-room svg{
+  width:100%;
+  height:100%
+}
+.phone-room span{
+  position:absolute;
+  top:8px;
+  right:9px;
+  color:#fff;
+  font-size:18px;
+  text-shadow:0 1px 3px rgba(0,0,0,.2)
+}
+.service-phone-card strong{font-size:13px}
+.service-phone-card small{color:#8997a8;font-size:9.5px}
+.phone-status{
+  display:flex;
+  gap:6px;
+  align-items:center;
+  margin:12px 0;
+  padding:9px 10px;
+  border-radius:9px;
+  background:#daf8eb;
+  color:#0b8f62;
+  font-size:9.5px;
+  font-weight:700
+}
+.phone-checklist{
+  display:grid;
+  gap:8px;
+  margin:0;
+  padding:0;
+  list-style:none;
+  color:#56677c;
+  font-size:9.5px
+}
+.phone-checklist li{
+  display:flex;
+  gap:7px;
+  align-items:center
+}
+.phone-checklist b{
+  display:grid;
+  place-items:center;
+  width:16px;
+  height:16px;
+  border-radius:50%;
+  background:#16c784;
+  color:#fff;
+  font-size:10px
+}
+
+@media(max-width:900px){
+  .service-story-page{padding:22px 18px 50px}
+  .story-section{grid-template-columns:1fr;min-height:auto}
+  .story-copy{padding:46px 34px 36px}
+  .story-person-visual{min-height:390px}
+  .occupancy-ring{margin:10px auto 52px}
+  .story-four{padding-bottom:52px}
+  .service-phone{margin:8px auto 0}
+}
+@media(max-width:600px){
+  .service-story-page{padding:12px 10px 36px}
+  .story-copy{padding:34px 22px 30px}
+  .story-copy h1{font-size:31px}
+  .story-copy h2{font-size:29px}
+  .story-copy p{font-size:14px}
+  .occupancy-ring{width:210px}
+  .occupancy-ring-inner strong{font-size:56px}
+  .story-person-visual{min-height:330px}
+  .person-shoulder{right:10px}
+  .person-head{right:94px}
+  .person-hair{right:94px}
+  .person-bun{right:160px}
+  .person-neck{right:132px}
+  .person-arm{right:42px}
+  .story-quote{padding:24px 18px 32px}
+  .quote-wrap{grid-template-columns:38px 1fr 38px}
+  .quote-mark{font-size:48px}
+  .quote-wrap p{font-size:18px}
+  .quote-wrap p strong{font-size:24px}
+  .service-phone{width:220px}
+}
+
+
+/* ===== Property search/select/detail flow 2026-10-23 ===== */
+.listing-search-bar{
+  display:grid;
+  grid-template-columns:1.05fr 1fr 1fr auto;
+  gap:12px;
+  align-items:end;
+  margin-bottom:22px;
+  padding:18px;
+  border:1px solid #e1e9f3;
+  border-radius:12px;
+  background:#fff
+}
+.listing-search-bar .field{margin:0}
+.listing-search-bar .btn{height:42px;min-width:96px}
+.listing-price-input{position:relative}
+.listing-price-input input{padding-right:48px}
+.listing-price-input em{
+  position:absolute;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  color:#8a97a9;
+  font-size:10px;
+  font-style:normal
+}
+.listing-results-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  margin:20px 2px 12px
+}
+.listing-results-head>div{
+  display:flex;
+  align-items:center;
+  gap:12px
+}
+.listing-results-head h2{
+  margin:0;
+  font-size:17px;
+  color:#1d3659
+}
+.listing-results-head p{
+  margin:3px 0 0;
+  color:#8491a4;
+  font-size:10.5px
+}
+.listing-card-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px
+}
+.listing-card{
+  overflow:hidden;
+  border:1px solid #e1e9f3;
+  border-radius:12px;
+  background:#fff
+}
+.listing-card>.room{
+  width:100%;
+  height:155px;
+  border-radius:0
+}
+.listing-card-body{padding:16px}
+.listing-card-body h3{
+  margin:8px 0 4px;
+  color:#203b5f;
+  font-size:15px
+}
+.listing-card-body p{
+  margin:0 0 12px;
+  color:#8190a3;
+  font-size:10.5px
+}
+.listing-card-meta{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:14px;
+  padding:10px 0;
+  border-top:1px solid #edf1f6;
+  border-bottom:1px solid #edf1f6;
+  color:#687a90;
+  font-size:10.5px
+}
+.listing-card-meta strong{color:#1767df;font-size:12px}
+
+.selected-property-card{
+  display:grid;
+  grid-template-columns:160px minmax(0,1fr) auto;
+  gap:18px;
+  align-items:center;
+  margin-bottom:16px;
+  padding:20px;
+  border:1px solid #e1e9f3;
+  border-radius:12px;
+  background:#fff
+}
+.selected-property-card>.room{
+  width:160px;
+  height:105px;
+  border-radius:8px
+}
+.selected-property-card h2{
+  margin:7px 0 4px;
+  color:#1d3659;
+  font-size:18px
+}
+.selected-property-card p{
+  margin:0 0 6px;
+  color:#8491a4;
+  font-size:10.5px
+}
+.selected-property-card strong{
+  color:#1767df;
+  font-size:14px
+}
+.selected-property-actions{
+  display:grid;
+  gap:8px
+}
+
+@media(max-width:980px){
+  .listing-search-bar{grid-template-columns:1fr 1fr}
+  .listing-search-bar .btn{width:100%}
+  .listing-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .selected-property-card{grid-template-columns:130px minmax(0,1fr)}
+  .selected-property-card>.room{width:130px;height:92px}
+  .selected-property-actions{grid-column:1/-1;grid-template-columns:1fr 1fr}
+}
+@media(max-width:650px){
+  .listing-search-bar{grid-template-columns:1fr}
+  .listing-card-grid{grid-template-columns:1fr}
+  .listing-card>.room{height:190px}
+  .selected-property-card{grid-template-columns:1fr}
+  .selected-property-card>.room{width:100%;height:180px}
+  .selected-property-actions{grid-template-columns:1fr}
+}
+
+
+/* ===== Agent icon size correction 2026-10-23 ===== */
+.agent-card-top .agent-avatar{
+  width:42px;
+  height:42px;
+  border-radius:9px
+}
+.agent-card-top .agent-avatar svg{
+  width:24px;
+  height:24px
+}
+.agent-card-top{
+  grid-template-columns:42px minmax(0,1fr);
+  gap:12px
+}
+@media(max-width:600px){
+  .agent-card-top .agent-avatar{width:38px;height:38px}
+  .agent-card-top .agent-avatar svg{width:21px;height:21px}
+  .agent-card-top{grid-template-columns:38px minmax(0,1fr)}
+}
+
+</style>
  </head>
  <body>
   <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
@@ -90,17 +2379,23 @@
     </div>
    </button>
    <nav aria-label="주요 메뉴">
+    <button data-page="service">
+     서비스 소개
+    </button>
+    <button data-page="profile">
+     나의 조건
+    </button>
     <button data-page="check">
      매물 확인
+    </button>
+    <button data-page="calc">
+     추가부담 계산
     </button>
     <button data-page="saved">
      나의 매물
     </button>
     <button data-page="agent">
      중개사 찾기
-    </button>
-    <button data-page="profile">
-     나의 조건
     </button>
    </nav>
    <div class="user">
@@ -190,9 +2485,9 @@
     <div id="app">
     </div>
     <footer class="notice">
-     KU알라룸푸르 · 드림학기제 웹 프로토타입
+     건국대학교 · 드림학기제 웹 프로토타입
      <br/>
-     2·3주차 활동자료를 바탕으로 만든 시연 화면입니다. 매물·중개사·실적은 가상 데이터이며 최신 공고나 실제 심사 결과와 연동되지 않습니다. 입력 내용은 이 브라우저에 저장됩니다.
+     드림학기제 프로젝트를 바탕으로 만든 시연 화면입니다. 매물·중개사·실적은 가상 데이터이며 최신 공고나 실제 심사 결과와 연동되지 않습니다. 입력 내용은 이 브라우저에 저장됩니다.
     </footer>
    </main>
   </div>
@@ -231,7 +2526,418 @@
     </div>
    </form>
   </dialog>
-  <script defer="" src="script.js">
-  </script>
+  <script id="embedded-site-script">
+// 청년전세ON 웹 프로토타입
+// 화면 전환, 지원한도/추가부담 계산, D-Day, 관심매물 상태 관리 등을 담당합니다.
+// 데이터는 브라우저 localStorage에 저장됩니다.
+
+const $=s=>document.querySelector(s), app=$('#app');
+
+const titles={home:'나의 대시보드',service:'서비스 소개',profile:'사용자별 지원조건 자동 정리',calc:'추가부담 가능 범위 계산',check:'사용자 조건에 따른 매물 확인',saved:'관심매물 진행상태 관리',agent:'공인중개사 전세임대 실적'};
+
+const stages=['관심매물','중개사 문의','임대인 동의 확인','권리분석 요청','보완 요청','승인','반려','계약 완료'];
+
+const iso=d=>{const t=new Date(d);return `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}`};
+
+const today=new Date();
+
+const plus=n=>{const d=new Date(today);d.setDate(d.getDate()+n);return iso(d)};
+
+const defaults={profile:{region:'서울특별시',people:'1',limit:12000,selected:plus(-17),deadline:plus(43)},simulation:{firstRank:'unknown',familyIncome100:'unknown',selfIncome100:'unknown',self:{deposit:0,stock:0,car:0,rentalDeposit:0,realEstate:0,debt:0},parents:{deposit:0,stock:0,car:0,rentalDeposit:0,realEstate:0,debt:0}},search:{region:'서울특별시',type:'전체',maxPrice:''},selectedProperty:null,price:15000,properties:[{id:1,name:'행복빌라 101호',address:'서울특별시 광진구 자양동 · 예시',price:15000,stage:'권리분석 요청'},{id:2,name:'한아름하우스 202호',address:'서울특별시 광진구 화양동 · 예시',price:11000,stage:'임대인 동의 확인'},{id:3,name:'드림아파트 305호',address:'서울특별시 광진구 구의동 · 예시',price:17000,stage:'중개사 문의'}],check:{area:49.5,type:'다세대',move:'확인 필요',rights:'확인 필요',consent:'확인 필요'}};
+
+let state=structuredClone(defaults);try{const x=JSON.parse(localStorage.getItem('jeonse-on-v1'));if(x&&x.profile&&Array.isArray(x.properties)&&x.check)state=x}catch{}state.profile={...defaults.profile,...state.profile};state.simulation={...structuredClone(defaults.simulation),...(state.simulation||{}),self:{...defaults.simulation.self,...((state.simulation||{}).self||{})},parents:{...defaults.simulation.parents,...((state.simulation||{}).parents||{})}};state.search={...defaults.search,...(state.search||{})};if(!('selectedProperty' in state))state.selectedProperty=null;let page='home',filter='전체';
+
+let storageWarn=false;
+
+function save(){try{localStorage.setItem('jeonse-on-v1',JSON.stringify(state))}catch{if(!storageWarn){storageWarn=true;toast('브라우저 저장이 제한되어 이번 화면에서만 유지됩니다.')}}}
+
+function toast(msg){$('#toast').textContent=msg;
+
+$('#toast').classList.remove('hidden');clearTimeout(window.tt);
+
+window.tt=setTimeout(()=>$('#toast').classList.add('hidden'),2600)}const esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+const money=v=>Number(v).toLocaleString('ko-KR')+'만원';
+
+const max=()=>state.profile.limit*(state.profile.people==='1'?1.5:2);
+
+const areaMax=()=>85;
+
+const opt=(a,s)=>a.map(v=>`<option ${String(v)===String(s)?'selected':''}>${esc(v)}</option>`).join('');
+
+const town='<svg aria-hidden="true"><use href="#town"/></svg>';
+
+const room='<div class="room"><svg aria-hidden="true"><use href="#room"/></svg></div>';
+
+const header=(title,desc)=>`<div class="intro"><div><h1>${title}</h1><p>${desc}</p></div><span class="pill">나의 조건을 기준으로</span></div>`;
+
+const official='<div class="info">입력 정보에 따른 사전 확인 결과입니다. 최종 지원·계약 가능 여부는 사업시행기관의 권리분석과 승인에 따라 결정됩니다.</div>';
+const listingInventory=[
+  {id:'L1',name:'라온빌라 201호',address:'서울특별시 광진구 자양동',region:'서울특별시',type:'다세대',price:11500,area:42.8,move:'예',rights:'제한권리 없음',consent:'예'},
+  {id:'L2',name:'청년하우스 302호',address:'서울특별시 광진구 화양동',region:'서울특별시',type:'다가구',price:12800,area:38.4,move:'예',rights:'확인 필요',consent:'예'},
+  {id:'L3',name:'한강아파트 507호',address:'서울특별시 성동구 성수동',region:'서울특별시',type:'아파트',price:16500,area:51.2,move:'예',rights:'제한권리 없음',consent:'확인 필요'},
+  {id:'L4',name:'마루오피스텔 804호',address:'서울특별시 동대문구 장안동',region:'서울특별시',type:'주거용 오피스텔',price:10800,area:31.6,move:'예',rights:'제한권리 없음',consent:'예'},
+  {id:'L5',name:'늘봄빌라 101호',address:'경기도 안양시 동안구',region:'경기도',type:'다세대',price:9800,area:44.1,move:'예',rights:'확인 필요',consent:'예'},
+  {id:'L6',name:'푸른연립 203호',address:'인천광역시 남동구',region:'인천광역시',type:'연립',price:9200,area:48.9,move:'예',rights:'제한권리 없음',consent:'예'}
+];
+function filteredListings(){
+  const s=state.search||defaults.search;
+  return listingInventory.filter(x=>(!s.region||s.region==='전체'||x.region===s.region)&&(s.type==='전체'||x.type===s.type)&&(!assetNum(s.maxPrice)||x.price<=assetNum(s.maxPrice)));
+}
+function selectProperty(x){
+  state.selectedProperty={id:x.id||null,name:x.name,address:x.address,price:Number(x.price)||0,area:x.area||'',type:x.type||'확인 필요',move:x.move||'확인 필요',rights:x.rights||'확인 필요',consent:x.consent||'확인 필요'};
+  state.price=state.selectedProperty.price;
+  state.check={area:state.selectedProperty.area,type:state.selectedProperty.type,move:state.selectedProperty.move,rights:state.selectedProperty.rights,consent:state.selectedProperty.consent};
+  save();
+}
+const assetNum=v=>Math.max(0,Number(v)||0);
+function assetTotal(a){return Math.max(0,assetNum(a.deposit)+assetNum(a.stock)+assetNum(a.car)+assetNum(a.rentalDeposit)+assetNum(a.realEstate)-assetNum(a.debt))}
+function simulationResult(){
+  const s=state.simulation,self=assetTotal(s.self),parents=assetTotal(s.parents),family=self+parents;
+  const maxCar=Math.max(assetNum(s.self.car),assetNum(s.parents.car));
+  const secondAsset=family<=34500&&maxCar<=4542;
+  const thirdAsset=self<=25100&&assetNum(s.self.car)<=4542;
+  let rank='추가 확인 필요',tone='warn',reason='소득·자산 항목을 모두 확인하면 예상 순위를 안내합니다.';
+  if(s.firstRank==='yes'){rank='예상 1순위';tone='good';reason='수급자·지원대상 한부모가족·차상위계층 등 1순위 요건에 해당한다고 입력했습니다.'}
+  else if(s.familyIncome100==='yes'&&secondAsset){rank='예상 2순위';tone='good';reason='본인+부모 소득 100% 이하 및 2순위 자산기준을 충족하는 것으로 계산됐습니다.'}
+  else if(s.selfIncome100==='yes'&&thirdAsset){rank='예상 3순위';tone='good';reason='본인 소득 100% 이하 및 3순위 자산기준을 충족하는 것으로 계산됐습니다.'}
+  else if(s.firstRank==='no'&&s.familyIncome100==='no'&&s.selfIncome100==='no'){rank='현재 입력으로는 순위 산정 어려움';tone='bad';reason='입력한 소득 조건으로는 2·3순위 요건 충족이 확인되지 않습니다.'}
+  else if((s.familyIncome100==='yes'&&!secondAsset)||(s.selfIncome100==='yes'&&!thirdAsset)){rank='자산기준 확인 필요';tone='bad';reason='입력한 자산 또는 자동차 가액이 해당 순위의 기준을 넘는 항목이 있습니다.'}
+  return {rank,tone,reason,self,parents,family,maxCar,secondAsset,thirdAsset};
+}
+function simSelect(name,value){
+  return `<select name="${name}"><option value="unknown" ${value==='unknown'?'selected':''}>확인 필요</option><option value="yes" ${value==='yes'?'selected':''}>예</option><option value="no" ${value==='no'?'selected':''}>아니오</option></select>`;
+}
+function simAssetFields(prefix,a){
+  const items=[['deposit','예금'],['stock','주식·펀드'],['car','자동차'],['rentalDeposit','임차보증금'],['realEstate','부동산'],['debt','부채']];
+  return items.map(([k,label])=>`<label class="asset-field"><span>${label}</span><div><input name="${prefix}_${k}" type="number" min="0" step="1" value="${assetNum(a[k])}"><em>만원</em></div></label>`).join('');
+}
+function simulationResultHtml(){
+  const r=simulationResult();
+  return `<div class="simulation-result ${r.tone}">
+    <div class="sim-rank-label">모의계산 결과</div>
+    <strong>${r.rank}</strong>
+    <p>${r.reason}</p>
+    <div class="sim-totals"><span>본인 총자산 <b>${money(r.self)}</b></span><span>부모 총자산 <b>${money(r.parents)}</b></span><span>본인+부모 <b>${money(r.family)}</b></span></div>
+    <div class="sim-criteria"><span class="${r.secondAsset?'pass':'fail'}">2순위 자산기준 · 총자산 34,500만원 / 자동차 4,542만원 이하</span><span class="${r.thirdAsset?'pass':'fail'}">3순위 자산기준 · 본인 총자산 25,100만원 / 자동차 4,542만원 이하</span></div>
+  </div>`;
+}
+
+function render(){document.body.classList.toggle('home-mode',page==='home');document.body.classList.toggle('service-mode',page==='service');document.querySelectorAll('[data-page]').forEach(b=>{b.classList.toggle('active',b.dataset.page===page);if(b.dataset.page===page)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
+
+$('#crumb').textContent=titles[page];app.innerHTML='<section class="screen">'+views[page]()+'</section>';bind()}
+const views={
+home:()=>{const p=state.profile;
+const dateNumber=s=>Date.parse(s+'T00:00:00Z');
+const days=Math.round((dateNumber(p.deadline)-dateNumber(iso(today)))/86400000);
+const total=(dateNumber(p.deadline)-dateNumber(p.selected))/86400000;
+const elapsed=Math.max(0,Math.min(100,(1-days/Math.max(1,total))*100));
+const dday=days>0?'D-'+days:days===0?'D-Day':'D+'+Math.abs(days);
+const recent=state.properties.slice(0,3);
+const activeCount=state.properties.filter(x=>!['계약 완료','반려'].includes(x.stage)).length;
+const analysisCount=state.properties.filter(x=>x.stage==='권리분석 요청').length;
+const completeCount=state.properties.filter(x=>x.stage==='계약 완료').length;
+return `<div class='home-shell'>
+<section class='home-hero home-hero-text-only'>
+<div class='home-hero-copy'><span class='home-badge'>청년전세ON</span><h1>조건 확인부터<br>계약 준비까지, <em>한곳에서</em></h1><p>청년전세임대 준비 과정을 더 쉽게 정리해주는 길잡이</p><div class='home-actions'><button class='home-primary' data-page='profile'>나의 조건부터 시작하기 <span>→</span></button><button class='home-secondary' data-page='check'>매물 확인 <span>→</span></button></div></div>
+</section>
+<section class='home-shortcuts'>
+<button data-page='profile'><i class='shortcut-icon shortcut-blue'>▤</i><span><strong>나의 조건</strong><small>지원 가능 여부 확인</small></span><b>›</b></button>
+<button data-page='check'><i class='shortcut-icon shortcut-green'>⌂</i><span><strong>매물 확인</strong><small>조건에 맞는 매물 살펴보기</small></span><b>›</b></button>
+<button data-page='agent'><i class='shortcut-icon shortcut-orange'>♧</i><span><strong>중개사 찾기</strong><small>전세임대 경험 확인</small></span><b>›</b></button>
+<button data-page='saved'><i class='shortcut-icon shortcut-purple'>♡</i><span><strong>나의 매물</strong><small>관심 매물 모아보기</small></span><b>›</b></button>
+</section>
+<section class='home-dashboard'>
+<article class='home-dday-card'>
+<div class='home-card-head'><div><h2>매물 탐색 D-DAY</h2><p>계약기한을 기준으로 남은 시간을 확인하세요.</p></div><button class='home-text-btn' data-page='profile'>일정 관리 →</button></div>
+<div class='home-dday-center'><strong>${dday}</strong><span>${days<0?'등록한 계약기한이 지났어요.':days<=30?'계약기한이 가까워지고 있어요.':'지금부터 차근차근 준비하면 충분해요!'}</span><div class='home-progress'><i style='width:${elapsed}%'></i></div><small>선정일 ${p.selected} · 계약기한 ${p.deadline}</small></div>
+<div class='home-stats'><button data-page='check'><span>오늘 볼 매물</span><strong>${Math.min(3,state.properties.length)}건</strong></button><button data-page='saved'><span>관심 매물</span><strong>${state.properties.length}건</strong></button><button data-page='saved'><span>진행 중</span><strong>${activeCount}건</strong></button></div>
+</article>
+<div class='home-side-stack'>
+<article class='home-panel'><div class='home-card-head compact'><h2>최근 본 매물</h2><button class='home-text-btn' data-page='saved'>전체보기 →</button></div><div class='home-recent'>${recent.map(x=>`<button data-load='${x.id}' data-page='check'>${room}<span><small>${esc(x.address.split('·')[0].trim())}</small><strong>${esc(x.name)}</strong><em>전세 ${money(x.price)}</em></span></button>`).join('')||'<p class="home-empty">등록한 매물이 아직 없어요.</p>'}</div></article>
+<article class='home-panel'><div class='home-card-head compact'><h2>나의 준비 체크리스트</h2><button class='home-text-btn' data-page='profile'>전체보기 →</button></div><ul class='home-checklist'><li class='done'>지원 자격 확인하기</li><li class='done'>선정정보와 계약기한 확인하기</li><li class='${analysisCount?'done':''}'>권리분석 진행 확인하기</li><li class='${completeCount?'done':''}'>계약 완료까지 진행 관리하기</li></ul></article>
+</div>
+</section>
+</div>`},
+service:()=>`<div class="service-story-page">
+  <section class="story-section story-one">
+    <div class="story-copy">
+      <div class="story-index"><span>01</span><i></i></div>
+      <h1>선정됐는데도,<br><em>절반 가까이</em> 입주하지 못합니다.</h1>
+      <p>청년 전세임대주택 제도는<br>주거 부담을 줄여주기 위한 좋은 정책이지만,</p>
+      <p>지원 자격을 얻고도 절반에 가까운 청년<br>(2024년 실입주율 51%)이 실제 입주로<br>이어지지 못하고 있습니다.</p>
+    </div>
+    <div class="occupancy-ring" aria-label="2024년 실입주율 51%">
+      <div class="occupancy-ring-inner">
+        <span>실입주율</span>
+        <strong>51<small>%</small></strong>
+        <b>2024년</b>
+      </div>
+    </div>
+  </section>
+
+  <section class="story-section story-two">
+    <div class="story-copy">
+      <div class="story-index"><span>02</span><i></i></div>
+      <h2>집을 찾았다고<br><em>끝이 아닙니다.</em></h2>
+      <p>6개월이라는 제한된 시간 동안<br>적합한 매물을 찾고, 임대인 동의, 권리분석,<br>내부 심사까지...</p>
+      <p>주택 물색과 계약 준비 과정에서<br>실제 입주로 이어지지 못하는 사례가 발생합니다.</p>
+    </div>
+    <div class="story-person-visual" aria-hidden="true">
+      <div class="room-glow"></div>
+      <div class="bed-shape"></div>
+      <div class="person-shoulder"></div>
+      <div class="person-neck"></div>
+      <div class="person-head"></div>
+      <div class="person-bun"></div>
+      <div class="person-hair"></div>
+      <div class="person-arm"></div>
+    </div>
+  </section>
+
+  <section class="story-quote">
+    <div class="story-index"><span>03</span><i></i></div>
+    <div class="quote-wrap">
+      <span class="quote-mark">“</span>
+      <p><strong>선정자 <em>2명 중 1명 가까이는</em></strong><br>선정 이후에도 실제 입주로<br><em>이어지지 못합니다.</em></p>
+      <span class="quote-mark close">”</span>
+    </div>
+  </section>
+
+  <section class="story-section story-four">
+    <div class="story-copy">
+      <div class="story-index"><span>04</span><i></i></div>
+      <h2>그래서 우리는,<br><em>계약하기 전에</em><br>미리 알 수 있게 만들었습니다.</h2>
+      <p>기존 시장 정보와 제도 정보를 연결하여,<br>청년전세임대에 필요한 판단 요소를<br>미리 확인할 수 있도록 돕습니다.</p>
+      <p>실입주를 가로막는 정보 공백을 줄이는 것,<br>그것이 우리의 시작입니다.</p>
+    </div>
+
+    <div class="service-phone" aria-label="청년전세ON 매물 확인 예시">
+      <div class="service-phone-speaker"></div>
+      <div class="service-phone-card">
+        <div class="phone-room"><svg><use href="#room"></use></svg><span>♡</span></div>
+        <strong>○○ 빌라</strong>
+        <small>보증금 8,000만원</small>
+      </div>
+      <div class="phone-status success">✓ <span>사전 확인 결과 · 주요 조건 충족 예상</span></div>
+      <ul class="phone-checklist">
+        <li><b>✓</b> 지역 요건 충족</li>
+        <li><b>✓</b> 임대인 동의 가능성 높음</li>
+        <li><b>✓</b> 권리관계 추가 확인 필요</li>
+        <li><b>✓</b> 최종 심사는 LH 확인 필요</li>
+      </ul>
+    </div>
+  </section>
+</div>`,
+profile:()=>{const p=state.profile,s=state.simulation,r=simulationResult();return `
+<div class="condition-page compact-page">
+  <div class="condition-heading compact-heading">
+    <span class="eyebrow">MY ELIGIBILITY</span>
+    <h1>신청 전에, 내 조건부터 확인하세요.</h1>
+    <p>필요한 기능만 선택해 열어볼 수 있도록 간단하게 정리했습니다.</p>
+  </div>
+
+  <div class="page-summary-grid">
+    <div class="summary-tile"><span>예상 순위</span><strong>${r.rank}</strong><small>모의계산 기준</small></div>
+    <div class="summary-tile"><span>지원한도</span><strong>${money(p.limit)}</strong><small>${p.region} · ${p.people==='1'?'1인 단독거주':p.people+'인 셰어형'}</small></div>
+    <div class="summary-tile"><span>계약기한</span><strong>${p.deadline}</strong><small>선정일 ${p.selected}</small></div>
+  </div>
+
+  <details class="feature-disclosure">
+    <summary>
+      <div><span class="section-no">01</span><span><strong>예상 자격·순위 모의계산</strong><small>자산·소득을 입력해 신청 전 예상 순위를 확인합니다.</small></span></div>
+      <b>열기</b>
+    </summary>
+    <form id="simulation-form" class="disclosure-body simulation-card">
+      <div class="section-head"><div><h2>모의계산 입력</h2></div><p>금액은 모두 만원 단위입니다.</p></div>
+      <div class="sim-qualifiers">
+        <label class="field"><span>수급자·보호대상 한부모가족·차상위계층·자립준비청년 등 1순위 요건에 해당하나요?</span>${simSelect('firstRank',s.firstRank)}</label>
+        <label class="field"><span>본인과 부모의 월평균 소득 합계가 해당 가구 100% 기준 이하인가요?</span>${simSelect('familyIncome100',s.familyIncome100)}</label>
+        <label class="field"><span>본인의 월평균 소득이 1인 가구 100% 기준 이하인가요?</span>${simSelect('selfIncome100',s.selfIncome100)}</label>
+      </div>
+      <div class="asset-groups">
+        <section class="asset-group"><div class="asset-title"><h3>본인 자산</h3><span>3순위 판단 기준</span></div><div class="asset-grid">${simAssetFields('self',s.self)}</div></section>
+        <section class="asset-group"><div class="asset-title"><h3>부모 자산</h3><span>2순위 판단 시 합산</span></div><div class="asset-grid">${simAssetFields('parents',s.parents)}</div></section>
+      </div>
+      <button class="btn sim-calc-btn" type="submit">예상 결과 계산하기</button>
+      <div id="simulation-result">${simulationResultHtml()}</div>
+      <div class="info simulation-note">본 기능은 신청 전 확인용 모의계산입니다. 실제 자산은 사회보장정보시스템의 자산가액·인정 부채 등 공식 산정방식으로 조사되므로 단순 입력 합계와 다를 수 있으며, 최종 순위는 해당 공고와 LH 심사 결과를 확인해야 합니다.</div>
+    </form>
+  </details>
+
+  <details class="feature-disclosure">
+    <summary>
+      <div><span class="section-no">02</span><span><strong>선정 후 지원정보</strong><small>지역·거주 형태·지원한도·계약기한을 확인하거나 수정합니다.</small></span></div>
+      <b>열기</b>
+    </summary>
+    <form id="profile-form" class="disclosure-body">
+      <label class="field"><span>신청지역</span><select name="region">${opt(['서울특별시','경기도','인천광역시','그 외 지역'],p.region)}</select></label>
+      <label class="field"><span>거주 형태</span><select name="people"><option value="1" ${p.people==1?'selected':''}>1인 단독거주</option><option value="2" ${p.people==2?'selected':''}>2인 공동거주(셰어형)</option><option value="3" ${p.people==3?'selected':''}>3인 공동거주(셰어형)</option></select></label>
+      <label class="field"><span>선정통보에 명시된 지원한도 (만원)</span><input name="limit" type="number" min="1" max="10000000" step="1" required value="${p.limit}"></label>
+      <p class="small muted" id="limit-help">실제 선정통보의 지원한도를 입력해 주세요.</p>
+      <div class="grid2"><label class="field"><span>선정일</span><input type="date" name="selected" value="${p.selected}" required></label><label class="field"><span>계약기한</span><input type="date" name="deadline" value="${p.deadline}" required></label></div>
+      <button class="btn full">지원정보 저장하기 →</button>
+    </form>
+  </details>
+
+  <details class="feature-disclosure">
+    <summary>
+      <div><span class="section-no">03</span><span><strong>내 전세임대 조건 자세히 보기</strong><small>면적·최대 전세금·계약기한을 한 번에 확인합니다.</small></span></div>
+      <b>열기</b>
+    </summary>
+    <div class="disclosure-body conditions">
+      <div class="keyrow big"><span>예상 순위</span><strong>${r.rank}</strong></div>
+      <div class="keyrow big"><span>지원한도</span><strong>${money(p.limit)}</strong></div>
+      <div class="keyrow"><span>기본정보</span><strong>${p.region} · ${p.people}인</strong></div>
+      <div class="keyrow"><span>전용면적 기준</span><strong>${areaMax()}㎡ 이하</strong></div>
+      <div class="keyrow"><span>최대 전세금 범위</span><strong>${money(max())}</strong></div>
+      <div class="keyrow"><span>계약기한</span><strong>${p.deadline}</strong></div>
+    </div>
+  </details>
+</div>`},
+calc:()=>`${header('추가부담 가능 범위 계산','필요할 때 계산기를 열어 전세금 부담을 확인하세요.')}
+<div class="page-summary-grid two">
+  <div class="summary-tile"><span>내 지원한도</span><strong>${money(state.profile.limit)}</strong><small>${state.profile.people==='1'?'1인 단독거주':state.profile.people+'인 셰어형'} 기준</small></div>
+  <div class="summary-tile"><span>현재 입력 전세금</span><strong>${money(state.price)}</strong><small>계산기와 매물확인에 연동</small></div>
+</div>
+<details class="feature-disclosure">
+  <summary><div><span class="section-no">01</span><span><strong>전세보증금 계산기</strong><small>매물 전세보증금을 입력해 추가 부담과 허용범위를 계산합니다.</small></span></div><b>계산하기</b></summary>
+  <div class="disclosure-body">
+    <form id="calc-form"><label class="field"><span>매물 전세보증금</span><div class="money"><input name="price" type="number" min="1" max="10000000" step="1" required value="${state.price}"><span style="white-space:nowrap">만원</span><button class="btn" style="white-space:nowrap">계산하기</button></div></label></form>
+    <div id="calc-result" aria-live="polite">${calcResult()}</div>${official}
+  </div>
+</details>
+<details class="feature-disclosure">
+  <summary><div><span class="section-no">02</span><span><strong>용어·계산 기준 보기</strong><small>최대 허용 전세금과 한도 초과분의 의미를 확인합니다.</small></span></div><b>보기</b></summary>
+  <div class="disclosure-body compact-info"><p><b>최대 허용 전세금</b><br>지원한도 × 입주인원별 배수</p><p><b>한도 초과분</b><br>매물 전세금 − 지원한도</p><p>기본 임대보증금, 월 임대료, 관리비 등은 별도입니다.</p></div>
+</details>`,
+check:()=>{const selected=state.selectedProperty,items=filteredListings();return selected?`${header('매물 상세 조건 확인','선택한 매물이 내 조건에 맞는지 항목별로 확인하세요.')}
+<div class="selected-property-card">
+  <div>${room}</div>
+  <div><span class="pill">${esc(selected.type)}</span><h2>${esc(selected.name)}</h2><p>${esc(selected.address)}</p><strong>전세 ${money(selected.price)}</strong></div>
+  <div class="selected-property-actions"><button class="btn secondary" id="back-to-listings">← 다른 매물 보기</button><button class="btn" data-page="calc">추가부담 계산</button></div>
+</div>
+<details class="feature-disclosure" open>
+  <summary><div><span class="section-no">01</span><span><strong>내 조건과 매물 비교</strong><small>면적·주택유형·전입신고·권리관계·임대인 동의를 확인합니다.</small></span></div><b>비교</b></summary>
+  <div class="disclosure-body">
+    <div class="table-wrap"><table><thead><tr><th>항목</th><th>내 조건</th><th>매물 정보</th><th>결과</th></tr></thead><tbody>
+      <tr><td>전세보증금</td><td>최대 ${money(max())}</td><td>${money(selected.price)}</td><td>${badge(selected.price>max()?'미충족':selected.price>state.profile.limit?'추가부담':'충족')}</td></tr>
+      <tr><td>전용면적</td><td>${areaMax()}㎡ 이하</td><td><input aria-label="전용면적 제곱미터" id="check-area" type="number" min="0.1" max="10000" step="0.1" value="${state.check.area}"></td><td id="area-status"></td></tr>
+      <tr><td>주택유형</td><td>자료상 지원 주택</td><td><select aria-label="주택유형" data-check="type">${opt(['단독','다가구','다세대','연립','아파트','주거용 오피스텔','근린생활시설','확인 필요'],state.check.type)}</select></td><td id="type-status"></td></tr>
+      ${[['move','전입신고','가능해야 함'],['rights','제한권리','등기사항 확인 필요'],['consent','임대인 동의','LH 계약방식 동의']].map(([k,n,c])=>`<tr><td>${n}</td><td>${c}</td><td><select aria-label="${n}" data-check="${k}">${opt(k==='rights'?['확인 필요','제한권리 없음','제한권리 있음']:['확인 필요','예','아니오'],state.check[k])}</select></td><td id="${k}-status"></td></tr>`).join('')}
+    </tbody></table></div>
+    <div id="check-result" aria-live="polite"></div>${official}
+  </div>
+</details>`:`${header('사용자 조건에 따른 매물 확인','지역·보증금·주택유형을 선택한 뒤 매물을 비교해 보세요.')}
+<form id="listing-search-form" class="listing-search-bar">
+  <label class="field"><span>지역</span><select name="region">${opt(['전체','서울특별시','경기도','인천광역시'],state.search.region)}</select></label>
+  <label class="field"><span>주택유형</span><select name="type">${opt(['전체','다가구','다세대','연립','아파트','주거용 오피스텔'],state.search.type)}</select></label>
+  <label class="field"><span>최대 보증금</span><div class="listing-price-input"><input name="maxPrice" type="number" min="0" step="100" value="${state.search.maxPrice}" placeholder="예: 15000"><em>만원</em></div></label>
+  <button class="btn" type="submit">조건 적용</button>
+</form>
+<div class="listing-results-head"><div><span class="section-no">01</span><div><h2>조건에 맞는 매물</h2><p>시연용 예시 매물입니다. 원하는 매물을 선택하면 상세 조건을 확인할 수 있습니다.</p></div></div><span class="pill">${items.length}건</span></div>
+<div class="listing-card-grid">
+${items.map(x=>`<article class="listing-card">
+  ${room}
+  <div class="listing-card-body"><span class="pill">${esc(x.type)}</span><h3>${esc(x.name)}</h3><p>${esc(x.address)}</p><div class="listing-card-meta"><span>전세 <strong>${money(x.price)}</strong></span><span>전용 ${x.area}㎡</span></div><button class="btn secondary full" data-select-listing="${x.id}">이 매물 확인하기 →</button></div>
+</article>`).join('')||'<div class="card empty">선택한 조건에 맞는 예시 매물이 없습니다. 조건을 조금 넓혀보세요.</div>'}
+</div>`},
+saved:()=>`${header('나의 매물','관심매물은 바로 확인하고, 진행상태를 한눈에 관리하세요.')}
+<div class="page-summary-grid three">
+  <div class="summary-tile"><span>전체 매물</span><strong>${state.properties.length}건</strong><small>등록된 관심매물</small></div>
+  <div class="summary-tile"><span>진행 중</span><strong>${state.properties.filter(x=>!['계약 완료','반려'].includes(x.stage)).length}건</strong><small>현재 확인 중</small></div>
+  <div class="summary-tile"><span>완료</span><strong>${state.properties.filter(x=>x.stage==='계약 완료').length}건</strong><small>계약 완료</small></div>
+</div>
+<div class="saved-section-head">
+  <div><span class="section-no">01</span><div><h2>관심매물</h2><p>등록한 매물과 진행상태를 바로 확인할 수 있습니다.</p></div></div>
+  <button class="btn" id="add-property">＋ 매물 등록</button>
+</div>
+<div class="tabs saved-tabs" aria-label="매물 필터">${['전체','진행 중','완료','반려'].map(x=>`<button class="${filter===x?'active':''}" data-filter="${x}">${x}</button>`).join('')}</div>
+<div class="saved-list">
+${state.properties.filter(x=>filter==='전체'||filter==='완료'&&x.stage==='계약 완료'||filter==='반려'&&x.stage==='반려'||filter==='진행 중'&&!['계약 완료','반려'].includes(x.stage)).map(x=>`<article class="saved-row">${room}<div><h3>${esc(x.name)}</h3><strong class="blue small">전세 ${money(x.price)}</strong><p class="small muted">${esc(x.address)}</p><span class="pill ${x.stage==='계약 완료'?'green':x.stage==='반려'?'orange':''}">${x.stage}</span><div class="track" aria-hidden="true">${Array.from({length:6},(_,i)=>`<span class="${i<=({'관심매물':0,'중개사 문의':1,'임대인 동의 확인':2,'권리분석 요청':3,'보완 요청':3,'승인':4,'반려':3,'계약 완료':5}[x.stage])?'done':''}"></span>`).join('')}</div></div><div class="saved-actions"><select aria-label="${esc(x.name)} 진행상태" data-stage="${x.id}">${opt(stages,x.stage)}</select><button class="btn secondary" data-load="${x.id}">이 매물 조건 확인 →</button><button class="small muted" data-delete="${x.id}">목록에서 삭제</button></div></article>`).join('')||'<div class="card empty">해당 상태의 매물이 없습니다.</div>'}
+</div>`,
+agent:()=>{const agents=[
+  {name:'행복부동산 공인중개사사무소',area:'광진구 자양동',deals:12,rights:18,years:'전세임대 4년',tag:'계약 경험 다수'},
+  {name:'청년주거 부동산',area:'광진구 화양동',deals:9,rights:14,years:'전세임대 3년',tag:'청년전세 상담'},
+  {name:'온하우스 공인중개사사무소',area:'성동구 성수동',deals:8,rights:11,years:'전세임대 3년',tag:'권리분석 경험'},
+  {name:'한걸음 공인중개사사무소',area:'동대문구 장안동',deals:6,rights:10,years:'전세임대 2년',tag:'임대인 협의 경험'}
+];return `${header('공인중개사 찾기','전세임대 경험이 있는 중개업소를 여러 곳 비교해 보세요.')}
+<div class="agent-intro-row">
+  <div><span class="section-no">01</span><div><h2>전세임대 경험 중개사</h2><p>아래 정보는 기능 시연을 위한 예시 데이터입니다.</p></div></div>
+  <span class="pill">총 ${agents.length}곳</span>
+</div>
+<div class="agent-card-grid">
+${agents.map((a,i)=>`<article class="agent-card">
+  <div class="agent-card-top">
+    <div class="agent-avatar"><svg class="blue"><use href="#brand"/></svg></div>
+    <div><span class="pill ${i===0?'orange':''}">${a.tag}</span><h3>${a.name}</h3><p>${a.area}</p></div>
+  </div>
+  <div class="agent-card-stats">
+    <div><span>실제 계약 성사</span><strong>${a.deals}<small>건</small></strong></div>
+    <div><span>권리분석 진행</span><strong>${a.rights}<small>건</small></strong></div>
+  </div>
+  <div class="agent-card-foot"><span>${a.years}</span></div>
+  <details class="agent-detail">
+    <summary>상세 보기</summary>
+    <div class="agent-card-detail">
+      <div class="keyrow"><span>집계기간</span><strong>예시 데이터</strong></div>
+      <div class="keyrow"><span>주요 경험</span><strong>${a.tag}</strong></div>
+      <div class="keyrow"><span>증빙자료</span><strong>실제 서비스 연동 시 확인 예정</strong></div>
+    </div>
+  </details>
+</article>`).join('')}
+</div>
+<div class="info agent-note">실제 서비스에서는 검증된 실적, 지역, 상담 가능 여부 등을 기준으로 비교할 수 있도록 설계하는 방향입니다.</div>`}
+};
+function badge(v){return `<span class="pill ${v==='충족'?'green':v==='미충족'||v==='추가부담'||v==='확인 필요'?'orange':''}">${v}</span>`}
+function calcResult(){const extra=Math.max(0,state.price-state.profile.limit),bad=state.price>max();return `<div class="summary"><h3 class="blue">계산 결과</h3><div class="keyrow"><span>최대 허용 전세금</span><strong>${money(max())}</strong></div><div class="keyrow"><span>매물 전세보증금</span><strong>${money(state.price)}</strong></div><div class="keyrow big"><span>지원한도 초과분</span><strong style="color:${extra?'#ed4f67':'#1a64ef'}">${money(extra)}</strong></div></div><div class="result ${bad?'bad':''}"><strong>${bad?'전세금 허용범위를 초과합니다.':extra?'추가부담 허용범위 이내입니다.':'지원한도 이내입니다.'}</strong><p>${bad?'허용범위보다 '+money(state.price-max())+' 높습니다. 전세금 조정 또는 다른 매물을 검토하세요.':extra?'한도 초과분의 본인 부담 가능 여부와 나머지 매물 조건을 확인하세요.':'면적·권리관계·임대인 동의 등 나머지 조건도 확인해 주세요.'}</p></div><p class="small muted" style="margin-top:12px">위 금액은 지원한도 초과분만 계산합니다. 기본 임대보증금과 기타 비용을 합한 총 자기부담금은 아닙니다.</p>`}
+function checkResult(){const c=state.check,ar=Number(c.area);
+
+const vals={area:!Number.isFinite(ar)||ar<=0?'확인 필요':ar>areaMax()?'미충족':'충족',type:c.type==='근린생활시설'?'미충족':['확인 필요','주거용 오피스텔'].includes(c.type)?'확인 필요':'충족',move:c.move==='예'?'충족':c.move==='아니오'?'미충족':'확인 필요',rights:c.rights==='제한권리 없음'?'충족':c.rights==='제한권리 있음'?'미충족':'확인 필요',consent:c.consent==='예'?'충족':c.consent==='아니오'?'미충족':'확인 필요'};Object.entries(vals).forEach(([k,v])=>$('#'+k+'-status').innerHTML=badge(v));
+
+const fail=state.price>max()||Object.values(vals).includes('미충족');
+
+$('#check-result').innerHTML=`<div class="result ${fail?'bad':'warn'}"><strong>${fail?'현재 입력 기준 미충족 항목이 있습니다.':'확인 필요 · 공식 권리분석 전 단계입니다.'}</strong><p>${fail?'표에 표시된 미충족 항목을 확인하고 조건 조정 또는 보완 가능 여부를 문의하세요.':'확인되지 않은 항목을 먼저 확인해 주세요.'} 주택가격·선순위 보증금·소유관계·임대인 제한사항은 이 화면에서 검증하지 않으므로 계약 가능 여부를 확정하지 않습니다.${c.type==='주거용 오피스텔'?' 오피스텔은 난방·취사·화장실 등 주거용 시설 확인도 필요합니다.':''}</p></div>`}
+function go(p){if(!titles[p])return;page=p;history.replaceState(null,'','#'+p);render();
+
+window.scrollTo({top:0,behavior:'instant'})}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-page]');if(b)go(b.dataset.page)});
+function bind(){if(page==='home'){document.querySelectorAll('.home-recent [data-load]').forEach(b=>b.onclick=e=>{e.preventDefault();e.stopPropagation();const x=state.properties.find(v=>String(v.id)===b.dataset.load);if(!x)return;selectProperty({id:'S'+x.id,name:x.name,address:x.address,price:x.price,area:'',type:'확인 필요',move:'확인 필요',rights:'확인 필요',consent:'확인 필요'});go('check')})}if(page==='profile'){
+const f=$('#profile-form'),sf=$('#simulation-form');
+['region','people'].forEach(n=>f.elements[n].addEventListener('change',()=>{f.elements.limit.value='';$('#limit-help').textContent='변경한 지역·입주인원에 해당하는 선정통보의 지원한도를 입력해 주세요.'}));
+f.onsubmit=e=>{e.preventDefault();const d=Object.fromEntries(new FormData(f));if(d.deadline<d.selected){toast('계약기한은 선정일 이후로 입력해 주세요.');return}d.limit=Number(d.limit);state.profile={...state.profile,...d};save();render();toast('지원정보를 저장했습니다.')};
+sf.onsubmit=e=>{e.preventDefault();const d=Object.fromEntries(new FormData(sf));const read=(prefix,key)=>assetNum(d[prefix+'_'+key]);const keys=['deposit','stock','car','rentalDeposit','realEstate','debt'];state.simulation.firstRank=d.firstRank;state.simulation.familyIncome100=d.familyIncome100;state.simulation.selfIncome100=d.selfIncome100;keys.forEach(k=>{state.simulation.self[k]=read('self',k);state.simulation.parents[k]=read('parents',k)});save();$('#simulation-result').innerHTML=simulationResultHtml();toast('모의계산 결과를 반영했습니다.')};
+}if(page==='calc')$('#calc-form').onsubmit=e=>{e.preventDefault();state.price=Number(new FormData(e.target).get('price'));save();
+
+$('#calc-result').innerHTML=calcResult()};if(page==='check'){
+if(state.selectedProperty){
+  checkResult();
+  $('#check-area').oninput=e=>{state.check.area=e.target.value;state.selectedProperty.area=e.target.value;save();checkResult()};
+  document.querySelectorAll('[data-check]').forEach(el=>el.onchange=()=>{state.check[el.dataset.check]=el.value;state.selectedProperty[el.dataset.check]=el.value;save();checkResult()});
+  $('#back-to-listings').onclick=()=>{state.selectedProperty=null;save();render()};
+}else{
+  const f=$('#listing-search-form');
+  f.onsubmit=e=>{e.preventDefault();const d=Object.fromEntries(new FormData(f));state.search={region:d.region,type:d.type,maxPrice:d.maxPrice};save();render()};
+  document.querySelectorAll('[data-select-listing]').forEach(b=>b.onclick=()=>{const x=listingInventory.find(v=>v.id===b.dataset.selectListing);if(!x)return;selectProperty(x);render();toast(x.name+'을 선택했습니다.')});
+}}if(page==='saved'){$('#add-property').onclick=()=>$('#modal').showModal();
+
+document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{filter=b.dataset.filter;render()});
+
+document.querySelectorAll('[data-stage]').forEach(el=>el.onchange=()=>{state.properties.find(x=>String(x.id)===el.dataset.stage).stage=el.value;save();render();toast('진행상태를 저장했습니다.')});
+
+document.querySelectorAll('[data-delete]').forEach(b=>b.onclick=()=>{if(confirm('이 관심매물을 목록에서 삭제할까요?')){state.properties=state.properties.filter(x=>String(x.id)!==b.dataset.delete);save();render()}});
+
+document.querySelectorAll('[data-load]').forEach(b=>b.onclick=()=>{const x=state.properties.find(v=>String(v.id)===b.dataset.load);if(!x)return;selectProperty({id:'S'+x.id,name:x.name,address:x.address,price:x.price,area:'',type:'확인 필요',move:'확인 필요',rights:'확인 필요',consent:'확인 필요'});go('check');toast(x.name+'의 상세 조건을 확인합니다.')})}}
+$('#close-modal').onclick=()=>$('#modal').close();
+
+$('#add-form').onsubmit=e=>{e.preventDefault();
+
+const d=Object.fromEntries(new FormData(e.target));if(!d.name.trim()||!d.address.trim()){toast('매물 이름과 주소를 입력해 주세요.');return}state.properties.push({id:Date.now(),name:d.name.trim(),address:d.address.trim(),price:Number(d.price),stage:'관심매물'});save();
+
+$('#modal').close();e.target.reset();filter='전체';render();toast('관심매물을 등록했습니다.')};
+
+window.addEventListener('hashchange',()=>{const p=location.hash.slice(1);if(titles[p]){page=p;render()}});page=titles[location.hash.slice(1)]?location.hash.slice(1):'home';render();
+
+</script>
  </body>
 </html>
