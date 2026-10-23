@@ -134,14 +134,14 @@ service:()=>`<div class="service-story-page">
   <section class="story-section story-one">
     <div class="story-copy">
       <div class="story-index"><span>01</span><i></i></div>
-      <h1>선정됐는데도,<br><em>35%</em>는 입주하지 못합니다.</h1>
+      <h1>선정됐는데도,<br><em>절반</em>은 입주하지 못합니다.</h1>
       <p>청년 전세임대주택 제도는<br>주거 부담을 줄여주기 위한 좋은 정책이지만,</p>
-      <p>지원 자격을 얻고도 약 35%의 청년이<br>(2024년 청년 실입주율 65%) 실제 입주로<br>이어지지 못하고 있습니다.</p>
+      <p>지원 자격을 얻고도 절반에 가까운 청년<br>(2024년 실입주율 51%)이 실제 입주로<br>이어지지 못하고 있습니다.</p>
     </div>
-    <div class="occupancy-ring" aria-label="2024년 청년 실입주율 65%">
+    <div class="occupancy-ring" aria-label="2024년 실입주율 51%">
       <div class="occupancy-ring-inner">
         <span>실입주율</span>
-        <strong>65<small>%</small></strong>
+        <strong>51<small>%</small></strong>
         <b>2024년</b>
       </div>
     </div>
@@ -151,7 +151,7 @@ service:()=>`<div class="service-story-page">
     <div class="story-copy">
       <div class="story-index"><span>02</span><i></i></div>
       <h2>집을 찾았다고<br><em>끝이 아닙니다.</em></h2>
-      <p>선정 후 별도 안내되는 주택물색·계약 기간 동안<br>적합한 매물을 찾고, 임대인 동의, 권리분석,<br>내부 심사까지...</p>
+      <p>6개월이라는 제한된 시간 동안<br>적합한 매물을 찾고, 임대인 동의, 권리분석,<br>내부 심사까지...</p>
       <p>주택 물색과 계약 준비 과정에서<br>실제 입주로 이어지지 못하는 사례가 발생합니다.</p>
     </div>
     <div class="story-person-visual" aria-hidden="true">
