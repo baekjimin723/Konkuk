@@ -112,15 +112,75 @@ return `<div class='home-shell'>
 </div>
 </section>
 </div>`},
-service:()=>`<div class="service-page service-image-page">
-<section class="service-image-head">
-  <span class="service-kicker">SERVICE STORY</span>
-  <h1>웹사이트 제작 계기</h1>
-  <p>청년전세ON이 필요한 이유와 해결하고자 하는 문제를 한눈에 정리했습니다.</p>
-</section>
-<figure class="service-artwork-frame">
-  <img class="service-original-art" src="service-intro-original.jpg" alt="청년전세ON 웹사이트 제작 계기 스토리">
-</figure>
+service:()=>`<div class="service-story-page">
+  <section class="story-section story-one">
+    <div class="story-copy">
+      <div class="story-index"><span>01</span><i></i></div>
+      <h1>선정됐는데도,<br><em>절반</em>은 입주하지 못합니다.</h1>
+      <p>청년 전세임대주택 제도는<br>주거 부담을 줄여주기 위한 좋은 정책이지만,</p>
+      <p>지원 자격을 얻고도 절반에 가까운 청년<br>(2024년 실입주율 51%)이 실제 입주로<br>이어지지 못하고 있습니다.</p>
+    </div>
+    <div class="occupancy-ring" aria-label="2024년 실입주율 51%">
+      <div class="occupancy-ring-inner">
+        <span>실입주율</span>
+        <strong>51<small>%</small></strong>
+        <b>2024년</b>
+      </div>
+    </div>
+  </section>
+
+  <section class="story-section story-two">
+    <div class="story-copy">
+      <div class="story-index"><span>02</span><i></i></div>
+      <h2>집을 찾았다고<br><em>끝이 아닙니다.</em></h2>
+      <p>6개월이라는 제한된 시간 동안<br>적합한 매물을 찾고, 임대인 동의, 권리분석,<br>내부 심사까지...</p>
+      <p>복잡한 절차를 거치는 동안 수많은 청년들이<br>계약 직전에 발길을 돌립니다.</p>
+    </div>
+    <div class="story-person-visual" aria-hidden="true">
+      <div class="room-glow"></div>
+      <div class="bed-shape"></div>
+      <div class="person-shoulder"></div>
+      <div class="person-neck"></div>
+      <div class="person-head"></div>
+      <div class="person-bun"></div>
+      <div class="person-hair"></div>
+      <div class="person-arm"></div>
+    </div>
+  </section>
+
+  <section class="story-quote">
+    <div class="story-index"><span>03</span><i></i></div>
+    <div class="quote-wrap">
+      <span class="quote-mark">“</span>
+      <p><strong>선정자 <em>2명 중 1명</em>은</strong><br>원하는 집에 들어가지도 못한 채<br>자격을 <em>포기합니다.</em></p>
+      <span class="quote-mark close">”</span>
+    </div>
+  </section>
+
+  <section class="story-section story-four">
+    <div class="story-copy">
+      <div class="story-index"><span>04</span><i></i></div>
+      <h2>그래서 우리는,<br><em>계약하기 전에</em><br>미리 알 수 있게 만들었습니다.</h2>
+      <p>기존 시장 정보와 제도 정보를 연결하여,<br>청년전세임대에 필요한 판단 요소를<br>미리 확인할 수 있도록 돕습니다.</p>
+      <p>실입주를 가로막는 정보 공백을 줄이는 것,<br>그것이 우리의 시작입니다.</p>
+    </div>
+
+    <div class="service-phone" aria-label="청년전세ON 매물 확인 예시">
+      <div class="service-phone-speaker"></div>
+      <div class="service-phone-card">
+        <div class="phone-room"><svg><use href="#room"></use></svg><span>♡</span></div>
+        <strong>○○ 빌라</strong>
+        <small>보증금 8,000만원</small>
+      </div>
+      <div class="phone-status success">✓ <span>청년전세임대 계약 가능성 높음</span></div>
+      <ul class="phone-checklist">
+        <li><b>✓</b> 지역 요건 충족</li>
+        <li><b>✓</b> 임대인 동의 가능성 높음</li>
+        <li><b>✓</b> 권리분석 문제 없음</li>
+        <li><b>✓</b> 내부 심사 기준 충족 예상</li>
+      </ul>
+    </div>
+  </section>
 </div>`,
 profile:()=>{const p=state.profile,s=state.simulation,r=simulationResult();return `
 <div class="condition-page compact-page">
