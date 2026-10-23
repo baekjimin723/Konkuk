@@ -2264,3 +2264,24 @@ td{border-color:#e8edf4}
   .selected-property-card>.room{width:100%;height:180px}
   .selected-property-actions{grid-template-columns:1fr}
 }
+
+
+/* ===== Agent icon size correction 2026-10-23 ===== */
+.agent-card-top .agent-avatar{
+  width:42px;
+  height:42px;
+  border-radius:9px
+}
+.agent-card-top .agent-avatar svg{
+  width:24px;
+  height:24px
+}
+.agent-card-top{
+  grid-template-columns:42px minmax(0,1fr);
+  gap:12px
+}
+@media(max-width:600px){
+  .agent-card-top .agent-avatar{width:38px;height:38px}
+  .agent-card-top .agent-avatar svg{width:21px;height:21px}
+  .agent-card-top{grid-template-columns:38px minmax(0,1fr)}
+}
