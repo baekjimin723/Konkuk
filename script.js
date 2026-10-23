@@ -14,9 +14,9 @@ const today=new Date();
 
 const plus=n=>{const d=new Date(today);d.setDate(d.getDate()+n);return iso(d)};
 
-const defaults={profile:{region:'서울특별시',people:'1',limit:12000,selected:plus(-17),deadline:plus(43)},simulation:{firstRank:'unknown',familyIncome100:'unknown',selfIncome100:'unknown',self:{deposit:0,stock:0,car:0,rentalDeposit:0,realEstate:0,debt:0},parents:{deposit:0,stock:0,car:0,rentalDeposit:0,realEstate:0,debt:0}},price:15000,properties:[{id:1,name:'행복빌라 101호',address:'서울특별시 광진구 자양동 · 예시',price:15000,stage:'권리분석 요청'},{id:2,name:'한아름하우스 202호',address:'서울특별시 광진구 화양동 · 예시',price:11000,stage:'임대인 동의 확인'},{id:3,name:'드림아파트 305호',address:'서울특별시 광진구 구의동 · 예시',price:17000,stage:'중개사 문의'}],check:{area:49.5,type:'다세대',move:'확인 필요',rights:'확인 필요',consent:'확인 필요'}};
+const defaults={profile:{region:'서울특별시',people:'1',limit:12000,selected:plus(-17),deadline:plus(43)},simulation:{firstRank:'unknown',familyIncome100:'unknown',selfIncome100:'unknown',self:{deposit:0,stock:0,car:0,rentalDeposit:0,realEstate:0,debt:0},parents:{deposit:0,stock:0,car:0,rentalDeposit:0,realEstate:0,debt:0}},search:{region:'서울특별시',type:'전체',maxPrice:''},selectedProperty:null,price:15000,properties:[{id:1,name:'행복빌라 101호',address:'서울특별시 광진구 자양동 · 예시',price:15000,stage:'권리분석 요청'},{id:2,name:'한아름하우스 202호',address:'서울특별시 광진구 화양동 · 예시',price:11000,stage:'임대인 동의 확인'},{id:3,name:'드림아파트 305호',address:'서울특별시 광진구 구의동 · 예시',price:17000,stage:'중개사 문의'}],check:{area:49.5,type:'다세대',move:'확인 필요',rights:'확인 필요',consent:'확인 필요'}};
 
-let state=structuredClone(defaults);try{const x=JSON.parse(localStorage.getItem('jeonse-on-v1'));if(x&&x.profile&&Array.isArray(x.properties)&&x.check)state=x}catch{}state.profile={...defaults.profile,...state.profile};state.simulation={...structuredClone(defaults.simulation),...(state.simulation||{}),self:{...defaults.simulation.self,...((state.simulation||{}).self||{})},parents:{...defaults.simulation.parents,...((state.simulation||{}).parents||{})}};let page='home',filter='전체';
+let state=structuredClone(defaults);try{const x=JSON.parse(localStorage.getItem('jeonse-on-v1'));if(x&&x.profile&&Array.isArray(x.properties)&&x.check)state=x}catch{}state.profile={...defaults.profile,...state.profile};state.simulation={...structuredClone(defaults.simulation),...(state.simulation||{}),self:{...defaults.simulation.self,...((state.simulation||{}).self||{})},parents:{...defaults.simulation.parents,...((state.simulation||{}).parents||{})}};state.search={...defaults.search,...(state.search||{})};if(!('selectedProperty' in state))state.selectedProperty=null;let page='home',filter='전체';
 
 let storageWarn=false;
 
@@ -43,6 +43,24 @@ const room='<div class="room"><svg aria-hidden="true"><use href="#room"/></svg><
 const header=(title,desc)=>`<div class="intro"><div><h1>${title}</h1><p>${desc}</p></div><span class="pill">나의 조건을 기준으로</span></div>`;
 
 const official='<div class="info">입력 정보에 따른 사전 확인 결과입니다. 최종 지원·계약 가능 여부는 사업시행기관의 권리분석과 승인에 따라 결정됩니다.</div>';
+const listingInventory=[
+  {id:'L1',name:'라온빌라 201호',address:'서울특별시 광진구 자양동',region:'서울특별시',type:'다세대',price:11500,area:42.8,move:'예',rights:'제한권리 없음',consent:'예'},
+  {id:'L2',name:'청년하우스 302호',address:'서울특별시 광진구 화양동',region:'서울특별시',type:'다가구',price:12800,area:38.4,move:'예',rights:'확인 필요',consent:'예'},
+  {id:'L3',name:'한강아파트 507호',address:'서울특별시 성동구 성수동',region:'서울특별시',type:'아파트',price:16500,area:51.2,move:'예',rights:'제한권리 없음',consent:'확인 필요'},
+  {id:'L4',name:'마루오피스텔 804호',address:'서울특별시 동대문구 장안동',region:'서울특별시',type:'주거용 오피스텔',price:10800,area:31.6,move:'예',rights:'제한권리 없음',consent:'예'},
+  {id:'L5',name:'늘봄빌라 101호',address:'경기도 안양시 동안구',region:'경기도',type:'다세대',price:9800,area:44.1,move:'예',rights:'확인 필요',consent:'예'},
+  {id:'L6',name:'푸른연립 203호',address:'인천광역시 남동구',region:'인천광역시',type:'연립',price:9200,area:48.9,move:'예',rights:'제한권리 없음',consent:'예'}
+];
+function filteredListings(){
+  const s=state.search||defaults.search;
+  return listingInventory.filter(x=>(!s.region||s.region==='전체'||x.region===s.region)&&(s.type==='전체'||x.type===s.type)&&(!assetNum(s.maxPrice)||x.price<=assetNum(s.maxPrice)));
+}
+function selectProperty(x){
+  state.selectedProperty={id:x.id||null,name:x.name,address:x.address,price:Number(x.price)||0,area:x.area||'',type:x.type||'확인 필요',move:x.move||'확인 필요',rights:x.rights||'확인 필요',consent:x.consent||'확인 필요'};
+  state.price=state.selectedProperty.price;
+  state.check={area:state.selectedProperty.area,type:state.selectedProperty.type,move:state.selectedProperty.move,rights:state.selectedProperty.rights,consent:state.selectedProperty.consent};
+  save();
+}
 const assetNum=v=>Math.max(0,Number(v)||0);
 function assetTotal(a){return Math.max(0,assetNum(a.deposit)+assetNum(a.stock)+assetNum(a.car)+assetNum(a.rentalDeposit)+assetNum(a.realEstate)-assetNum(a.debt))}
 function simulationResult(){
@@ -264,19 +282,37 @@ calc:()=>`${header('추가부담 가능 범위 계산','필요할 때 계산기�
   <summary><div><span class="section-no">02</span><span><strong>용어·계산 기준 보기</strong><small>최대 허용 전세금과 한도 초과분의 의미를 확인합니다.</small></span></div><b>보기</b></summary>
   <div class="disclosure-body compact-info"><p><b>최대 허용 전세금</b><br>지원한도 × 입주인원별 배수</p><p><b>한도 초과분</b><br>매물 전세금 − 지원한도</p><p>기본 임대보증금, 월 임대료, 관리비 등은 별도입니다.</p></div>
 </details>`,
-check:()=>`${header('사용자 조건에 따른 매물 확인','먼저 핵심 정보만 보고, 필요할 때 세부 조건 비교를 펼쳐보세요.')}
-<div class="listing-summary-card">
+check:()=>{const selected=state.selectedProperty,items=filteredListings();return selected?`${header('매물 상세 조건 확인','선택한 매물이 내 조건에 맞는지 항목별로 확인하세요.')}
+<div class="selected-property-card">
   <div>${room}</div>
-  <div><span class="pill">시연용 매물</span><h2>내가 확인 중인 매물</h2><p class="blue">전세보증금 ${money(state.price)}</p><p class="small muted">최대 허용범위 ${money(max())}</p></div>
-  <button class="btn secondary" data-page="calc">보증금 수정</button>
+  <div><span class="pill">${esc(selected.type)}</span><h2>${esc(selected.name)}</h2><p>${esc(selected.address)}</p><strong>전세 ${money(selected.price)}</strong></div>
+  <div class="selected-property-actions"><button class="btn secondary" id="back-to-listings">← 다른 매물 보기</button><button class="btn" data-page="calc">추가부담 계산</button></div>
 </div>
-<details class="feature-disclosure">
-  <summary><div><span class="section-no">01</span><span><strong>내 조건과 매물 비교</strong><small>면적·주택유형·전입신고·권리관계·임대인 동의를 확인합니다.</small></span></div><b>비교하기</b></summary>
+<details class="feature-disclosure" open>
+  <summary><div><span class="section-no">01</span><span><strong>내 조건과 매물 비교</strong><small>면적·주택유형·전입신고·권리관계·임대인 동의를 확인합니다.</small></span></div><b>비교</b></summary>
   <div class="disclosure-body">
-    <div class="table-wrap"><table><thead><tr><th>항목</th><th>내 조건</th><th>매물 정보 입력</th><th>결과</th></tr></thead><tbody><tr><td>전세보증금</td><td>최대 ${money(max())}</td><td>${money(state.price)}</td><td>${badge(state.price>max()?'미충족':state.price>state.profile.limit?'추가부담':'충족')}</td></tr><tr><td>전용면적</td><td>${areaMax()}㎡ 이하</td><td><input aria-label="전용면적 제곱미터" id="check-area" type="number" min="0.1" max="10000" step="0.1" value="${state.check.area}"></td><td id="area-status"></td></tr><tr><td>주택유형</td><td>자료상 지원 주택</td><td><select aria-label="주택유형" data-check="type">${opt(['단독','다가구','다세대','연립','아파트','주거용 오피스텔','근린생활시설','확인 필요'],state.check.type)}</select></td><td id="type-status"></td></tr>${[['move','전입신고','가능해야 함'],['rights','제한권리','등기사항 확인 필요'],['consent','임대인 동의','LH 계약방식 동의']].map(([k,n,c])=>`<tr><td>${n}</td><td>${c}</td><td><select aria-label="${n}" data-check="${k}">${opt(k==='rights'?['확인 필요','제한권리 없음','제한권리 있음']:['확인 필요','예','아니오'],state.check[k])}</select></td><td id="${k}-status"></td></tr>`).join('')}</tbody></table></div>
+    <div class="table-wrap"><table><thead><tr><th>항목</th><th>내 조건</th><th>매물 정보</th><th>결과</th></tr></thead><tbody>
+      <tr><td>전세보증금</td><td>최대 ${money(max())}</td><td>${money(selected.price)}</td><td>${badge(selected.price>max()?'미충족':selected.price>state.profile.limit?'추가부담':'충족')}</td></tr>
+      <tr><td>전용면적</td><td>${areaMax()}㎡ 이하</td><td><input aria-label="전용면적 제곱미터" id="check-area" type="number" min="0.1" max="10000" step="0.1" value="${state.check.area}"></td><td id="area-status"></td></tr>
+      <tr><td>주택유형</td><td>자료상 지원 주택</td><td><select aria-label="주택유형" data-check="type">${opt(['단독','다가구','다세대','연립','아파트','주거용 오피스텔','근린생활시설','확인 필요'],state.check.type)}</select></td><td id="type-status"></td></tr>
+      ${[['move','전입신고','가능해야 함'],['rights','제한권리','등기사항 확인 필요'],['consent','임대인 동의','LH 계약방식 동의']].map(([k,n,c])=>`<tr><td>${n}</td><td>${c}</td><td><select aria-label="${n}" data-check="${k}">${opt(k==='rights'?['확인 필요','제한권리 없음','제한권리 있음']:['확인 필요','예','아니오'],state.check[k])}</select></td><td id="${k}-status"></td></tr>`).join('')}
+    </tbody></table></div>
     <div id="check-result" aria-live="polite"></div>${official}
   </div>
-</details>`,
+</details>`:`${header('사용자 조건에 따른 매물 확인','지역·보증금·주택유형을 선택한 뒤 매물을 비교해 보세요.')}
+<form id="listing-search-form" class="listing-search-bar">
+  <label class="field"><span>지역</span><select name="region">${opt(['전체','서울특별시','경기도','인천광역시'],state.search.region)}</select></label>
+  <label class="field"><span>주택유형</span><select name="type">${opt(['전체','다가구','다세대','연립','아파트','주거용 오피스텔'],state.search.type)}</select></label>
+  <label class="field"><span>최대 보증금</span><div class="listing-price-input"><input name="maxPrice" type="number" min="0" step="100" value="${state.search.maxPrice}" placeholder="예: 15000"><em>만원</em></div></label>
+  <button class="btn" type="submit">조건 적용</button>
+</form>
+<div class="listing-results-head"><div><span class="section-no">01</span><div><h2>조건에 맞는 매물</h2><p>시연용 예시 매물입니다. 원하는 매물을 선택하면 상세 조건을 확인할 수 있습니다.</p></div></div><span class="pill">${items.length}건</span></div>
+<div class="listing-card-grid">
+${items.map(x=>`<article class="listing-card">
+  ${room}
+  <div class="listing-card-body"><span class="pill">${esc(x.type)}</span><h3>${esc(x.name)}</h3><p>${esc(x.address)}</p><div class="listing-card-meta"><span>전세 <strong>${money(x.price)}</strong></span><span>전용 ${x.area}㎡</span></div><button class="btn secondary full" data-select-listing="${x.id}">이 매물 확인하기 →</button></div>
+</article>`).join('')||'<div class="card empty">선택한 조건에 맞는 예시 매물이 없습니다. 조건을 조금 넓혀보세요.</div>'}
+</div>`},
 saved:()=>`${header('나의 매물','관심매물은 바로 확인하고, 진행상태를 한눈에 관리하세요.')}
 <div class="page-summary-grid three">
   <div class="summary-tile"><span>전체 매물</span><strong>${state.properties.length}건</strong><small>등록된 관심매물</small></div>
@@ -337,18 +373,24 @@ function go(p){if(!titles[p])return;page=p;history.replaceState(null,'','#'+p);r
 
 window.scrollTo({top:0,behavior:'instant'})}
 document.addEventListener('click',e=>{const b=e.target.closest('[data-page]');if(b)go(b.dataset.page)});
-function bind(){if(page==='profile'){
+function bind(){if(page==='home'){document.querySelectorAll('.home-recent [data-load]').forEach(b=>b.onclick=e=>{e.preventDefault();e.stopPropagation();const x=state.properties.find(v=>String(v.id)===b.dataset.load);if(!x)return;selectProperty({id:'S'+x.id,name:x.name,address:x.address,price:x.price,area:'',type:'확인 필요',move:'확인 필요',rights:'확인 필요',consent:'확인 필요'});go('check')})}if(page==='profile'){
 const f=$('#profile-form'),sf=$('#simulation-form');
 ['region','people'].forEach(n=>f.elements[n].addEventListener('change',()=>{f.elements.limit.value='';$('#limit-help').textContent='변경한 지역·입주인원에 해당하는 선정통보의 지원한도를 입력해 주세요.'}));
 f.onsubmit=e=>{e.preventDefault();const d=Object.fromEntries(new FormData(f));if(d.deadline<d.selected){toast('계약기한은 선정일 이후로 입력해 주세요.');return}d.limit=Number(d.limit);state.profile={...state.profile,...d};save();render();toast('지원정보를 저장했습니다.')};
 sf.onsubmit=e=>{e.preventDefault();const d=Object.fromEntries(new FormData(sf));const read=(prefix,key)=>assetNum(d[prefix+'_'+key]);const keys=['deposit','stock','car','rentalDeposit','realEstate','debt'];state.simulation.firstRank=d.firstRank;state.simulation.familyIncome100=d.familyIncome100;state.simulation.selfIncome100=d.selfIncome100;keys.forEach(k=>{state.simulation.self[k]=read('self',k);state.simulation.parents[k]=read('parents',k)});save();$('#simulation-result').innerHTML=simulationResultHtml();toast('모의계산 결과를 반영했습니다.')};
 }if(page==='calc')$('#calc-form').onsubmit=e=>{e.preventDefault();state.price=Number(new FormData(e.target).get('price'));save();
 
-$('#calc-result').innerHTML=calcResult()};if(page==='check'){checkResult();
-
-$('#check-area').oninput=e=>{state.check.area=e.target.value;save();checkResult()};
-
-document.querySelectorAll('[data-check]').forEach(el=>el.onchange=()=>{state.check[el.dataset.check]=el.value;save();checkResult()})}if(page==='saved'){$('#add-property').onclick=()=>$('#modal').showModal();
+$('#calc-result').innerHTML=calcResult()};if(page==='check'){
+if(state.selectedProperty){
+  checkResult();
+  $('#check-area').oninput=e=>{state.check.area=e.target.value;state.selectedProperty.area=e.target.value;save();checkResult()};
+  document.querySelectorAll('[data-check]').forEach(el=>el.onchange=()=>{state.check[el.dataset.check]=el.value;state.selectedProperty[el.dataset.check]=el.value;save();checkResult()});
+  $('#back-to-listings').onclick=()=>{state.selectedProperty=null;save();render()};
+}else{
+  const f=$('#listing-search-form');
+  f.onsubmit=e=>{e.preventDefault();const d=Object.fromEntries(new FormData(f));state.search={region:d.region,type:d.type,maxPrice:d.maxPrice};save();render()};
+  document.querySelectorAll('[data-select-listing]').forEach(b=>b.onclick=()=>{const x=listingInventory.find(v=>v.id===b.dataset.selectListing);if(!x)return;selectProperty(x);render();toast(x.name+'을 선택했습니다.')});
+}}if(page==='saved'){$('#add-property').onclick=()=>$('#modal').showModal();
 
 document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{filter=b.dataset.filter;render()});
 
@@ -356,7 +398,7 @@ document.querySelectorAll('[data-stage]').forEach(el=>el.onchange=()=>{state.pro
 
 document.querySelectorAll('[data-delete]').forEach(b=>b.onclick=()=>{if(confirm('이 관심매물을 목록에서 삭제할까요?')){state.properties=state.properties.filter(x=>String(x.id)!==b.dataset.delete);save();render()}});
 
-document.querySelectorAll('[data-load]').forEach(b=>b.onclick=()=>{const x=state.properties.find(x=>String(x.id)===b.dataset.load);state.price=x.price;state.check={area:'',type:'확인 필요',move:'확인 필요',rights:'확인 필요',consent:'확인 필요'};save();go('check');toast(x.name+'의 보증금을 불러왔습니다. 나머지 조건을 입력해 주세요.')})}}
+document.querySelectorAll('[data-load]').forEach(b=>b.onclick=()=>{const x=state.properties.find(v=>String(v.id)===b.dataset.load);if(!x)return;selectProperty({id:'S'+x.id,name:x.name,address:x.address,price:x.price,area:'',type:'확인 필요',move:'확인 필요',rights:'확인 필요',consent:'확인 필요'});go('check');toast(x.name+'의 상세 조건을 확인합니다.')})}}
 $('#close-modal').onclick=()=>$('#modal').close();
 
 $('#add-form').onsubmit=e=>{e.preventDefault();
