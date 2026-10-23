@@ -6,7 +6,1460 @@
   <title>
    청년전세ON · 나의 전세임대 길잡이
   </title>
-  <link rel="stylesheet" href="style.css">
+  <style id="embedded-site-style">
+@font-face {
+  font-family: 'Paperlogy';
+  src: url('./Paperlogy-5Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  box-sizing:border-box
+}
+body {
+  margin:0;
+  background:#f5f8fd;
+  color:#233652;
+  font-family:Paperlogy,sans-serif;
+  font-weight:500;
+  font-size:14px;
+  line-height:1.6
+}
+button,input,select {
+  font:inherit
+}
+button,a,input,select {
+  outline-offset:4px
+}
+button {
+  cursor:pointer
+}
+button {
+  border:0;
+  background:none;
+  color:inherit
+}
+a {
+  color:inherit
+}
+header {
+  height:78px;
+  background:#fff;
+  border-bottom:1px solid #e2eaf6;
+  display:flex;
+  align-items:center;
+  padding:0 38px;
+  gap:60px
+}
+.logo {
+  display:flex;
+  gap:10px;
+  align-items:center;
+  white-space:nowrap
+}
+.logo strong {
+  font-size:22px;
+  color:#123c83
+}
+.logo small {
+  display:block;
+  font-size:10px;
+  color:#8291aa;
+  margin-top:-5px
+}
+.brand-icon {
+  width:36px;
+  height:40px;
+  color:#1964ef
+}
+nav {
+  display:flex;
+  gap:30px;
+  height:100%;
+  align-items:center
+}
+nav button {
+  height:100%;
+  border-bottom:3px solid transparent;
+  font-size:13px
+}
+nav button.active {
+  color:#1761e9;
+  border-color:#1761e9
+}
+.user {
+  margin-left:auto;
+  font-size:12px;
+  display:flex;
+  align-items:center;
+  gap:12px
+}
+.avatar {
+  background:#eaf1ff;
+  border-radius:50%;
+  padding:7px 11px;
+  color:#2765bf
+}
+.layout {
+  max-width:1480px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:228px 1fr;
+  min-height:calc(100vh - 78px)
+}
+aside {
+  padding:32px 20px;
+  border-right:1px solid #e5edf7;
+  background:#fafdff
+}
+.side-intro {
+  padding:0 10px 25px
+}
+.side-intro strong {
+  font-size:16px
+}
+.muted {
+  color:#76859d
+}
+.small {
+  font-size:12px
+}
+.side-nav {
+  display:grid;
+  gap:9px
+}
+.side-nav button {
+  text-align:left;
+  padding:13px 12px;
+  border-radius:8px;
+  font-size:12px;
+  display:flex;
+  align-items:center;
+  gap:10px
+}
+.side-nav button span {
+  width:20px;
+  text-align:center;
+  font-size:16px
+}
+.side-nav button.active {
+  background:#2166ee;
+  color:white;
+  box-shadow:0 6px 12px #2166ee20
+}
+.side-nav button:hover:not(.active) {
+  background:#eaf1fd
+}
+.side-promo {
+  background:linear-gradient(145deg,#e7f2ff,#f3f9ff);
+  margin-top:42px;
+  border-radius:12px;
+  padding:20px;
+  color:#2461bd
+}
+.side-promo svg {
+  width:100%;
+  height:115px;
+  margin-top:10px
+}
+main {
+  padding:28px 36px 34px;
+  min-width:0
+}
+.breadcrumb {
+  font-size:11px;
+  color:#8593aa;
+  margin-bottom:16px
+}
+.intro {
+  margin-bottom:24px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px
+}
+h1 {
+  font-size:25px;
+  line-height:1.45;
+  margin:0 0 7px;
+  color:#143365;
+  letter-spacing:-.8px
+}
+h2 {
+  font-size:17px;
+  line-height:1.5;
+  margin:0 0 18px;
+  color:#214579
+}
+h3 {
+  font-size:14px;
+  margin:0 0 10px
+}
+p {
+  margin:5px 0 12px
+}
+.intro p {
+  font-size:12px;
+  color:#7587a2;
+  margin:0
+}
+.blue {
+  color:#1a64ef
+}
+.pill {
+  display:inline-block;
+  background:#eaf2ff;
+  color:#2266d4;
+  border-radius:20px;
+  padding:4px 10px;
+  font-size:10px;
+  white-space:nowrap
+}
+.pill.green {
+  background:#e4f7ef;
+  color:#168362
+}
+.pill.orange {
+  background:#fff2dc;
+  color:#a96808
+}
+.card {
+  background:#fff;
+  border:1px solid #e4ecf8;
+  border-radius:12px;
+  padding:25px;
+  box-shadow:0 4px 15px #193c7504
+}
+.grid2 {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px
+}
+.grid-main {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 245px;
+  gap:20px
+}
+.hero {
+  border-radius:14px;
+  background:linear-gradient(110deg,#eaf3ff,#f7fbff);
+  padding:26px 30px;
+  margin-bottom:22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  overflow:hidden
+}
+.hero svg {
+  width:195px;
+  height:130px
+}
+.eyebrow {
+  font-size:10px;
+  letter-spacing:2px;
+  color:#759acb;
+  margin-bottom:7px
+}
+.steps {
+  display:flex;
+  gap:15px;
+  font-size:11px;
+  align-items:center;
+  color:#91a0b5
+}
+.steps b {
+  background:#eaf2ff;
+  color:#2166ee;
+  border-radius:50%;
+  padding:5px 9px;
+  margin-right:5px
+}
+.field {
+  display:block;
+  margin-bottom:17px
+}
+.field>span {
+  display:block;
+  font-size:12px;
+  color:#4b6385;
+  margin-bottom:7px
+}
+input,select {
+  width:100%;
+  border:1px solid #dce5f4;
+  border-radius:7px;
+  background:#fff;
+  color:#284265;
+  padding:10px 12px;
+  min-width:0
+}
+input:focus,select:focus {
+  border-color:#2469ef
+}
+.btn {
+  border-radius:7px;
+  background:#2166ee;
+  color:white;
+  padding:11px 18px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  font-size:12px;
+  box-shadow:0 4px 9px #2166ee15
+}
+.btn:hover {
+  background:#1454d0
+}
+.btn.secondary {
+  background:#fff;
+  color:#3467bd;
+  border:1px solid #dae6fa;
+  box-shadow:none
+}
+.btn.full {
+  width:100%
+}
+.info {
+  border-radius:8px;
+  background:#eef5ff;
+  padding:13px 15px;
+  color:#607b9e;
+  font-size:11px;
+  margin-top:18px
+}
+.conditions {
+  background:linear-gradient(160deg,#f5fbff,#edf5ff)
+}
+.keyrow {
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  padding:16px 0;
+  border-bottom:1px solid #dfeaf7;
+  font-size:12px
+}
+.keyrow:last-child {
+  border:0
+}
+.keyrow strong {
+  color:#2056a4;
+  text-align:right
+}
+.keyrow.big strong {
+  font-size:22px;
+  color:#1a64ef
+}
+.quick {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  margin-top:20px
+}
+.quick button {
+  text-align:left;
+  background:#fff;
+  border:1px solid #e4ecf8;
+  padding:16px;
+  border-radius:9px;
+  color:#345a93;
+  font-size:12px
+}
+.quick small {
+  display:block;
+  font-size:10px;
+  color:#8694ab;
+  margin-top:4px
+}
+.notice {
+  font-size:11px;
+  color:#7d8ca3;
+  margin-top:24px;
+  border-top:1px solid #e3ebf6;
+  padding-top:15px
+}
+.result {
+  background:#e7f8f1;
+  border-radius:9px;
+  padding:18px;
+  color:#148262;
+  margin-top:18px
+}
+.result.warn {
+  background:#fff5e4;
+  color:#9d650a
+}
+.result.bad {
+  background:#fff0f2;
+  color:#bb354c
+}
+.result strong {
+  display:block;
+  font-size:16px
+}
+.result p {
+  font-size:11px;
+  margin:5px 0 0
+}
+.summary {
+  background:#f3f8ff;
+  padding:18px;
+  border-radius:8px;
+  margin-top:20px
+}
+.summary .keyrow {
+  padding:10px 0
+}
+.money {
+  display:flex;
+  align-items:center;
+  gap:8px
+}
+.money input {
+  text-align:right
+}
+.side-note {
+  background:linear-gradient(145deg,#e8f3ff,#f7fbff);
+  padding:22px;
+  border-radius:12px;
+  color:#3e6294;
+  font-size:12px
+}
+.side-note svg {
+  height:140px;
+  width:100%
+}
+.side-note h3 {
+  color:#205cae
+}
+.side-note li {
+  margin-bottom:12px
+}
+ul {
+  padding-left:19px
+}
+.table-wrap {
+  overflow-x:auto
+}
+table {
+  width:100%;
+  border-collapse:collapse;
+  font-size:12px
+}
+th {
+  background:#f1f6fe;
+  font-size:11px;
+  color:#536d94;
+  padding:12px;
+  text-align:left
+}
+td {
+  padding:12px;
+  border-bottom:1px solid #eaf0f8
+}
+td select,td input {
+  padding:7px;
+  font-size:11px;
+  min-width:105px
+}
+.tabs {
+  display:flex;
+  gap:6px;
+  border-bottom:1px solid #e0e9f7;
+  margin-bottom:20px
+}
+.tabs button {
+  padding:12px 18px;
+  font-size:12px;
+  border-bottom:2px solid transparent
+}
+.tabs .active {
+  color:#2166ee;
+  border-color:#2166ee
+}
+.listing-head {
+  display:grid;
+  grid-template-columns:210px 1fr;
+  gap:25px;
+  margin-bottom:22px
+}
+.room {
+  height:170px;
+  background:linear-gradient(135deg,#edf3f3,#d5dfdc);
+  border-radius:9px;
+  overflow:hidden;
+  position:relative
+}
+.room svg {
+  width:100%;
+  height:100%
+}
+.listing-head h2 {
+  font-size:22px;
+  margin:8px 0
+}
+.deadline {
+  border:1px solid #ffdfeb;
+  background:linear-gradient(110deg,#fff1f5,#fff9fc);
+  border-radius:14px;
+  padding:26px 30px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  gap:35px
+}
+.dday {
+  font-size:54px;
+  color:#ff4269;
+  line-height:1.3
+}
+.progress {
+  background:#e4dce5;
+  border-radius:10px;
+  height:7px;
+  margin:15px 0
+}
+.progress i {
+  display:block;
+  background:#ff4a73;
+  height:100%;
+  border-radius:10px
+}
+.dates {
+  display:flex;
+  justify-content:space-between;
+  font-size:11px;
+  gap:12px
+}
+.metrics {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:13px
+}
+.metric {
+  background:#f2f8ff;
+  padding:20px 16px;
+  border-radius:10px;
+  font-size:12px
+}
+.metric strong {
+  display:block;
+  font-size:28px;
+  color:#2065e5;
+  margin-top:6px
+}
+.metric:nth-child(2) {
+  background:#fff7ec
+}
+.metric:nth-child(3) {
+  background:#f0f5ff
+}
+.metric:nth-child(4) {
+  background:#edf9f4
+}
+.saved-row {
+  padding:18px;
+  background:white;
+  border:1px solid #e4ecf8;
+  border-radius:10px;
+  margin-bottom:15px;
+  display:grid;
+  grid-template-columns:135px 1fr 175px;
+  gap:20px;
+  align-items:center
+}
+.saved-row .room {
+  height:110px
+}
+.saved-row h3 {
+  margin-bottom:3px
+}
+.track {
+  display:flex;
+  gap:5px;
+  margin-top:15px
+}
+.track span {
+  flex:1;
+  height:5px;
+  background:#dee6f1;
+  border-radius:4px
+}
+.track span.done {
+  background:#397bf3
+}
+.saved-actions {
+  display:grid;
+  gap:9px
+}
+.agent-banner {
+  display:flex;
+  gap:22px;
+  align-items:center;
+  padding-bottom:25px;
+  border-bottom:1px solid #e6eef8;
+  margin-bottom:25px
+}
+.agent-avatar {
+  width:120px;
+  height:120px;
+  flex-shrink:0;
+  border-radius:12px;
+  background:#eaf3ff;
+  display:grid;
+  place-items:center
+}
+.agent-avatar svg {
+  width:85px;
+  height:85px
+}
+.agent-metrics {
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:10px
+}
+.agent-metrics .metric {
+  padding:17px 12px;
+  font-size:10px
+}
+.empty {
+  text-align:center;
+  padding:40px;
+  color:#8392a9
+}
+.hidden {
+  display:none!important
+}
+dialog {
+  border:1px solid #dae5f6;
+  border-radius:16px;
+  width:min(520px,90vw);
+  padding:28px;
+  color:#233652;
+  font-family:inherit
+}
+dialog::backdrop {
+  background:#12244760
+}
+.toast {
+  position:fixed;
+  bottom:24px;
+  left:50%;
+  transform:translateX(-50%);
+  padding:12px 22px;
+  background:#193b6c;
+  color:white;
+  border-radius:10px;
+  font-size:12px;
+  z-index:20
+}
+.screen {
+  animation:enter .2s ease
+}
+@keyframes enter {
+  from {
+    opacity:.4;
+    transform:translateY(5px)
+  }
+  to {
+    opacity:1;
+    transform:none
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  .screen {
+    animation:none
+  }
+}
+@media(min-width:1450px) {
+  main {
+    padding:34px 44px
+  }
+}
+@media(max-width:1100px) {
+  header {
+    gap:30px;
+    padding:0 24px
+  }
+  nav {
+    gap:15px
+  }
+  .layout {
+    grid-template-columns:190px 1fr
+  }
+  aside {
+    padding:25px 12px
+  }
+  main {
+    padding:25px 22px
+  }
+  .grid-main {
+    grid-template-columns:1fr
+  }
+  .side-note {
+    display:none
+  }
+  .steps {
+    display:none
+  }
+  .saved-row {
+    grid-template-columns:110px 1fr
+  }
+  .saved-actions {
+    grid-column:2
+  }
+  .agent-metrics {
+    grid-template-columns:repeat(3,1fr)
+  }
+}
+@media(max-width:740px) {
+  header {
+    height:68px;
+    padding:0 18px
+  }
+  .logo strong {
+    font-size:19px
+  }
+  nav {
+    display:none
+  }
+  .user {
+    font-size:10px
+  }
+  .layout {
+    display:block
+  }
+  aside {
+    padding:12px;
+    border-right:0;
+    border-bottom:1px solid #e2eaf6
+  }
+  .side-intro,.side-promo {
+    display:none
+  }
+  .side-nav {
+    display:flex;
+    overflow:auto;
+    gap:6px
+  }
+  .side-nav button {
+    white-space:nowrap;
+    padding:9px 12px
+  }
+  .side-nav button span {
+    display:none
+  }
+  main {
+    padding:20px 16px
+  }
+  h1 {
+    font-size:22px
+  }
+  .grid2 {
+    grid-template-columns:1fr
+  }
+  .hero {
+    padding:22px
+  }
+  .hero svg {
+    width:100px;
+    height:100px
+  }
+  .hero h1 {
+    font-size:21px
+  }
+  .intro {
+    align-items:flex-start
+  }
+  .intro .pill {
+    display:none
+  }
+  .card {
+    padding:20px
+  }
+  .quick {
+    grid-template-columns:1fr
+  }
+  .deadline {
+    grid-template-columns:1fr;
+    gap:20px;
+    padding:24px
+  }
+  .metrics {
+    grid-template-columns:1fr 1fr
+  }
+  .listing-head {
+    grid-template-columns:1fr
+  }
+  .room {
+    height:190px
+  }
+  .saved-row {
+    grid-template-columns:85px 1fr;
+    gap:13px
+  }
+  .saved-row .room {
+    height:90px
+  }
+  .saved-actions {
+    grid-column:1/-1;
+    grid-template-columns:1fr 1fr
+  }
+  .agent-banner {
+    align-items:flex-start;
+    gap:15px
+  }
+  .agent-avatar {
+    width:65px;
+    height:65px
+  }
+  .agent-avatar svg {
+    width:50px;
+    height:50px
+  }
+  .agent-metrics {
+    grid-template-columns:1fr 1fr
+  }
+  .tabs button {
+    padding:10px 12px
+  }
+  .dates {
+    flex-wrap:wrap
+  }
+  .keyrow.big strong {
+    font-size:20px
+  }
+}
+
+
+/* ===== Home redesign 2026-10-07 ===== */
+.home-mode{background:#fff;color:#17233b;font-family:"Pretendard","Noto Sans KR","Malgun Gothic",Arial,sans-serif}
+.home-mode .layout{display:block;max-width:none;min-height:calc(100vh - 78px)}
+.home-mode aside,.home-mode .breadcrumb{display:none}
+.home-mode main{padding:0;min-width:0}
+.home-mode .notice{max-width:1240px;margin:18px auto 0;padding:16px 28px 28px;border-top:1px solid #e8eef7;color:#8b98ab}
+.home-mode header{position:sticky;top:0;z-index:30;height:84px;padding:0 max(38px,calc((100vw - 1240px)/2));background:rgba(255,255,255,.96);backdrop-filter:blur(14px)}
+.home-mode .logo strong{font-size:25px}.home-mode .logo small{display:none}.home-mode .brand-icon{width:34px;height:38px}
+.home-mode nav{margin-left:24px;gap:38px}.home-mode nav button{font-size:14px;font-weight:500}.home-mode .user .pill{display:none}.home-mode .avatar{border-radius:12px;padding:10px 15px;background:#f1f4f8;color:#233652}
+.home-shell{background:linear-gradient(180deg,#fff 0,#fff 47%,#f1f8ff 100%);padding:26px 28px 42px}
+.home-shell>section{max-width:1240px;margin-left:auto;margin-right:auto}
+.home-hero{min-height:430px;border:1px solid #edf2f8;border-radius:28px;overflow:hidden;display:grid;grid-template-columns:1.24fr .76fr;background:#fff;box-shadow:0 18px 50px rgba(31,74,139,.06)}
+.home-hero-copy{padding:54px 52px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;background:linear-gradient(112deg,#fff 0%,#fff 78%,#f4faff 100%)}
+.home-badge{display:inline-flex;padding:7px 13px;border-radius:999px;background:#eaf3ff;color:#1761e9;font-size:11px;margin-bottom:22px}
+.home-hero-copy h1{font-size:43px;line-height:1.22;letter-spacing:-1.8px;color:#111d35;margin:0 0 18px}.home-hero-copy h1 em{font-style:normal;color:#155fd9}
+.home-hero-copy p{font-size:16px;color:#74839a;margin:0;line-height:1.7}.home-actions{display:flex;gap:14px;margin-top:30px}.home-actions button{height:54px;padding:0 24px;border-radius:12px;font-size:14px;font-weight:500}.home-primary{background:#1464e9;color:#fff;box-shadow:0 9px 20px rgba(20,100,233,.18)}.home-secondary{background:#fff;color:#175cc9;border:1px solid #2b73eb}.home-actions span{margin-left:14px;font-size:18px}
+.home-visual{position:relative;min-height:430px;background-color:#eef5fb;background-image:url('hero-city-clean.jpg');background-repeat:no-repeat;background-position:center;background-size:cover}
+.home-shortcuts{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}.home-shortcuts button{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid #e4ecf7;border-radius:18px;padding:18px 20px;text-align:left;min-height:92px;box-shadow:0 8px 22px rgba(23,54,104,.03)}.home-shortcuts button>span{display:flex;flex-direction:column;min-width:0;flex:1}.home-shortcuts strong{font-size:14px;color:#17233b}.home-shortcuts small{font-size:11px;color:#8290a5;margin-top:3px}.home-shortcuts button>b{font-size:23px;color:#8b9aae;font-weight:400}.shortcut-icon{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;font-style:normal;font-size:20px;flex:0 0 46px}.shortcut-blue{background:#eaf3ff;color:#1563e8}.shortcut-green{background:#e8f8f2;color:#10a772}.shortcut-orange{background:#fff1e5;color:#f27a13}.shortcut-purple{background:#f3eaff;color:#7b3fe5}
+.home-dashboard{display:grid;grid-template-columns:1.35fr .95fr;gap:18px;margin-top:22px}.home-dday-card,.home-panel{background:#fff;border:1px solid #e4ecf7;border-radius:22px;box-shadow:0 12px 28px rgba(21,66,125,.045)}.home-dday-card{padding:24px}.home-panel{padding:20px}.home-card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.home-card-head h2{font-size:18px;color:#17233b;margin:0}.home-card-head p{font-size:11px;color:#8190a5;margin:5px 0 0}.home-card-head.compact{align-items:center;margin-bottom:14px}.home-card-head.compact h2{font-size:15px}.home-text-btn{font-size:11px;color:#1761e9;background:#f0f6ff;border-radius:10px;padding:8px 10px}
+.home-dday-center{margin-top:18px;background:linear-gradient(135deg,#f5faff,#edf5ff);border-radius:20px;text-align:center;padding:28px 24px}.home-dday-center>strong{display:block;font-size:58px;line-height:1;color:#145fe2;letter-spacing:-2px}.home-dday-center>span{display:block;margin-top:12px;color:#6f7f96;font-size:12px}.home-progress{height:8px;background:#dfe8f6;border-radius:999px;margin:20px 0 10px;overflow:hidden}.home-progress i{display:block;height:100%;background:linear-gradient(90deg,#2d7bf4,#1262e8);border-radius:inherit}.home-dday-center small{color:#8794a7;font-size:10px}.home-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}.home-stats button{border:1px solid #e5edf8;border-radius:14px;padding:14px 12px;background:#fff;text-align:left}.home-stats span{display:block;color:#8391a5;font-size:10px}.home-stats strong{display:block;margin-top:3px;font-size:22px;color:#17233b}
+.home-side-stack{display:grid;gap:18px}.home-recent{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.home-recent button{min-width:0;text-align:left}.home-recent .room{height:76px;border-radius:10px}.home-recent button>span{display:block;margin-top:7px}.home-recent small,.home-recent strong,.home-recent em{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.home-recent small{font-size:9px;color:#7f8da1}.home-recent strong{font-size:10px;color:#243652;margin:1px 0}.home-recent em{font-style:normal;font-size:9px;color:#1761e9}.home-empty{grid-column:1/-1;color:#8794a7;font-size:11px}
+.home-checklist{list-style:none;padding:0;margin:0}.home-checklist li{position:relative;padding:12px 26px 12px 31px;border-top:1px solid #edf1f7;font-size:11px;color:#52647f}.home-checklist li:first-child{border-top:0}.home-checklist li:before{content:'';position:absolute;left:0;top:11px;width:17px;height:17px;border:2px solid #c7d2e1;border-radius:50%}.home-checklist li.done:before{background:#1670ee;border-color:#1670ee}.home-checklist li.done:after{content:'✓';position:absolute;left:4px;top:9px;color:#fff;font-size:12px}
+@media(max-width:980px){.home-mode header{padding:0 22px}.home-mode nav{gap:16px;margin-left:0}.home-shell{padding:20px}.home-hero{grid-template-columns:1fr}.home-visual{min-height:300px;order:-1}.home-hero-copy{padding:38px}.home-hero-copy h1{font-size:35px}.home-shortcuts{grid-template-columns:1fr 1fr}.home-dashboard{grid-template-columns:1fr}}
+@media(max-width:740px){.home-mode header{height:68px}.home-mode nav{display:none}.home-shell{padding:12px 12px 28px}.home-hero{border-radius:20px}.home-visual{min-height:220px}.home-visual-copy{left:24px;top:28px;font-size:13px}.home-hero-copy{padding:28px 22px}.home-hero-copy h1{font-size:29px}.home-hero-copy p{font-size:13px}.home-actions{width:100%;flex-direction:column}.home-actions button{width:100%}.home-shortcuts{grid-template-columns:1fr}.home-dashboard{grid-template-columns:1fr}.home-recent{grid-template-columns:1fr 1fr 1fr}.home-mode .notice{padding:16px}}
+
+/* ===== Formal public pages refinement ===== */
+.home-mode .home-hero{border-radius:16px;box-shadow:0 8px 28px rgba(31,74,139,.045)}
+.home-mode .home-badge{border-radius:5px;background:#eef4fc;color:#315b91;letter-spacing:.02em}
+.home-mode .home-hero-copy h1{font-weight:700;letter-spacing:-1.5px;color:#14233d}
+.home-mode .home-actions button{border-radius:7px;font-weight:600}
+.home-mode .home-shortcuts button{border-radius:10px;box-shadow:none}
+.home-mode .shortcut-icon{border-radius:10px}
+.home-mode .home-dday-card,.home-mode .home-panel{border-radius:12px;box-shadow:none}
+.home-mode .home-dday-center{border-radius:10px;background:#f4f8fd}
+.home-mode .home-stats button{border-radius:8px}
+.home-mode .home-text-btn{border-radius:6px;background:#f3f6fa;color:#315b91}
+
+/* Service introduction page */
+.service-mode{background:#f6f9fd;font-family:"Pretendard","Noto Sans KR","Malgun Gothic",Arial,sans-serif}
+.service-mode .layout{display:block;max-width:none;min-height:calc(100vh - 78px)}
+.service-mode aside,.service-mode .breadcrumb{display:none}
+.service-mode main{padding:0;min-width:0}
+.service-mode header{position:sticky;top:0;z-index:30;height:84px;padding:0 max(38px,calc((100vw - 1180px)/2));background:#fff}
+.service-mode .logo small{display:none}
+.service-mode .user .pill{display:none}
+.service-mode .avatar{border-radius:8px;padding:9px 14px;background:#f1f4f8;color:#233652}
+.service-mode nav{margin-left:22px;gap:34px}
+.service-mode nav button{font-size:14px}
+.service-mode .notice{max-width:1180px;margin:18px auto 0;padding:16px 28px 28px;border-top:1px solid #e4ebf5}
+.service-page{max-width:1180px;margin:0 auto;padding:42px 28px 60px}
+.service-hero{padding:42px 44px;background:#fff;border:1px solid #e1e9f4;border-radius:12px;margin-bottom:18px}
+.service-kicker{font-size:11px;color:#55739b;letter-spacing:.12em}
+.service-hero h1{font-size:38px;line-height:1.28;letter-spacing:-1.5px;color:#172740;margin:12px 0 14px}
+.service-hero h1 strong{color:#1a61d8}
+.service-hero p{font-size:14px;color:#718197;margin:0}
+.service-story{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.service-card{position:relative;background:#fff;border:1px solid #e1e9f4;border-radius:12px;padding:30px 32px;min-height:260px;overflow:hidden}
+.service-card-wide{grid-column:1/-1;display:grid;grid-template-columns:1.25fr .75fr;align-items:center;gap:34px}
+.service-no{font-size:11px;color:#8a9ab0;margin-bottom:14px;letter-spacing:.08em}
+.service-card h2{font-size:24px;line-height:1.4;color:#172740;margin:0 0 14px;letter-spacing:-.8px}
+.service-card h2 strong{color:#1a61d8}
+.service-card p{font-size:13px;color:#708198;line-height:1.8;margin:0}
+.service-stat{width:190px;height:190px;border:16px solid #e9eef5;border-top-color:#1970e8;border-right-color:#1970e8;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;justify-self:center;color:#334b68}
+.service-stat span{font-size:12px}.service-stat b{font-size:48px;line-height:1;color:#1765dc;margin:6px 0}.service-stat b small{font-size:23px}.service-stat em{font-style:normal;font-size:11px;color:#8a99ac}
+.service-steps{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:24px}
+.service-steps span{padding:10px 12px;border:1px solid #dfe7f2;border-radius:6px;background:#f7f9fc;font-size:11px;color:#52667f}
+.service-quote{background:linear-gradient(145deg,#f8fbff,#fff)}
+.service-checks{list-style:none;padding:0;margin:0;display:grid;gap:11px;justify-self:end;width:min(100%,330px)}
+.service-checks li{position:relative;padding:11px 14px 11px 38px;border:1px solid #dfe7f2;border-radius:6px;color:#405875;font-size:12px;background:#f9fbfd}
+.service-checks li:before{content:"✓";position:absolute;left:14px;top:9px;color:#15966d;font-weight:700}
+@media(max-width:800px){
+  .service-mode header{padding:0 18px;height:68px}
+  .service-mode nav{display:none}
+  .service-page{padding:20px 14px 38px}
+  .service-hero{padding:28px 22px}
+  .service-hero h1{font-size:29px}
+  .service-story{grid-template-columns:1fr}
+  .service-card-wide{grid-column:auto;grid-template-columns:1fr}
+  .service-card{padding:24px 22px}
+  .service-stat{width:150px;height:150px;border-width:12px}
+  .service-checks{justify-self:stretch}
+}
+
+
+/* ===== Exact service artwork ===== */
+.service-image-page{max-width:1040px;margin:0 auto;padding:36px 28px 60px}
+.service-image-head{background:#fff;border:1px solid #e1e9f4;padding:28px 32px;margin-bottom:18px}
+.service-image-head h1{font-size:30px;line-height:1.35;letter-spacing:-1px;color:#172740;margin:9px 0 7px}
+.service-image-head p{font-size:13px;color:#718197;margin:0}
+.service-original-art{display:block;width:min(100%,941px);height:auto;margin:0 auto;background:#fff;border:1px solid #e1e9f4}
+@media(max-width:800px){
+  .service-image-page{padding:20px 14px 38px}
+  .service-image-head{padding:22px 20px}
+  .service-image-head h1{font-size:25px}
+}
+
+
+/* ===== Unified site system 2026-10-07 ===== */
+
+/* One typography + one visual system across every route */
+html{background:#f6f9fd}
+body{
+  background:#f6f9fd;
+  color:#17233b;
+  font-family:"Pretendard","Noto Sans KR","Malgun Gothic",Arial,sans-serif;
+  font-weight:400;
+  font-size:14px;
+  line-height:1.65;
+  letter-spacing:-.015em
+}
+button,input,select,textarea{font-family:inherit;font-weight:400}
+h1,h2,h3,strong{font-weight:700}
+h1{color:#14233d}
+h2{color:#1d3659}
+p{color:#667890}
+
+/* Header follows the home screen everywhere */
+header,
+.home-mode header,
+.service-mode header{
+  position:sticky;
+  top:0;
+  z-index:30;
+  width:100%;
+  height:84px;
+  padding:0 max(30px,calc((100vw - 1240px)/2));
+  gap:34px;
+  background:rgba(255,255,255,.97);
+  border-bottom:1px solid #e4ebf4;
+  backdrop-filter:blur(12px)
+}
+.logo{gap:9px}
+.logo strong,
+.home-mode .logo strong,
+.service-mode .logo strong{
+  font-size:23px;
+  letter-spacing:-.04em;
+  color:#123f89
+}
+.logo small,
+.home-mode .logo small,
+.service-mode .logo small{display:none}
+.brand-icon,
+.home-mode .brand-icon{width:32px;height:36px;color:#1767df}
+nav,
+.home-mode nav,
+.service-mode nav{
+  margin-left:12px;
+  gap:24px;
+  height:100%
+}
+nav button,
+.home-mode nav button,
+.service-mode nav button{
+  height:100%;
+  padding:0 2px;
+  font-size:13px;
+  font-weight:600;
+  color:#34445d;
+  border-bottom:2px solid transparent
+}
+nav button:hover{color:#1761d8}
+nav button.active{color:#1761d8;border-color:#1761d8}
+.user .pill{display:none}
+.avatar,
+.home-mode .avatar,
+.service-mode .avatar{
+  border-radius:8px;
+  padding:9px 14px;
+  background:#f2f5f9;
+  color:#44566f;
+  font-weight:600
+}
+
+/* Retire the old dashboard sidebar so the inner pages feel like the home page */
+.layout{
+  display:block;
+  max-width:none;
+  min-height:calc(100vh - 84px)
+}
+aside{display:none}
+main{
+  width:100%;
+  max-width:1240px;
+  margin:0 auto;
+  padding:30px 28px 46px;
+  min-width:0
+}
+.home-mode main,.service-mode main{max-width:none;padding:0}
+.breadcrumb{
+  margin:0 0 18px;
+  color:#8b99ac;
+  font-size:11px
+}
+.screen{animation:enter .18s ease}
+
+/* Inner-page opening area */
+.hero{
+  border:1px solid #e3eaf4;
+  border-radius:12px;
+  background:linear-gradient(120deg,#f7faff,#eef5fd);
+  padding:28px 32px;
+  margin-bottom:20px;
+  box-shadow:none
+}
+.hero h1{font-size:26px;letter-spacing:-1px}
+.hero svg{width:165px;height:110px}
+.eyebrow{color:#6780a4;letter-spacing:.13em}
+
+/* Headings and content cards use the same calm geometry as the home dashboard */
+.intro{
+  margin-bottom:18px;
+  padding:2px 2px 0
+}
+.intro h1{font-size:27px;line-height:1.35;letter-spacing:-1px}
+.intro p{font-size:13px;color:#718197}
+.intro>.pill{border-radius:6px;background:#f0f5fb;color:#48678f;padding:6px 10px}
+
+.card,
+.saved-row,
+.side-note,
+.deadline{
+  border:1px solid #e2e9f3;
+  border-radius:12px;
+  background:#fff;
+  box-shadow:none
+}
+.card{padding:26px}
+.card h2{font-size:17px;letter-spacing:-.35px}
+.conditions{background:#f7faff}
+.side-note{
+  background:#f7faff;
+  color:#536b89
+}
+.side-note h3{color:#274f85}
+.info,.summary{
+  border:1px solid #e1e9f4;
+  border-radius:8px;
+  background:#f4f8fd;
+  color:#607793
+}
+
+/* Forms and controls */
+.field>span{color:#52677f;font-size:12px;font-weight:600}
+input,select{
+  min-height:42px;
+  border:1px solid #dbe4ef;
+  border-radius:7px;
+  color:#263b58;
+  background:#fff
+}
+input:focus,select:focus{
+  border-color:#1767df;
+  box-shadow:0 0 0 3px rgba(23,103,223,.08)
+}
+.btn{
+  border-radius:7px;
+  background:#1767df;
+  color:#fff;
+  font-weight:600;
+  box-shadow:none
+}
+.btn:hover{background:#1058c5}
+.btn.secondary{
+  background:#fff;
+  border:1px solid #cddcf0;
+  color:#245b9f
+}
+.pill{
+  border-radius:6px;
+  background:#eef4fb;
+  color:#41658f;
+  font-weight:600
+}
+.pill.green{background:#edf8f4;color:#16795e}
+.pill.orange{background:#fff5e9;color:#a3650f}
+
+/* Tabs, tables and saved items */
+.tabs{gap:18px;border-color:#e1e8f2}
+.tabs button{
+  padding:11px 2px;
+  font-weight:600;
+  color:#6d7d91
+}
+.tabs .active{color:#1761d8;border-color:#1761d8}
+.table-wrap,.saved-row{background:#fff}
+table{font-size:12px}
+th{
+  background:#f6f9fd;
+  color:#536983;
+  font-weight:700
+}
+td{border-color:#e8edf4}
+.saved-row{padding:20px;margin-bottom:12px}
+.room{border-radius:8px}
+.track span.done{background:#1767df}
+
+/* D-day screen: remove the old pink theme so it belongs to this site */
+.deadline{
+  background:#f7faff;
+  border-color:#e1e9f4
+}
+.dday{color:#1767df}
+.progress{background:#e1e8f2}
+.progress i{background:#1767df}
+.metrics{gap:12px}
+.metric,
+.metric:nth-child(2),
+.metric:nth-child(3),
+.metric:nth-child(4){
+  border:1px solid #e2e9f3;
+  border-radius:9px;
+  background:#f7faff;
+  color:#50647e
+}
+.metric strong{color:#1767df}
+
+/* Agent page */
+.agent-banner{border-color:#e3e9f1}
+.agent-avatar{border-radius:10px;background:#eef5fd}
+.agent-metrics .metric{background:#f7faff}
+
+/* Home photo: show the approved image without chopping off its contents */
+.home-hero{grid-template-columns:1.16fr .84fr}
+.home-visual{
+  background-color:#f3f8fc;
+  background-image:url('hero-city-clean.jpg');
+  background-repeat:no-repeat;
+  background-position:center bottom;
+  background-size:contain
+}
+
+/* Service page uses the submitted artwork itself, not a recreated version */
+.service-mode{background:#f6f9fd}
+.service-image-page{max-width:1040px;margin:0 auto;padding:34px 28px 58px}
+.service-image-head{
+  padding:25px 28px;
+  margin-bottom:16px;
+  border:1px solid #e2e9f3;
+  border-radius:10px;
+  background:#fff
+}
+.service-image-head h1{font-size:27px;color:#14233d}
+.service-original-art{
+  display:block;
+  width:min(100%,760px);
+  height:auto;
+  margin:0 auto;
+  border:0;
+  background:#fff;
+  box-shadow:0 10px 30px rgba(31,63,105,.05)
+}
+
+/* Footer is consistent on every page */
+.notice,
+.home-mode .notice,
+.service-mode .notice{
+  max-width:1240px;
+  margin:22px auto 0;
+  padding:16px 28px 26px;
+  border-top:1px solid #e3eaf3;
+  color:#8997aa;
+  font-size:10px
+}
+
+/* Mobile */
+@media(max-width:1080px){
+  header,.home-mode header,.service-mode header{padding:0 22px;gap:20px}
+  nav,.home-mode nav,.service-mode nav{gap:14px}
+  nav button,.home-mode nav button,.service-mode nav button{font-size:12px}
+  main{padding:24px 20px 40px}
+  .home-hero{grid-template-columns:1fr 1fr}
+}
+@media(max-width:800px){
+  header,.home-mode header,.service-mode header{height:68px;padding:0 16px}
+  nav,.home-mode nav,.service-mode nav{display:none}
+  main{padding:18px 14px 34px}
+  .hero{padding:22px}
+  .hero svg{width:105px;height:88px}
+  .intro h1{font-size:23px}
+  .grid2,.grid-main{grid-template-columns:1fr}
+  .service-image-page{padding:18px 12px 36px}
+  .service-image-head{padding:21px 18px}
+  .service-original-art{width:100%}
+  .home-hero{grid-template-columns:1fr}
+  .home-visual{min-height:300px;order:-1}
+}
+
+
+/* ===== Eligibility simulator 2026-10-07 ===== */
+
+/* Render uploaded images as actual image elements, not CSS re-creations */
+.home-visual{
+  min-height:430px;
+  overflow:hidden;
+  background:#eef5fb;
+  display:flex;
+  align-items:stretch;
+  justify-content:stretch
+}
+.home-visual-img{
+  display:block;
+  width:100%;
+  height:100%;
+  min-height:430px;
+  object-fit:cover;
+  object-position:center
+}
+.service-original-art{
+  display:block;
+  width:min(100%,941px);
+  height:auto;
+  object-fit:contain
+}
+
+/* My conditions / pre-application simulation */
+.condition-page{display:grid;gap:18px}
+.condition-heading{
+  padding:28px 32px;
+  border:1px solid #e2e9f3;
+  border-radius:12px;
+  background:linear-gradient(120deg,#fff,#f4f8fd)
+}
+.condition-heading h1{
+  margin:4px 0 8px;
+  font-size:31px;
+  line-height:1.3;
+  letter-spacing:-1.25px
+}
+.condition-heading p{margin:0;font-size:13px;color:#708096}
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:18px;
+  margin-bottom:20px
+}
+.section-head>div{display:flex;align-items:center;gap:10px}
+.section-head h2{margin:0}
+.section-head p{margin:0;font-size:11px;color:#8491a4}
+.section-no{
+  display:inline-grid;
+  place-items:center;
+  width:28px;height:28px;
+  border-radius:7px;
+  background:#edf4fd;
+  color:#1767df;
+  font-size:11px;
+  font-weight:700
+}
+.simulation-card{padding:28px 30px}
+.sim-qualifiers{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  margin-bottom:20px
+}
+.sim-qualifiers .field{
+  margin:0;
+  padding:15px;
+  border:1px solid #e2e9f3;
+  border-radius:9px;
+  background:#f9fbfd
+}
+.sim-qualifiers .field>span{min-height:39px;line-height:1.5}
+.asset-groups{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px
+}
+.asset-group{
+  border:1px solid #e2e9f3;
+  border-radius:10px;
+  padding:18px;
+  background:#fff
+}
+.asset-title{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:14px}
+.asset-title h3{margin:0;color:#223c5f;font-size:14px}
+.asset-title span{font-size:10px;color:#8a97a9;text-align:right}
+.asset-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px
+}
+.asset-field span{
+  display:block;
+  margin-bottom:5px;
+  color:#53677f;
+  font-size:11px;
+  font-weight:600
+}
+.asset-field>div{position:relative}
+.asset-field input{padding-right:45px;text-align:right}
+.asset-field em{
+  position:absolute;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:10px;
+  font-style:normal;
+  color:#8b98a9
+}
+.sim-calc-btn{margin-top:18px;width:100%;min-height:46px}
+.simulation-result{
+  margin-top:16px;
+  padding:20px;
+  border:1px solid #dce7f5;
+  border-radius:10px;
+  background:#f4f8fd
+}
+.simulation-result.good{background:#eff8f5;border-color:#d6eee5}
+.simulation-result.bad{background:#fff5f5;border-color:#f1dfe1}
+.sim-rank-label{font-size:10px;color:#7d8ca0;margin-bottom:3px}
+.simulation-result>strong{display:block;font-size:25px;color:#1767df}
+.simulation-result.good>strong{color:#13775d}
+.simulation-result.bad>strong{color:#a94b56}
+.simulation-result>p{font-size:12px;margin:4px 0 14px}
+.sim-totals{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px
+}
+.sim-totals span{
+  padding:11px 12px;
+  border-radius:7px;
+  background:#fff;
+  border:1px solid #e3eaf3;
+  font-size:10px;
+  color:#718095
+}
+.sim-totals b{display:block;margin-top:2px;font-size:13px;color:#233d60}
+.sim-criteria{
+  display:grid;
+  gap:6px;
+  margin-top:10px
+}
+.sim-criteria span{
+  position:relative;
+  padding-left:20px;
+  font-size:10px;
+  color:#6d7d91
+}
+.sim-criteria span:before{position:absolute;left:0;font-weight:700}
+.sim-criteria .pass:before{content:"✓";color:#148464}
+.sim-criteria .fail:before{content:"!";color:#b56a1f}
+.simulation-note{font-size:10px}
+.condition-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px
+}
+@media(max-width:900px){
+  .sim-qualifiers,.asset-groups,.condition-grid{grid-template-columns:1fr}
+  .asset-title{display:block}
+  .asset-title span{display:block;text-align:left;margin-top:3px}
+}
+@media(max-width:600px){
+  .condition-heading{padding:22px 20px}
+  .condition-heading h1{font-size:25px}
+  .simulation-card{padding:22px 18px}
+  .asset-grid{grid-template-columns:1fr}
+  .sim-totals{grid-template-columns:1fr}
+}
+
+/* Hero image sizing correction */
+.home-visual-img{width:100%;height:430px;min-height:430px;object-fit:cover;object-position:center;display:block}
+@media(max-width:980px){.home-visual-img{height:300px;min-height:300px}}
+@media(max-width:800px){.home-visual-img{height:300px;min-height:300px}}
+
+
+/* ===== Home without photo + intact service story ===== */
+.home-hero.home-hero-text-only{
+  display:block;
+  min-height:auto;
+  max-width:1240px;
+  background:linear-gradient(135deg,#ffffff 0%,#f6f9fd 72%,#eef5fd 100%);
+  border:1px solid #e3eaf4;
+  overflow:hidden
+}
+.home-hero-text-only .home-hero-copy{
+  min-height:390px;
+  width:100%;
+  max-width:none;
+  padding:58px 64px;
+  background:
+    radial-gradient(circle at 88% 22%,rgba(31,103,223,.10) 0 72px,transparent 73px),
+    radial-gradient(circle at 94% 78%,rgba(37,172,138,.08) 0 112px,transparent 113px),
+    transparent
+}
+.home-hero-text-only .home-hero-copy h1{max-width:720px}
+.home-hero-text-only .home-hero-copy p{max-width:640px}
+.home-visual,.home-visual-img{display:none!important}
+
+.service-artwork-frame{
+  width:min(100%,941px);
+  margin:0 auto;
+  padding:0;
+  background:#fff;
+  border:0;
+  box-shadow:none
+}
+.service-original-art{
+  display:block;
+  width:100%;
+  max-width:941px;
+  height:auto;
+  margin:0 auto;
+  object-fit:contain;
+  object-position:center;
+  border:0;
+  box-shadow:none;
+  background:#fff
+}
+.service-image-page{
+  max-width:1040px;
+  margin:0 auto;
+  padding:34px 28px 60px
+}
+@media(max-width:800px){
+  .home-hero-text-only .home-hero-copy{min-height:auto;padding:38px 24px}
+  .service-image-page{padding:18px 10px 36px}
+  .service-artwork-frame{width:100%}
+  .service-original-art{width:100%;height:auto}
+}
+
+</style>
  </head>
  <body>
   <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
@@ -237,7 +1690,566 @@
     </div>
    </form>
   </dialog>
-  <script defer="" src="script.js">
-  </script>
+  <script id="embedded-site-script">
+// 청년전세ON 웹 프로토타입
+// 화면 전환, 지원한도/추가부담 계산, D-Day, 관심매물 상태 관리 등을 담당합니다.
+// 데이터는 브라우저 localStorage에 저장됩니다.
+
+const $=s=>document.querySelector(s), app=$('#app');
+
+const titles={home:'나의 대시보드',service:'서비스 소개',profile:'사용자별 지원조건 자동 정리',calc:'추가부담 가능 범위 계산',check:'사용자 조건에 따른 매물 확인',saved:'관심매물 진행상태 관리',agent:'공인중개사 전세임대 실적'};
+
+const stages=['관심매물','중개사 문의','임대인 동의 확인','권리분석 요청','보완 요청','승인','반려','계약 완료'];
+
+const iso=d=>{const t=new Date(d);return `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}`};
+
+const today=new Date();
+
+const plus=n=>{const d=new Date(today);d.setDate(d.getDate()+n);return iso(d)};
+
+const defaults={profile:{region:'서울특별시',people:'1',limit:12000,selected:plus(-17),deadline:plus(43)},simulation:{firstRank:'unknown',familyIncome100:'unknown',selfIncome100:'unknown',self:{deposit:0,stock:0,car:0,rentalDeposit:0,realEstate:0,debt:0},parents:{deposit:0,stock:0,car:0,rentalDeposit:0,realEstate:0,debt:0}},price:15000,properties:[{id:1,name:'행복빌라 101호',address:'서울특별시 광진구 자양동 · 예시',price:15000,stage:'권리분석 요청'},{id:2,name:'한아름하우스 202호',address:'서울특별시 광진구 화양동 · 예시',price:11000,stage:'임대인 동의 확인'},{id:3,name:'드림아파트 305호',address:'서울특별시 광진구 구의동 · 예시',price:17000,stage:'중개사 문의'}],check:{area:49.5,type:'다세대',move:'확인 필요',rights:'확인 필요',consent:'확인 필요'}};
+
+let state=structuredClone(defaults);try{const x=JSON.parse(localStorage.getItem('jeonse-on-v1'));if(x&&x.profile&&Array.isArray(x.properties)&&x.check)state=x}catch{}state.profile={...defaults.profile,...state.profile};state.simulation={...structuredClone(defaults.simulation),...(state.simulation||{}),self:{...defaults.simulation.self,...((state.simulation||{}).self||{})},parents:{...defaults.simulation.parents,...((state.simulation||{}).parents||{})}};let page='home',filter='전체';
+
+let storageWarn=false;
+
+function save(){try{localStorage.setItem('jeonse-on-v1',JSON.stringify(state))}catch{if(!storageWarn){storageWarn=true;toast('브라우저 저장이 제한되어 이번 화면에서만 유지됩니다.')}}}
+
+function toast(msg){$('#toast').textContent=msg;
+
+$('#toast').classList.remove('hidden');clearTimeout(window.tt);
+
+window.tt=setTimeout(()=>$('#toast').classList.add('hidden'),2600)}const esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+const money=v=>Number(v).toLocaleString('ko-KR')+'만원';
+
+const max=()=>state.profile.limit*(state.profile.people==='1'?1.5:2);
+
+const areaMax=()=>({'1':60,'2':70,'3':85}[state.profile.people]);
+
+const opt=(a,s)=>a.map(v=>`<option ${String(v)===String(s)?'selected':''}>${esc(v)}</option>`).join('');
+
+const town='<svg aria-hidden="true"><use href="#town"/></svg>';
+
+const room='<div class="room"><svg aria-hidden="true"><use href="#room"/></svg></div>';
+
+const header=(title,desc)=>`<div class="intro"><div><h1>${title}</h1><p>${desc}</p></div><span class="pill">나의 조건을 기준으로</span></div>`;
+
+const official='<div class="info">입력 정보에 따른 사전 확인 결과입니다. 최종 지원·계약 가능 여부는 사업시행기관의 권리분석과 승인에 따라 결정됩니다.</div>';
+const assetNum=v=>Math.max(0,Number(v)||0);
+function assetTotal(a){return Math.max(0,assetNum(a.deposit)+assetNum(a.stock)+assetNum(a.car)+assetNum(a.rentalDeposit)+assetNum(a.realEstate)-assetNum(a.debt))}
+function simulationResult(){
+  const s=state.simulation,self=assetTotal(s.self),parents=assetTotal(s.parents),family=self+parents;
+  const maxCar=Math.max(assetNum(s.self.car),assetNum(s.parents.car));
+  const secondAsset=family<=34500&&maxCar<=4542;
+  const thirdAsset=self<=25100&&assetNum(s.self.car)<=4542;
+  let rank='추가 확인 필요',tone='warn',reason='소득·자산 항목을 모두 확인하면 예상 순위를 안내합니다.';
+  if(s.firstRank==='yes'){rank='예상 1순위';tone='good';reason='수급자·지원대상 한부모가족·차상위계층 등 1순위 요건에 해당한다고 입력했습니다.'}
+  else if(s.familyIncome100==='yes'&&secondAsset){rank='예상 2순위';tone='good';reason='본인+부모 소득 100% 이하 및 2순위 자산기준을 충족하는 것으로 계산됐습니다.'}
+  else if(s.selfIncome100==='yes'&&thirdAsset){rank='예상 3순위';tone='good';reason='본인 소득 100% 이하 및 3순위 자산기준을 충족하는 것으로 계산됐습니다.'}
+  else if(s.firstRank==='no'&&s.familyIncome100==='no'&&s.selfIncome100==='no'){rank='현재 입력으로는 순위 산정 어려움';tone='bad';reason='입력한 소득 조건으로는 2·3순위 요건 충족이 확인되지 않습니다.'}
+  else if((s.familyIncome100==='yes'&&!secondAsset)||(s.selfIncome100==='yes'&&!thirdAsset)){rank='자산기준 확인 필요';tone='bad';reason='입력한 자산 또는 자동차 가액이 해당 순위의 기준을 넘는 항목이 있습니다.'}
+  return {rank,tone,reason,self,parents,family,maxCar,secondAsset,thirdAsset};
+}
+function simSelect(name,value){
+  return `<select name="${name}"><option value="unknown" ${value==='unknown'?'selected':''}>확인 필요</option><option value="yes" ${value==='yes'?'selected':''}>예</option><option value="no" ${value==='no'?'selected':''}>아니오</option></select>`;
+}
+function simAssetFields(prefix,a){
+  const items=[['deposit','예금'],['stock','주식·펀드'],['car','자동차'],['rentalDeposit','임차보증금'],['realEstate','부동산'],['debt','부채']];
+  return items.map(([k,label])=>`<label class="asset-field"><span>${label}</span><div><input name="${prefix}_${k}" type="number" min="0" step="1" value="${assetNum(a[k])}"><em>만원</em></div></label>`).join('');
+}
+function simulationResultHtml(){
+  const r=simulationResult();
+  return `<div class="simulation-result ${r.tone}">
+    <div class="sim-rank-label">모의계산 결과</div>
+    <strong>${r.rank}</strong>
+    <p>${r.reason}</p>
+    <div class="sim-totals"><span>본인 총자산 <b>${money(r.self)}</b></span><span>부모 총자산 <b>${money(r.parents)}</b></span><span>본인+부모 <b>${money(r.family)}</b></span></div>
+    <div class="sim-criteria"><span class="${r.secondAsset?'pass':'fail'}">2순위 자산기준 · 총자산 34,500만원 / 자동차 4,542만원 이하</span><span class="${r.thirdAsset?'pass':'fail'}">3순위 자산기준 · 본인 총자산 25,100만원 / 자동차 4,542만원 이하</span></div>
+  </div>`;
+}
+
+function render(){document.body.classList.toggle('home-mode',page==='home');document.body.classList.toggle('service-mode',page==='service');document.querySelectorAll('[data-page]').forEach(b=>{b.classList.toggle('active',b.dataset.page===page);if(b.dataset.page===page)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
+
+$('#crumb').textContent=titles[page];app.innerHTML='<section class="screen">'+views[page]()+'</section>';bind()}
+const views={
+home:()=>{const p=state.profile;
+const dateNumber=s=>Date.parse(s+'T00:00:00Z');
+const days=Math.round((dateNumber(p.deadline)-dateNumber(iso(today)))/86400000);
+const total=(dateNumber(p.deadline)-dateNumber(p.selected))/86400000;
+const elapsed=Math.max(0,Math.min(100,(1-days/Math.max(1,total))*100));
+const dday=days>0?'D-'+days:days===0?'D-Day':'D+'+Math.abs(days);
+const recent=state.properties.slice(0,3);
+const activeCount=state.properties.filter(x=>!['계약 완료','반려'].includes(x.stage)).length;
+const analysisCount=state.properties.filter(x=>x.stage==='권리분석 요청').length;
+const completeCount=state.properties.filter(x=>x.stage==='계약 완료').length;
+return `<div class='home-shell'>
+<section class='home-hero home-hero-text-only'>
+<div class='home-hero-copy'><span class='home-badge'>청년전세ON</span><h1>조건 확인부터<br>계약 준비까지, <em>한곳에서</em></h1><p>청년전세임대 준비 과정을 더 쉽게 정리해주는 길잡이</p><div class='home-actions'><button class='home-primary' data-page='profile'>나의 조건부터 시작하기 <span>→</span></button><button class='home-secondary' data-page='check'>매물 확인 <span>→</span></button></div></div>
+</section>
+<section class='home-shortcuts'>
+<button data-page='profile'><i class='shortcut-icon shortcut-blue'>▤</i><span><strong>나의 조건</strong><small>지원 가능 여부 확인</small></span><b>›</b></button>
+<button data-page='check'><i class='shortcut-icon shortcut-green'>⌂</i><span><strong>매물 확인</strong><small>조건에 맞는 매물 살펴보기</small></span><b>›</b></button>
+<button data-page='agent'><i class='shortcut-icon shortcut-orange'>♧</i><span><strong>중개사 찾기</strong><small>전세임대 경험 확인</small></span><b>›</b></button>
+<button data-page='saved'><i class='shortcut-icon shortcut-purple'>♡</i><span><strong>나의 매물</strong><small>관심 매물 모아보기</small></span><b>›</b></button>
+</section>
+<section class='home-dashboard'>
+<article class='home-dday-card'>
+<div class='home-card-head'><div><h2>매물 탐색 D-DAY</h2><p>계약기한을 기준으로 남은 시간을 확인하세요.</p></div><button class='home-text-btn' data-page='profile'>일정 관리 →</button></div>
+<div class='home-dday-center'><strong>${dday}</strong><span>${days<0?'등록한 계약기한이 지났어요.':days<=30?'계약기한이 가까워지고 있어요.':'지금부터 차근차근 준비하면 충분해요!'}</span><div class='home-progress'><i style='width:${elapsed}%'></i></div><small>선정일 ${p.selected} · 계약기한 ${p.deadline}</small></div>
+<div class='home-stats'><button data-page='check'><span>오늘 볼 매물</span><strong>${Math.min(3,state.properties.length)}건</strong></button><button data-page='saved'><span>관심 매물</span><strong>${state.properties.length}건</strong></button><button data-page='saved'><span>진행 중</span><strong>${activeCount}건</strong></button></div>
+</article>
+<div class='home-side-stack'>
+<article class='home-panel'><div class='home-card-head compact'><h2>최근 본 매물</h2><button class='home-text-btn' data-page='saved'>전체보기 →</button></div><div class='home-recent'>${recent.map(x=>`<button data-load='${x.id}' data-page='check'>${room}<span><small>${esc(x.address.split('·')[0].trim())}</small><strong>${esc(x.name)}</strong><em>전세 ${money(x.price)}</em></span></button>`).join('')||'<p class="home-empty">등록한 매물이 아직 없어요.</p>'}</div></article>
+<article class='home-panel'><div class='home-card-head compact'><h2>나의 준비 체크리스트</h2><button class='home-text-btn' data-page='profile'>전체보기 →</button></div><ul class='home-checklist'><li class='done'>지원 자격 확인하기</li><li class='done'>선정정보와 계약기한 확인하기</li><li class='${analysisCount?'done':''}'>권리분석 진행 확인하기</li><li class='${completeCount?'done':''}'>계약 완료까지 진행 관리하기</li></ul></article>
+</div>
+</section>
+</div>`},
+service:()=>`<div class="service-page service-image-page">
+<section class="service-image-head">
+  <span class="service-kicker">SERVICE STORY</span>
+  <h1>웹사이트 제작 계기</h1>
+  <p>청년전세ON이 필요한 이유와 해결하고자 하는 문제를 한눈에 정리했습니다.</p>
+</section>
+<figure class="service-artwork-frame">
+  <img class="service-original-art" src="data:image/jpeg;base64,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
+Z5yXznpq9uzWsr1ot5Hb9CeW1PaeeOt4/wBRUc71HI6q2CAABAAiYSQQKYZ4
+kTElglqxyhJswzIpuqIia1zUXgAAAkiQA2AAVRpc30cPQW+Zvs71Pn7a9FE+
+c49PRU8OevP0M+d7/LpXd527pju1Zcvl06mXDq68+7lxehnW6OPUACAACEmJ
+EImojLATElglrxyiyc8cpY4mj5jO+x5/na2s7O/xss6996v4z6g9+TrAAAAG
+wADyuru6v1vm3359fz9uLHU5h6PzfpNLz9+Tr97l+nhs6nU8snUs4fs6o0d7
+V49KtuyqqM695N9zOn5vQGdAQmABEkEETE1ETBExJYiZa4lZPK6vl8dPP8Df
+46xEkiZgyyxvl+mdfxvprncGsgAAbAAObV1sU8t0uxNcm7oRL56j1Czg0ekG
+tyPRI50dLEq8/6iDn6HoIOH0tsvmen01nI6F0S8OztLOVr9waGr2RRdEwgpA
+AJDMS4EWc7l9HR8/q5ff5HUnTW4nsadcvGVezhPFep6VNnQs52xvntMctZIA
+AGyADncr0OvZw/RY7BxWztGnodm04sdWTZnWtlsAAAAAAIABCBUAgAE5Y5Ex
+MS41W8+WvdmjOsqNWS5SltypzsyAlJnfrW2Xq4ubJrFjAbgoA1INxz7Dca0G
+01JNqNWo6Cqg3GsNlXkZNG02Wrsktek3mmNyMNM31VJttK1L2vtLiyghMEox
+M5rkziBTo7eON287b0jHHZplwkJnHIzJsTjkTZVnZdOMoTmVzlNm0KA4rs4W
+ec6G1eaOW1nHFs6OzXn8O5gWcvt4S8qOxgnI6lW2eY6W3dXP2LrpeRR3KbOX
+b0qxw/S6pqt6I812L9quT1scpYBBBMIGWIsYjS2qYxvWRdLnqTBinFcpiUnL
+FZlOGwU57dms1Z402X40Z0qvxjoAA5XO9Bq2aPU1+icajqVmtpdqss4/c0Cp
+ua5RvU7RzbbrDn9PndU1Ztknb1tmUBEwAQCCBEwREwIAmSCIw0NrQx1u2dW9
+OZu6W5nWLOLMFl9mtsbjeIhTqY12YRGVOC7OFIsrssOqEAAAAAAAAAAAAgCA
+RMCAggQERORjZrC+lgRmwKeb18M70s9jYzeF09+3U09jPHWJxY2YY2QuvVsY
+RUutXXuumynKwJxrN1iTJiMmIyYjJiMmIyYjJiMmIyYjJiMmIyYjJiMmIyYj
+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
+" alt="청년전세ON 웹사이트 제작 계기 스토리">
+</figure>
+</div>`,
+profile:()=>{const p=state.profile,s=state.simulation,r=simulationResult();return `
+<div class="condition-page">
+  <div class="condition-heading">
+    <span class="eyebrow">MY ELIGIBILITY</span>
+    <h1>신청 전에, 내 조건부터 확인하세요.</h1>
+    <p>자산과 소득 조건을 입력하면 청년 전세임대의 예상 자격과 순위를 미리 확인할 수 있습니다.</p>
+  </div>
+
+  <form id="simulation-form" class="card simulation-card">
+    <div class="section-head">
+      <div><span class="section-no">01</span><h2>예상 자격·순위 모의계산</h2></div>
+      <p>금액은 모두 만원 단위로 입력해 주세요.</p>
+    </div>
+
+    <div class="sim-qualifiers">
+      <label class="field"><span>수급자·지원대상 한부모가족·차상위계층 등 1순위 요건에 해당하나요?</span>${simSelect('firstRank',s.firstRank)}</label>
+      <label class="field"><span>본인과 부모의 월평균 소득 합계가 해당 가구 100% 기준 이하인가요?</span>${simSelect('familyIncome100',s.familyIncome100)}</label>
+      <label class="field"><span>본인의 월평균 소득이 1인 가구 100% 기준 이하인가요?</span>${simSelect('selfIncome100',s.selfIncome100)}</label>
+    </div>
+
+    <div class="asset-groups">
+      <section class="asset-group">
+        <div class="asset-title"><h3>본인 자산</h3><span>3순위 판단에는 본인 자산을 사용합니다.</span></div>
+        <div class="asset-grid">${simAssetFields('self',s.self)}</div>
+      </section>
+      <section class="asset-group">
+        <div class="asset-title"><h3>부모 자산</h3><span>2순위 판단에는 본인과 부모 자산을 합산합니다.</span></div>
+        <div class="asset-grid">${simAssetFields('parents',s.parents)}</div>
+      </section>
+    </div>
+
+    <button class="btn sim-calc-btn" type="submit">예상 결과 계산하기</button>
+    <div id="simulation-result">${simulationResultHtml()}</div>
+    <div class="info simulation-note">본 기능은 신청 전 확인을 위한 모의계산입니다. 실제 순위는 공고일 기준 소득·자산 조사와 LH 심사 결과에 따라 달라질 수 있습니다. 2026년 공개 기준을 참고해 2순위는 본인+부모, 3순위는 본인 기준으로 계산합니다.</div>
+  </form>
+
+  <div class="condition-grid">
+    <form id="profile-form" class="card">
+      <div class="section-head"><div><span class="section-no">02</span><h2>선정 후 지원정보</h2></div></div>
+      <label class="field"><span>신청지역</span><select name="region">${opt(['서울특별시','경기도','인천광역시','그 외 지역'],p.region)}</select></label>
+      <label class="field"><span>입주인원</span><select name="people">${[1,2,3].map(n=>`<option value="${n}" ${p.people==n?'selected':''}>${n}인</option>`).join('')}</select></label>
+      <label class="field"><span>선정통보에 명시된 지원한도 (만원)</span><input name="limit" type="number" min="1" max="10000000" step="1" required value="${p.limit}"></label>
+      <p class="small muted" id="limit-help">지역·입주인원에 따라 실제 선정통보의 지원한도를 입력해 주세요.</p>
+      <div class="grid2"><label class="field"><span>선정일</span><input type="date" name="selected" value="${p.selected}" required></label><label class="field"><span>계약기한</span><input type="date" name="deadline" value="${p.deadline}" required></label></div>
+      <button class="btn full">지원정보 저장하기 →</button>
+    </form>
+
+    <div class="card conditions">
+      <div class="section-head"><div><span class="section-no">03</span><h2>내 전세임대 조건</h2></div></div>
+      <div class="keyrow big"><span>예상 순위</span><strong>${r.rank}</strong></div>
+      <div class="keyrow big"><span>지원한도</span><strong>${money(p.limit)}</strong></div>
+      <div class="keyrow"><span>기본정보</span><strong>${p.region} · ${p.people}인</strong></div>
+      <div class="keyrow"><span>전용면적 기준</span><strong>${areaMax()}㎡ 이하</strong></div>
+      <div class="keyrow"><span>최대 전세금 범위</span><strong>${money(max())}<br><span class="small">지원한도의 ${p.people==='1'?'150':'200'}%</span></strong></div>
+      <div class="keyrow"><span>계약기한</span><strong>${p.deadline}</strong></div>
+      <div class="info">예상 순위는 모의계산 결과이며 공식 선정순위가 아닙니다. 최종 자격은 해당 공고와 기관 심사를 확인해 주세요.</div>
+    </div>
+  </div>
+</div>`},
+calc:()=>`${header('추가부담 가능 범위 계산','매물의 전세보증금을 입력하고 한도 초과분과 허용범위를 확인하세요.')}<div class="grid-main"><div class="card"><h2>▦ &nbsp; 전세보증금 계산기</h2><div class="keyrow"><span>내 지원한도</span><strong>${money(state.profile.limit)}</strong></div><div class="keyrow"><span>입주인원</span><strong>${state.profile.people}인 · ${state.profile.people==='1'?'150':'200'}% 범위</strong></div><form id="calc-form" style="margin-top:22px"><label class="field"><span>매물 전세보증금</span><div class="money"><input name="price" type="number" min="1" max="10000000" step="1" required value="${state.price}"><span style="white-space:nowrap">만원</span><button class="btn" style="white-space:nowrap">계산하기</button></div></label></form><div id="calc-result" aria-live="polite">${calcResult()}</div>${official}</div><div class="side-note"><h3>계산 한 번으로<br>전세금 부담을 확인해요.</h3>${town}<h3>용어 안내</h3><p><b>최대 허용 전세금</b><br>지원한도 × 입주인원별 배수</p><p><b>한도 초과분</b><br>매물 전세금 − 지원한도<br>(한도 이내라면 0원)</p><p>기본 임대보증금, 월 임대료, 관리비 등은 별도입니다.</p></div></div>`,
+check:()=>`${header('사용자 조건에 따른 매물 확인','입력한 매물 정보와 나의 조건을 비교하고 추가 확인이 필요한 항목을 살펴보세요.')}<div class="card"><div class="listing-head">${room}<div><span class="pill">시연용 매물</span><h2>내가 확인 중인 매물</h2><p class="blue">전세보증금 ${money(state.price)}</p><p class="small muted">보증금은 추가부담 계산 화면과 연동됩니다.<br>확인하지 않은 항목은 ‘확인 필요’로 남겨두세요.</p><button class="btn secondary" data-page="calc">보증금 수정</button></div></div><h2>내 조건과 비교</h2><div class="table-wrap"><table><thead><tr><th>항목</th><th>내 조건</th><th>매물 정보 입력</th><th>결과</th></tr></thead><tbody><tr><td>전세보증금</td><td>최대 ${money(max())}</td><td>${money(state.price)}</td><td>${badge(state.price>max()?'미충족':state.price>state.profile.limit?'추가부담':'충족')}</td></tr><tr><td>전용면적</td><td>${areaMax()}㎡ 이하</td><td><input aria-label="전용면적 제곱미터" id="check-area" type="number" min="0.1" max="10000" step="0.1" value="${state.check.area}"></td><td id="area-status"></td></tr><tr><td>주택유형</td><td>자료상 지원 주택</td><td><select aria-label="주택유형" data-check="type">${opt(['단독','다가구','다세대','연립','아파트','주거용 오피스텔','근린생활시설','확인 필요'],state.check.type)}</select></td><td id="type-status"></td></tr>${[['move','전입신고','가능해야 함'],['rights','제한권리','등기사항 확인 필요'],['consent','임대인 동의','LH 계약방식 동의']].map(([k,n,c])=>`<tr><td>${n}</td><td>${c}</td><td><select aria-label="${n}" data-check="${k}">${opt(k==='rights'?['확인 필요','제한권리 없음','제한권리 있음']:['확인 필요','예','아니오'],state.check[k])}</select></td><td id="${k}-status"></td></tr>`).join('')}</tbody></table></div><div id="check-result" aria-live="polite"></div>${official}</div>`,
+saved:()=>`${header('나의 매물','관심매물부터 계약 완료까지, 여러 매물의 진행상태를 직접 관리하세요.')}<div class="intro"><p class="small muted">상태는 사용자 기록이며 기관의 공식 심사 조회 결과가 아닙니다.</p><button class="btn" id="add-property">＋ 매물 등록</button></div><div class="tabs" aria-label="매물 필터">${['전체','진행 중','완료','반려'].map(x=>`<button class="${filter===x?'active':''}" data-filter="${x}">${x}</button>`).join('')}</div>${state.properties.filter(x=>filter==='전체'||filter==='완료'&&x.stage==='계약 완료'||filter==='반려'&&x.stage==='반려'||filter==='진행 중'&&!['계약 완료','반려'].includes(x.stage)).map(x=>`<article class="saved-row">${room}<div><h3>${esc(x.name)}</h3><strong class="blue small">전세 ${money(x.price)}</strong><p class="small muted">${esc(x.address)}</p><span class="pill ${x.stage==='계약 완료'?'green':x.stage==='반려'?'orange':''}">${x.stage}</span><div class="track" aria-hidden="true">${Array.from({length:6},(_,i)=>`<span class="${i<=({'관심매물':0,'중개사 문의':1,'임대인 동의 확인':2,'권리분석 요청':3,'보완 요청':3,'승인':4,'반려':3,'계약 완료':5}[x.stage])?'done':''}"></span>`).join('')}</div></div><div class="saved-actions"><select aria-label="${esc(x.name)} 진행상태" data-stage="${x.id}">${opt(stages,x.stage)}</select><button class="btn secondary" data-load="${x.id}">이 매물 조건 확인 →</button><button class="small muted" data-delete="${x.id}">목록에서 삭제</button></div></article>`).join('')||'<div class="card empty">해당 상태의 매물이 없습니다.</div>'}`,
+agent:()=>`${header('공인중개사 전세임대 실적','전세임대 관련 활동 이력을 함께 살펴보는 화면입니다.')}<div class="card"><div class="agent-banner"><div class="agent-avatar"><svg class="blue"><use href="#brand"/></svg></div><div><span class="pill orange">가상 중개사 · 시연 데이터</span><h2 style="font-size:23px;margin:9px 0">행복부동산 공인중개사사무소</h2><p class="small muted">서울특별시 광진구 · 예시 중개업소</p><p class="small">“청년의 첫 전세임대 계약을 차근차근 함께합니다.”</p></div></div><div class="tabs"><button class="active">전세임대 실적</button></div><h2>숫자로 살펴보는 전세임대 경험</h2><p class="small muted">아래 수치는 문서 예시 화면을 재현한 가상 누적 건수입니다.</p><div class="agent-metrics">${[['전세임대 매물 등록',32],['사전조건 확인',25],['권리분석 진행',18],['권리분석 승인',15],['실제 계약 성사',12]].map(x=>`<div class="metric">${x[0]}<strong>${x[1]}<small> 건</small></strong></div>`).join('')}</div><div class="info">각 지표는 서로 다른 단계의 누적 기록입니다. 같은 기간·대상 집단의 데이터가 확보되기 전에는 승인율이나 계약성사율로 해석하지 않습니다.</div><div style="margin-top:25px"><h3>실적을 확인할 때 함께 볼 정보</h3><div class="keyrow"><span>집계기간</span><strong>미연동 · 예시 데이터</strong></div><div class="keyrow"><span>증빙자료</span><strong>실제 계약·승인 기록 연동 예정</strong></div><div class="keyrow"><span>우수 협력 중개사 여부</span><strong>실적 검증 후 별도 판단</strong></div></div></div>`
+};
+function badge(v){return `<span class="pill ${v==='충족'?'green':v==='미충족'||v==='추가부담'||v==='확인 필요'?'orange':''}">${v}</span>`}
+function calcResult(){const extra=Math.max(0,state.price-state.profile.limit),bad=state.price>max();return `<div class="summary"><h3 class="blue">계산 결과</h3><div class="keyrow"><span>최대 허용 전세금</span><strong>${money(max())}</strong></div><div class="keyrow"><span>매물 전세보증금</span><strong>${money(state.price)}</strong></div><div class="keyrow big"><span>지원한도 초과분</span><strong style="color:${extra?'#ed4f67':'#1a64ef'}">${money(extra)}</strong></div></div><div class="result ${bad?'bad':''}"><strong>${bad?'전세금 허용범위를 초과합니다.':extra?'추가부담 허용범위 이내입니다.':'지원한도 이내입니다.'}</strong><p>${bad?'허용범위보다 '+money(state.price-max())+' 높습니다. 전세금 조정 또는 다른 매물을 검토하세요.':extra?'한도 초과분의 본인 부담 가능 여부와 나머지 매물 조건을 확인하세요.':'면적·권리관계·임대인 동의 등 나머지 조건도 확인해 주세요.'}</p></div><p class="small muted" style="margin-top:12px">위 금액은 지원한도 초과분만 계산합니다. 기본 임대보증금과 기타 비용을 합한 총 자기부담금은 아닙니다.</p>`}
+function checkResult(){const c=state.check,ar=Number(c.area);
+
+const vals={area:!Number.isFinite(ar)||ar<=0?'확인 필요':ar>areaMax()?'미충족':'충족',type:c.type==='근린생활시설'?'미충족':['확인 필요','주거용 오피스텔'].includes(c.type)?'확인 필요':'충족',move:c.move==='예'?'충족':c.move==='아니오'?'미충족':'확인 필요',rights:c.rights==='제한권리 없음'?'충족':c.rights==='제한권리 있음'?'미충족':'확인 필요',consent:c.consent==='예'?'충족':c.consent==='아니오'?'미충족':'확인 필요'};Object.entries(vals).forEach(([k,v])=>$('#'+k+'-status').innerHTML=badge(v));
+
+const fail=state.price>max()||Object.values(vals).includes('미충족');
+
+$('#check-result').innerHTML=`<div class="result ${fail?'bad':'warn'}"><strong>${fail?'현재 입력 기준 미충족 항목이 있습니다.':'확인 필요 · 공식 권리분석 전 단계입니다.'}</strong><p>${fail?'표에 표시된 미충족 항목을 확인하고 조건 조정 또는 보완 가능 여부를 문의하세요.':'확인되지 않은 항목을 먼저 확인해 주세요.'} 주택가격·선순위 보증금·소유관계·임대인 제한사항은 이 화면에서 검증하지 않으므로 계약 가능 여부를 확정하지 않습니다.${c.type==='주거용 오피스텔'?' 오피스텔은 난방·취사·화장실 등 주거용 시설 확인도 필요합니다.':''}</p></div>`}
+function go(p){if(!titles[p])return;page=p;history.replaceState(null,'','#'+p);render();
+
+window.scrollTo({top:0,behavior:'instant'})}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-page]');if(b)go(b.dataset.page)});
+function bind(){if(page==='profile'){
+const f=$('#profile-form'),sf=$('#simulation-form');
+['region','people'].forEach(n=>f.elements[n].addEventListener('change',()=>{f.elements.limit.value='';$('#limit-help').textContent='변경한 지역·입주인원에 해당하는 선정통보의 지원한도를 입력해 주세요.'}));
+f.onsubmit=e=>{e.preventDefault();const d=Object.fromEntries(new FormData(f));if(d.deadline<d.selected){toast('계약기한은 선정일 이후로 입력해 주세요.');return}d.limit=Number(d.limit);state.profile={...state.profile,...d};save();render();toast('지원정보를 저장했습니다.')};
+sf.onsubmit=e=>{e.preventDefault();const d=Object.fromEntries(new FormData(sf));const read=(prefix,key)=>assetNum(d[prefix+'_'+key]);const keys=['deposit','stock','car','rentalDeposit','realEstate','debt'];state.simulation.firstRank=d.firstRank;state.simulation.familyIncome100=d.familyIncome100;state.simulation.selfIncome100=d.selfIncome100;keys.forEach(k=>{state.simulation.self[k]=read('self',k);state.simulation.parents[k]=read('parents',k)});save();$('#simulation-result').innerHTML=simulationResultHtml();toast('모의계산 결과를 반영했습니다.')};
+}if(page==='calc')$('#calc-form').onsubmit=e=>{e.preventDefault();state.price=Number(new FormData(e.target).get('price'));save();
+
+$('#calc-result').innerHTML=calcResult()};if(page==='check'){checkResult();
+
+$('#check-area').oninput=e=>{state.check.area=e.target.value;save();checkResult()};
+
+document.querySelectorAll('[data-check]').forEach(el=>el.onchange=()=>{state.check[el.dataset.check]=el.value;save();checkResult()})}if(page==='saved'){$('#add-property').onclick=()=>$('#modal').showModal();
+
+document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{filter=b.dataset.filter;render()});
+
+document.querySelectorAll('[data-stage]').forEach(el=>el.onchange=()=>{state.properties.find(x=>String(x.id)===el.dataset.stage).stage=el.value;save();render();toast('진행상태를 저장했습니다.')});
+
+document.querySelectorAll('[data-delete]').forEach(b=>b.onclick=()=>{if(confirm('이 관심매물을 목록에서 삭제할까요?')){state.properties=state.properties.filter(x=>String(x.id)!==b.dataset.delete);save();render()}});
+
+document.querySelectorAll('[data-load]').forEach(b=>b.onclick=()=>{const x=state.properties.find(x=>String(x.id)===b.dataset.load);state.price=x.price;state.check={area:'',type:'확인 필요',move:'확인 필요',rights:'확인 필요',consent:'확인 필요'};save();go('check');toast(x.name+'의 보증금을 불러왔습니다. 나머지 조건을 입력해 주세요.')})}}
+$('#close-modal').onclick=()=>$('#modal').close();
+
+$('#add-form').onsubmit=e=>{e.preventDefault();
+
+const d=Object.fromEntries(new FormData(e.target));if(!d.name.trim()||!d.address.trim()){toast('매물 이름과 주소를 입력해 주세요.');return}state.properties.push({id:Date.now(),name:d.name.trim(),address:d.address.trim(),price:Number(d.price),stage:'관심매물'});save();
+
+$('#modal').close();e.target.reset();filter='전체';render();toast('관심매물을 등록했습니다.')};
+
+window.addEventListener('hashchange',()=>{const p=location.hash.slice(1);if(titles[p]){page=p;render()}});page=titles[location.hash.slice(1)]?location.hash.slice(1):'home';render();
+
+</script>
  </body>
 </html>
