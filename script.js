@@ -134,7 +134,7 @@ service:()=>`<div class="service-story-page">
   <section class="story-section story-one">
     <div class="story-copy">
       <div class="story-index"><span>01</span><i></i></div>
-      <h1>선정됐는데도,<br><em>절반</em>은 입주하지 못합니다.</h1>
+      <h1>선정됐는데도,<br><em>35%</em>는 입주하지 못합니다.</h1>
       <p>청년 전세임대주택 제도는<br>주거 부담을 줄여주기 위한 좋은 정책이지만,</p>
       <p>지원 자격을 얻고도 절반에 가까운 청년<br>(2024년 청년 실입주율 65%)이 실제 입주로<br>이어지지 못하고 있습니다.</p>
     </div>
@@ -210,7 +210,7 @@ profile:()=>{const p=state.profile,s=state.simulation,r=simulationResult();retur
 
   <div class="page-summary-grid">
     <div class="summary-tile"><span>예상 순위</span><strong>${r.rank}</strong><small>모의계산 기준</small></div>
-    <div class="summary-tile"><span>지원한도</span><strong>${money(p.limit)}</strong><small>${p.region} · ${p.people}인</small></div>
+    <div class="summary-tile"><span>지원한도</span><strong>${money(p.limit)}</strong><small>${p.region} · ${p.people==='1'?'1인 단독거주':p.people+'인 셰어형'}</small></div>
     <div class="summary-tile"><span>계약기한</span><strong>${p.deadline}</strong><small>선정일 ${p.selected}</small></div>
   </div>
 
@@ -238,12 +238,12 @@ profile:()=>{const p=state.profile,s=state.simulation,r=simulationResult();retur
 
   <details class="feature-disclosure">
     <summary>
-      <div><span class="section-no">02</span><span><strong>선정 후 지원정보</strong><small>지역·입주인원·지원한도·계약기한을 확인하거나 수정합니다.</small></span></div>
+      <div><span class="section-no">02</span><span><strong>선정 후 지원정보</strong><small>지역·거주 형태·지원한도·계약기한을 확인하거나 수정합니다.</small></span></div>
       <b>열기</b>
     </summary>
     <form id="profile-form" class="disclosure-body">
       <label class="field"><span>신청지역</span><select name="region">${opt(['서울특별시','경기도','인천광역시','그 외 지역'],p.region)}</select></label>
-      <label class="field"><span>입주인원</span><select name="people">${[1,2,3].map(n=>`<option value="${n}" ${p.people==n?'selected':''}>${n}인</option>`).join('')}</select></label>
+      <label class="field"><span>거주 형태</span><select name="people"><option value="1" ${p.people==1?'selected':''}>1인 단독거주</option><option value="2" ${p.people==2?'selected':''}>2인 공동거주(셰어형)</option><option value="3" ${p.people==3?'selected':''}>3인 공동거주(셰어형)</option></select></label>
       <label class="field"><span>선정통보에 명시된 지원한도 (만원)</span><input name="limit" type="number" min="1" max="10000000" step="1" required value="${p.limit}"></label>
       <p class="small muted" id="limit-help">실제 선정통보의 지원한도를 입력해 주세요.</p>
       <div class="grid2"><label class="field"><span>선정일</span><input type="date" name="selected" value="${p.selected}" required></label><label class="field"><span>계약기한</span><input type="date" name="deadline" value="${p.deadline}" required></label></div>
@@ -268,7 +268,7 @@ profile:()=>{const p=state.profile,s=state.simulation,r=simulationResult();retur
 </div>`},
 calc:()=>`${header('추가부담 가능 범위 계산','필요할 때 계산기를 열어 전세금 부담을 확인하세요.')}
 <div class="page-summary-grid two">
-  <div class="summary-tile"><span>내 지원한도</span><strong>${money(state.profile.limit)}</strong><small>${state.profile.people}인 기준</small></div>
+  <div class="summary-tile"><span>내 지원한도</span><strong>${money(state.profile.limit)}</strong><small>${state.profile.people==='1'?'1인 단독거주':state.profile.people+'인 셰어형'} 기준</small></div>
   <div class="summary-tile"><span>현재 입력 전세금</span><strong>${money(state.price)}</strong><small>계산기와 매물확인에 연동</small></div>
 </div>
 <details class="feature-disclosure">
