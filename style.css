@@ -1748,3 +1748,379 @@ td{border-color:#e8edf4}
   .saved-section-head .btn{width:100%}
   .agent-card{padding:16px}
 }
+
+
+/* ===== Service story rebuilt from reference 2026-10-23 ===== */
+.service-story-page{
+  max-width:1080px;
+  margin:0 auto;
+  padding:36px 28px 70px;
+  color:#111c31
+}
+.story-section{
+  position:relative;
+  display:grid;
+  grid-template-columns:minmax(0,1.1fr) minmax(320px,.9fr);
+  align-items:center;
+  min-height:440px;
+  overflow:hidden;
+  background:#fff
+}
+.story-section+.story-section{border-top:1px solid #eef2f7}
+.story-copy{
+  position:relative;
+  z-index:2;
+  padding:58px 48px 54px 58px
+}
+.story-index{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:28px;
+  color:#9aa8bd;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.04em
+}
+.story-index i{
+  display:block;
+  width:38px;
+  height:1px;
+  background:#bfc9d7
+}
+.story-copy h1,
+.story-copy h2{
+  margin:0 0 30px;
+  color:#0f1b33;
+  font-weight:800;
+  letter-spacing:-1.7px;
+  line-height:1.24
+}
+.story-copy h1{font-size:42px}
+.story-copy h2{font-size:38px}
+.story-copy h1 em,
+.story-copy h2 em,
+.story-quote em{
+  color:#1670e8;
+  font-style:normal
+}
+.story-copy p{
+  margin:0 0 20px;
+  color:#425168;
+  font-size:17px;
+  line-height:1.75;
+  letter-spacing:-.3px
+}
+
+/* 01: 51% ring */
+.story-one{
+  background:
+    radial-gradient(circle at 85% 15%,rgba(22,112,232,.04),transparent 34%),
+    linear-gradient(180deg,#fff 0%,#fbfdff 100%)
+}
+.occupancy-ring{
+  justify-self:center;
+  position:relative;
+  width:260px;
+  aspect-ratio:1;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:conic-gradient(#1670e8 0 51%,#edf1f6 51% 100%);
+  transform:rotate(7deg)
+}
+.occupancy-ring:before{
+  content:"";
+  position:absolute;
+  inset:17px;
+  border-radius:50%;
+  background:#fff
+}
+.occupancy-ring-inner{
+  position:relative;
+  z-index:1;
+  transform:rotate(-7deg);
+  text-align:center
+}
+.occupancy-ring-inner span{
+  display:block;
+  color:#2d3a52;
+  font-size:18px;
+  font-weight:700
+}
+.occupancy-ring-inner strong{
+  display:block;
+  margin:2px 0 0;
+  color:#1670e8;
+  font-size:68px;
+  line-height:1
+}
+.occupancy-ring-inner strong small{
+  margin-left:2px;
+  font-size:30px
+}
+.occupancy-ring-inner b{
+  display:block;
+  margin-top:14px;
+  color:#a1adc0;
+  font-size:18px;
+  font-weight:600
+}
+
+/* 02: recreate the soft bedroom/person visual with CSS, no source image */
+.story-two{
+  background:linear-gradient(90deg,#fff 0 49%,#f8fbff 49% 100%)
+}
+.story-person-visual{
+  position:relative;
+  align-self:stretch;
+  min-height:440px;
+  overflow:hidden;
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.96) 0%,rgba(255,255,255,.6) 28%,rgba(238,246,253,.48) 65%,rgba(252,252,250,.9) 100%),
+    linear-gradient(180deg,#f9fcff 0%,#eef5fb 62%,#f8f5f0 62%,#f1ece6 100%)
+}
+.room-glow{
+  position:absolute;
+  width:260px;
+  height:340px;
+  left:20px;
+  top:18px;
+  background:linear-gradient(90deg,rgba(255,255,255,.95),rgba(228,242,253,.55),rgba(255,255,255,.2));
+  filter:blur(2px)
+}
+.room-glow:after{
+  content:"";
+  position:absolute;
+  width:8px;
+  height:100%;
+  left:54%;
+  background:rgba(255,255,255,.85)
+}
+.bed-shape{
+  position:absolute;
+  right:-30px;
+  bottom:-15px;
+  width:390px;
+  height:160px;
+  border-radius:52% 0 0 0;
+  background:linear-gradient(150deg,#f8f6f3,#e6e1dc 70%,#ddd6ce);
+  box-shadow:0 -14px 40px rgba(105,112,124,.08)
+}
+.person-shoulder{
+  position:absolute;
+  right:64px;
+  bottom:20px;
+  width:230px;
+  height:180px;
+  border-radius:55% 48% 12% 16%;
+  background:linear-gradient(135deg,#f5f1ea,#e8dfd4);
+  transform:rotate(-5deg);
+  box-shadow:inset -18px 0 34px rgba(163,147,129,.08)
+}
+.person-neck{
+  position:absolute;
+  right:180px;
+  bottom:178px;
+  width:38px;
+  height:44px;
+  border-radius:18px;
+  background:#d7a27c;
+  transform:rotate(8deg)
+}
+.person-head{
+  position:absolute;
+  right:142px;
+  bottom:210px;
+  width:92px;
+  height:112px;
+  border-radius:46% 48% 44% 46%;
+  background:linear-gradient(145deg,#e0ad86,#c9916e);
+  transform:rotate(-7deg)
+}
+.person-hair{
+  position:absolute;
+  right:142px;
+  bottom:252px;
+  width:95px;
+  height:80px;
+  border-radius:58% 52% 22% 44%;
+  background:linear-gradient(135deg,#5f362a,#2c1c19 76%);
+  transform:rotate(-9deg)
+}
+.person-bun{
+  position:absolute;
+  right:208px;
+  bottom:280px;
+  width:46px;
+  height:43px;
+  border-radius:50%;
+  background:#39231e;
+  box-shadow:7px -2px 0 #4d2d25
+}
+.person-arm{
+  position:absolute;
+  right:88px;
+  bottom:85px;
+  width:132px;
+  height:40px;
+  border-radius:24px;
+  background:#e3d8cb;
+  transform:rotate(-30deg);
+  transform-origin:right center
+}
+
+/* 03: quote band */
+.story-quote{
+  position:relative;
+  padding:28px 58px 40px;
+  background:linear-gradient(90deg,#eef6ff,#f8fbff 50%,#eef6ff);
+  border-top:1px solid #e6eef8;
+  border-bottom:1px solid #e6eef8
+}
+.story-quote .story-index{margin-bottom:8px}
+.quote-wrap{
+  display:grid;
+  grid-template-columns:80px minmax(0,1fr) 80px;
+  align-items:center;
+  max-width:780px;
+  margin:0 auto;
+  text-align:center
+}
+.quote-mark{
+  color:#cbd7e8;
+  font-size:76px;
+  font-family:Georgia,serif;
+  line-height:1
+}
+.quote-wrap p{
+  margin:0;
+  color:#33425a;
+  font-size:24px;
+  line-height:1.55;
+  letter-spacing:-.6px
+}
+.quote-wrap p strong{
+  color:#14233d;
+  font-size:32px
+}
+.quote-wrap p em{font-weight:800}
+
+/* 04: phone made from real DOM elements */
+.story-four{
+  min-height:500px;
+  background:
+    radial-gradient(circle at 82% 52%,rgba(22,112,232,.08) 0 165px,transparent 166px),
+    linear-gradient(180deg,#fff 0%,#fbfdff 100%)
+}
+.service-phone{
+  justify-self:center;
+  width:250px;
+  padding:20px 16px 18px;
+  border-radius:28px;
+  background:#fff;
+  border:1px solid #e8edf4;
+  box-shadow:0 24px 50px rgba(43,76,122,.15);
+  transform:rotate(5deg)
+}
+.service-phone-speaker{
+  width:46px;
+  height:5px;
+  margin:0 auto 12px;
+  border-radius:4px;
+  background:#e9eef5
+}
+.service-phone-card{
+  display:grid;
+  gap:5px;
+  color:#23344d
+}
+.phone-room{
+  position:relative;
+  height:105px;
+  overflow:hidden;
+  border-radius:11px;
+  background:#edf3f8
+}
+.phone-room svg{
+  width:100%;
+  height:100%
+}
+.phone-room span{
+  position:absolute;
+  top:8px;
+  right:9px;
+  color:#fff;
+  font-size:18px;
+  text-shadow:0 1px 3px rgba(0,0,0,.2)
+}
+.service-phone-card strong{font-size:13px}
+.service-phone-card small{color:#8997a8;font-size:9.5px}
+.phone-status{
+  display:flex;
+  gap:6px;
+  align-items:center;
+  margin:12px 0;
+  padding:9px 10px;
+  border-radius:9px;
+  background:#daf8eb;
+  color:#0b8f62;
+  font-size:9.5px;
+  font-weight:700
+}
+.phone-checklist{
+  display:grid;
+  gap:8px;
+  margin:0;
+  padding:0;
+  list-style:none;
+  color:#56677c;
+  font-size:9.5px
+}
+.phone-checklist li{
+  display:flex;
+  gap:7px;
+  align-items:center
+}
+.phone-checklist b{
+  display:grid;
+  place-items:center;
+  width:16px;
+  height:16px;
+  border-radius:50%;
+  background:#16c784;
+  color:#fff;
+  font-size:10px
+}
+
+@media(max-width:900px){
+  .service-story-page{padding:22px 18px 50px}
+  .story-section{grid-template-columns:1fr;min-height:auto}
+  .story-copy{padding:46px 34px 36px}
+  .story-person-visual{min-height:390px}
+  .occupancy-ring{margin:10px auto 52px}
+  .story-four{padding-bottom:52px}
+  .service-phone{margin:8px auto 0}
+}
+@media(max-width:600px){
+  .service-story-page{padding:12px 10px 36px}
+  .story-copy{padding:34px 22px 30px}
+  .story-copy h1{font-size:31px}
+  .story-copy h2{font-size:29px}
+  .story-copy p{font-size:14px}
+  .occupancy-ring{width:210px}
+  .occupancy-ring-inner strong{font-size:56px}
+  .story-person-visual{min-height:330px}
+  .person-shoulder{right:10px}
+  .person-head{right:94px}
+  .person-hair{right:94px}
+  .person-bun{right:160px}
+  .person-neck{right:132px}
+  .person-arm{right:42px}
+  .story-quote{padding:24px 18px 32px}
+  .quote-wrap{grid-template-columns:38px 1fr 38px}
+  .quote-mark{font-size:48px}
+  .quote-wrap p{font-size:18px}
+  .quote-wrap p strong{font-size:24px}
+  .service-phone{width:220px}
+}
