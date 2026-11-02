@@ -35,9 +35,15 @@ select,input[type=number]{width:100%;height:39px;border:1px solid #dbe4ef;border
 .extra{display:none;padding:0 13px 13px}.listing.open .extra{display:block}.extra-box{padding:10px;border-radius:9px;background:#fafcff;border:1px solid #e5ebf3}.extra-box p{margin:0 0 5px;color:#6f8198;font-size:8.5px}.extra-box p:last-child{margin-bottom:0}.warn{color:#b04b42!important}
 .loadmore{display:block;margin:16px auto 0;padding:10px 18px;border:1px solid #dce5ef;border-radius:9px;background:#fff;color:#315f98;font-size:9.5px;font-weight:800}
 .empty{grid-column:1/-1;padding:40px;text-align:center;background:#fff;border:1px dashed #d8e1ec;border-radius:12px;color:#8492a6;font-size:10px}
+.area-info{margin-bottom:14px;padding:16px 18px;background:#fff;border:1px solid #dfe7f1;border-radius:14px}
+.area-info-top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}.area-info h2{margin:0;color:#173f72;font-size:17px}.area-info p{margin:4px 0 0;color:#78899f;font-size:9.5px}
+.benefits{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin-top:12px}.benefit{padding:9px;border-radius:9px;background:#f7faff;border:1px solid #e7eef8}.benefit b{display:block;color:#315d92;font-size:8.8px}.benefit span{display:block;margin-top:3px;color:#687b92;font-size:8px}
+.portal-title{margin-top:12px;color:#4e627c;font-size:8.8px;font-weight:800}.portal-links{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}.portal{padding:7px 9px;border-radius:8px;border:1px solid #dfe7f1;background:#fff;color:#315f98;font-size:8.5px;font-weight:800}.portal.live{background:#1761e9;color:#fff;border-color:#1761e9}
+.source-label{display:inline-block;margin-left:4px;padding:3px 5px;border-radius:6px;background:#f1f4f8;color:#66798f;font-size:7.5px}
 footer{margin-top:22px;text-align:center;color:#98a5b5;font-size:8.5px}
 @media(max-width:1100px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:720px){header{padding:0 15px}.wrap{padding:15px 10px 38px}.hero-copy,.filters{padding:16px}h1{font-size:27px}.filter-grid{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.photo{height:200px}.toolbar{align-items:flex-start;flex-direction:column}.toolbar select{width:100%}}
+@media(max-width:900px){.benefits{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:720px){header{padding:0 15px}.wrap{padding:15px 10px 38px}.hero-copy,.filters{padding:16px}h1{font-size:27px}.filter-grid{grid-template-columns:1fr}.benefits{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.photo{height:200px}.toolbar{align-items:flex-start;flex-direction:column}.toolbar select{width:100%}}
 </style>
 </head>
 <body>
@@ -52,33 +58,34 @@ footer{margin-top:22px;text-align:center;color:#98a5b5;font-size:8.5px}
 <div class="hero-tags"><span>단독·다가구</span><span>다세대·빌라</span><span>도시형생활주택</span><span>오피스텔</span><span>아파트</span><span>3평~20평+</span><span>실매물 사진 원문 연결</span></div>
 </div>
 <form class="filters box" id="filters">
-<h2>매물 조건</h2><p>기본값은 90분·환승 2회·보증금 1,000 / 월 60 이하입니다.</p>
+<h2>매물 조건</h2><p>지역부터 주택유형·구조·평수까지 각각 직접 선택합니다.</p>
 <div class="filter-grid">
+<div class="field"><label>시·도</label><select id="province">
+<option value="경기도" selected>경기</option><option value="서울특별시">서울</option><option value="인천광역시">인천</option>
+</select></div>
+<div class="field"><label>도시·생활권</label><select id="area"></select></div>
 <div class="field"><label>최대 통행시간</label><select id="time"><option value="45">45분</option><option value="60">60분</option><option value="75">75분</option><option value="90" selected>90분</option></select></div>
 <div class="field"><label>최대 총 환승</label><select id="transfers"><option value="0">0회</option><option value="1">1회</option><option value="2" selected>2회</option><option value="3">3회</option></select></div>
+<div class="field"><label>주택유형</label><select id="building">
+<option value="전체">전체 주택</option><option>단독·다가구</option><option>다세대·빌라</option><option>도시형생활주택</option><option>오피스텔</option><option>아파트</option>
+</select></div>
+<div class="field"><label>방 구조</label><select id="layout">
+<option value="전체">전체 구조</option><option>원룸</option><option>1.5룸</option><option>복층원룸</option><option>투룸</option><option>쓰리룸</option>
+</select></div>
+<div class="field"><label>평수</label><select id="size">
+<option value="전체">전체 평수</option><option value="small">6평 이하</option><option value="mid">6~10평</option><option value="large">10~15평</option><option value="xl">15평 이상</option>
+</select></div>
+<div class="field"><label>매물 출처</label><select id="source"><option value="전체">통합 보기</option><option value="당근부동산">당근부동산</option><option value="피터팬">피터팬</option></select></div>
 </div>
-<div class="field"><span class="field-title">건물 유형</span><div class="chips" id="building">
-<label class="chip"><input type="checkbox" value="단독·다가구" checked><span>단독·다가구</span></label>
-<label class="chip"><input type="checkbox" value="다세대·빌라" checked><span>다세대·빌라</span></label>
-<label class="chip"><input type="checkbox" value="도시형생활주택" checked><span>도시형생활주택</span></label>
-<label class="chip"><input type="checkbox" value="오피스텔" checked><span>오피스텔</span></label>
-<label class="chip"><input type="checkbox" value="아파트" checked><span>아파트</span></label>
-</div></div>
-<div class="field"><span class="field-title">평수</span><div class="chips" id="sizes">
-<label class="chip"><input type="checkbox" value="small" checked><span>~6평</span></label>
-<label class="chip"><input type="checkbox" value="mid" checked><span>6~10평</span></label>
-<label class="chip"><input type="checkbox" value="large" checked><span>10~15평</span></label>
-<label class="chip"><input type="checkbox" value="xl" checked><span>15평+</span></label>
-</div></div>
 <div class="field"><span class="field-title">월세 예산</span><div class="budget">
 <label><span>보증금 최대(만원)</span><input id="deposit" type="number" min="0" step="100" value="1000"></label>
 <label><span>월세 최대(만원)</span><input id="rent" type="number" min="0" step="5" value="60"></label>
 </div></div>
-<button class="primary" type="submit">조건에 맞는 실제 매물 보기</button>
-<div class="note">카드 사진은 주택유형 대표 이미지입니다. 정확한 실매물 사진은 각 카드의 ‘실매물 사진·원문’에서 확인합니다. 가격·면적·방 수·층·건축물 용도는 원문 매물 정보를 사용했습니다.</div>
+<button class="primary" type="submit">선택한 생활권의 실제 매물 보기</button>
+<div class="note">경기 전체를 한꺼번에 섞지 않습니다. 경기 선택 후 구리·성남·군포(금정)·안양·수원·고양 중 하나를 고르면 해당 생활권의 매물과 장점만 보여줍니다.</div>
 </form>
 </section>
-<div class="summary" id="summary"></div>
+<div class="summary" id="summary"></div><section class="area-info" id="areaInfo"></section>
 <div class="toolbar"><div><h2>실제 매물 모음</h2><p>매물은 거래·삭제될 수 있으므로 원문에서 현재 상태를 다시 확인하세요.</p></div><select id="sort"><option value="budget">예산 적합순</option><option value="time">통근 짧은순</option><option value="rent">월세 낮은순</option><option value="area">넓은순</option></select></div>
 <section class="grid" id="list"></section>
 <button class="loadmore" id="more" type="button">매물 더 보기</button>
@@ -111,7 +118,13 @@ const routes={
  seokchon:{total:27,walk:11,sub:1,bus:0,switches:0,segments:['🚶 3분','🚇 2호선→종합운동장','↔ 지하철 환승 1회','🚇 9호선→석촌고분','🚶 8분']},
  bugajwa:{total:56,walk:15,sub:1,bus:0,switches:0,segments:['🚶 3분','🚇 2호선→홍대입구','↔ 경의중앙 환승','🚇 →가좌','🚶 12분']},
  hadaewon:{total:51,walk:8,sub:1,bus:0,switches:1,segments:['🚶 3분','🚇 2호선→잠실','↔ 8호선 환승','🚇 →모란','↔ 지하철→버스','🚌 하대원 이동','🚶 5분']},
- jowon:{total:88,walk:12,sub:0,bus:0,switches:1,segments:['🚶 5분','🚌 광역버스 북수원행','↔ 버스→도보','🚶 매물 7분']}
+ jowon:{total:88,walk:12,sub:0,bus:0,switches:1,segments:['🚶 5분','🚌 광역버스 북수원행','↔ 버스→도보','🚶 매물 7분']},
+ geumjeong:{total:58,walk:13,sub:1,bus:0,switches:0,segments:['🚶 3분','🚇 2호선→사당','↔ 지하철 환승 1회','🚇 4호선→금정','🚶 10분']},
+ anyang:{total:67,walk:15,sub:1,bus:0,switches:0,segments:['🚶 3분','🚇 2호선→신도림','↔ 지하철 환승 1회','🚇 1호선→안양','🚶 12분']},
+ shinhung:{total:43,walk:10,sub:1,bus:0,switches:0,segments:['🚶 3분','🚇 2호선→잠실','↔ 지하철 환승 1회','🚇 8호선→신흥','🚶 7분']},
+ hwajeong:{total:70,walk:12,sub:1,bus:0,switches:0,segments:['🚶 3분','🚇 2호선→을지로3가','↔ 지하철 환승 1회','🚇 3호선→화정','🚶 9분']},
+ yeonghwa:{total:87,walk:12,sub:0,bus:0,switches:1,segments:['🚶 5분','🚌 광역버스 북수원행','↔ 버스→도보','🚶 매물 7분']},
+ shindaebang:{total:39,walk:9,sub:0,bus:0,switches:0,segments:['🚶 3분','🚇 2호선→신대방','🚶 매물 6분']}
 };
 const L=[
 ['4839189','경기도','구리시','수택동','단독·다가구','원룸',1000,50,8,26.5,'방1/욕1','5/5층','단독주택','gu','studio','https://realty.daangn.com/articles/4839189','관리비 5만 · 베란다 · 풀옵션'],
@@ -158,45 +171,119 @@ const L=[
 ['4834481','서울특별시','송파구','삼전동','다세대·빌라','투룸',5000,83,12.8,42.44,'방2/욕1','3/5층','다세대주택','seokchon','room','https://realty.daangn.com/articles/4834481','석촌고분역 도보 5분'],
 ['4855691','서울특별시','송파구','석촌동','다세대·빌라','투룸',2000,105,11.2,37.07,'방2/욕1','2/5층','다세대주택','seokchon','room','https://realty.daangn.com/articles/4855691','주차·반려동물 협의'],
 ['4885184','서울특별시','서대문구','북가좌동','다세대·빌라','투룸',17500,15,12.5,41.34,'방2/욕1','2/2층','다세대주택','bugajwa','room','https://realty.daangn.com/articles/4885184','증산역세권 · 보증보험 가능']
-].map(x=>({id:x[0],city:x[1],gu:x[2],dong:x[3],building:x[4],layout:x[5],dep:x[6],rent:x[7],py:x[8],m2:x[9],rooms:x[10],floor:x[11],use:x[12],route:x[13],photo:x[14],url:x[15],note:x[16]}));
+].map(x=>({id:x[0],city:x[1],gu:x[2],dong:x[3],building:x[4],layout:x[5],dep:x[6],rent:x[7],py:x[8],m2:x[9],rooms:x[10],floor:x[11],use:x[12],route:x[13],photo:x[14],url:x[15],note:x[16],source:'당근부동산'}));
+L.push(
+{id:'4743903',city:'경기도',gu:'군포시',dong:'금정동',building:'다세대·빌라',layout:'원룸',dep:1000,rent:50,py:4.9,m2:16.33,rooms:'방1/욕1',floor:'4/6층',use:'공동주택',route:'geumjeong',photo:'modern',url:'https://realty.daangn.com/articles/4743903',note:'금정역 도보권 · 주차·엘리베이터',source:'당근부동산'},
+{id:'4395904',city:'경기도',gu:'군포시',dong:'금정동',building:'다세대·빌라',layout:'원룸',dep:1000,rent:45,py:4.8,m2:15.87,rooms:'방1/욕1',floor:'4/6층',use:'공동주택',route:'geumjeong',photo:'modern',url:'https://realty.daangn.com/articles/4395904',note:'금정역 도보 8분 · 베란다',source:'당근부동산'},
+{id:'4745147',city:'경기도',gu:'군포시',dong:'금정동',building:'단독·다가구',layout:'원룸',dep:500,rent:35,py:7,m2:23.2,rooms:'방1/욕1',floor:'반지하/3층',use:'단독주택',route:'geumjeong',photo:'studio',url:'https://realty.daangn.com/articles/4745147',note:'금정역 도보권 · 풀옵션',source:'당근부동산'},
+{id:'4342741',city:'경기도',gu:'안양시 만안구',dong:'안양동',building:'단독·다가구',layout:'원룸',dep:300,rent:30,py:8.9,m2:29.7,rooms:'방1/욕1',floor:'0/4층',use:'단독주택',route:'anyang',photo:'studio',url:'https://realty.daangn.com/articles/4342741',note:'재래시장 인접 · 분리형 풀옵션',source:'당근부동산'},
+{id:'20098600',city:'경기도',gu:'성남시 수정구',dong:'신흥동',building:'단독·다가구',layout:'원룸',dep:500,rent:40,py:8.17,m2:27,rooms:'방1/욕1',floor:'반지하/2층',use:'다가구',route:'shinhung',photo:'studio',url:'https://www.peterpanz.com/house/20098600',note:'이마트 태평점 도보권 · 8호선 신흥역 이용',source:'피터팬'},
+{id:'20047997',city:'경기도',gu:'군포시',dong:'금정동',building:'단독·다가구',layout:'쓰리룸',dep:3000,rent:80,py:21.17,m2:70,rooms:'방3/욕1',floor:'4/4층',use:'상가주택',route:'geumjeong',photo:'house',url:'https://www.peterpanz.com/house/20047997',note:'금정역 도보 약 7분 · 넓은 쓰리룸',source:'피터팬'},
+{id:'20059270',city:'경기도',gu:'수원시 장안구',dong:'조원동',building:'단독·다가구',layout:'투룸',dep:500,rent:45,py:15,m2:49.6,rooms:'방2/욕2',floor:'반지하/3층',use:'다가구',route:'jowon',photo:'house',url:'https://www.peterpanz.com/house/20059270',note:'풀 인테리어 · 주차 가능',source:'피터팬'},
+{id:'20101925',city:'경기도',gu:'수원시 장안구',dong:'영화동',building:'단독·다가구',layout:'원룸',dep:500,rent:46,py:8,m2:26.45,rooms:'방1/욕1',floor:'2/4층',use:'단독주택',route:'yeonghwa',photo:'studio',url:'https://www.peterpanz.com/house/20101925',note:'풀옵션 · 주차 가능',source:'피터팬'},
+{id:'20027436',city:'경기도',gu:'고양시 덕양구',dong:'화정동',building:'단독·다가구',layout:'투룸',dep:1000,rent:65,py:10.89,m2:36,rooms:'방2/욕1',floor:'2/3층',use:'다가구',route:'hwajeong',photo:'house',url:'https://www.peterpanz.com/house/20027436',note:'화정역 출퇴근 · 올수리',source:'피터팬'},
+{id:'20055304',city:'경기도',gu:'고양시 덕양구',dong:'토당동',building:'다세대·빌라',layout:'1.5룸',dep:1000,rent:67,py:12,m2:39.67,rooms:'방1/욕1',floor:'4/5층',use:'빌라/주택',route:'todang',photo:'room',url:'https://www.peterpanz.com/house/20055304',note:'능곡역 도보 3분 · 주차 가능',source:'피터팬'},
+{id:'20029787',city:'인천광역시',gu:'남동구',dong:'간석동',building:'오피스텔',layout:'원룸',dep:200,rent:42,py:6.35,m2:21,rooms:'방1/욕1',floor:'3/3층',use:'오피스텔',route:'ganseok',photo:'modern',url:'https://www.peterpanz.com/house/20029787',note:'동암역/간석오거리역 더블 역세권',source:'피터팬'},
+{id:'20010943',city:'인천광역시',gu:'남동구',dong:'간석동',building:'다세대·빌라',layout:'투룸',dep:50,rent:40,py:9.13,m2:30.17,rooms:'방2/욕1',floor:'1/4층',use:'다세대',route:'ganseok',photo:'room',url:'https://www.peterpanz.com/house/20010943',note:'저보증금 단기 매물 · 임차권 설정 표기',source:'피터팬'},
+{id:'20084306',city:'서울특별시',gu:'강동구',dong:'천호동',building:'단독·다가구',layout:'원룸',dep:500,rent:40,py:7,m2:23.14,rooms:'방1/욕1',floor:'저층/3층',use:'단독주택',route:'cheonho',photo:'studio',url:'https://www.peterpanz.com/house/20084306',note:'굽은다리역 도보 5~7분 · 풀옵션',source:'피터팬'},
+{id:'20091618',city:'서울특별시',gu:'동작구',dong:'신대방동',building:'단독·다가구',layout:'1.5룸',dep:500,rent:45,py:7.26,m2:24,rooms:'방1/욕1',floor:'저층/2층',use:'단독주택',route:'shindaebang',photo:'studio',url:'https://www.peterpanz.com/house/20091618',note:'신대방역 생활권 · 분리형 원룸',source:'피터팬'},
+{id:'19986296',city:'서울특별시',gu:'관악구',dong:'신림동',building:'단독·다가구',layout:'원룸',dep:500,rent:43,py:6,m2:19.84,rooms:'방1/욕1',floor:'2/3층',use:'단독주택',route:'sillim',photo:'studio',url:'https://www.peterpanz.com/house/19986296',note:'풀옵션 분리형 · 남향',source:'피터팬'}
+);
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
-const vals=id=>$$('#'+id+' input:checked').map(x=>x.value);
+const areaOptions={
+ '경기도':[['구리시','구리 · 수택/교문'],['성남시','성남 · 태평/신흥'],['군포시','군포 · 금정/산본'],['안양시','안양 · 안양/명학'],['수원시','수원 · 장안구'],['고양시','고양 · 덕양구']],
+ '서울특별시':[['광진구','광진 · 화양/건대'],['성동구','성동 · 왕십리/송정'],['강동구','강동 · 천호'],['송파구','송파 · 잠실/석촌/방이'],['양천구','양천 · 신정'],['관악구','관악 · 신림'],['마포구','마포 · 연남'],['서대문구','서대문 · 북가좌'],['동작구','동작 · 신대방']],
+ '인천광역시':[['부평구','부평 · 부평역권'],['남동구','남동 · 간석/구월']]
+};
+const benefits={
+ '구리시':{title:'구리 · 서울 동부와 경기도의 중간지점',items:[['🚇','8호선 별내선','구리역에서 잠실 방향으로 바로 이어져 강남 동부 접근이 좋아졌습니다.'],['🔁','경의중앙선 환승','구리역에서 경의중앙선도 이용해 왕십리·청량리 방향 선택지가 있습니다.'],['🌳','장자호수·한강','장자호수공원과 한강 생활권을 함께 누릴 수 있습니다.'],['🏠','넓은 방 대비 낮은 월세','서울 동부보다 같은 예산으로 8~13평 투룸·다가구 선택지가 많습니다.']]},
+ '성남시':{title:'성남 · 잠실/강남 남동권 직주근접형',items:[['🚇','8호선 + 수인분당선','신흥·태평·모란을 통해 잠실과 분당·강남 방향을 나눠 이동할 수 있습니다.'],['💼','강남·판교 접근','잠실뿐 아니라 판교·분당 일자리 접근까지 같이 볼 수 있습니다.'],['🛒','모란·태평 생활상권','전통시장·대형마트·생활상권이 촘촘합니다.'],['💸','서울보다 낮은 주거비','500/40~1000/60대 원룸·투룸 사례가 많습니다.']]},
+ '군포시':{title:'군포(금정) · 1호선과 4호선이 만나는 환승거점',items:[['🚇','금정역 1·4호선','서울역·용산 방향과 사당·동작 방향을 한 역에서 선택할 수 있습니다.'],['🧭','서울 남서권 접근','가산·구로·사당 등 남서권 직장 접근에 유리합니다.'],['🌳','산본·철쭉동산 생활권','산본 중심상권과 공원·산책환경을 같이 이용할 수 있습니다.'],['💸','저가 원룸 풍부','500/35, 1000/45~50 수준의 원룸 사례가 실제로 확인됩니다.']]},
+ '안양시':{title:'안양 · 서울 남서권과 평촌 생활권을 함께 쓰는 선택',items:[['🚇','1호선 서울 접근','안양·명학역에서 구로·신도림·용산 방향 이동이 단순합니다.'],['🏙','평촌·범계 상권 공유','안양 구도심과 평촌 신도시 상권을 함께 이용할 수 있습니다.'],['🌿','안양천·안양예술공원','생활권 안에서 하천과 대형 녹지를 이용하기 좋습니다.'],['💸','낮은 진입비용','안양동 300/30 수준의 분리형 원룸 사례도 확인됩니다.']]},
+ '수원시':{title:'수원 장안 · 더 넓은 집과 생활 인프라를 우선할 때',items:[['📐','같은 월세에 넓은 면적','8~15평 원룸·투룸을 500/45~1000/60대에서 찾을 수 있습니다.'],['🌳','만석공원 생활권','대형 수변공원과 도서관·체육시설을 일상권으로 이용할 수 있습니다.'],['⚾','KT위즈파크·스타필드','스포츠·쇼핑·문화시설 선택지가 많습니다.'],['🚌','광역버스 활용','지하철 외 광역버스로 서울 동부·강남권 통근 대안을 만들 수 있습니다.']]},
+ '고양시':{title:'고양 덕양 · 홍대/도심 서북권과 넓은 주거를 함께',items:[['🚇','경의중앙선·3호선','능곡·행신은 경의중앙선, 화정은 3호선을 활용할 수 있습니다.'],['🧭','홍대·DMC 접근','서울 서북권 직장과 문화생활 접근성이 좋습니다.'],['🌳','행주산성·공원','행주산성, 서정공원 등 녹지 접근이 좋습니다.'],['🏠','다가구·투룸 선택','10평 이상 투룸·1.5룸 매물이 서울보다 낮은 가격대로 보입니다.']]},
+ '광진구':{title:'광진 · 통근비용을 최소화하고 생활편의를 극대화',items:[['🚇','2·7호선','강남·잠실·도심 여러 방향 이동이 쉽습니다.'],['🎓','대학·병원 생활권','건국대·세종대·건국대병원 기반 생활 인프라가 밀집합니다.'],['🌳','어린이대공원·한강','대형 공원과 한강 접근이 좋습니다.'],['⏱','통근시간 절약','주거비가 다소 높아도 이동시간을 크게 줄일 수 있습니다.']]},
+ '성동구':{title:'성동 · 왕십리 환승과 성수 직장·문화생활',items:[['🚇','왕십리 다중환승','2·5호선·수인분당·경의중앙선을 선택할 수 있습니다.'],['💼','성수 업무지구','성수·서울숲 일자리와 상권 접근성이 좋습니다.'],['🌳','서울숲·한강','대형 녹지와 수변생활을 같이 누릴 수 있습니다.'],['🧭','도심·강남 균형','종로와 강남 어느 쪽도 이동시간이 과도하게 길지 않습니다.']]},
+ '강동구':{title:'강동 · 동서울 생활권과 한강을 함께',items:[['🚇','5·8호선','천호를 중심으로 잠실·강남동부와 도심 방향을 나눠 이동합니다.'],['🛍','천호 대형상권','현대백화점·영화관·전통시장 등이 밀집합니다.'],['🌳','한강·광나루','한강공원 접근이 좋습니다.'],['💸','송파 대비 선택지','잠실 인접권보다 낮은 월세의 다가구·투룸을 찾을 수 있습니다.']]},
+ '송파구':{title:'송파 · 잠실·문정 일자리와 대형 문화시설',items:[['💼','잠실·문정 업무','동남권 일자리 접근이 매우 좋습니다.'],['🚇','2·8·9호선','잠실·석촌권에서 다양한 노선을 선택할 수 있습니다.'],['🌳','석촌호수·올림픽공원','대형 녹지·수변시설이 풍부합니다.'],['🛍','롯데월드몰','쇼핑·영화·문화시설이 한 곳에 모여 있습니다.']]},
+ '양천구':{title:'양천 · 목동 생활인프라와 서남권 접근',items:[['🚇','5호선·2호선 연계','신정·목동에서 여의도·도심과 구로권 접근이 가능합니다.'],['🛍','목동 상권','백화점·대형마트·병원 등 생활시설이 많습니다.'],['🌳','양천공원','생활권 내 공원 이용이 편리합니다.'],['🏠','빌라·다가구 선택','중심 서울보다 넓은 투룸 선택지가 상대적으로 많습니다.']]},
+ '관악구':{title:'관악 · 2호선 직주근접과 청년 주거 선택지',items:[['🚇','2호선','강남·구로디지털단지·신도림 직장 접근이 좋습니다.'],['🎓','대학가 주거시장','원룸·다세대 매물이 많고 가격대가 다양합니다.'],['🌳','관악산','대형 자연녹지를 일상에서 이용할 수 있습니다.'],['💸','서울 내 가성비','서울에 남으면서도 상대적으로 저렴한 원룸을 찾기 쉽습니다.']]},
+ '마포구':{title:'마포 · 홍대 문화생활과 서북권 일자리',items:[['🚇','2호선·공항철도·경의중앙','도심·공항·DMC 방향 이동이 좋습니다.'],['🎭','홍대·연남 상권','문화·외식·카페 선택지가 매우 많습니다.'],['💼','DMC·여의도 접근','서북권과 여의도 직장 통근에 유리합니다.'],['🌳','경의선숲길','도심형 녹지 접근이 좋습니다.']]},
+ '서대문구':{title:'서대문 · 대학가와 도심 서북권의 균형',items:[['🚇','경의중앙·6호선 인접','홍대·DMC·도심 방향 접근이 좋습니다.'],['🎓','대학가 인프라','연세대·이화여대·명지대 생활권을 공유합니다.'],['🌳','홍제천·안산','산책·자연환경 접근이 좋습니다.'],['🏠','다세대 선택','마포 중심부보다 빌라·다세대 선택지가 넓습니다.']]},
+ '동작구':{title:'동작 · 2호선 남서권 직장 접근',items:[['🚇','2호선','신대방에서 구로디지털·강남을 한 노선으로 이동합니다.'],['💼','구로·가산 접근','서남권 업무지구 통근이 편리합니다.'],['🌳','보라매공원','대형 공원과 병원 생활권이 가깝습니다.'],['💸','가성비 원룸','500/45 수준의 분리형 원룸 사례가 확인됩니다.']]},
+ '부평구':{title:'부평 · 큰 상권과 낮은 월세를 함께',items:[['🚇','1호선 + 인천1호선','서울 방향과 인천 도심 방향을 모두 선택할 수 있습니다.'],['🛍','부평역 상권','지하상가·문화의거리·영화관이 밀집합니다.'],['💸','저보증금 선택지','80/60, 500/40 등 보증금이 낮은 매물도 많습니다.'],['🏠','유형 다양','원룸부터 오피스텔·아파트까지 한 생활권에서 비교 가능합니다.']]},
+ '남동구':{title:'남동 · 인천 도심 인프라와 낮은 주거비',items:[['🚇','인천1·2호선 생활권','간석오거리·인천시청을 통해 인천 도심 이동이 좋습니다.'],['🛍','구월 중심상권','백화점·병원·시장 등 생활시설이 풍부합니다.'],['🌳','인천중앙공원','도심 속 대형 녹지 이용이 가능합니다.'],['💸','초저보증금 매물','50/40, 200/42 같은 낮은 보증금 사례가 확인됩니다.']]}
+};
+const portalBase={naver:'https://land.naver.com/',zigbang:'https://www.zigbang.com/',dabang:'https://www.dabangapp.com/map',peter:'https://www.peterpanz.com/',daangn:'https://realty.daangn.com/'};
 let limit=15;
+function areaKey(l){
+ if(l.city==='경기도'){
+  if(l.gu.startsWith('구리'))return '구리시';if(l.gu.startsWith('성남'))return '성남시';if(l.gu.startsWith('군포'))return '군포시';if(l.gu.startsWith('안양'))return '안양시';if(l.gu.startsWith('수원'))return '수원시';if(l.gu.startsWith('고양'))return '고양시';
+ }
+ return l.gu;
+}
 function sizeBand(py){return py<=6?'small':py<=10?'mid':py<=15?'large':'xl'}
 function routeOf(l){return routes[l.route]}
+function syncAreas(){
+ const p=$('#province').value,sel=$('#area'),prev=sel.value;
+ sel.innerHTML=areaOptions[p].map(([v,t])=>'<option value="'+v+'">'+t+'</option>').join('');
+ if(areaOptions[p].some(x=>x[0]===prev))sel.value=prev;
+}
+function currentArea(){return $('#area').value}
+function matchLayout(l,val){if(val==='전체')return true;if(val==='복층원룸')return l.layout.includes('복층');return l.layout===val}
 function filtered(){
- const maxT=+$('#time').value,maxTr=+$('#transfers').value,dep=+$('#deposit').value||0,rent=+$('#rent').value||0,build=vals('building'),sizes=vals('sizes');
- return L.filter(l=>{const r=routeOf(l);return r.total<=maxT&&(r.sub+r.bus+r.switches)<=maxTr&&build.includes(l.building)&&sizes.includes(sizeBand(l.py))})
+ const maxT=+$('#time').value,maxTr=+$('#transfers').value,dep=+$('#deposit').value||0,rent=+$('#rent').value||0;
+ const province=$('#province').value,area=currentArea(),building=$('#building').value,layout=$('#layout').value,size=$('#size').value,source=$('#source').value;
+ return L.filter(l=>{const r=routeOf(l);return l.city===province&&areaKey(l)===area&&r.total<=maxT&&(r.sub+r.bus+r.switches)<=maxTr&&(building==='전체'||l.building===building)&&matchLayout(l,layout)&&(size==='전체'||sizeBand(l.py)===size)&&(source==='전체'||l.source===source)})
  .map(l=>({...l,afford:l.dep<=dep&&l.rent<=rent,score:(l.dep<=dep&&l.rent<=rent?100:0)+Math.max(0,90-routeOf(l).total)}));
 }
 function sorted(arr){
  const s=$('#sort').value;
  return [...arr].sort((a,b)=>s==='time'?routeOf(a).total-routeOf(b).total:s==='rent'?a.rent-b.rent:s==='area'?b.py-a.py:(b.afford-a.afford)||(b.score-a.score)||(a.rent-b.rent));
 }
+function renderAreaInfo(){
+ const key=currentArea(),b=benefits[key]||{title:key,items:[]};
+ const query=encodeURIComponent($('#province option:checked').text()+' '+$('#area option:checked').text()+' 월세');
+ $('#areaInfo').innerHTML='<div class="area-info-top"><div><h2>왜 '+$('#area option:checked').text()+'?</h2><p>'+b.title+'</p></div></div>'+
+ '<div class="benefits">'+b.items.map(x=>'<div class="benefit"><b>'+x[0]+' '+x[1]+'</b><span>'+x[2]+'</span></div>').join('')+'</div>'+
+ '<div class="portal-title">선택 지역의 추가 매물 더 찾기</div><div class="portal-links">'+
+ '<a class="portal live" target="_blank" rel="noopener" href="'+portalBase.daangn+'">당근부동산</a>'+
+ '<a class="portal" target="_blank" rel="noopener" href="'+portalBase.naver+'">네이버부동산</a>'+
+ '<a class="portal" target="_blank" rel="noopener" href="'+portalBase.zigbang+'">직방</a>'+
+ '<a class="portal" target="_blank" rel="noopener" href="'+portalBase.dabang+'">다방</a>'+
+ '<a class="portal" target="_blank" rel="noopener" href="'+portalBase.peter+'">피터팬</a>'+
+ '<a class="portal" target="_blank" rel="noopener" href="https://www.google.com/search?q='+query+'+부동산">통합검색</a></div>';
+}
 function render(){
  const dep=+$('#deposit').value||0,rent=+$('#rent').value||0;let arr=sorted(filtered());
- $('#summary').innerHTML='<span>검색 매물 <b>'+arr.length+'개</b></span><span>예산 안 <b>'+arr.filter(x=>x.afford).length+'개</b></span><span>평수 <b>약 '+(arr.length?Math.min(...arr.map(x=>x.py)):0)+'~'+(arr.length?Math.max(...arr.map(x=>x.py)):0)+'평</b></span><span>유형 <b>단독·다가구 / 다세대 / 도시형 / 오피스텔 / 아파트</b></span>';
+ renderAreaInfo();
+ $('#summary').innerHTML='<span>선택지역 <b>'+$('#area option:checked').text()+'</b></span><span>검색 매물 <b>'+arr.length+'개</b></span><span>예산 안 <b>'+arr.filter(x=>x.afford).length+'개</b></span><span>출처 <b>'+($('#source').value==='전체'?'당근+피터팬 통합':$('#source').value)+'</b></span>';
  const show=arr.slice(0,limit);
- $('#list').innerHTML=show.length?show.map(l=>{const r=routeOf(l);const warn=l.id==='4761948';return `
+ $('#list').innerHTML=show.length?show.map(l=>{const r=routeOf(l);const warn=(l.note||'').includes('위반')||l.id==='4761948'||l.id==='20010943';return `
  <article class="listing">
   <div class="photo"><img src="${photos[l.photo]}" alt="${l.building} 대표 이미지" loading="lazy"><span class="photo-badge">${l.building} · ${l.layout}</span><span class="photo-note">유형 대표 이미지</span></div>
   <div class="body">
-   <div class="loc">${l.city} › ${l.gu} › <b>${l.dong}</b></div>
+   <div class="loc">${l.city} › ${l.gu} › <b>${l.dong}</b><span class="source-label">${l.source}</span></div>
    <div class="head"><h3>${l.layout} · ${l.py}평</h3><div class="price">${l.dep.toLocaleString()} / ${l.rent}</div></div>
-   <div class="tags"><span class="tag blue">${l.building}</span><span class="tag">${l.use}</span>${l.afford?'<span class="tag green">예산 안</span>':''}${warn?'<span class="tag red">위반건축물 표기</span>':''}</div>
+   <div class="tags"><span class="tag blue">${l.building}</span><span class="tag">${l.use}</span>${l.afford?'<span class="tag green">예산 안</span>':''}${warn?'<span class="tag red">확인 필요</span>':''}</div>
    <div class="specs"><div><span>전용면적</span><b>${l.m2}㎡ · ${l.py}평</b></div><div><span>구조</span><b>${l.rooms}</b></div><div><span>층</span><b>${l.floor}</b></div></div>
    <div class="route"><div class="route-top"><strong>건대입구 → 매물 경로 예시</strong><b>약 ${r.total}분</b></div>
     <div class="route-stats"><span>🚶 도보 ${r.walk}분</span><span>🚇 지하철 환승 ${r.sub}회</span><span>🚌 버스 환승 ${r.bus}회</span><span>↔ 버스↔지하철 ${r.switches}회</span></div>
     <div class="segments">${r.segments.map((s,i)=>'<span class="seg">'+s+'</span>'+(i<r.segments.length-1?'<span class="arrow">›</span>':'')).join('')}</div>
    </div>
-   <div class="actions"><a class="source-btn" href="${l.url}" target="_blank" rel="noopener">📷 실매물 사진·원문</a><button class="detail-btn" type="button">상세정보</button></div>
+   <div class="actions"><a class="source-btn" href="${l.url}" target="_blank" rel="noopener">📷 ${l.source} 실매물·사진</a><button class="detail-btn" type="button">상세정보</button></div>
   </div>
-  <div class="extra"><div class="extra-box"><p><b>매물 메모</b> · ${l.note}</p><p><b>건축물 용도</b> · ${l.use}</p><p><b>매물번호</b> · ${l.id}</p>${warn?'<p class="warn"><b>주의</b> · 원문에 위반건축물 있음으로 표시되어 있어 계약 전 적격성 확인이 필요합니다.</p>':''}</div></div>
- </article>`}).join(''):'<div class="empty">현재 조건을 만족하는 매물이 없습니다. 예산·통행시간·건물유형을 넓혀보세요.</div>';
- $$('.detail-btn').forEach(b=>b.onclick=()=>{const c=b.closest('.listing');c.classList.toggle('open');b.textContent=c.classList.contains('open')?'접기':'상세정보'});
+  <div class="extra"><div class="extra-box"><p><b>매물 메모</b> · ${l.note}</p><p><b>건축물 용도</b> · ${l.use}</p><p><b>매물번호</b> · ${l.id}</p>${warn?'<p class="warn"><b>확인</b> · 원문의 위반건축물·임차권·용도 등 계약 적격성 관련 표기를 반드시 확인하세요.</p>':''}</div></div>
+ </article>`}).join(''):'<div class="empty">이 생활권에는 현재 선택조건과 일치하는 수집 매물이 없습니다.<br>주택유형·구조·예산을 넓히거나 위의 네이버·직방·다방·당근·피터팬 버튼에서 추가 매물을 확인하세요.</div>';
+ $$('.detail-btn').forEach(b=>b.onclick=()=>{const card=b.closest('.listing');card.classList.toggle('open');b.textContent=card.classList.contains('open')?'접기':'상세정보'});
  $('#more').style.display=arr.length>limit?'block':'none';
 }
-$('#filters').addEventListener('input',()=>{limit=15;render()});$('#filters').addEventListener('change',()=>{limit=15;render()});$('#filters').addEventListener('submit',e=>{e.preventDefault();limit=15;render()});$('#sort').addEventListener('change',render);$('#more').onclick=()=>{limit+=15;render()};render();
+syncAreas();$('#area').value='구리시';render();
+$('#province').addEventListener('change',()=>{syncAreas();limit=15;render()});
+$('#area').addEventListener('change',()=>{limit=15;render()});
+['time','transfers','building','layout','size','source','deposit','rent'].forEach(id=>$('#'+id).addEventListener('change',()=>{limit=15;render()}));
+$('#deposit').addEventListener('input',()=>{limit=15;render()});$('#rent').addEventListener('input',()=>{limit=15;render()});
+$('#filters').addEventListener('submit',e=>{e.preventDefault();limit=15;render()});$('#sort').addEventListener('change',render);$('#more').onclick=()=>{limit+=15;render()};
 </script>
 </body>
 </html>
