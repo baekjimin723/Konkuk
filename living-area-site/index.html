@@ -2,205 +2,182 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>생활권ON · 실제 동네·단지 기반 주거추천</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>생활권ON · 90분 통근권 주거탐색</title>
 <style>
 @font-face{font-family:Paperlogy;src:url('../Paperlogy-5Medium.ttf') format('truetype');font-weight:500;font-display:swap}
-*{box-sizing:border-box}body{margin:0;background:#f5f8fd;color:#233652;font-family:Paperlogy,system-ui,sans-serif;line-height:1.55}
+*{box-sizing:border-box}body{margin:0;background:#f5f8fd;color:#243650;font-family:Paperlogy,system-ui,sans-serif;line-height:1.55}
 button,input,select{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}
-.topbar{height:76px;background:#fff;border-bottom:1px solid #e2eaf6;display:flex;align-items:center;padding:0 34px;position:sticky;top:0;z-index:20}
+header{height:74px;background:#fff;border-bottom:1px solid #e2eaf6;display:flex;align-items:center;padding:0 30px;position:sticky;top:0;z-index:20}
 .brand{display:flex;align-items:center;gap:10px;color:#123c83;font-size:21px;font-weight:800}.brand svg{width:34px;height:38px;color:#1964ef}
-.topbar small{margin-left:auto;color:#8b9aaf;font-size:10px}
-.wrap{max-width:1480px;margin:0 auto;padding:30px 28px 60px}
-.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(420px,.85fr);gap:22px;margin-bottom:22px}
-.card{background:#fff;border:1px solid #e1e8f2;border-radius:18px}
-.hero-copy{padding:36px;position:relative;overflow:hidden}.hero-copy:after{content:"";position:absolute;right:-70px;top:-70px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,#e7f1ff 0,#f8fbff 64%,transparent 65%)}
-.eyebrow{display:inline-flex;padding:6px 10px;border-radius:999px;background:#eaf2ff;color:#1761e9;font-size:10px;font-weight:800;letter-spacing:.04em}
-.hero h1{position:relative;z-index:1;margin:16px 0 13px;color:#143365;font-size:34px;line-height:1.25;letter-spacing:-1.4px}.hero h1 em{color:#1761e9;font-style:normal}
-.hero p{position:relative;z-index:1;margin:0;color:#70819a;font-size:13px;max-width:700px}
-.hero-points{position:relative;z-index:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:24px}.hero-points span{padding:10px 11px;border-radius:10px;background:#f7f9fd;color:#51647f;font-size:10.5px}
-.filters{padding:25px}.filters h2{margin:0 0 5px;color:#173c72;font-size:18px}.filters>p{margin:0 0 18px;color:#8290a5;font-size:10.5px}
-.field{margin-bottom:15px}.field label,.field-title{display:block;margin-bottom:7px;color:#4c607b;font-size:11px;font-weight:800}
-select,input[type=range]{width:100%}select{height:42px;border:1px solid #dce5f0;border-radius:10px;background:#fff;padding:0 12px;color:#31445f}
-.range-row{display:flex;align-items:center;gap:12px}.range-value{min-width:62px;text-align:right;color:#1761e9;font-size:12px;font-weight:800}
-.chips{display:flex;flex-wrap:wrap;gap:7px}.chip{position:relative}.chip input{position:absolute;opacity:0;pointer-events:none}.chip span{display:block;padding:8px 10px;border:1px solid #dce5f0;border-radius:999px;background:#fff;color:#687a91;font-size:10px}.chip input:checked+span{border-color:#1761e9;background:#eaf2ff;color:#1761e9}
-.primary{width:100%;height:42px;border:0;border-radius:10px;background:#1761e9;color:#fff;font-weight:800;font-size:11px}
-.notice{margin-top:10px;padding:10px 12px;border-radius:9px;background:#fff8e9;color:#86621a;font-size:9.5px}
-.layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(370px,.65fr);gap:22px}
-.results,.side{padding:24px}
-.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:15px}.section-head h2{margin:0;color:#193e73;font-size:18px}.section-head p{margin:3px 0 0;color:#8a97a9;font-size:10.5px}.count{color:#1761e9;font-size:11px;font-weight:800}
-.result-list{display:grid;gap:14px}
-.area-card{border:1px solid #dfe7f1;border-radius:16px;background:#fff;overflow:hidden}
-.area-main{display:grid;grid-template-columns:68px minmax(0,1fr) auto;gap:16px;align-items:start;padding:20px}
-.rank{width:58px;height:58px;border-radius:15px;background:#edf4ff;color:#1761e9;display:grid;place-items:center;font-size:21px;font-weight:900}.area-card:first-child .rank{background:#1761e9;color:#fff}
-.location-path{color:#7c8ca1;font-size:10px}.area-title{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:3px}.area-title h3{margin:0;color:#203b5f;font-size:18px}.tag{padding:4px 7px;border-radius:999px;background:#eef4ff;color:#1761e9;font-size:9px}.tag.gray{background:#f1f4f8;color:#66778f}
-.summary{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;color:#66798f;font-size:10.5px}.summary b{color:#264666}
-.score{text-align:right}.score strong{display:block;color:#1761e9;font-size:27px;line-height:1}.score small{color:#95a1b0;font-size:9px}
-.complexes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}.complex-mini{padding:12px;border-radius:11px;background:#f8fbff;border:1px solid #e6edf6}.complex-mini strong{display:block;color:#21446e;font-size:11px}.complex-mini span{display:block;margin-top:4px;color:#7d8da2;font-size:9.5px}
-.detail-toggle{width:100%;border:0;border-top:1px solid #e8edf4;background:#fbfcfe;padding:12px 20px;text-align:left;color:#315f98;font-size:10px;font-weight:800}
-.detail{display:none;padding:0 20px 20px;background:#fbfcfe}.area-card.open .detail{display:block}.area-card.open .detail-toggle{background:#f4f8fd}
-.detail-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:12px}
-.panel{padding:15px;border:1px solid #e2e9f2;border-radius:12px;background:#fff}.panel h4{margin:0 0 10px;color:#234971;font-size:11px}
-.complex-row{padding:10px 0;border-top:1px solid #eef2f6}.complex-row:first-of-type{border-top:0;padding-top:0}.complex-row strong{display:block;color:#243f62;font-size:11px}.complex-row p{margin:4px 0 0;color:#75869c;font-size:9.5px}
-.facilities{display:grid;gap:8px}.facility{display:grid;grid-template-columns:28px minmax(0,1fr);gap:9px;align-items:center;padding:9px;border-radius:10px;background:#f8fbff}.facility i{width:28px;height:28px;border-radius:9px;background:#eaf2ff;display:grid;place-items:center;font-style:normal}.facility strong{display:block;color:#2a4768;font-size:10px}.facility span{display:block;color:#8593a6;font-size:9px}
-.source{margin-top:11px;color:#95a1b1;font-size:8.8px;line-height:1.5}
-.map{position:relative;min-height:500px;border-radius:16px;background:linear-gradient(90deg,rgba(23,97,233,.05) 1px,transparent 1px),linear-gradient(rgba(23,97,233,.05) 1px,transparent 1px),radial-gradient(circle at 50% 50%,#fff 0 39%,#f8fbff 40% 66%,#eef5ff 67% 100%);background-size:38px 38px,38px 38px,auto;overflow:hidden}
-.ring{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border:1px dashed #aec8ef;border-radius:50%}.r1{width:190px;height:190px}.r2{width:340px;height:340px}.r3{width:470px;height:470px}
-.origin{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:92px;height:92px;border-radius:50%;display:grid;place-items:center;text-align:center;background:#1761e9;color:#fff;box-shadow:0 12px 30px rgba(23,97,233,.25);font-size:10.5px;font-weight:800}
-.point{position:absolute;transform:translate(-50%,-50%);border:0;background:#fff;border-radius:10px;padding:7px 9px;box-shadow:0 5px 16px rgba(28,62,109,.13);font-size:9.5px;color:#3c526f;white-space:nowrap}.point b{color:#1761e9}
-.data-guide{margin-top:14px;padding:15px;border-radius:12px;background:#eef5ff;border:1px solid #dce9fb}.data-guide strong{display:block;color:#214f8b;font-size:11px;margin-bottom:6px}.data-guide p{margin:0;color:#6b7f98;font-size:9.5px}
-.empty{padding:40px 20px;border:1px dashed #d9e2ed;border-radius:12px;text-align:center;color:#8492a5;font-size:11px}
-footer{margin-top:24px;text-align:center;color:#99a5b4;font-size:9px}
-@media(max-width:1050px){.hero,.layout{grid-template-columns:1fr}.map{min-height:420px}}
-@media(max-width:700px){.topbar{padding:0 16px}.wrap{padding:18px 12px 40px}.hero-copy,.filters,.results,.side{padding:18px}.hero h1{font-size:27px}.hero-points{grid-template-columns:1fr}.area-main{grid-template-columns:54px minmax(0,1fr)}.rank{width:48px;height:48px}.score{grid-column:1/-1;display:flex;justify-content:flex-end;gap:8px;align-items:center}.complexes,.detail-grid{grid-template-columns:1fr}.map{min-height:360px}.r3{width:330px;height:330px}.r2{width:250px;height:250px}.r1{width:150px;height:150px}}
+header small{margin-left:auto;color:#8998ac;font-size:10px}
+.wrap{max-width:1520px;margin:0 auto;padding:26px 24px 58px}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;margin-bottom:18px}
+.box{background:#fff;border:1px solid #e1e8f2;border-radius:17px}
+.hero-copy{padding:32px 34px}.eyebrow{display:inline-block;padding:6px 10px;border-radius:999px;background:#eaf2ff;color:#1761e9;font-size:10px;font-weight:800}
+h1{margin:14px 0 12px;color:#143365;font-size:34px;line-height:1.25;letter-spacing:-1.3px}h1 em{font-style:normal;color:#1761e9}
+.hero-copy p{margin:0;color:#71829a;font-size:13px}.hero-note{display:flex;gap:8px;flex-wrap:wrap;margin-top:21px}.hero-note span{padding:8px 10px;border-radius:9px;background:#f6f9fd;color:#53677f;font-size:10px}
+.filters{padding:22px}.filters h2{margin:0 0 4px;color:#173c72;font-size:17px}.filters>p{margin:0 0 16px;color:#8492a6;font-size:10px}
+.filter-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field label,.field-title{display:block;margin-bottom:6px;color:#53667f;font-size:10px;font-weight:800}
+select,input[type=number]{width:100%;height:40px;border:1px solid #dce5ef;border-radius:9px;background:white;padding:0 10px;color:#31445f}
+.chips{display:flex;gap:6px;flex-wrap:wrap}.chip{position:relative}.chip input{position:absolute;opacity:0}.chip span{display:block;padding:7px 9px;border:1px solid #dce5ef;border-radius:999px;color:#697a91;background:white;font-size:9.5px}.chip input:checked+span{border-color:#1761e9;background:#eaf2ff;color:#1761e9}
+.budget{display:grid;grid-template-columns:1fr 1fr;gap:8px}.budget label{padding:10px;border:1px solid #e3e9f1;border-radius:10px;background:#f9fbfe}.budget span{display:block;color:#8795a7;font-size:9px}.budget input{margin-top:4px}
+.primary{width:100%;height:41px;border:0;border-radius:9px;background:#1761e9;color:white;font-weight:800;font-size:10.5px;margin-top:14px}
+.data-note{margin-top:9px;padding:9px 11px;border-radius:9px;background:#fff8e8;color:#86631b;font-size:9px}
+.summarybar{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:16px}.summarybar span{padding:9px 11px;border-radius:10px;background:#fff;border:1px solid #e3e9f2;color:#61738a;font-size:10px}.summarybar b{color:#1761e9}
+.layout{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(340px,.6fr);gap:18px}
+.results,.side{padding:21px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:14px}.section-head h2{margin:0;color:#1d4274;font-size:18px}.section-head p{margin:3px 0 0;color:#8a98aa;font-size:10px}.count{color:#1761e9;font-size:10px;font-weight:800}
+.area-list{display:grid;gap:11px}.area{border:1px solid #dfe6ef;border-radius:14px;background:#fff;overflow:hidden}
+.area-main{display:grid;grid-template-columns:58px minmax(0,1fr) auto;gap:14px;padding:16px;align-items:start}
+.rank{width:48px;height:48px;border-radius:13px;display:grid;place-items:center;background:#eef4ff;color:#1761e9;font-size:18px;font-weight:900}.area:first-child .rank{background:#1761e9;color:#fff}
+.path{color:#8492a5;font-size:9px}.title{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:2px}.title h3{margin:0;color:#203c61;font-size:16px}.tag{padding:3px 6px;border-radius:999px;background:#eef4ff;color:#1761e9;font-size:8.5px}.tag.green{background:#e8f7ef;color:#157452}.tag.gray{background:#f0f3f7;color:#6c7c90}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:7px;color:#68798f;font-size:9.5px}.meta b{color:#2a4769}
+.market{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}.market span{padding:5px 7px;border-radius:7px;background:#f8fafd;color:#66778e;font-size:8.8px}.market span.cheap{background:#eaf8f1;color:#157453}
+.example{margin-top:10px;padding:10px 11px;border-radius:10px;background:#f8fbff;border:1px solid #e5edf7}.example-head{display:flex;align-items:center;justify-content:space-between;gap:8px}.example strong{color:#1d4777;font-size:10.5px}.price{color:#1761e9;font-size:14px!important}.example p{margin:4px 0 0;color:#71839a;font-size:9px}.example a{display:inline-block;margin-top:6px;color:#1761e9;font-size:8.8px;text-decoration:underline}
+.fit{text-align:right}.fit strong{display:block;color:#1761e9;font-size:23px;line-height:1}.fit small{color:#98a3b2;font-size:8.5px}
+.more{width:100%;border:0;border-top:1px solid #e9eef4;background:#fbfcfe;padding:10px 16px;text-align:left;color:#315f98;font-size:9.5px;font-weight:800}
+.details{display:none;padding:0 16px 16px;background:#fbfcfe}.area.open .details{display:block}
+.details-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.panel{padding:12px;border:1px solid #e3e9f1;border-radius:10px;background:#fff}.panel h4{margin:0 0 8px;color:#274a72;font-size:10px}.facility{padding:6px 0;border-top:1px solid #f0f3f6;font-size:9px;color:#66798f}.facility:first-of-type{border-top:0}.facility b{color:#2b4667}
+.source{margin-top:8px;color:#97a2b1;font-size:8px}
+.map{position:relative;min-height:620px;border-radius:14px;background:linear-gradient(90deg,rgba(23,97,233,.045) 1px,transparent 1px),linear-gradient(rgba(23,97,233,.045) 1px,transparent 1px),radial-gradient(circle at 50% 50%,#fff 0 28%,#f8fbff 29% 58%,#eef5ff 59% 100%);background-size:34px 34px,34px 34px,auto;overflow:hidden}
+.ring{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border:1px dashed #aac6ef;border-radius:50%}.r1{width:170px;height:170px}.r2{width:320px;height:320px}.r3{width:480px;height:480px}.r4{width:610px;height:610px}
+.origin{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:82px;height:82px;border-radius:50%;display:grid;place-items:center;text-align:center;background:#1761e9;color:white;font-size:10px;font-weight:800;box-shadow:0 10px 25px rgba(23,97,233,.22)}
+.point{position:absolute;transform:translate(-50%,-50%);border:0;background:#fff;border-radius:9px;padding:5px 7px;box-shadow:0 4px 12px rgba(31,67,113,.12);font-size:8px;color:#3e5470;white-space:nowrap}.point b{color:#1761e9}
+.region-groups{margin-top:13px;display:grid;gap:8px}.region-box{padding:11px;border-radius:10px;background:#f8fbff;border:1px solid #e5edf7}.region-box strong{display:block;color:#285078;font-size:9.5px}.region-box p{margin:4px 0 0;color:#77899f;font-size:8.5px}
+.empty{padding:38px 20px;text-align:center;border:1px dashed #d8e1ec;border-radius:12px;color:#8492a6;font-size:10.5px}
+footer{margin-top:22px;text-align:center;color:#98a5b5;font-size:8.5px}
+@media(max-width:1080px){.hero,.layout{grid-template-columns:1fr}.map{min-height:460px}}
+@media(max-width:700px){header{padding:0 15px}.wrap{padding:16px 10px 38px}.hero-copy,.filters,.results,.side{padding:16px}h1{font-size:27px}.filter-grid{grid-template-columns:1fr}.area-main{grid-template-columns:48px minmax(0,1fr)}.fit{grid-column:1/-1;display:flex;gap:8px;justify-content:flex-end;align-items:center}.details-grid{grid-template-columns:1fr}.map{min-height:360px}.r4{width:340px;height:340px}.r3{width:280px;height:280px}.r2{width:210px;height:210px}.r1{width:140px;height:140px}}
 </style>
 </head>
 <body>
 <svg style="display:none" xmlns="http://www.w3.org/2000/svg"><symbol id="brand" viewBox="0 0 40 44"><path d="M20 2 37 12v21L20 42 3 33V12Z" fill="none" stroke="currentColor" stroke-width="3"/><path d="m10 23 10-9 10 9h-4v10h-5v-7h-3v7h-5V23" fill="currentColor"/></symbol></svg>
-<header class="topbar"><a class="brand" href="./"><svg><use href="#brand"/></svg><span>생활권ON</span></a><small>실제 동네·단지·생활시설 기반 프로토타입</small></header>
+<header><a class="brand" href="./"><svg><use href="#brand"/></svg><span>생활권ON</span></a><small>건대입구 기준 · 최대 90분 생활권</small></header>
 
 <main class="wrap">
 <section class="hero">
-<div class="hero-copy card">
-<span class="eyebrow">REAL NEIGHBORHOOD FINDER</span>
-<h1>“어느 구?”에서 끝나지 않고,<br><em>어느 동 · 어느 단지</em>까지 보여줍니다.</h1>
-<p>광진구에서 통근·통학 가능한 생활권을 찾은 뒤, 실제 존재하는 아파트 단지와 주변 공원·극장·백화점·쇼핑시설을 함께 비교합니다.</p>
-<div class="hero-points"><span>📍 시 · 구 · 동까지 표시</span><span>🏢 실제 아파트 단지명</span><span>🎬 실제 영화관·쇼핑시설</span><span>🌳 실제 공원·생활환경</span></div>
+<div class="hero-copy box">
+<span class="eyebrow">90-MINUTE HOUSING SEARCH</span>
+<h1>서울만 보지 말고,<br><em>90분 안에서 예산에 맞는 동네</em>를 찾습니다.</h1>
+<p>원룸 300/30부터 아파트 전세까지 한 화면에서 비교합니다. 비싼 집을 먼저 추천하지 않고, 내가 정한 보증금·월세 안에 들어오는 실제 매물과 동네 시세를 우선 보여줍니다.</p>
+<div class="hero-note"><span>서울 · 경기 · 인천</span><span>원룸 · 투룸 · 빌라 · 오피스텔 · 아파트</span><span>최근 등록매물 + 실거래 중앙값</span><span>공원 · 극장 · 쇼핑시설</span></div>
 </div>
 
-<form class="filters card" id="filters">
-<h2>나의 생활권 조건</h2><p>현재는 건대입구를 기준으로 실제 장소 데이터와 시연용 추천 로직을 결합했습니다.</p>
-<div class="field"><label for="time">최대 통행시간</label><div class="range-row"><input id="time" type="range" min="20" max="90" step="5" value="90"><span class="range-value"><b id="timeV">90</b>분</span></div></div>
-<div class="field"><label for="transfer">최대 환승</label><select id="transfer"><option value="0">환승 없음</option><option value="1" selected>1회 이내</option><option value="2">2회 이내</option></select></div>
-<div class="field"><span class="field-title">생활환경</span><div class="chips" id="facilityFilter">
-<label class="chip"><input type="checkbox" value="cinema" checked><span>🎬 영화관</span></label>
-<label class="chip"><input type="checkbox" value="shopping" checked><span>🛍 백화점·쇼핑</span></label>
-<label class="chip"><input type="checkbox" value="park" checked><span>🌳 공원</span></label>
+<form class="filters box" id="filters">
+<h2>예산과 통근조건</h2><p>기본값은 보증금 1,000만원 / 월 60만원 이하입니다.</p>
+<div class="filter-grid">
+<div class="field"><label>최대 통행시간</label><select id="time"><option value="45">45분</option><option value="60">60분</option><option value="75">75분</option><option value="90" selected>90분</option></select></div>
+<div class="field"><label>최대 환승</label><select id="transfer"><option value="0">환승 없음</option><option value="1" selected>1회 이내</option><option value="2">2회 이내</option></select></div>
+</div>
+<div class="field"><span class="field-title">지역</span><div class="chips" id="regions">
+<label class="chip"><input type="checkbox" value="서울" checked><span>서울</span></label>
+<label class="chip"><input type="checkbox" value="경기" checked><span>경기</span></label>
+<label class="chip"><input type="checkbox" value="인천" checked><span>인천</span></label>
 </div></div>
-<button class="primary" type="submit">추천 단지 보기</button>
-<div class="notice">단지명·주소·세대수·입주연도·주변 시설은 실제 공개정보 기반입니다. 통행시간 중 일부는 역간 시간표 또는 공개 생활권 자료를 활용했고, API 미연동 지역은 시연값으로 별도 표시합니다.</div>
+<div class="field"><span class="field-title">주택유형</span><div class="chips" id="types">
+<label class="chip"><input type="checkbox" value="원룸" checked><span>원룸</span></label>
+<label class="chip"><input type="checkbox" value="투룸" checked><span>투룸·빌라</span></label>
+<label class="chip"><input type="checkbox" value="오피스텔" checked><span>오피스텔</span></label>
+<label class="chip"><input type="checkbox" value="아파트" checked><span>아파트</span></label>
+</div></div>
+<div class="field"><span class="field-title">월세 예산</span><div class="budget">
+<label><span>보증금 최대(만원)</span><input id="deposit" type="number" min="0" step="100" value="1000"></label>
+<label><span>월세 최대(만원)</span><input id="rent" type="number" min="0" step="5" value="60"></label>
+</div></div>
+<button class="primary" type="submit">내 예산에 맞는 동네 보기</button>
+<div class="data-note">현재 매물은 수시로 거래·삭제될 수 있어 ‘최근 확인된 예시’로 표시합니다. 동네 시세는 최근 12개월 실거래 중앙값을 우선 사용합니다.</div>
 </form>
 </section>
 
-<section class="layout">
-<div class="results card">
-<div class="section-head"><div><h2>추천 생활권 · 실제 단지</h2><p>지역을 펼치면 실제 단지와 생활시설을 확인할 수 있습니다.</p></div><span class="count" id="count"></span></div>
-<div class="result-list" id="list"></div>
-</div>
+<div class="summarybar" id="summary"></div>
 
-<aside class="side card">
-<div class="section-head"><div><h2>건대입구 기준 도달권</h2><p>위치는 생활권 간 상대적 방향을 보여주는 개념 배치입니다.</p></div></div>
-<div class="map" id="map"><div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div><div class="origin">건대입구<br>출발</div></div>
-<div class="data-guide"><strong>실제 데이터와 시연값을 구분했습니다.</strong><p>단지와 시설명은 실제 장소를 사용합니다. 추천점수와 일부 통행시간은 프로토타입용이며, 완성 서비스에서는 서울교통·실거래·상권 API를 연결하는 구조입니다.</p></div>
+<section class="layout">
+<div class="results box">
+<div class="section-head"><div><h2>90분 생활권 후보</h2><p>예산 적합도 → 통행시간 순으로 정렬합니다.</p></div><span class="count" id="count"></span></div>
+<div class="area-list" id="list"></div>
+</div>
+<aside class="side box">
+<div class="section-head"><div><h2>광역 생활권</h2><p>건대입구를 중심으로 서·남·동·북 방향을 넓게 봅니다.</p></div></div>
+<div class="map" id="map"><div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div><div class="ring r4"></div><div class="origin">건대입구<br>출발</div></div>
+<div class="region-groups">
+<div class="region-box"><strong>동쪽</strong><p>천호 · 오금 · 구리 수택/교문 · 하남 미사</p></div>
+<div class="region-box"><strong>남쪽</strong><p>성남 태평 · 안양 · 군포 · 수원</p></div>
+<div class="region-box"><strong>서쪽</strong><p>대림 · 신정 · 부천 · 부평 · 인천시청</p></div>
+<div class="region-box"><strong>북서쪽</strong><p>고양 토당·행신·화정 등</p></div>
+</div>
 </aside>
 </section>
-<footer>생활권ON · 건국대학교 드림학기제 시연용 프로토타입</footer>
+<footer>생활권ON · 시연용 프로토타입 · 가격은 실제 공개 매물/실거래 자료를 바탕으로 하며 최신성은 각 출처를 다시 확인해야 합니다.</footer>
 </main>
 
 <script>
 const areas=[
-{
- id:'haengdang',city:'서울특별시',gu:'성동구',dong:'행당동',label:'행당·왕십리 생활권',center:'부도심',
- time:8,timeLabel:'8분',verifiedTime:true,transfer:0,score:92,x:38,y:43,
- complexes:[
-  {name:'서울숲리버뷰자이',address:'성동구 고산자로2길 65 · 행당동 380',units:'1,034세대',year:'2018년 준공',station:'왕십리역 생활권'},
-  {name:'행당대림아파트',address:'성동구 행당로 79 · 행당동 347',units:'2,399세대',year:'2000년 사용승인',station:'행당·왕십리 생활권'}
- ],
- facilities:[
-  {type:'cinema',icon:'🎬',name:'CGV 왕십리',desc:'왕십리광장로 17 · 비트플렉스몰 5층'},
-  {type:'shopping',icon:'🛍',name:'엔터식스 왕십리역점',desc:'왕십리역 연결 쇼핑몰'},
-  {type:'park',icon:'🌳',name:'응봉근린공원(대현산배수지공원)',desc:'성동구 생활형 근린공원'}
- ],
- source:'단지: 국토부·K-apt 기반 공개정보 / 시설: 지도·사업장 공개정보 / 건대입구→왕십리: 2호선 약 8분'
-},
-{
- id:'jeonnong',city:'서울특별시',gu:'동대문구',dong:'전농동',label:'전농·청량리 생활권',center:'광역중심',
- time:24,timeLabel:'20분대',verifiedTime:false,transfer:1,score:86,x:55,y:31,
- complexes:[
-  {name:'래미안크레시티',address:'동대문구 사가정로 65 · 전농동',units:'2,397세대',year:'2014년 입주',station:'청량리역 약 498m'},
-  {name:'전농SK아파트',address:'동대문구 사가정로 148 · 전농동 10',units:'1,830세대',year:'2000년 입주',station:'전농동 생활권'}
- ],
- facilities:[
-  {type:'shopping',icon:'🛍',name:'롯데백화점 청량리점',desc:'왕산로 214 · 청량리역 연결'},
-  {type:'cinema',icon:'🎬',name:'롯데시네마 청량리',desc:'왕산로 214 · 롯데백화점·청량리역 복합시설'},
-  {type:'park',icon:'🌳',name:'배봉산근린공원',desc:'전농동 일대 · 산책로·숲길'}
- ],
- source:'단지: 공동주택관리정보·공개 단지정보 / 시설: 지도·공식 사업장 정보 / 통행시간: 교통 API 연동 전 시연값'
-},
-{
- id:'sanggye',city:'서울특별시',gu:'노원구',dong:'상계동',label:'상계·노원 생활권',center:'광역중심',
- time:25,timeLabel:'25분',verifiedTime:true,transfer:0,score:82,x:64,y:16,
- complexes:[
-  {name:'노원센트럴푸르지오',address:'노원구 수락산로 12 · 상계동 1355',units:'810세대',year:'2021년 입주',station:'상계역 약 511m'},
-  {name:'상계주공7단지',address:'노원구 상계동',units:'2,634세대',year:'1988년 준공',station:'노원역 생활권'}
- ],
- facilities:[
-  {type:'shopping',icon:'🛍',name:'롯데백화점 노원점',desc:'동일로 1414 · 노원역 인접'},
-  {type:'cinema',icon:'🎬',name:'롯데시네마 노원',desc:'롯데백화점 노원점 10층'},
-  {type:'park',icon:'🌳',name:'상계근린공원',desc:'상계동 생활형 근린공원'}
- ],
- source:'단지: 국토부 실거래·공개 단지정보 / 시설: 지도·사업장 공개정보 / 건대입구→노원: 7호선 약 25분'
-},
-{
- id:'munjeong',city:'서울특별시',gu:'송파구',dong:'문정동',label:'문정 생활권',center:'광역중심',
- time:26,timeLabel:'26분',verifiedTime:true,transfer:1,score:79,x:76,y:73,
- complexes:[
-  {name:'송파파크하비오푸르지오',address:'송파구 송파대로 111 · 문정동',units:'999세대',year:'2016년 입주',station:'장지·문정역 생활권'},
-  {name:'문정래미안',address:'송파구 문정로 83 · 문정동 1',units:'1,696세대',year:'2004년 입주',station:'문정동 생활권'}
- ],
- facilities:[
-  {type:'cinema',icon:'🎬',name:'메가박스 송파파크하비오',desc:'송파대로 111 · 파크하비오 내'},
-  {type:'shopping',icon:'🛍',name:'가든파이브 라이프',desc:'송파대로 66 · 복합 쇼핑시설'},
-  {type:'park',icon:'🌳',name:'소리공원',desc:'문정법조단지 인근 근린공원'}
- ],
- source:'단지: 공개 단지·실거래 정보 / 시설: 지도·사업장 공개정보 / 건대입구→문정: 공개 생활권 자료 약 26분'
-}
+{region:'서울',city:'서울특별시',gu:'강동구',dong:'천호동',label:'천호·강동 생활권',time:22,transfer:1,types:['원룸','투룸','오피스텔','아파트'],median:'원룸·빌라 저가 월세 확인',example:{dep:1000,rent:40,type:'투룸',desc:'천호대로163길 인근 · 방2 · 강동역 도보권',url:'https://realty.daangn.com/articles/4833305'},fac:['현대백화점 천호점','CGV 천호','광나루한강공원'],x:66,y:48},
+{region:'서울',city:'서울특별시',gu:'송파구',dong:'오금동',label:'오금 생활권',time:35,transfer:1,types:['원룸','투룸','아파트'],median:'원룸 월세 1,000/50 실제 매물 확인',example:{dep:1000,rent:50,type:'원룸',desc:'중대로27길 · 5평 · 오금역 도보 2분',url:'https://realty.daangn.com/articles/4555454'},fac:['오금공원','올림픽공원','롯데월드몰·롯데시네마 월드타워'],x:68,y:60},
+{region:'서울',city:'서울특별시',gu:'영등포구',dong:'대림동',label:'대림 생활권',time:36,transfer:0,types:['원룸','투룸','오피스텔'],median:'저가 원룸 월세 실제 매물 확인',example:{dep:1000,rent:50,type:'원룸',desc:'대림로34자길 · 6평 · 대림역/신도림역 생활권',url:'https://realty.daangn.com/articles/4880763'},fac:['대림중앙시장','신도림 디큐브시티','롯데시네마 신도림'],x:30,y:61},
+{region:'서울',city:'서울특별시',gu:'양천구',dong:'신정동',label:'신정·목동 생활권',time:52,transfer:1,types:['원룸','투룸','아파트'],median:'신정역 초역세권 1,000/50 사례',example:{dep:1000,rent:50,type:'원룸',desc:'5호선 신정역 도보 30초 · 전입 가능',url:'https://www.peterpanz.com/house/20083715'},fac:['양천공원','현대백화점 목동점','CGV 목동'],x:23,y:53},
+{region:'경기',city:'경기도',gu:'구리시',dong:'수택동',label:'구리 수택 생활권',time:30,transfer:1,types:['원룸','투룸','아파트'],median:'실거래 원룸 중위 1,000/55 · 교문동 1,000/45',example:{dep:1000,rent:50,type:'원룸',desc:'안골로 일대 · 8~10평 · 구리역 도보권',url:'https://realty.daangn.com/articles/4839189'},fac:['검배공원','롯데백화점 구리점','CGV 구리'],x:73,y:36},
+{region:'경기',city:'경기도',gu:'구리시',dong:'교문동',label:'구리 교문 생활권',time:33,transfer:1,types:['원룸','투룸','아파트'],median:'최근 실거래 원룸 중위 1,000/45',example:{dep:1000,rent:45,type:'원룸',desc:'교문동 실거래 중앙값 기준 예산대',url:'https://house.ttpk.co.kr/region/41310/rent'},fac:['구리한강시민공원','장자호수공원','롯데백화점 구리점'],x:77,y:40},
+{region:'경기',city:'경기도',gu:'성남시 수정구',dong:'태평동',label:'성남 태평 생활권',time:42,transfer:1,types:['원룸','투룸','빌라'],median:'경기 실거래 원룸 중위 1,000/45 수준',example:{dep:500,rent:60,type:'원룸',desc:'탄리로 일대 · 13~15평 · 1,000/50 조정 사례 있음',url:'https://realty.daangn.com/articles/4482046'},fac:['탄천','모란민속시장','성남시의료원 생활권'],x:58,y:72},
+{region:'경기',city:'경기도',gu:'안양시 만안구',dong:'안양동',label:'안양·명학 생활권',time:58,transfer:2,types:['원룸','투룸','오피스텔'],median:'실거래 원룸 중위 1,000/50 · 빌라 500/44',example:{dep:300,rent:30,type:'원룸',desc:'안양동 최근 등록매물 · 7평',url:'https://vacancy.zaritalk.com/town/%EC%95%88%EC%96%91%EC%8B%9C%EB%A7%8C%EC%95%88%EA%B5%AC-%EC%95%88%EC%96%91%EB%8F%99-1633'},fac:['안양예술공원','안양일번가','롯데시네마 안양'],x:38,y:77},
+{region:'경기',city:'경기도',gu:'군포시',dong:'당동',label:'군포 당동 생활권',time:55,transfer:2,types:['원룸','투룸','빌라'],median:'원룸 중위 500/46 · 당정동 500/43',example:{dep:500,rent:35,type:'원룸',desc:'군포역 도보권 · 풀옵션 원룸 다수',url:'https://realty.daangn.com/map/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EA%B5%B0%ED%8F%AC%EC%8B%9C/%EB%8B%B9%EB%8F%99/%EC%9B%90%EB%A3%B8'},fac:['군포역전시장','산본로데오거리','철쭉동산'],x:34,y:82},
+{region:'경기',city:'경기도',gu:'군포시',dong:'금정동',label:'금정 생활권',time:51,transfer:1,types:['원룸','투룸','오피스텔'],median:'최근 실거래 원룸 중위 1,000/48',example:{dep:1000,rent:48,type:'원룸',desc:'금정동 실거래 중앙값 기준',url:'https://house.ttpk.co.kr/region/41410/rent'},fac:['금정역 환승생활권','산본시장','산본 중심상권'],x:36,y:73},
+{region:'경기',city:'경기도',gu:'수원시 장안구',dong:'송죽동',label:'수원 송죽 생활권',time:85,transfer:2,types:['원룸','투룸','빌라'],median:'실거래 원룸 중위 500/39 · 1.5룸 1,000/45',example:{dep:1000,rent:50,type:'원룸',desc:'종합운동장사거리 인근 · 8평',url:'https://realty.daangn.com/articles/4641727'},fac:['만석공원','수원KT위즈파크','홈플러스 북수원점'],x:38,y:92},
+{region:'경기',city:'경기도',gu:'수원시 장안구',dong:'조원동',label:'수원 조원 생활권',time:88,transfer:2,types:['원룸','투룸','빌라'],median:'실거래 원룸 중위 500/34 · 1.5룸 1,000/45',example:{dep:500,rent:34,type:'원룸',desc:'최근 12개월 실거래 중앙값',url:'https://house.ttpk.co.kr/region/41111/rent'},fac:['만석공원','장안구청','수원KT위즈파크'],x:42,y:95},
+{region:'경기',city:'경기도',gu:'고양시 덕양구',dong:'토당동',label:'능곡·토당 생활권',time:75,transfer:2,types:['원룸','투룸','빌라'],median:'실거래 원룸 중위 1,000/43',example:{dep:1000,rent:40,type:'원룸',desc:'능곡역 도보권 · 8평 · 관리비 2만원',url:'https://realty.daangn.com/articles/4786863'},fac:['능곡시장','행주산성','행주산성역사공원'],x:13,y:32},
+{region:'경기',city:'경기도',gu:'고양시 덕양구',dong:'행신동',label:'행신 생활권',time:78,transfer:2,types:['원룸','투룸','오피스텔'],median:'실거래 원룸 중위 500/42',example:{dep:500,rent:42,type:'원룸',desc:'최근 12개월 실거래 중앙값',url:'https://house.ttpk.co.kr/region/41281/rent'},fac:['행신역 생활권','서정공원','화정 중심상권 접근'],x:10,y:27},
+{region:'인천',city:'인천광역시',gu:'부평구',dong:'부평동',label:'부평 생활권',time:71,transfer:1,types:['원룸','투룸','오피스텔','아파트'],median:'실거래 원룸 중위 500/42 · 투룸 1,000/50',example:{dep:300,rent:39,type:'원룸',desc:'현재 등록매물 기준 저가 원룸 다수',url:'https://realty.daangn.com/map/%EC%9D%B8%EC%B2%9C%EA%B4%91%EC%97%AD%EC%8B%9C/%EB%B6%80%ED%8F%89%EA%B5%AC/%EC%9B%90%EB%A3%B8/%EC%A4%91%EA%B0%9C'},fac:['롯데시네마 부평','부평공원','부평문화의거리·지하상가'],x:9,y:56},
+{region:'인천',city:'인천광역시',gu:'남동구',dong:'구월동',label:'구월 생활권',time:86,transfer:1,types:['원룸','투룸','오피스텔','아파트'],median:'남동구 실거래 원룸 중위 500/42',example:{dep:100,rent:30,type:'원룸',desc:'구월동 최근 등록매물 · 길병원/모래내시장 생활권',url:'https://vacancy.zaritalk.com/region/%EC%9D%B8%EC%B2%9C%EA%B4%91%EC%97%AD%EC%8B%9C-%EB%82%A8%EB%8F%99%EA%B5%AC/%EC%9B%90%EB%A3%B8'},fac:['인천중앙공원','롯데백화점 인천점','CGV 인천'],x:5,y:68},
+{region:'인천',city:'인천광역시',gu:'남동구',dong:'간석동',label:'간석 생활권',time:84,transfer:1,types:['원룸','투룸','빌라'],median:'남동구 실거래 원룸 중위 500/42',example:{dep:300,rent:35,type:'원룸',desc:'간석동 최근 등록매물 · 간석오거리역 생활권',url:'https://vacancy.zaritalk.com/region/%EC%9D%B8%EC%B2%9C%EA%B4%91%EC%97%AD%EC%8B%9C-%EB%82%A8%EB%8F%99%EA%B5%AC/%EC%9B%90%EB%A3%B8'},fac:['간석오거리역 상권','인천중앙공원 접근','모래내시장 접근'],x:7,y:63},
+{region:'인천',city:'인천광역시',gu:'남동구',dong:'논현동',label:'인천 논현 생활권',time:90,transfer:2,types:['원룸','투룸','오피스텔','아파트'],median:'남동구 원룸 실거래 중위 500/42',example:{dep:1000,rent:30,type:'원룸',desc:'에코메트로 인근 복층형 원룸 사례',url:'https://vacancy.zaritalk.com/region/%EC%9D%B8%EC%B2%9C%EA%B4%91%EC%97%AD%EC%8B%9C-%EB%82%A8%EB%8F%99%EA%B5%AC/%EC%9B%90%EB%A3%B8'},fac:['소래포구','늘솔길공원','뉴코아아울렛 인천논현점'],x:4,y:77},
+{region:'서울',city:'서울특별시',gu:'성동구',dong:'행당동',label:'왕십리·행당 생활권',time:8,transfer:0,types:['원룸','오피스텔','아파트'],median:'서울 도심권 · 저가부터 고가까지 혼재',example:{dep:3000,rent:90,type:'오피스텔',desc:'저가 예산보다 높은 편 · 비교용 중고가 선택지',url:'https://www.google.com/search?q=%EC%99%95%EC%8B%AD%EB%A6%AC+%EC%9B%94%EC%84%B8'},fac:['CGV 왕십리','엔터식스 왕십리역점','응봉근린공원'],x:45,y:46},
+{region:'서울',city:'서울특별시',gu:'성동구',dong:'성수동',label:'성수 생활권',time:4,transfer:0,types:['원룸','오피스텔','아파트'],median:'서울 동부 인기지역 · 상대적 고가',example:{dep:5000,rent:120,type:'오피스텔',desc:'고가 선택지도 남겨둔 비교용 카드',url:'https://www.google.com/search?q=%EC%84%B1%EC%88%98%EB%8F%99+%EC%9B%94%EC%84%B8'},fac:['서울숲','메가박스 성수','성수동 카페거리'],x:48,y:50}
 ];
 
-const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
-function selectedFacilities(){return $$('#facilityFilter input:checked').map(x=>x.value)}
-function filtered(){
- const maxTime=+$('#time').value,maxTransfer=+$('#transfer').value,needs=selectedFacilities();
- return areas.filter(a=>a.time<=maxTime&&a.transfer<=maxTransfer&&needs.every(t=>a.facilities.some(f=>f.type===t)));
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const vals=id=>$$('#'+id+' input:checked').map(x=>x.value);
+function fitScore(a,dep,rent){
+ const budgetFit=(a.example.dep<=dep&&a.example.rent<=rent)?100:Math.max(0,100-(Math.max(0,a.example.dep-dep)/100)-(Math.max(0,a.example.rent-rent)*3));
+ return Math.round(budgetFit*.7+Math.max(0,100-a.time)*.3);
+}
+function getList(){
+ const maxT=+$('#time').value,maxX=+$('#transfer').value,dep=+$('#deposit').value||0,rent=+$('#rent').value||0,regs=vals('regions'),types=vals('types');
+ return areas.filter(a=>a.time<=maxT&&a.transfer<=maxX&&regs.includes(a.region)&&a.types.some(t=>types.includes(t)))
+ .map(a=>({...a,fit:fitScore(a,dep,rent),afford:a.example.dep<=dep&&a.example.rent<=rent}))
+ .sort((a,b)=>(b.afford-a.afford)||(b.fit-a.fit)||(a.time-b.time));
 }
 function render(){
- const arr=filtered();$('#count').textContent=arr.length+'개 생활권';
+ const arr=getList(),dep=+$('#deposit').value||0,rent=+$('#rent').value||0;
+ $('#count').textContent=arr.length+'개 동네';
+ const affordable=arr.filter(a=>a.afford).length;
+ $('#summary').innerHTML='<span>현재 조건 <b>'+arr.length+'곳</b></span><span>예산 안 실제 예시 <b>'+affordable+'곳</b></span><span>기준 <b>보증금 '+dep.toLocaleString()+' / 월 '+rent+' 이하</b></span><span>서울·경기·인천 <b>통합 검색</b></span>';
  $('#list').innerHTML=arr.length?arr.map((a,i)=>`
- <article class="area-card" data-id="${a.id}">
+ <article class="area">
   <div class="area-main">
    <div class="rank">${i+1}</div>
    <div>
-    <div class="location-path">${a.city} › ${a.gu} › <b>${a.dong}</b></div>
-    <div class="area-title"><h3>${a.label}</h3><span class="tag">${a.center}</span><span class="tag gray">${a.verifiedTime?'역간 시간 확인':'교통 API 연동 예정'}</span></div>
-    <div class="summary"><span>🚇 건대입구 기준 <b>${a.timeLabel}</b></span><span>↔ 환승 <b>${a.transfer}회</b></span><span>🏢 실제 단지 <b>${a.complexes.length}곳</b></span></div>
-    <div class="complexes">${a.complexes.map(c=>`<div class="complex-mini"><strong>${c.name}</strong><span>${c.units} · ${c.year}</span></div>`).join('')}</div>
+    <div class="path">${a.city} › ${a.gu} › <b>${a.dong}</b></div>
+    <div class="title"><h3>${a.label}</h3><span class="tag">${a.region}</span><span class="tag gray">${a.time}분 · 환승 ${a.transfer}회</span>${a.afford?'<span class="tag green">예산 안</span>':''}</div>
+    <div class="meta"><span>🏠 <b>${a.types.join(' · ')}</b></span></div>
+    <div class="market"><span>${a.median}</span>${a.afford?'<span class="cheap">저가 예산 적합</span>':''}</div>
+    <div class="example">
+      <div class="example-head"><strong>최근 확인 예시 · ${a.example.type}</strong><strong class="price">${a.example.dep.toLocaleString()} / ${a.example.rent}</strong></div>
+      <p>${a.example.desc}</p><a href="${a.example.url}" target="_blank" rel="noopener">가격 근거 확인 ↗</a>
+    </div>
    </div>
-   <div class="score"><strong>${a.score}</strong><small>추천점수(시연)</small></div>
+   <div class="fit"><strong>${a.fit}</strong><small>예산·통근 적합도</small></div>
   </div>
-  <button class="detail-toggle" type="button">실제 단지·생활시설 자세히 보기 +</button>
-  <div class="detail">
-   <div class="detail-grid">
-    <section class="panel">
-     <h4>실제 주거단지</h4>
-     ${a.complexes.map(c=>`<div class="complex-row"><strong>${c.name}</strong><p>${c.address}<br>${c.units} · ${c.year} · ${c.station}</p></div>`).join('')}
-    </section>
-    <section class="panel">
-     <h4>주변 생활시설</h4>
-     <div class="facilities">${a.facilities.map(f=>`<div class="facility"><i>${f.icon}</i><div><strong>${f.name}</strong><span>${f.desc}</span></div></div>`).join('')}</div>
-    </section>
-   </div>
-   <div class="source">데이터 확인 기준 · ${a.source}</div>
-  </div>
- </article>`).join(''):'<div class="empty">현재 조건을 모두 만족하는 생활권이 없습니다.<br>통행시간이나 환승 조건을 넓혀보세요.</div>';
-
+  <button class="more" type="button">동네 생활시설 보기 +</button>
+  <div class="details"><div class="details-grid">
+    <div class="panel"><h4>실제 생활시설</h4>${a.fac.map(f=>'<div class="facility">• <b>'+f+'</b></div>').join('')}</div>
+    <div class="panel"><h4>가격 해석</h4><div class="facility">대표 예시는 현재/최근 등록매물 또는 최근 12개월 실거래 중앙값에 근거합니다.</div><div class="facility">매물은 계약되거나 삭제될 수 있으므로 최종 선택 전 원문을 다시 확인해야 합니다.</div></div>
+  </div><div class="source">생활권ON은 ‘특정 단지 추천’이 아니라 통근시간과 예산에 맞는 동네 후보를 넓게 보여주는 프로토타입입니다.</div></div>
+ </article>`).join(''):'<div class="empty">현재 조건에 맞는 동네가 없습니다. 환승횟수·예산·통행시간을 조금 넓혀보세요.</div>';
  $$('.point').forEach(x=>x.remove());
- arr.forEach((a,i)=>{const b=document.createElement('button');b.className='point';b.style.left=a.x+'%';b.style.top=a.y+'%';b.innerHTML='<b>'+(i+1)+'</b> '+a.dong+' · '+a.complexes[0].name;$('#map').appendChild(b)});
- $$('.detail-toggle').forEach(btn=>btn.onclick=()=>{const card=btn.closest('.area-card');card.classList.toggle('open');btn.textContent=card.classList.contains('open')?'접기 −':'실제 단지·생활시설 자세히 보기 +'});
+ arr.slice(0,14).forEach((a,i)=>{const b=document.createElement('button');b.className='point';b.style.left=a.x+'%';b.style.top=a.y+'%';b.innerHTML='<b>'+(i+1)+'</b> '+a.dong+' '+a.example.dep+'/'+a.example.rent;$('#map').appendChild(b)});
+ $$('.more').forEach(btn=>btn.onclick=()=>{const card=btn.closest('.area');card.classList.toggle('open');btn.textContent=card.classList.contains('open')?'접기 −':'동네 생활시설 보기 +'});
 }
-$('#time').addEventListener('input',e=>{$('#timeV').textContent=e.target.value;render()});
-$('#filters').addEventListener('change',render);
-$('#filters').addEventListener('submit',e=>{e.preventDefault();render();$('.results').scrollIntoView({behavior:'smooth',block:'start'})});
-render();
+$('#filters').addEventListener('change',render);$('#filters').addEventListener('input',render);$('#filters').addEventListener('submit',e=>{e.preventDefault();render();$('.results').scrollIntoView({behavior:'smooth',block:'start'})});render();
 </script>
 </body>
 </html>
