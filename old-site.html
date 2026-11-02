@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   청년전세ON · 나의 전세임대 길잡이
+  </title>
+  <link rel="stylesheet" href="style.css">
+ </head>
+ <body>
+  <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+   <symbol id="brand" viewBox="0 0 40 44">
+    <path d="M20 2 37 12v21L20 42 3 33V12Z" fill="none" stroke="currentColor" stroke-width="3">
+    </path>
+    <path d="m10 23 10-9 10 9h-4v10h-5v-7h-3v7h-5V23" fill="currentColor">
+    </path>
+   </symbol>
+   <symbol id="town" viewBox="0 0 220 150">
+    <ellipse cx="110" cy="136" fill="#dbeafb" rx="100" ry="10">
+    </ellipse>
+    <path d="M18 131V64h43v67M164 131V48h36v83" fill="#c4dcf6">
+    </path>
+    <path d="M65 131V40h55v91" fill="#a8cbf4">
+    </path>
+    <path d="m99 86 43-40 43 40" fill="#225ab4">
+    </path>
+    <path d="M108 83h70v49h-70z" fill="white">
+    </path>
+    <path d="M136 108h16v24h-16z" fill="#4381d1">
+    </path>
+    <path d="M119 91h11v12h-11zm37 0h11v12h-11z" fill="#add6f3">
+    </path>
+    <path d="M77 52h10v13H77zm20 0h10v13H97zM77 75h10v13H77zm20 0h10v13H97zM29 77h10v11H29zm15 0h10v11H44z" fill="#eff8ff">
+    </path>
+    <path d="M24 118v17m171-22v22" stroke="#4c987c" stroke-width="4">
+    </path>
+    <ellipse cx="24" cy="109" fill="#74c4a4" rx="10" ry="17">
+    </ellipse>
+    <ellipse cx="195" cy="105" fill="#74c4a4" rx="11" ry="19">
+    </ellipse>
+    <path d="M137 24h20a7 7 0 0 0-7-7 10 10 0 0 0-19 2 5 5 0 0 0 6 5" fill="white">
+    </path>
+   </symbol>
+   <symbol id="room" viewBox="0 0 300 200">
+    <rect fill="#e6e5de" height="200" width="300">
+    </rect>
+    <path d="M0 0h300l-45 32H40z" fill="#f5f3ee">
+    </path>
+    <path d="M0 200h300l-45-60H40z" fill="#cbb798">
+    </path>
+    <path d="M0 0 40 32v108L0 200z" fill="#d5d6cf">
+    </path>
+    <path d="M300 0 255 32v108l45 60z" fill="#edede7">
+    </path>
+    <path d="M65 45h115v95H65z" fill="#87765f">
+    </path>
+    <path d="M71 51h103v82H71z" fill="#c6e0e7">
+    </path>
+    <path d="m74 115 35-21 22 14 41-30v52H74z" fill="#b5cbb9">
+    </path>
+    <path d="M122 48v90M67 95h110" stroke="#f4f0e6" stroke-width="5">
+    </path>
+    <path d="m40 140 215 0M80 140 55 200M128 140 121 200M177 140 193 200M221 140 265 200" stroke="#b9a486">
+    </path>
+    <rect fill="#aaa98f" height="37" rx="3" width="26" x="218" y="103">
+    </rect>
+    <path d="M231 104V72m0 18q-23-21-14-27 14 3 14 24m0 6q22-23 23-10-3 12-23 15" fill="none" stroke="#78947b" stroke-width="5">
+    </path>
+    <rect fill="#fff" height="18" opacity=".85" rx="5" width="88" x="7" y="174">
+    </rect>
+    <text fill="#6c7c88" font-size="9" x="15" y="187">
+     예시 매물 이미지
+    </text>
+   </symbol>
+  </svg>
+  <header>
+   <button aria-label="청년전세ON 홈" class="logo" data-page="home">
+    <svg class="brand-icon">
+     <use href="#brand">
+     </use>
+    </svg>
+    <div>
+     <strong>
+      청년전세ON
+     </strong>
+     <small>
+      선정의 설렘, 든든한 집으로
+     </small>
+    </div>
+   </button>
+   <nav aria-label="주요 메뉴">
+    <button data-page="check">
+     매물 확인
+    </button>
+    <button data-page="saved">
+     나의 매물
+    </button>
+    <button data-page="agent">
+     중개사 찾기
+    </button>
+    <button data-page="profile">
+     나의 조건
+    </button>
+   </nav>
+   <div class="user">
+    <span class="pill">
+     화면 시연
+    </span>
+    <span class="avatar">
+     나
+    </span>
+   </div>
+  </header>
+  <div class="layout">
+   <aside>
+    <div class="side-intro">
+     <strong>
+      내 집을 찾는
+      <br/>
+      가장 든든한 시작
+     </strong>
+     <p class="small muted" style="margin-top:10px">
+      조건 확인부터 계약 준비까지
+      <br/>
+      한곳에서 이어가세요.
+     </p>
+    </div>
+    <div aria-label="기능 메뉴" class="side-nav">
+     <button data-page="home">
+      <span>
+       ⌂
+      </span>
+      나의 대시보드
+     </button>
+     <button data-page="profile">
+      <span>
+       ▤
+      </span>
+      선정정보 입력
+     </button>
+     <button data-page="calc">
+      <span>
+       ▦
+      </span>
+      추가부담 가능 범위 계산
+     </button>
+     <button data-page="check">
+      <span>
+       ⌕
+      </span>
+      사용자 조건에 따른 매물 확인
+     </button>
+     <button data-page="saved">
+      <span>
+       ♡
+      </span>
+      관심매물 진행상태 관리
+     </button>
+     <button data-page="agent">
+      <span>
+       ♧
+      </span>
+      공인중개사 전세임대 실적
+     </button>
+    </div>
+    <div class="side-promo">
+     <strong>
+      청년의 주거,
+      <br/>
+      오늘도 더 가까이
+     </strong>
+     <p class="small">
+      나에게 맞는 집을 찾는 여정,
+      <br/>
+      청년전세ON이 함께합니다.
+     </p>
+     <svg>
+      <use href="#town">
+      </use>
+     </svg>
+    </div>
+   </aside>
+   <main>
+    <div class="breadcrumb">
+     ⌂   홈   ›
+     <span id="crumb">
+     </span>
+    </div>
+    <div id="app">
+    </div>
+    <footer class="notice">
+     KU알라룸푸르 · 드림학기제 웹 프로토타입
+     <br/>
+     2·3주차 활동자료를 바탕으로 만든 시연 화면입니다. 매물·중개사·실적은 가상 데이터이며 최신 공고나 실제 심사 결과와 연동되지 않습니다. 입력 내용은 이 브라우저에 저장됩니다.
+    </footer>
+   </main>
+  </div>
+  <div class="toast hidden" id="toast" role="status">
+  </div>
+  <dialog id="modal">
+   <form id="add-form">
+    <h2>
+     관심매물 등록
+    </h2>
+    <label class="field">
+     <span>
+      매물 이름
+     </span>
+     <input maxlength="60" name="name" placeholder="예: 행복빌라 101호" required=""/>
+    </label>
+    <label class="field">
+     <span>
+      주소
+     </span>
+     <input maxlength="120" name="address" placeholder="예: 서울특별시 광진구 자양동" required=""/>
+    </label>
+    <label class="field">
+     <span>
+      전세보증금 (만원)
+     </span>
+     <input max="10000000" min="1" name="price" required="" type="number"/>
+    </label>
+    <div style="display:flex;gap:10px">
+     <button class="btn" type="submit">
+      등록하기
+     </button>
+     <button class="btn secondary" id="close-modal" type="button">
+      취소
+     </button>
+    </div>
+   </form>
+  </dialog>
+  <script defer="" src="script.js">
+  </script>
+ </body>
+</html>
