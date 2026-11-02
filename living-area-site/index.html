@@ -26,7 +26,7 @@ select,input[type=number]{width:100%;height:39px;border:1px solid #dbe4ef;border
 .summary{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}.summary span{padding:8px 10px;border-radius:9px;background:#fff;border:1px solid #e2e8f0;color:#64768c;font-size:9.5px}.summary b{color:#1761e9}
 .toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.toolbar h2{margin:0;color:#1c4274;font-size:18px}.toolbar p{margin:3px 0 0;color:#8a98aa;font-size:9.5px}.toolbar select{width:auto;min-width:140px}
 .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.listing{overflow:hidden;background:#fff;border:1px solid #dfe6ef;border-radius:14px}
-.photo{position:relative;height:112px;display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;background:linear-gradient(135deg,#eef4ff,#f9fbff);border-bottom:1px solid #e3eaf3}.photo-inner strong{display:block;color:#315f98;font-size:11px}.photo-inner span{display:block;margin-top:5px;color:#7b8ba0;font-size:8.5px}.photo-badge{position:absolute;left:9px;top:9px;padding:5px 7px;border-radius:7px;background:#1761e9;color:#fff;font-size:8px}
+.photo{position:relative;height:170px;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,#eef4ff,#f9fbff);border-bottom:1px solid #e3eaf3;overflow:hidden}.photo img{width:100%;height:100%;object-fit:cover;display:block}.photo-inner{padding:18px}.photo-inner strong{display:block;color:#315f98;font-size:11px}.photo-inner span{display:block;margin-top:5px;color:#7b8ba0;font-size:8.5px}.photo-badge{position:absolute;left:9px;top:9px;padding:5px 7px;border-radius:7px;background:rgba(23,97,233,.94);color:#fff;font-size:8px}.photo-credit{position:absolute;right:8px;bottom:8px;padding:4px 6px;border-radius:6px;background:rgba(255,255,255,.9);color:#53677f;font-size:7.5px}
 .body{padding:13px}.loc{color:#8291a4;font-size:8.5px}.head{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-top:3px}.head h3{margin:0;color:#203e62;font-size:13.5px;line-height:1.35}.price{text-align:right;white-space:nowrap;color:#1761e9;font-size:15px;font-weight:900}
 .tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:7px}.tag{padding:4px 6px;border-radius:999px;background:#f0f4f8;color:#65768b;font-size:7.8px}.tag.blue{background:#eaf2ff;color:#1761e9}.tag.green{background:#e8f7ef;color:#157452}.tag.red{background:#fff0ef;color:#b54238}
 .specs{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-top:9px}.specs div{padding:7px;border-radius:8px;background:#f8fafe}.specs span{display:block;color:#8a97a8;font-size:7.6px}.specs b{display:block;margin-top:2px;color:#334d6b;font-size:9px}
@@ -196,6 +196,33 @@ L.push(
 {id:'20091618',city:'서울특별시',gu:'동작구',dong:'신대방동',building:'단독·다가구',layout:'1.5룸',dep:500,rent:45,py:7.26,m2:24,rooms:'방1/욕1',floor:'저층/2층',use:'단독주택',route:'shindaebang',photo:'studio',url:'https://www.peterpanz.com/house/20091618',note:'신대방역 생활권 · 분리형 원룸',source:'피터팬'},
 {id:'19986296',city:'서울특별시',gu:'관악구',dong:'신림동',building:'단독·다가구',layout:'원룸',dep:500,rent:43,py:6,m2:19.84,rooms:'방1/욕1',floor:'2/3층',use:'단독주택',route:'sillim',photo:'studio',url:'https://www.peterpanz.com/house/19986296',note:'풀옵션 분리형 · 남향',source:'피터팬'}
 );
+const verifiedPhotos={
+ '4864467':{
+  url:'https://cdn.smedaily.co.kr/news/photo/202302/249245_186676_4653.jpg',
+  label:'유탑 트윈팰리스 실제 전경',
+  credit:'중소기업신문',
+  source:'https://www.smedaily.co.kr/news/articleView.html?idxno=249245',
+  exact:true,
+  address:'경기도 구리시 원수택로64번길 33'
+ }
+};
+const buildingPhotoPages={
+ '4767389':{label:'클래시아구리 실제 단지사진',url:'https://realty.daangn.com/complexes/14779382',address:'경기도 구리시 안골로63번길 38'},
+ '4878655':{label:'엘도라도 단지·항공사진',url:'https://apt.zippoom.com/%EB%B6%80%EB%8F%99%EC%82%B0/%EC%9D%B8%EC%B2%9C-%EB%B6%80%ED%8F%89%EA%B5%AC-%EB%B6%80%ED%8F%89%EB%8F%99-%EC%97%98%EB%8F%84%EB%9D%BC%EB%8F%84/uar0cx',address:'인천광역시 부평구 부흥북로72번길 15'}
+};
+function mapUrl(l){
+ const p=verifiedPhotos[l.id]||buildingPhotoPages[l.id];
+ const q=p?.address || (l.city+' '+l.gu+' '+l.dong);
+ return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q);
+}
+function photoHtml(l){
+ const p=verifiedPhotos[l.id];
+ if(p){
+  return '<div class="photo"><img src="'+p.url+'" alt="'+p.label+'"><span class="photo-badge">실제 건물 외관</span><span class="photo-credit">출처 · '+p.credit+'</span></div>';
+ }
+ const bp=buildingPhotoPages[l.id];
+ return '<div class="photo"><span class="photo-badge">'+(bp?'실제 건물사진 링크 있음':'실매물 사진은 원문에서')+'</span><div class="photo-inner"><strong>'+(bp?bp.label:'실매물 사진 확인 가능')+'</strong><span>'+(bp?'아래 건물사진 버튼에서 확인':'당근·피터팬 원문에서 실제 내부/외부 사진 확인')+'</span></div></div>';
+}
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const areaOptions={
  '경기도':[['구리시','구리 · 수택/교문'],['성남시','성남 · 태평/신흥'],['군포시','군포 · 금정/산본'],['안양시','안양 · 안양/명학'],['수원시','수원 · 장안구'],['고양시','고양 · 덕양구']],
@@ -269,7 +296,7 @@ function render(){
  const show=arr.slice(0,limit);
  $('#list').innerHTML=show.length?show.map(l=>{const r=routeOf(l);const warn=(l.note||'').includes('위반')||l.id==='4761948'||l.id==='20010943';return `
  <article class="listing">
-  <div class="photo"><span class="photo-badge">${l.building} · ${l.layout}</span><div class="photo-inner"><strong>실제 매물 사진은 원문에서 확인</strong><span>다른 집의 대표 이미지는 표시하지 않습니다.</span></div></div>
+  ${photoHtml(l)}
   <div class="body">
    <div class="loc">${l.city} › ${l.gu} › <b>${l.dong}</b><span class="source-label">${l.source}</span></div>
    <div class="head"><h3>${l.layout} · ${l.py}평</h3><div class="price">${l.dep.toLocaleString()} / ${l.rent}</div></div>
@@ -279,11 +306,11 @@ function render(){
     <div class="route-stats"><span>🚶 도보 ${r.walk}분</span><span>🚇 지하철 환승 ${r.sub}회</span><span>🚌 버스 환승 ${r.bus}회</span><span>↔ 버스↔지하철 ${r.switches}회</span></div>
     <div class="segments">${r.segments.map((s,i)=>'<span class="seg">'+s+'</span>'+(i<r.segments.length-1?'<span class="arrow">›</span>':'')).join('')}</div>
    </div>
-   <div class="actions"><a class="source-btn" href="${l.url}" target="_blank" rel="noopener">📷 ${l.source} 실매물·사진</a><button class="detail-btn" type="button">상세정보</button></div>
+   <div class="actions"><a class="source-btn" href="${l.url}" target="_blank" rel="noopener">📷 실매물 내부사진</a><a class="detail-btn" href="${(buildingPhotoPages[l.id]||verifiedPhotos[l.id])?.source || (buildingPhotoPages[l.id]?.url || mapUrl(l))}" target="_blank" rel="noopener">${buildingPhotoPages[l.id]||verifiedPhotos[l.id]?'🏢 건물 외관':'🗺 지도·로드뷰'}</a></div><div class="actions"><a class="detail-btn" href="${mapUrl(l)}" target="_blank" rel="noopener">📍 Google 지도</a><button class="detail-btn" type="button" data-detail>상세정보</button></div>
   </div>
   <div class="extra"><div class="extra-box"><p><b>매물 메모</b> · ${l.note}</p><p><b>건축물 용도</b> · ${l.use}</p><p><b>매물번호</b> · ${l.id}</p>${warn?'<p class="warn"><b>확인</b> · 원문의 위반건축물·임차권·용도 등 계약 적격성 관련 표기를 반드시 확인하세요.</p>':''}</div></div>
  </article>`}).join(''):'<div class="empty">이 생활권에는 현재 선택조건과 일치하는 수집 매물이 없습니다.<br>주택유형·구조·예산을 넓히거나 위의 네이버·직방·다방·당근·피터팬 버튼에서 추가 매물을 확인하세요.</div>';
- $$('.detail-btn').forEach(b=>b.onclick=()=>{const card=b.closest('.listing');card.classList.toggle('open');b.textContent=card.classList.contains('open')?'접기':'상세정보'});
+ $('[data-detail]').forEach(b=>b.onclick=()=>{const card=b.closest('.listing');card.classList.toggle('open');b.textContent=card.classList.contains('open')?'접기':'상세정보'});
  $('#more').style.display=arr.length>limit?'block':'none';
 }
 syncAreas();$('#area').value='구리시';render();
