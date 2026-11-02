@@ -161,20 +161,24 @@ function search(){
  if(out.length){
   qs('#results').innerHTML='<div class="cards">'+out.map(cardHtml).join('')+'</div>';
  } else {
-  const sameArea=listings.filter(l=>l.province===state.province&&cityDongMatch(l)).map(l=>{
+  const rankNear=l=>{
     let penalty=Math.abs(l.time-state.time)*2+Math.max(0,l.dep-state.dep)/100+Math.max(0,l.rent-state.rent)*3;
     if(state.type!=='전체'&&l.type!==state.type) penalty+=25;
     if(state.layout!=='전체'&&l.layout!==state.layout) penalty+=20;
-    if(state.sizes.length&&!state.sizes.includes(band(l.py))) penalty+=15; penalty-=lifestyleHits(l,state.prefs).length*8;
+    if(state.sizes.length&&!state.sizes.includes(band(l.py))) penalty+=15;
+    penalty-=lifestyleHits(l,state.prefs).length*8;
     return {...l,penalty};
-  }).sort((a,b)=>a.penalty-b.penalty).slice(0,6);
+  };
+  const sameArea=listings.filter(l=>l.province===state.province&&cityDongMatch(l)).map(rankNear).sort((a,b)=>a.penalty-b.penalty).slice(0,6);
+  const sameProvince=listings.filter(l=>l.province===state.province).map(rankNear).sort((a,b)=>a.penalty-b.penalty).slice(0,6);
+  const fallback=sameArea.length?sameArea:sameProvince;
   const loc=[qs('#province option:checked').textContent,...state.areas,state.dongs.map(v=>v.split('|||')[1])].join(' ');
   const q=encodeURIComponent(loc+' 월세 원룸 투룸 다세대 다가구 오피스텔 아파트');
-  let html='<div class="empty"><b>정확히 일치하는 내부 수집 매물은 현재 0건입니다.</b><div style="margin-top:6px;font-size:12px;color:#71829a">대신 같은 지역의 근접 조건 실제 매물을 먼저 보여주고, 아래 플랫폼에서 현재 매물을 추가 탐색할 수 있습니다.</div></div>';
-  if(sameArea.length){
-    html+='<div class="near-title">같은 지역의 근접 실제 매물</div><div class="cards">'+sameArea.map(cardHtml).join('')+'</div>';
+  let html='<div class="empty"><b>선택한 세부 조건은 내부 직접수집을 더 확대 중입니다.</b><div style="margin-top:6px;font-size:12px;color:#71829a">시장에 매물이 없다는 뜻이 아닙니다. 우선 가장 가까운 실제 매물을 보여주고, 아래에서 현재 매물을 더 찾을 수 있습니다.</div></div>';
+  if(fallback.length){
+    html+='<div class="near-title">'+(sameArea.length?'같은 지역의 근접 실제 매물':'같은 시·도의 근접 실제 매물')+'</div><div class="cards">'+fallback.map(cardHtml).join('')+'</div>';
   }
-  html+='<div class="near-title">현재 매물 더 찾기</div><div class="portal"><a target="_blank" href="https://realty.daangn.com/">당근부동산</a><a target="_blank" href="https://land.naver.com/">네이버부동산</a><a target="_blank" href="https://www.zigbang.com/">직방</a><a target="_blank" href="https://www.dabangapp.com/map">다방</a><a target="_blank" href="https://www.peterpanz.com/">피터팬</a><a target="_blank" href="https://www.google.com/search?q='+q+'">통합검색</a></div>';
+  html+='<div class="near-title">현재 매물 더 찾기</div><div class="portal"><a target="_blank" href="https://www.google.com/search?q='+encodeURIComponent(loc+' 당근부동산 월세')+'">당근부동산 검색</a><a target="_blank" href="https://www.google.com/search?q='+encodeURIComponent(loc+' 네이버부동산 월세')+'">네이버부동산 검색</a><a target="_blank" href="https://www.google.com/search?q='+encodeURIComponent(loc+' 직방 월세')+'">직방 검색</a><a target="_blank" href="https://www.google.com/search?q='+encodeURIComponent(loc+' 다방 월세')+'">다방 검색</a><a target="_blank" href="https://www.google.com/search?q='+encodeURIComponent(loc+' 피터팬 월세')+'">피터팬 검색</a><a target="_blank" href="https://www.google.com/search?q='+q+'">통합검색</a></div>';
   qs('#results').innerHTML=html;
  }
 }
