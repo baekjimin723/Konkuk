@@ -63,7 +63,11 @@ footer{margin-top:22px;text-align:center;color:#98a5b5;font-size:8.5px}
 <div class="field"><label>1. 시·도</label><select id="province">
 <option value="경기도" selected>경기</option><option value="서울특별시">서울</option><option value="인천광역시">인천</option>
 </select></div>
-<div class="field"><label>2. 시·군·구</label><select id="area"></select></div><div class="field"><label>3. 동·읍·면</label><select id="dong"></select></div>
+<div class="field"><label>2. 시·군·구</label><select id="area">
+<option value="구리시">구리시</option><option value="성남시">성남시</option><option value="군포시">군포시</option><option value="안양시">안양시</option><option value="수원시">수원시</option><option value="고양시">고양시</option>
+</select></div><div class="field"><label>3. 동·읍·면</label><select id="dong">
+<option value="전체">전체</option><option value="수택동">수택동</option><option value="교문동">교문동</option><option value="인창동">인창동</option><option value="갈매동">갈매동</option><option value="토평동">토평동</option>
+</select></div>
 <div class="field"><label>7. 통근시간</label><select id="time"><option value="45">45분</option><option value="60">60분</option><option value="75">75분</option><option value="90" selected>90분</option></select></div>
 <div class="field"><label>8. 환승 횟수</label><select id="transfers"><option value="0">0회</option><option value="1">1회</option><option value="2" selected>2회</option><option value="3">3회</option></select></div>
 <div class="field"><label>4. 주택유형</label><select id="building">
@@ -234,7 +238,7 @@ L.push(
 {id:'live-hanam',city:'경기도',gu:'하남시',dong:'풍산동',building:'단독·다가구',layout:'원룸',dep:500,rent:60,py:7.3,m2:24,rooms:'방1/욕1',floor:'확인 필요',use:'주택',route:'hanam',photo:'studio',url:'https://realty.daangn.com/map/%EA%B2%BD%EA%B8%B0%EB%8F%84/%ED%95%98%EB%82%A8%EC%8B%9C/%EC%9B%94%EC%84%B8/%EC%A4%91%EA%B0%9C',note:'풍산동 현재 원룸 월세 목록에서 확인',source:'당근부동산'},
 {id:'live-yangju',city:'경기도',gu:'양주시',dong:'고암동',building:'단독·다가구',layout:'투룸',dep:500,rent:30,py:14.8,m2:49,rooms:'확인 필요',floor:'확인 필요',use:'주택',route:'yangju',photo:'house',url:'https://realty.daangn.com/map/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EC%96%91%EC%A3%BC%EC%8B%9C/%EC%A3%BC%ED%83%9D/%EC%9B%94%EC%84%B8',note:'고암동 현재 주택 월세 목록에서 확인',source:'당근부동산'}
 );
-const $=s=>document.querySelector(s),$=s=>[...document.querySelectorAll(s)];
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const areaOptions={
  '경기도':[
   ['수원시','수원시'],['고양시','고양시'],['용인시','용인시'],['성남시','성남시'],['화성시','화성시'],['부천시','부천시'],['남양주시','남양주시'],['안산시','안산시'],['평택시','평택시'],['안양시','안양시'],['시흥시','시흥시'],['파주시','파주시'],['김포시','김포시'],['의정부시','의정부시'],['광주시','광주시'],['하남시','하남시'],['광명시','광명시'],['군포시','군포시'],['양주시','양주시'],['오산시','오산시'],['이천시','이천시'],['안성시','안성시'],['구리시','구리시'],['의왕시','의왕시'],['포천시','포천시'],['여주시','여주시'],['동두천시','동두천시'],['과천시','과천시'],['양평군','양평군'],['가평군','가평군'],['연천군','연천군']
@@ -420,7 +424,7 @@ function renderAreaInfo(){
 function render(){
  const dep=+$('#deposit').value||0,rent=+$('#rent').value||0;let arr=sorted(filtered());
  renderAreaInfo();
- $('#summary').innerHTML='<span>선택지역 <b>'+$('#area option:checked').text()+' · '+$('#dong option:checked').text()+'</b></span><span>검색 매물 <b>'+arr.length+'개</b></span><span>예산 안 <b>'+arr.filter(x=>x.afford).length+'개</b></span><span>출처 <b>당근·피터팬·네이버·직방·다방 통합</b></span>';
+ $('#summary').innerHTML='<span>선택지역 <b>'+$('#area option:checked').text()+' · '+$('#dong option:checked').text()+'</b></span><span>검색 매물 <b>'+arr.length+'개</b></span><span>예산 안 <b>'+arr.filter(x=>x.afford).length+'개</b></span><span>출처 <b>사이트 내 수집: 당근·피터팬 / 추가 탐색: 네이버·직방·다방</b></span>';
  const show=arr.slice(0,limit);
  $('#list').innerHTML=show.length?show.map(l=>{const r=routeOf(l);const warn=(l.note||'').includes('위반')||l.id==='4761948'||l.id==='20010943';return `
  <article class="listing">
@@ -438,7 +442,7 @@ function render(){
   </div>
   <div class="extra"><div class="extra-box"><p><b>매물 메모</b> · ${l.note}</p><p><b>건축물 용도</b> · ${l.use}</p><p><b>매물번호</b> · ${l.id}</p>${warn?'<p class="warn"><b>확인</b> · 원문의 위반건축물·임차권·용도 등 계약 적격성 관련 표기를 반드시 확인하세요.</p>':''}</div></div>
  </article>`}).join(''):liveSearchFallback();
- $('[data-detail]').forEach(b=>b.onclick=()=>{const card=b.closest('.listing');card.classList.toggle('open');b.textContent=card.classList.contains('open')?'접기':'상세정보'});
+ $$('[data-detail]').forEach(b=>b.onclick=()=>{const card=b.closest('.listing');card.classList.toggle('open');b.textContent=card.classList.contains('open')?'접기':'상세정보'});
  $('#more').style.display=arr.length>limit?'block':'none';
 }
 syncAreas();$('#area').value='구리시';syncDongs();render();
