@@ -17,7 +17,7 @@ header small{margin-left:auto;color:#8998aa;font-size:10px}
 h1{margin:14px 0 11px;color:#143365;font-size:33px;line-height:1.25;letter-spacing:-1.2px}h1 em{font-style:normal;color:#1761e9}.hero-copy p{margin:0;color:#71829a;font-size:12.5px}
 .hero-tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:20px}.hero-tags span{padding:8px 10px;border-radius:9px;background:#f6f9fd;color:#53677f;font-size:9.5px}
 .filters{padding:21px}.filters h2{margin:0 0 4px;color:#173c72;font-size:17px}.filters>p{margin:0 0 14px;color:#8492a6;font-size:9.5px}
-.filter-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{margin-bottom:12px}.field label,.field-title{display:block;margin-bottom:6px;color:#53667f;font-size:9.5px;font-weight:800}
+.filter-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.multi-field{grid-column:1/-1}.multi-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:6px}.multi-head label{margin:0!important}.multi-actions{display:flex;gap:5px}.mini-action{border:1px solid #dbe4ef;background:#fff;color:#315f98;border-radius:7px;padding:5px 7px;font-size:8px;font-weight:800}.multi-box{max-height:155px;overflow:auto;padding:9px;border:1px solid #dbe4ef;border-radius:10px;background:#fbfdff;display:flex;flex-wrap:wrap;gap:6px}.multi-option{position:relative}.multi-option input{position:absolute;opacity:0;pointer-events:none}.multi-option span{display:block;padding:7px 9px;border:1px solid #dce5ef;border-radius:999px;background:#fff;color:#68798e;font-size:8.8px}.multi-option input:checked+span{border-color:#1761e9;background:#eaf2ff;color:#1761e9}.selected-line{margin-top:6px;color:#7d8da2;font-size:8.5px}.field{margin-bottom:12px}.field label,.field-title{display:block;margin-bottom:6px;color:#53667f;font-size:9.5px;font-weight:800}
 select,input[type=number]{width:100%;height:39px;border:1px solid #dbe4ef;border-radius:9px;background:#fff;padding:0 10px;color:#31445f}
 .chips{display:flex;flex-wrap:wrap;gap:6px}.chip{position:relative}.chip input{position:absolute;opacity:0}.chip span{display:block;padding:7px 9px;border:1px solid #dbe4ef;border-radius:999px;background:#fff;color:#68798e;font-size:9px}.chip input:checked+span{border-color:#1761e9;background:#eaf2ff;color:#1761e9}
 .budget{display:grid;grid-template-columns:1fr 1fr;gap:8px}.budget label{padding:9px;border:1px solid #e2e8f0;border-radius:9px;background:#fafcff}.budget span{display:block;color:#8795a7;font-size:8.5px}.budget input{margin-top:4px}
@@ -57,37 +57,44 @@ footer{margin-top:22px;text-align:center;color:#98a5b5;font-size:8.5px}
 <p>3평대부터 20평대 이상까지 실제 최근 매물을 모아 비교합니다. 통근은 총시간만 적지 않고 도보·버스·지하철 구간과 환승 종류를 따로 보여줍니다.</p>
 <div class="hero-tags"><span>단독·다가구</span><span>다세대·빌라</span><span>도시형생활주택</span><span>오피스텔</span><span>아파트</span><span>3평~20평+</span><span>실매물 사진 원문 연결</span></div>
 </div>
-<form class="filters box" id="filters">
-<h2>매물 조건</h2><p>지역부터 주택유형·구조·평수까지 각각 직접 선택합니다.</p>
+<section class="filters box" id="filters">
+<h2>매물 조건</h2><p>시·군·구와 동·읍·면은 여러 곳을 동시에 선택할 수 있습니다.</p>
 <div class="filter-grid">
 <div class="field"><label>1. 시·도</label><select id="province">
 <option value="경기도" selected>경기</option><option value="서울특별시">서울</option><option value="인천광역시">인천</option>
 </select></div>
-<div class="field"><label>2. 시·군·구</label><select id="area">
-<option value="구리시">구리시</option><option value="성남시">성남시</option><option value="군포시">군포시</option><option value="안양시">안양시</option><option value="수원시">수원시</option><option value="고양시">고양시</option>
-</select></div><div class="field"><label>3. 동·읍·면</label><select id="dong">
-<option value="전체">전체</option><option value="수택동">수택동</option><option value="교문동">교문동</option><option value="인창동">인창동</option><option value="갈매동">갈매동</option><option value="토평동">토평동</option>
-</select></div>
-<div class="field"><label>7. 통근시간</label><select id="time"><option value="45">45분</option><option value="60">60분</option><option value="75">75분</option><option value="90" selected>90분</option></select></div>
-<div class="field"><label>8. 환승 횟수</label><select id="transfers"><option value="0">0회</option><option value="1">1회</option><option value="2" selected>2회</option><option value="3">3회</option></select></div>
+<div class="field"><label>6. 통근시간</label><select id="time"><option value="45">45분</option><option value="60">60분</option><option value="75">75분</option><option value="90" selected>90분</option></select></div>
+
+<div class="field multi-field">
+  <div class="multi-head"><label>2. 시·군·구 (복수선택)</label><div class="multi-actions"><button type="button" class="mini-action" id="areaAll">전체선택</button><button type="button" class="mini-action" id="areaClear">선택해제</button></div></div>
+  <div class="multi-box" id="areaMulti"></div>
+  <div class="selected-line" id="areaSelected"></div>
+</div>
+
+<div class="field multi-field">
+  <div class="multi-head"><label>3. 동·읍·면 (복수선택)</label><div class="multi-actions"><button type="button" class="mini-action" id="dongAll">전체선택</button><button type="button" class="mini-action" id="dongClear">선택해제</button></div></div>
+  <div class="multi-box" id="dongMulti"></div>
+  <div class="selected-line" id="dongSelected"></div>
+</div>
+
 <div class="field"><label>4. 주택유형</label><select id="building">
 <option value="전체">전체 주택</option><option>단독·다가구</option><option>다세대·빌라</option><option>도시형생활주택</option><option>오피스텔</option><option>아파트</option>
 </select></div>
 <div class="field"><label>5. 방 구조</label><select id="layout">
 <option value="전체">전체 구조</option><option>원룸</option><option>1.5룸</option><option>복층원룸</option><option>투룸</option><option>쓰리룸</option>
 </select></div>
-<div class="field"><label>6. 평수</label><select id="size">
+<div class="field"><label>7. 환승 횟수</label><select id="transfers"><option value="0">0회</option><option value="1">1회</option><option value="2" selected>2회</option><option value="3">3회</option></select></div>
+<div class="field"><label>8. 평수</label><select id="size">
 <option value="전체">전체 평수</option><option value="small">6평 이하</option><option value="mid">6~10평</option><option value="large">10~15평</option><option value="xl">15평 이상</option>
 </select></div>
-
 </div>
 <div class="field"><span class="field-title">9. 보증금·월세</span><div class="budget">
 <label><span>보증금 최대(만원)</span><input id="deposit" type="number" min="0" step="100" value="1000"></label>
 <label><span>월세 최대(만원)</span><input id="rent" type="number" min="0" step="5" value="60"></label>
 </div></div>
-<button class="primary" type="submit">선택한 생활권의 실제 매물 보기</button>
-<div class="note">경기 전체를 한꺼번에 섞지 않습니다. 경기 선택 후 구리·성남·군포(금정)·안양·수원·고양 중 하나를 고르면 해당 생활권의 매물과 장점만 보여줍니다.</div>
-</form>
+<button class="primary" id="searchBtn" type="button">선택한 생활권의 실제 매물 보기</button>
+<div class="note">시·군·구와 법정동·읍·면은 2026-10-01 행정표준코드 기준입니다. 검색 버튼은 페이지를 제출하지 않아 선택값이 초기화되지 않습니다.</div>
+</section>
 </section>
 <div class="summary" id="summary"></div><section class="area-info" id="areaInfo"></section>
 <div class="toolbar"><div><h2>실제 매물 모음</h2><p>매물은 거래·삭제될 수 있으므로 원문에서 현재 상태를 다시 확인하세요.</p></div><select id="sort"><option value="budget">예산 적합순</option><option value="time">통근 짧은순</option><option value="rent">월세 낮은순</option><option value="area">넓은순</option></select></div>
@@ -239,93 +246,8 @@ L.push(
 {id:'live-yangju',city:'경기도',gu:'양주시',dong:'고암동',building:'단독·다가구',layout:'투룸',dep:500,rent:30,py:14.8,m2:49,rooms:'확인 필요',floor:'확인 필요',use:'주택',route:'yangju',photo:'house',url:'https://realty.daangn.com/map/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EC%96%91%EC%A3%BC%EC%8B%9C/%EC%A3%BC%ED%83%9D/%EC%9B%94%EC%84%B8',note:'고암동 현재 주택 월세 목록에서 확인',source:'당근부동산'}
 );
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
-const areaOptions={
- '경기도':[
-  ['수원시','수원시'],['고양시','고양시'],['용인시','용인시'],['성남시','성남시'],['화성시','화성시'],['부천시','부천시'],['남양주시','남양주시'],['안산시','안산시'],['평택시','평택시'],['안양시','안양시'],['시흥시','시흥시'],['파주시','파주시'],['김포시','김포시'],['의정부시','의정부시'],['광주시','광주시'],['하남시','하남시'],['광명시','광명시'],['군포시','군포시'],['양주시','양주시'],['오산시','오산시'],['이천시','이천시'],['안성시','안성시'],['구리시','구리시'],['의왕시','의왕시'],['포천시','포천시'],['여주시','여주시'],['동두천시','동두천시'],['과천시','과천시'],['양평군','양평군'],['가평군','가평군'],['연천군','연천군']
- ],
- '서울특별시':[
-  ['광진구','광진구'],['성동구','성동구'],['강동구','강동구'],['송파구','송파구'],['양천구','양천구'],['관악구','관악구'],['마포구','마포구'],['서대문구','서대문구'],['동작구','동작구'],['영등포구','영등포구'],['노원구','노원구'],['동대문구','동대문구']
- ],
- '인천광역시':[
-  ['제물포구','제물포구'],['영종구','영종구'],['미추홀구','미추홀구'],['연수구','연수구'],['남동구','남동구'],['부평구','부평구'],['계양구','계양구'],['서해구','서해구'],['검단구','검단구'],['강화군','강화군'],['옹진군','옹진군']
- ]
-};
-const dongOptions={
- '수원시':['전체','장안구 송죽동','장안구 조원동','장안구 영화동','장안구 정자동','장안구 율전동','권선구 권선동','권선구 세류동','권선구 호매실동','권선구 금곡동','팔달구 인계동','팔달구 우만동','팔달구 화서동','영통구 영통동','영통구 매탄동','영통구 망포동','영통구 원천동','영통구 이의동'],
- '고양시':['전체','덕양구 토당동','덕양구 행신동','덕양구 화정동','덕양구 원흥동','덕양구 삼송동','덕양구 지축동','일산동구 장항동','일산동구 백석동','일산동구 마두동','일산동구 식사동','일산서구 주엽동','일산서구 대화동','일산서구 탄현동'],
- '용인시':['전체','처인구 김량장동','처인구 역북동','처인구 삼가동','처인구 모현읍','처인구 포곡읍','기흥구 구갈동','기흥구 신갈동','기흥구 보정동','기흥구 동백동','기흥구 영덕동','수지구 죽전동','수지구 풍덕천동','수지구 상현동','수지구 성복동'],
- '성남시':['전체','수정구 태평동','수정구 신흥동','수정구 수진동','수정구 창곡동','중원구 성남동','중원구 하대원동','중원구 금광동','중원구 은행동','분당구 야탑동','분당구 서현동','분당구 정자동','분당구 수내동','분당구 판교동'],
- '화성시':['전체','병점구 진안동','병점구 병점동','동탄구 반송동','동탄구 청계동','동탄구 오산동','향남읍','봉담읍','남양읍'],
- '부천시':['전체','원미구 심곡동','원미구 중동','원미구 상동','소사구 소사본동','소사구 송내동','오정구 원종동','오정구 고강동'],
- '남양주시':['전체','다산동','별내동','호평동','평내동','금곡동','일패동','이패동','화도읍','진접읍','오남읍','진건읍'],
- '안산시':['전체','상록구 본오동','상록구 사동','상록구 이동','상록구 월피동','단원구 고잔동','단원구 선부동','단원구 원곡동','단원구 초지동'],
- '평택시':['전체','평택동','비전동','합정동','세교동','용이동','고덕동','서정동','지산동','신장동','안중읍','청북읍'],
- '안양시':['전체','만안구 안양동','만안구 석수동','만안구 박달동','동안구 비산동','동안구 관양동','동안구 호계동','동안구 평촌동'],
- '시흥시':['전체','신천동','대야동','장현동','은행동','배곧동','정왕동','능곡동','목감동'],
- '파주시':['전체','야당동','동패동','금촌동','문산읍','조리읍','월롱면','파주읍','운정동'],
- '김포시':['전체','사우동','풍무동','걸포동','장기동','운양동','구래동','마산동','고촌읍','통진읍'],
- '의정부시':['전체','의정부동','가능동','신곡동','민락동','호원동','녹양동','금오동'],
- '광주시':['전체','경안동','송정동','태전동','역동','쌍령동','곤지암읍','오포읍'],
- '하남시':['전체','신장동','덕풍동','풍산동','망월동','학암동','감이동'],
- '광명시':['전체','광명동','철산동','하안동','소하동','일직동'],
- '군포시':['전체','금정동','당동','산본동','당정동','부곡동','도마교동'],
- '양주시':['전체','옥정동','고읍동','광사동','덕정동','회암동','고암동','장흥면','은현면'],
- '오산시':['전체','오산동','원동','궐동','세교동','금암동','갈곶동'],
- '이천시':['전체','창전동','중리동','증포동','안흥동','부발읍','마장면'],
- '안성시':['전체','석정동','옥산동','당왕동','공도읍','대덕면'],
- '구리시':['전체','수택동','교문동','인창동','갈매동','토평동'],
- '의왕시':['전체','내손동','포일동','오전동','삼동','왕곡동'],
- '포천시':['전체','신읍동','소흘읍','선단동','가산면','일동면'],
- '여주시':['전체','홍문동','교동','오학동','가남읍','점동면'],
- '동두천시':['전체','지행동','생연동','송내동','보산동','상패동'],
- '과천시':['전체','중앙동','별양동','부림동','원문동','갈현동'],
- '양평군':['전체','양평읍','용문면','강상면','강하면','서종면'],
- '가평군':['전체','가평읍','청평면','설악면','상면','조종면'],
- '연천군':['전체','연천읍','전곡읍','군남면','청산면'],
- '제물포구':['전체','신포동','연안동','신흥동','도원동','율목동','동인천동','개항동','송림동','송현동','화수동','화평동'],
- '영종구':['전체','영종동','영종1동','영종2동','운서1동','운서2동','용유동'],
- '미추홀구':['전체','숭의동','용현동','학익동','도화동','주안동','관교동','문학동'],
- '연수구':['전체','옥련동','선학동','연수동','청학동','동춘동','송도동'],
- '남동구':['전체','구월동','간석동','만수동','장수서창동','서창동','남촌도림동','논현동','고잔동'],
- '부평구':['전체','부평동','산곡동','청천동','갈산동','삼산동','부개동','일신동','십정동'],
- '계양구':['전체','효성동','계산동','작전동','서운동','박촌동','동양동','귤현동'],
- '서해구':['전체','가정동','신현동','원창동','석남동','가좌동','청라동'],
- '검단구':['전체','검암동','경서동','불로동','대곡동','원당동','당하동','마전동','오류동','왕길동','아라동'],
- '강화군':['전체','강화읍','선원면','불은면','길상면','화도면','양도면','내가면','하점면','양사면','송해면','교동면','삼산면','서도면'],
- '옹진군':['전체','북도면','백령면','대청면','덕적면','영흥면','자월면','연평면'],
- '광진구':['전체','화양동','자양동','구의동','광장동','군자동','중곡동'],
- '성동구':['전체','행당동','송정동','성수동','왕십리동','금호동','옥수동'],
- '강동구':['전체','천호동','성내동','길동','암사동','명일동','고덕동','상일동'],
- '송파구':['전체','잠실동','석촌동','삼전동','방이동','문정동','가락동','오금동'],
- '양천구':['전체','신정동','목동','신월동'],
- '관악구':['전체','신림동','봉천동','남현동'],
- '마포구':['전체','연남동','서교동','합정동','망원동','공덕동'],
- '서대문구':['전체','북가좌동','남가좌동','홍제동','연희동','충정로동'],
- '동작구':['전체','신대방동','상도동','사당동','노량진동','흑석동'],
- '영등포구':['전체','대림동','영등포동','당산동','문래동','신길동'],
- '노원구':['전체','상계동','중계동','하계동','월계동','공릉동'],
- '동대문구':['전체','전농동','청량리동','답십리동','장안동','회기동','이문동']
-};
-
-const benefits={
- '구리시':{title:'구리 · 서울 동부와 경기도의 중간지점',items:[['🚇','8호선 별내선','구리역에서 잠실 방향으로 바로 이어져 강남 동부 접근이 좋아졌습니다.'],['🔁','경의중앙선 환승','구리역에서 경의중앙선도 이용해 왕십리·청량리 방향 선택지가 있습니다.'],['🌳','장자호수·한강','장자호수공원과 한강 생활권을 함께 누릴 수 있습니다.'],['🏠','넓은 방 대비 낮은 월세','서울 동부보다 같은 예산으로 8~13평 투룸·다가구 선택지가 많습니다.']]},
- '성남시':{title:'성남 · 잠실/강남 남동권 직주근접형',items:[['🚇','8호선 + 수인분당선','신흥·태평·모란을 통해 잠실과 분당·강남 방향을 나눠 이동할 수 있습니다.'],['💼','강남·판교 접근','잠실뿐 아니라 판교·분당 일자리 접근까지 같이 볼 수 있습니다.'],['🛒','모란·태평 생활상권','전통시장·대형마트·생활상권이 촘촘합니다.'],['💸','서울보다 낮은 주거비','500/40~1000/60대 원룸·투룸 사례가 많습니다.']]},
- '군포시':{title:'군포(금정) · 1호선과 4호선이 만나는 환승거점',items:[['🚇','금정역 1·4호선','서울역·용산 방향과 사당·동작 방향을 한 역에서 선택할 수 있습니다.'],['🧭','서울 남서권 접근','가산·구로·사당 등 남서권 직장 접근에 유리합니다.'],['🌳','산본·철쭉동산 생활권','산본 중심상권과 공원·산책환경을 같이 이용할 수 있습니다.'],['💸','저가 원룸 풍부','500/35, 1000/45~50 수준의 원룸 사례가 실제로 확인됩니다.']]},
- '안양시':{title:'안양 · 서울 남서권과 평촌 생활권을 함께 쓰는 선택',items:[['🚇','1호선 서울 접근','안양·명학역에서 구로·신도림·용산 방향 이동이 단순합니다.'],['🏙','평촌·범계 상권 공유','안양 구도심과 평촌 신도시 상권을 함께 이용할 수 있습니다.'],['🌿','안양천·안양예술공원','생활권 안에서 하천과 대형 녹지를 이용하기 좋습니다.'],['💸','낮은 진입비용','안양동 300/30 수준의 분리형 원룸 사례도 확인됩니다.']]},
- '수원시':{title:'수원 장안 · 더 넓은 집과 생활 인프라를 우선할 때',items:[['📐','같은 월세에 넓은 면적','8~15평 원룸·투룸을 500/45~1000/60대에서 찾을 수 있습니다.'],['🌳','만석공원 생활권','대형 수변공원과 도서관·체육시설을 일상권으로 이용할 수 있습니다.'],['⚾','KT위즈파크·스타필드','스포츠·쇼핑·문화시설 선택지가 많습니다.'],['🚌','광역버스 활용','지하철 외 광역버스로 서울 동부·강남권 통근 대안을 만들 수 있습니다.']]},
- '고양시':{title:'고양 덕양 · 홍대/도심 서북권과 넓은 주거를 함께',items:[['🚇','경의중앙선·3호선','능곡·행신은 경의중앙선, 화정은 3호선을 활용할 수 있습니다.'],['🧭','홍대·DMC 접근','서울 서북권 직장과 문화생활 접근성이 좋습니다.'],['🌳','행주산성·공원','행주산성, 서정공원 등 녹지 접근이 좋습니다.'],['🏠','다가구·투룸 선택','10평 이상 투룸·1.5룸 매물이 서울보다 낮은 가격대로 보입니다.']]},
- '광진구':{title:'광진 · 통근비용을 최소화하고 생활편의를 극대화',items:[['🚇','2·7호선','강남·잠실·도심 여러 방향 이동이 쉽습니다.'],['🎓','대학·병원 생활권','건국대·세종대·건국대병원 기반 생활 인프라가 밀집합니다.'],['🌳','어린이대공원·한강','대형 공원과 한강 접근이 좋습니다.'],['⏱','통근시간 절약','주거비가 다소 높아도 이동시간을 크게 줄일 수 있습니다.']]},
- '성동구':{title:'성동 · 왕십리 환승과 성수 직장·문화생활',items:[['🚇','왕십리 다중환승','2·5호선·수인분당·경의중앙선을 선택할 수 있습니다.'],['💼','성수 업무지구','성수·서울숲 일자리와 상권 접근성이 좋습니다.'],['🌳','서울숲·한강','대형 녹지와 수변생활을 같이 누릴 수 있습니다.'],['🧭','도심·강남 균형','종로와 강남 어느 쪽도 이동시간이 과도하게 길지 않습니다.']]},
- '강동구':{title:'강동 · 동서울 생활권과 한강을 함께',items:[['🚇','5·8호선','천호를 중심으로 잠실·강남동부와 도심 방향을 나눠 이동합니다.'],['🛍','천호 대형상권','현대백화점·영화관·전통시장 등이 밀집합니다.'],['🌳','한강·광나루','한강공원 접근이 좋습니다.'],['💸','송파 대비 선택지','잠실 인접권보다 낮은 월세의 다가구·투룸을 찾을 수 있습니다.']]},
- '송파구':{title:'송파 · 잠실·문정 일자리와 대형 문화시설',items:[['💼','잠실·문정 업무','동남권 일자리 접근이 매우 좋습니다.'],['🚇','2·8·9호선','잠실·석촌권에서 다양한 노선을 선택할 수 있습니다.'],['🌳','석촌호수·올림픽공원','대형 녹지·수변시설이 풍부합니다.'],['🛍','롯데월드몰','쇼핑·영화·문화시설이 한 곳에 모여 있습니다.']]},
- '양천구':{title:'양천 · 목동 생활인프라와 서남권 접근',items:[['🚇','5호선·2호선 연계','신정·목동에서 여의도·도심과 구로권 접근이 가능합니다.'],['🛍','목동 상권','백화점·대형마트·병원 등 생활시설이 많습니다.'],['🌳','양천공원','생활권 내 공원 이용이 편리합니다.'],['🏠','빌라·다가구 선택','중심 서울보다 넓은 투룸 선택지가 상대적으로 많습니다.']]},
- '관악구':{title:'관악 · 2호선 직주근접과 청년 주거 선택지',items:[['🚇','2호선','강남·구로디지털단지·신도림 직장 접근이 좋습니다.'],['🎓','대학가 주거시장','원룸·다세대 매물이 많고 가격대가 다양합니다.'],['🌳','관악산','대형 자연녹지를 일상에서 이용할 수 있습니다.'],['💸','서울 내 가성비','서울에 남으면서도 상대적으로 저렴한 원룸을 찾기 쉽습니다.']]},
- '마포구':{title:'마포 · 홍대 문화생활과 서북권 일자리',items:[['🚇','2호선·공항철도·경의중앙','도심·공항·DMC 방향 이동이 좋습니다.'],['🎭','홍대·연남 상권','문화·외식·카페 선택지가 매우 많습니다.'],['💼','DMC·여의도 접근','서북권과 여의도 직장 통근에 유리합니다.'],['🌳','경의선숲길','도심형 녹지 접근이 좋습니다.']]},
- '서대문구':{title:'서대문 · 대학가와 도심 서북권의 균형',items:[['🚇','경의중앙·6호선 인접','홍대·DMC·도심 방향 접근이 좋습니다.'],['🎓','대학가 인프라','연세대·이화여대·명지대 생활권을 공유합니다.'],['🌳','홍제천·안산','산책·자연환경 접근이 좋습니다.'],['🏠','다세대 선택','마포 중심부보다 빌라·다세대 선택지가 넓습니다.']]},
- '동작구':{title:'동작 · 2호선 남서권 직장 접근',items:[['🚇','2호선','신대방에서 구로디지털·강남을 한 노선으로 이동합니다.'],['💼','구로·가산 접근','서남권 업무지구 통근이 편리합니다.'],['🌳','보라매공원','대형 공원과 병원 생활권이 가깝습니다.'],['💸','가성비 원룸','500/45 수준의 분리형 원룸 사례가 확인됩니다.']]},
- '부평구':{title:'부평 · 큰 상권과 낮은 월세를 함께',items:[['🚇','1호선 + 인천1호선','서울 방향과 인천 도심 방향을 모두 선택할 수 있습니다.'],['🛍','부평역 상권','지하상가·문화의거리·영화관이 밀집합니다.'],['💸','저보증금 선택지','80/60, 500/40 등 보증금이 낮은 매물도 많습니다.'],['🏠','유형 다양','원룸부터 오피스텔·아파트까지 한 생활권에서 비교 가능합니다.']]},
- '남동구':{title:'남동 · 인천 도심 인프라와 낮은 주거비',items:[['🚇','인천1·2호선 생활권','간석오거리·인천시청을 통해 인천 도심 이동이 좋습니다.'],['🛍','구월 중심상권','백화점·병원·시장 등 생활시설이 풍부합니다.'],['🌳','인천중앙공원','도심 속 대형 녹지 이용이 가능합니다.'],['💸','초저보증금 매물','50/40, 200/42 같은 낮은 보증금 사례가 확인됩니다.']]}
-};
+const areaOptions={"경기도":["가평군","고양시","과천시","광명시","광주시","구리시","군포시","김포시","남양주시","동두천시","부천시","성남시","수원시","시흥시","안산시","안성시","안양시","양주시","양평군","여주시","연천군","오산시","용인시","의왕시","의정부시","이천시","파주시","평택시","포천시","하남시","화성시"],"서울특별시":["강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"],"인천광역시":["강화군","검단구","계양구","남동구","미추홀구","부평구","서해구","연수구","영종구","옹진군","제물포구"]};
+const dongOptions={"가평군":["가평읍","설악면","청평면","상면","조종면","북면"],"고양시":["덕양구 주교동","덕양구 원당동","덕양구 신원동","덕양구 원흥동","덕양구 도내동","덕양구 성사동","덕양구 북한동","덕양구 효자동","덕양구 지축동","덕양구 오금동","덕양구 삼송동","덕양구 동산동","덕양구 용두동","덕양구 벽제동","덕양구 선유동","덕양구 고양동","덕양구 대자동","덕양구 관산동","덕양구 내유동","덕양구 토당동","덕양구 내곡동","덕양구 대장동","덕양구 화정동","덕양구 강매동","덕양구 행주내동","덕양구 행주외동","덕양구 신평동","덕양구 행신동","덕양구 화전동","덕양구 현천동","덕양구 덕은동","덕양구 향동동","일산동구 식사동","일산동구 중산동","일산동구 정발산동","일산동구 장항동","일산동구 마두동","일산동구 백석동","일산동구 풍동","일산동구 산황동","일산동구 사리현동","일산동구 지영동","일산동구 설문동","일산동구 문봉동","일산동구 성석동","일산서구 일산동","일산서구 주엽동","일산서구 탄현동","일산서구 대화동","일산서구 덕이동","일산서구 가좌동","일산서구 구산동","일산서구 법곳동"],"과천시":["관문동","문원동","갈현동","막계동","과천동","주암동","중앙동","원문동","별양동","부림동"],"광명시":["광명동","철산동","하안동","소하동","노온사동","일직동","가학동","옥길동"],"광주시":["경안동","쌍령동","송정동","회덕동","탄벌동","목현동","삼동","중대동","직동","태전동","장지동","역동","목동","고산동","신현동","능평동","문형동","추자동","매산동","양벌동","초월읍","곤지암읍","도척면","퇴촌면","남종면","남한산성면"],"구리시":["갈매동","사노동","인창동","교문동","수택동","아천동","토평동"],"군포시":["당동","당정동","부곡동","산본동","금정동","둔대동","속달동","대야미동","도마교동"],"김포시":["북변동","걸포동","운양동","장기동","감정동","사우동","풍무동","마산동","구래동","통진읍","고촌읍","양촌읍","대곶면","월곶면","하성면"],"남양주시":["호평동","평내동","금곡동","일패동","이패동","삼패동","수석동","지금동","도농동","별내동","다산동","와부읍","진접읍","화도읍","진건읍","오남읍","퇴계원읍","별내면","수동면","조안면"],"동두천시":["송내동","지행동","생연동","광암동","걸산동","보산동","동두천동","안흥동","상봉암동","하봉암동","탑동동","상패동"],"부천시":["소사구 소사본동","소사구 심곡본동","소사구 범박동","소사구 괴안동","소사구 송내동","소사구 옥길동","소사구 계수동","오정구 오정동","오정구 여월동","오정구 작동","오정구 원종동","오정구 고강동","오정구 대장동","오정구 삼정동","오정구 내동","원미구 원미동","원미구 심곡동","원미구 춘의동","원미구 도당동","원미구 약대동","원미구 소사동","원미구 역곡동","원미구 중동","원미구 상동"],"성남시":["분당구 분당동","분당구 수내동","분당구 정자동","분당구 율동","분당구 서현동","분당구 이매동","분당구 야탑동","분당구 판교동","분당구 삼평동","분당구 백현동","분당구 금곡동","분당구 궁내동","분당구 동원동","분당구 구미동","분당구 운중동","분당구 대장동","분당구 석운동","분당구 하산운동","수정구 신흥동","수정구 태평동","수정구 수진동","수정구 단대동","수정구 산성동","수정구 양지동","수정구 복정동","수정구 창곡동","수정구 신촌동","수정구 오야동","수정구 심곡동","수정구 고등동","수정구 상적동","수정구 둔전동","수정구 시흥동","수정구 금토동","수정구 사송동","중원구 성남동","중원구 금광동","중원구 은행동","중원구 상대원동","중원구 여수동","중원구 도촌동","중원구 갈현동","중원구 하대원동","중원구 중앙동"],"수원시":["권선구 세류동","권선구 평동","권선구 고색동","권선구 오목천동","권선구 평리동","권선구 서둔동","권선구 구운동","권선구 탑동","권선구 금곡동","권선구 호매실동","권선구 곡반정동","권선구 권선동","권선구 장지동","권선구 대황교동","권선구 입북동","권선구 당수동","영통구 매탄동","영통구 원천동","영통구 이의동","영통구 하동","영통구 영통동","영통구 신동","영통구 망포동","장안구 파장동","장안구 정자동","장안구 이목동","장안구 율전동","장안구 천천동","장안구 영화동","장안구 송죽동","장안구 조원동","장안구 연무동","장안구 상광교동","장안구 하광교동","팔달구 팔달로1가","팔달구 팔달로2가","팔달구 팔달로3가","팔달구 남창동","팔달구 영동","팔달구 중동","팔달구 구천동","팔달구 남수동","팔달구 매향동","팔달구 북수동","팔달구 신풍동","팔달구 장안동","팔달구 교동","팔달구 매교동","팔달구 매산로1가","팔달구 매산로2가","팔달구 매산로3가","팔달구 고등동","팔달구 화서동","팔달구 지동","팔달구 우만동","팔달구 인계동"],"시흥시":["대야동","신천동","방산동","포동","미산동","은행동","안현동","매화동","도창동","금이동","과림동","계수동","화정동","능곡동","하중동","하상동","광석동","물왕동","산현동","조남동","논곡동","목감동","거모동","군자동","장현동","장곡동","월곶동","정왕동","죽율동","무지내동","배곧동"],"안산시":["단원구 고잔동","단원구 와동","단원구 신길동","단원구 성곡동","단원구 원시동","단원구 목내동","단원구 초지동","단원구 원곡동","단원구 선부동","단원구 대부동동","단원구 대부북동","단원구 대부남동","단원구 선감동","단원구 풍도동","단원구 화정동","상록구 일동","상록구 이동","상록구 사동","상록구 본오동","상록구 팔곡이동","상록구 양상동","상록구 부곡동","상록구 성포동","상록구 월피동","상록구 팔곡일동","상록구 건건동","상록구 사사동","상록구 수암동","상록구 장상동","상록구 장하동"],"안성시":["봉산동","숭인동","영동","봉남동","구포동","동본동","명륜동","옥천동","낙원동","창전동","성남동","신흥동","인지동","금산동","연지동","대천동","서인동","석정동","아양동","금석동","계동","옥산동","사곡동","도기동","당왕동","가사동","가현동","신건지동","신소현동","신모산동","현수동","발화동","중리동","공도읍","보개면","금광면","서운면","미양면","대덕면","양성면","원곡면","일죽면","죽산면","삼죽면","고삼면"],"안양시":["동안구 비산동","동안구 관양동","동안구 평촌동","동안구 호계동","만안구 안양동","만안구 석수동","만안구 박달동"],"양주시":["유양동","어둔동","남방동","마전동","산북동","광사동","만송동","삼숭동","고읍동","덕정동","봉양동","회암동","율정동","옥정동","고암동","덕계동","회정동","백석읍","은현면","남면","광적면","장흥면"],"양평군":["양평읍","강상면","강하면","양서면","옥천면","서종면","단월면","청운면","양동면","지평면","용문면","개군면"],"여주시":["상동","홍문동","창동","우만동","단현동","신진동","하동","교동","월송동","가업동","연라동","상거동","하거동","삼교동","점봉동","능현동","멱곡동","연양동","매룡동","천송동","오학동","현암동","오금동","가남읍","점동면","흥천면","금사면","세종대왕면","대신면","북내면","강천면","산북면"],"연천군":["연천읍","전곡읍","군남면","청산면","백학면","미산면","왕징면","신서면","중면","장남면"],"오산시":["오산동","부산동","원동","궐동","청학동","가장동","금암동","수청동","은계동","내삼미동","외삼미동","양산동","세교동","지곶동","서랑동","서동","벌음동","두곡동","탑동","누읍동","가수동","고현동","청호동","갈곶동"],"용인시":["기흥구 신갈동","기흥구 구갈동","기흥구 상갈동","기흥구 하갈동","기흥구 보라동","기흥구 지곡동","기흥구 공세동","기흥구 고매동","기흥구 농서동","기흥구 서천동","기흥구 영덕동","기흥구 언남동","기흥구 마북동","기흥구 청덕동","기흥구 동백동","기흥구 중동","기흥구 상하동","기흥구 보정동","수지구 풍덕천동","수지구 죽전동","수지구 동천동","수지구 고기동","수지구 신봉동","수지구 성복동","수지구 상현동","처인구 김량장동","처인구 역북동","처인구 삼가동","처인구 남동","처인구 유방동","처인구 고림동","처인구 마평동","처인구 운학동","처인구 호동","처인구 해곡동","처인구 포곡읍","처인구 모현읍","처인구 이동읍","처인구 남사읍","처인구 양지읍","처인구 원삼면","처인구 백암면"],"의왕시":["고천동","이동","삼동","왕곡동","오전동","학의동","내손동","청계동","포일동","월암동","초평동"],"의정부시":["의정부동","호원동","장암동","신곡동","용현동","민락동","낙양동","자일동","금오동","가능동","녹양동","고산동","산곡동"],"이천시":["창전동","관고동","중리동","증일동","율현동","진리동","안흥동","갈산동","증포동","송정동","사음동","단월동","대포동","고담동","장록동","장호원읍","부발읍","신둔면","백사면","호법면","마장면","대월면","모가면","설성면","율면"],"파주시":["금촌동","아동동","야동동","검산동","맥금동","교하동","야당동","다율동","오도동","상지석동","산남동","동패동","당하동","문발동","송촌동","목동동","하지석동","서패동","신촌동","연다산동","와동동","금릉동","문산읍","파주읍","법원읍","조리읍","월롱면","탄현면","광탄면","파평면","적성면","군내면","장단면","진동면","진서면"],"평택시":["서정동","장당동","모곡동","칠괴동","칠원동","도일동","가재동","장안동","이충동","지산동","독곡동","신장동","평택동","통복동","군문동","유천동","합정동","비전동","동삭동","세교동","지제동","신대동","소사동","용이동","월곡동","청룡동","죽백동","고덕동","팽성읍","안중읍","포승읍","청북읍","진위면","서탄면","고덕면","오성면","현덕면"],"포천시":["신읍동","어룡동","자작동","선단동","설운동","동교동","소흘읍","군내면","내촌면","가산면","신북면","창수면","영중면","일동면","이동면","영북면","관인면","화현면"],"하남시":["천현동","하산곡동","창우동","배알미동","상산곡동","신장동","당정동","덕풍동","망월동","풍산동","미사동","선동","감북동","감일동","감이동","학암동","교산동","춘궁동","하사창동","상사창동","항동","초일동","초이동","광암동"],"화성시":["동탄구 능동","동탄구 반송동","동탄구 석우동","동탄구 청계동","동탄구 영천동","동탄구 중동","동탄구 신동","동탄구 목동","동탄구 산척동","동탄구 장지동","동탄구 송동","동탄구 방교동","동탄구 금곡동","동탄구 여울동","만세구 새솔동","만세구 우정읍","만세구 향남읍","만세구 남양읍","만세구 마도면","만세구 송산면","만세구 서신면","만세구 팔탄면","만세구 장안면","만세구 양감면","병점구 진안동","병점구 병점동","병점구 능동","병점구 기산동","병점구 반월동","병점구 반정동","병점구 황계동","병점구 송산동","병점구 안녕동","효행구 배양동","효행구 기안동","효행구 봉담읍","효행구 매송면","효행구 비봉면","효행구 정남면"],"강남구":["역삼동","개포동","청담동","삼성동","대치동","신사동","논현동","압구정동","세곡동","자곡동","율현동","일원동","수서동","도곡동"],"강동구":["명일동","고덕동","상일동","길동","둔촌동","암사동","성내동","천호동","강일동"],"강북구":["미아동","번동","수유동","우이동"],"강서구":["염창동","등촌동","화곡동","가양동","마곡동","내발산동","외발산동","공항동","방화동","개화동","과해동","오곡동","오쇠동"],"관악구":["봉천동","신림동","남현동"],"광진구":["중곡동","능동","구의동","광장동","자양동","화양동","군자동"],"구로구":["신도림동","구로동","가리봉동","고척동","개봉동","오류동","궁동","온수동","천왕동","항동"],"금천구":["가산동","독산동","시흥동"],"노원구":["월계동","공릉동","하계동","상계동","중계동"],"도봉구":["쌍문동","방학동","창동","도봉동"],"동대문구":["신설동","용두동","제기동","전농동","답십리동","장안동","청량리동","회기동","휘경동","이문동"],"동작구":["노량진동","상도동","상도1동","본동","흑석동","동작동","사당동","대방동","신대방동"],"마포구":["아현동","공덕동","신공덕동","도화동","용강동","토정동","마포동","대흥동","염리동","노고산동","신수동","현석동","구수동","창전동","상수동","하중동","신정동","당인동","서교동","동교동","합정동","망원동","연남동","성산동","중동","상암동"],"서대문구":["충정로2가","충정로3가","합동","미근동","냉천동","천연동","옥천동","영천동","현저동","북아현동","홍제동","대현동","대신동","신촌동","봉원동","창천동","연희동","홍은동","북가좌동","남가좌동"],"서초구":["방배동","양재동","우면동","원지동","잠원동","반포동","서초동","내곡동","염곡동","신원동"],"성동구":["상왕십리동","하왕십리동","홍익동","도선동","마장동","사근동","행당동","응봉동","금호동1가","금호동2가","금호동3가","금호동4가","옥수동","성수동1가","성수동2가","송정동","용답동"],"성북구":["성북동","성북동1가","돈암동","동소문동1가","동소문동2가","동소문동3가","동소문동4가","동소문동5가","동소문동6가","동소문동7가","삼선동1가","삼선동2가","삼선동3가","삼선동4가","삼선동5가","동선동1가","동선동2가","동선동3가","동선동4가","동선동5가","안암동1가","안암동2가","안암동3가","안암동4가","안암동5가","보문동4가","보문동5가","보문동6가","보문동7가","보문동1가","보문동2가","보문동3가","정릉동","길음동","종암동","하월곡동","상월곡동","장위동","석관동"],"송파구":["잠실동","신천동","풍납동","송파동","석촌동","삼전동","가락동","문정동","장지동","방이동","오금동","거여동","마천동"],"양천구":["신정동","목동","신월동"],"영등포구":["영등포동","영등포동1가","영등포동2가","영등포동3가","영등포동4가","영등포동5가","영등포동6가","영등포동7가","영등포동8가","여의도동","당산동1가","당산동2가","당산동3가","당산동4가","당산동5가","당산동6가","당산동","도림동","문래동1가","문래동2가","문래동3가","문래동4가","문래동5가","문래동6가","양평동1가","양평동2가","양평동3가","양평동4가","양평동5가","양평동6가","양화동","신길동","대림동","양평동"],"용산구":["후암동","용산동2가","용산동4가","갈월동","남영동","용산동1가","동자동","서계동","청파동1가","청파동2가","청파동3가","원효로1가","원효로2가","신창동","산천동","청암동","원효로3가","원효로4가","효창동","도원동","용문동","문배동","신계동","한강로1가","한강로2가","용산동3가","용산동5가","한강로3가","이촌동","이태원동","한남동","동빙고동","서빙고동","주성동","용산동6가","보광동"],"은평구":["수색동","녹번동","불광동","갈현동","구산동","대조동","응암동","역촌동","신사동","증산동","진관동"],"종로구":["청운동","신교동","궁정동","효자동","창성동","통의동","적선동","통인동","누상동","누하동","옥인동","체부동","필운동","내자동","사직동","도렴동","당주동","내수동","세종로","신문로1가","신문로2가","청진동","서린동","수송동","중학동","종로1가","공평동","관훈동","견지동","와룡동","권농동","운니동","익선동","경운동","관철동","인사동","낙원동","종로2가","팔판동","삼청동","안국동","소격동","화동","사간동","송현동","가회동","재동","계동","원서동","훈정동","묘동","봉익동","돈의동","장사동","관수동","종로3가","인의동","예지동","원남동","연지동","종로4가","효제동","종로5가","종로6가","이화동","연건동","충신동","동숭동","혜화동","명륜1가","명륜2가","명륜4가","명륜3가","창신동","숭인동","교남동","평동","송월동","홍파동","교북동","행촌동","구기동","평창동","부암동","홍지동","신영동","무악동"],"중구":["무교동","다동","태평로1가","을지로1가","을지로2가","남대문로1가","삼각동","수하동","장교동","수표동","소공동","남창동","북창동","태평로2가","남대문로2가","남대문로3가","남대문로4가","남대문로5가","봉래동1가","봉래동2가","회현동1가","회현동2가","회현동3가","충무로1가","충무로2가","명동1가","명동2가","남산동1가","남산동2가","남산동3가","저동1가","충무로4가","충무로5가","인현동2가","예관동","묵정동","필동1가","필동2가","필동3가","남학동","주자동","예장동","장충동1가","장충동2가","광희동1가","광희동2가","쌍림동","을지로6가","을지로7가","을지로4가","을지로5가","주교동","방산동","오장동","을지로3가","입정동","산림동","충무로3가","초동","인현동1가","저동2가","신당동","흥인동","무학동","황학동","서소문동","정동","순화동","의주로1가","충정로1가","중림동","의주로2가","만리동1가","만리동2가"],"중랑구":["면목동","상봉동","중화동","묵동","망우동","신내동"],"강화군":["강화읍","선원면","불은면","길상면","화도면","양도면","내가면","하점면","양사면","송해면","교동면","삼산면","서도면"],"검단구":["백석동","시천동","마전동","당하동","원당동","대곡동","금곡동","오류동","왕길동","불로동"],"계양구":["효성동","계산동","작전동","서운동","임학동","용종동","병방동","방축동","박촌동","동양동","귤현동","상야동","하야동","평동","노오지동","선주지동","이화동","오류동","갈현동","둑실동","목상동","다남동","장기동"],"남동구":["구월동","간석동","만수동","장수동","서창동","운연동","남촌동","수산동","도림동","논현동","고잔동"],"미추홀구":["숭의동","용현동","학익동","도화동","주안동","관교동","문학동"],"부평구":["부평동","십정동","산곡동","청천동","삼산동","갈산동","부개동","일신동","구산동"],"서해구":["검암동","경서동","공촌동","연희동","심곡동","가정동","신현동","석남동","원창동","가좌동","청라동"],"연수구":["옥련동","선학동","연수동","청학동","동춘동","송도동"],"영종구":["중산동","운남동","운서동","운북동","을왕동","남북동","덕교동","무의동"],"옹진군":["북도면","백령면","대청면","덕적면","영흥면","자월면","연평면"],"제물포구":["만석동","화수동","송현동","화평동","창영동","금곡동","송림동","중앙동1가","중앙동2가","중앙동3가","중앙동4가","해안동1가","해안동2가","해안동3가","해안동4가","관동1가","관동2가","관동3가","항동1가","항동2가","항동3가","항동4가","항동5가","항동6가","항동7가","송학동1가","송학동2가","송학동3가","사동","신생동","신포동","답동","신흥동1가","신흥동2가","신흥동3가","선화동","유동","율목동","도원동","내동","경동","용동","인현동","전동","북성동1가","북성동2가","북성동3가","선린동","송월동1가","송월동2가","송월동3가"]}
 const moreBenefits={
  '수원시':{title:'수원 · 직장·상권·공원을 모두 갖춘 남부 거점',items:[['💼','영통·광교 일자리','삼성전자 수원사업장과 광교 업무지구 접근성이 좋습니다.'],['🚇','1호선·수인분당선','서울 남부와 경기남부 여러 방향 이동이 가능합니다.'],['🌳','광교호수·만석공원','대형 공원과 수변공간 선택지가 많습니다.'],['🏠','넓은 주택 선택지','서울보다 같은 예산으로 넓은 다가구·투룸을 찾기 쉽습니다.']]},
  '고양시':{title:'고양 · DMC·홍대 접근과 신도시 생활인프라',items:[['🚇','3호선·경의중앙선','도심과 홍대·DMC 방향 이동이 좋습니다.'],['🏙','일산 신도시','대형마트·병원·상권이 잘 갖춰져 있습니다.'],['🌳','일산호수공원','대형 공원과 산책환경이 강점입니다.'],['🏠','넓은 면적','서울 서북권보다 같은 예산의 면적 선택 폭이 넓습니다.']]},
@@ -366,11 +288,46 @@ const moreBenefits={
 };
 const portalBase={naver:'https://land.naver.com/',zigbang:'https://www.zigbang.com/',dabang:'https://www.dabangapp.com/map',peter:'https://www.peterpanz.com/',daangn:'https://realty.daangn.com/'};
 let limit=15;
+function selectedAreas(){return [...document.querySelectorAll('#areaMulti input:checked')].map(x=>x.value)}
+function selectedDongs(){return [...document.querySelectorAll('#dongMulti input:checked')].map(x=>x.value)}
 function areaKey(l){
  if(l.city==='경기도'){
-  if(l.gu.startsWith('구리'))return '구리시';if(l.gu.startsWith('성남'))return '성남시';if(l.gu.startsWith('군포'))return '군포시';if(l.gu.startsWith('안양'))return '안양시';if(l.gu.startsWith('수원'))return '수원시';if(l.gu.startsWith('고양'))return '고양시';
+   const cities=areaOptions['경기도'];
+   return cities.find(city=>l.gu===city||l.gu.startsWith(city+' '))||l.gu;
  }
  return l.gu;
+}
+function listingDongKey(l){
+ const city=areaKey(l);
+ if(l.city==='경기도' && l.gu.startsWith(city+' ')){
+   const sub=l.gu.slice(city.length+1);
+   return sub+' '+l.dong;
+ }
+ return l.dong;
+}
+function updateSelectedLabels(){
+ const a=selectedAreas(),d=selectedDongs();
+ $('#areaSelected').textContent=a.length?('선택: '+a.join(', ')):'선택 없음';
+ $('#dongSelected').textContent=d.length?('선택: '+d.map(v=>v.split('|||')[1]).join(', ')):'동 선택 없음 → 선택한 시·군·구의 전체 동·읍·면';
+}
+function syncAreas(reset=true){
+ const p=$('#province').value,box=$('#areaMulti'),prev=new Set(reset?[]:selectedAreas());
+ box.innerHTML=areaOptions[p].map((v,i)=>'<label class="multi-option"><input type="checkbox" name="areaChoice" value="'+v+'" '+((prev.has(v)||(!prev.size&&i===0))?'checked':'')+'><span>'+v+'</span></label>').join('');
+ syncDongs(false);
+ updateSelectedLabels();
+}
+function syncDongs(preserve=true){
+ const cities=selectedAreas();
+ const prev=new Set(preserve?selectedDongs():[]);
+ const options=[];
+ cities.forEach(city=>(dongOptions[city]||[]).forEach(d=>options.push([city,d])));
+ $('#dongMulti').innerHTML=options.map(([city,d])=>{
+   const value=city+'|||'+d;
+   const checked=prev.has(value)?'checked':'';
+   const label=cities.length>1?(city+' · '+d):d;
+   return '<label class="multi-option"><input type="checkbox" name="dongChoice" value="'+value+'" '+checked+'><span>'+label+'</span></label>';
+ }).join('') || '<span style="font-size:9px;color:#8a98aa">먼저 시·군·구를 선택하세요.</span>';
+ updateSelectedLabels();
 }
 function sizeBand(py){return py<=6?'small':py<=10?'mid':py<=15?'large':'xl'}
 function routeOf(l){return routes[l.route]}
@@ -385,46 +342,44 @@ function syncDongs(){
  sel.innerHTML=arr.map(v=>'<option value="'+v+'">'+v+'</option>').join('');
  if(arr.includes(prev))sel.value=prev;
 }
-function currentArea(){return $('#area').value}
-function currentDong(){return $('#dong').value}
 function matchLayout(l,val){if(val==='전체')return true;if(val==='복층원룸')return l.layout.includes('복층');return l.layout===val}
 function filtered(){
  const maxT=+$('#time').value,maxTr=+$('#transfers').value,dep=+$('#deposit').value||0,rent=+$('#rent').value||0;
- const province=$('#province').value,area=currentArea(),dong=currentDong(),building=$('#building').value,layout=$('#layout').value,size=$('#size').value;
- return L.filter(l=>{const r=routeOf(l);const dongMatch=dong==='전체'||dong.endsWith(l.dong)||dong===l.dong;return l.city===province&&areaKey(l)===area&&dongMatch&&r.total<=maxT&&(r.sub+r.bus+r.switches)<=maxTr&&(building==='전체'||l.building===building)&&matchLayout(l,layout)&&(size==='전체'||sizeBand(l.py)===size)})
- .map(l=>({...l,afford:l.dep<=dep&&l.rent<=rent,score:(l.dep<=dep&&l.rent<=rent?100:0)+Math.max(0,90-routeOf(l).total)}));
+ const province=$('#province').value,areas=selectedAreas(),dongs=selectedDongs(),building=$('#building').value,layout=$('#layout').value,size=$('#size').value;
+ return L.filter(l=>{
+   const r=routeOf(l); if(!r) return false;
+   const city=areaKey(l),dongKey=listingDongKey(l);
+   const areaMatch=areas.length===0||areas.includes(city);
+   const dongMatch=dongs.length===0||dongs.includes(city+'|||'+dongKey);
+   return l.city===province&&areaMatch&&dongMatch&&r.total<=maxT&&(r.sub+r.bus+r.switches)<=maxTr&&(building==='전체'||l.building===building)&&matchLayout(l,layout)&&(size==='전체'||sizeBand(l.py)===size);
+ }).map(l=>({...l,afford:l.dep<=dep&&l.rent<=rent,score:(l.dep<=dep&&l.rent<=rent?100:0)+Math.max(0,90-routeOf(l).total)}));
 }
 function sorted(arr){
  const s=$('#sort').value;
  return [...arr].sort((a,b)=>s==='time'?routeOf(a).total-routeOf(b).total:s==='rent'?a.rent-b.rent:s==='area'?b.py-a.py:(b.afford-a.afford)||(b.score-a.score)||(a.rent-b.rent));
 }
 function liveSearchFallback(){
- const p=$('#province option:checked').text(),a=$('#area option:checked').text(),d=$('#dong option:checked').text();
- const loc=[p,a,d==='전체'?'':d].filter(Boolean).join(' ');
+ const p=$('#province option:checked').text(),areas=selectedAreas(),dongs=selectedDongs().map(v=>v.split('|||')[1]);
+ const loc=[p,areas.join(' '),dongs.join(' ')].filter(Boolean).join(' ');
  const q=encodeURIComponent(loc+' 월세 원룸 투룸 다세대 다가구 오피스텔 아파트');
- const daangn='https://realty.daangn.com/map/'+encodeURIComponent(p)+'/'+encodeURIComponent(a)+'/월세';
  const links=[
-  ['당근부동산',daangn],['네이버부동산','https://land.naver.com/'],['직방','https://www.zigbang.com/'],['다방','https://www.dabangapp.com/map'],['피터팬','https://www.peterpanz.com/'],['통합검색','https://www.google.com/search?q='+q]
+  ['당근부동산','https://realty.daangn.com/'],['네이버부동산','https://land.naver.com/'],['직방','https://www.zigbang.com/'],['다방','https://www.dabangapp.com/map'],['피터팬','https://www.peterpanz.com/'],['통합검색','https://www.google.com/search?q='+q]
  ];
- return '<div class="empty" style="text-align:left"><b style="display:block;color:#214f8b;font-size:12px;margin-bottom:8px">수집 카드가 없는 조합입니다. 실시간 실제 매물로 바로 보완합니다.</b><span style="display:block;margin-bottom:10px">선택지역: '+loc+' · 아래 버튼은 현재 해당 지역 매물을 직접 검색합니다.</span><div class="portal-links">'+links.map((x,i)=>'<a class="portal '+(i===0?'live':'')+'" target="_blank" rel="noopener" href="'+x[1]+'">'+x[0]+' 실제 매물</a>').join('')+'</div></div>';
+ return '<div class="empty" style="text-align:left"><b style="display:block;color:#214f8b;font-size:12px;margin-bottom:8px">현재 수집 카드 중 일치 매물이 없습니다.</b><span style="display:block;margin-bottom:10px">선택지역: '+loc+' · 아래 플랫폼에서 같은 지역의 현재 실제 매물을 바로 확인할 수 있습니다.</span><div class="portal-links">'+links.map((x,i)=>'<a class="portal '+(i===0?'live':'')+'" target="_blank" rel="noopener" href="'+x[1]+'">'+x[0]+' 실제 매물</a>').join('')+'</div></div>';
 }
 function renderAreaInfo(){
- const key=currentArea(),b=benefits[key]||moreBenefits[key]||{title:key+' · 지역 특성을 확인하세요',items:[['🏠','주거비','선택한 예산 안에서 실제 매물을 비교합니다.'],['🚇','교통','통근시간과 환승 횟수를 함께 확인합니다.'],['🌳','생활환경','공원·상권 등 생활환경을 추가 비교합니다.'],['📍','실제 매물','여러 플랫폼의 현재 매물로 보완합니다.']]};
- const query=encodeURIComponent($('#province option:checked').text()+' '+$('#area option:checked').text()+' 월세');
- $('#areaInfo').innerHTML='<div class="area-info-top"><div><h2>왜 '+$('#area option:checked').text()+'?</h2><p>'+b.title+'</p></div></div>'+
- '<div class="benefits">'+b.items.map(x=>'<div class="benefit"><b>'+x[0]+' '+x[1]+'</b><span>'+x[2]+'</span></div>').join('')+'</div>'+
- '<div class="portal-title">선택 지역의 추가 매물 더 찾기</div><div class="portal-links">'+
- '<a class="portal live" target="_blank" rel="noopener" href="'+portalBase.daangn+'">당근부동산</a>'+
- '<a class="portal" target="_blank" rel="noopener" href="'+portalBase.naver+'">네이버부동산</a>'+
- '<a class="portal" target="_blank" rel="noopener" href="'+portalBase.zigbang+'">직방</a>'+
- '<a class="portal" target="_blank" rel="noopener" href="'+portalBase.dabang+'">다방</a>'+
- '<a class="portal" target="_blank" rel="noopener" href="'+portalBase.peter+'">피터팬</a>'+
- '<a class="portal" target="_blank" rel="noopener" href="https://www.google.com/search?q='+query+'+부동산">통합검색</a></div>';
+ const areas=selectedAreas();
+ if(!areas.length){$('#areaInfo').innerHTML='';return}
+ const cards=areas.slice(0,4).map(key=>{
+  const b=benefits[key]||moreBenefits[key]||{title:key+' · 지역 특성을 확인하세요',items:[['🏠','주거비','선택한 예산 안에서 실제 매물을 비교합니다.'],['🚇','교통','통근시간과 환승 횟수를 함께 확인합니다.'],['🌳','생활환경','공원·상권 등 생활환경을 추가 비교합니다.'],['📍','실제 매물','여러 플랫폼의 현재 매물을 함께 탐색합니다.']]};
+  return '<div style="margin-bottom:12px"><h2 style="margin-bottom:3px">왜 '+key+'?</h2><p>'+b.title+'</p><div class="benefits">'+b.items.map(x=>'<div class="benefit"><b>'+x[0]+' '+x[1]+'</b><span>'+x[2]+'</span></div>').join('')+'</div></div>';
+ }).join('');
+ $('#areaInfo').innerHTML=cards+(areas.length>4?'<p style="font-size:9px;color:#7e8da2">외 '+(areas.length-4)+'개 지역도 함께 검색 중입니다.</p>':'');
 }
 function render(){
  const dep=+$('#deposit').value||0,rent=+$('#rent').value||0;let arr=sorted(filtered());
  renderAreaInfo();
- $('#summary').innerHTML='<span>선택지역 <b>'+$('#area option:checked').text()+' · '+$('#dong option:checked').text()+'</b></span><span>검색 매물 <b>'+arr.length+'개</b></span><span>예산 안 <b>'+arr.filter(x=>x.afford).length+'개</b></span><span>출처 <b>사이트 내 수집: 당근·피터팬 / 추가 탐색: 네이버·직방·다방</b></span>';
+ $('#summary').innerHTML='<span>선택 시·군·구 <b>'+(selectedAreas().join(', ')||'없음')+'</b></span><span>선택 동·읍·면 <b>'+(selectedDongs().length?selectedDongs().map(v=>v.split('|||')[1]).join(', '):'전체')+'</b></span><span>검색 매물 <b>'+arr.length+'개</b></span><span>예산 안 <b>'+arr.filter(x=>x.afford).length+'개</b></span>';
  const show=arr.slice(0,limit);
  $('#list').innerHTML=show.length?show.map(l=>{const r=routeOf(l);const warn=(l.note||'').includes('위반')||l.id==='4761948'||l.id==='20010943';return `
  <article class="listing">
@@ -445,12 +400,18 @@ function render(){
  $$('[data-detail]').forEach(b=>b.onclick=()=>{const card=b.closest('.listing');card.classList.toggle('open');b.textContent=card.classList.contains('open')?'접기':'상세정보'});
  $('#more').style.display=arr.length>limit?'block':'none';
 }
-syncAreas();$('#area').value='구리시';syncDongs();render();
-$('#province').addEventListener('change',()=>{syncAreas();limit=15;render()});
-$('#area').addEventListener('change',()=>{syncDongs();limit=15;render()});$('#dong').addEventListener('change',()=>{limit=15;render()});
-['time','transfers','building','layout','size','deposit','rent'].forEach(id=>$('#'+id).addEventListener('change',()=>{limit=15;render()}));
-$('#deposit').addEventListener('input',()=>{limit=15;render()});$('#rent').addEventListener('input',()=>{limit=15;render()});
-$('#filters').addEventListener('submit',e=>{e.preventDefault();limit=15;render()});$('#sort').addEventListener('change',render);$('#more').onclick=()=>{limit+=15;render()};
+syncAreas(true);render();
+$('#province').addEventListener('change',()=>{syncAreas(true);limit=15;});
+$('#areaMulti').addEventListener('change',()=>{syncDongs(true);limit=15;});
+$('#dongMulti').addEventListener('change',()=>{updateSelectedLabels();limit=15;});
+$('#areaAll').addEventListener('click',()=>{$$('#areaMulti input').forEach(x=>x.checked=true);syncDongs(false);});
+$('#areaClear').addEventListener('click',()=>{$$('#areaMulti input').forEach(x=>x.checked=false);syncDongs(false);});
+$('#dongAll').addEventListener('click',()=>{$$('#dongMulti input').forEach(x=>x.checked=true);updateSelectedLabels();});
+$('#dongClear').addEventListener('click',()=>{$$('#dongMulti input').forEach(x=>x.checked=false);updateSelectedLabels();});
+$('#searchBtn').addEventListener('click',()=>{limit=15;render();document.querySelector('.toolbar').scrollIntoView({behavior:'smooth',block:'start'});});
+['time','transfers','building','layout','size'].forEach(id=>$('#'+id).addEventListener('change',()=>{limit=15;}));
+$('#deposit').addEventListener('input',()=>{limit=15;});$('#rent').addEventListener('input',()=>{limit=15;});
+$('#sort').addEventListener('change',render);$('#more').onclick=()=>{limit+=15;render()};
 </script>
 </body>
 </html>
