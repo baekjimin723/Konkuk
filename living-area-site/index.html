@@ -307,12 +307,12 @@ function listingDongKey(l){
 }
 function updateSelectedLabels(){
  const a=selectedAreas(),d=selectedDongs();
- $('#areaSelected').textContent=a.length?('선택: '+a.join(', ')):'선택 없음';
+ $('#areaSelected').textContent=a.length?('선택: '+a.join(', ')):'선택 없음 → 해당 시·도의 전체 시·군·구';
  $('#dongSelected').textContent=d.length?('선택: '+d.map(v=>v.split('|||')[1]).join(', ')):'동 선택 없음 → 선택한 시·군·구의 전체 동·읍·면';
 }
 function syncAreas(reset=true){
  const p=$('#province').value,box=$('#areaMulti'),prev=new Set(reset?[]:selectedAreas());
- box.innerHTML=areaOptions[p].map((v,i)=>'<label class="multi-option"><input type="checkbox" name="areaChoice" value="'+v+'" '+((prev.has(v)||(!prev.size&&i===0))?'checked':'')+'><span>'+v+'</span></label>').join('');
+ box.innerHTML=areaOptions[p].map((v,i)=>'<label class="multi-option"><input type="checkbox" name="areaChoice" value="'+v+'" '+(prev.has(v)?'checked':'')+'><span>'+v+'</span></label>').join('');
  syncDongs(false);
  updateSelectedLabels();
 }
