@@ -14,7 +14,7 @@
 </style>
 </head>
 <body>
-<header><div class="brand">생활권ON</div><div class="build">NEW FILTER BUILD 2026-11-02 · v10</div></header>
+<header><div class="brand">생활권ON</div><div style="font-size:10px;color:#6f8197;margin-top:3px">내부 검증 실매물 94건 · 외부 포털 전체재고는 동별 검색 연결</div><div class="build">NEW FILTER BUILD 2026-11-02 · v11</div></header>
 <main class="wrap">
 <section class="panel">
 <h2>매물 조건</h2><div class="sub">시·군·구와 동·읍·면은 복수선택 가능합니다. 검색 버튼은 form 제출이 아니어서 선택값이 초기화되지 않습니다.</div>
@@ -49,6 +49,9 @@
 <button id="search" type="button" class="btn">선택한 조건으로 실제 매물 보기</button>
 </section>
 <div class="origin-box">
+<div><b>사진 기준</b><span>매물 카드에는 지역 대표사진을 쓰지 않습니다. 각 카드의 이미지는 해당 실매물 원문 페이지 캡처이며, 실제 내부·외부 사진은 원문 버튼에서 확인합니다.</span></div>
+<div><b>매물 데이터 현황</b><span>사이트 내부 검증 매물은 현재 94건입니다. 네이버·직방·다방 등 포털 전체재고는 정식 피드가 연결되기 전까지 동별 전체검색으로 분리합니다.</span></div>
+</div><div class="origin-box">
 <div><b>통학시간 기준점 · 건국대학교 서울캠퍼스</b><span>서울 광진구 능동로 120 · 건대입구역/캠퍼스 접근시간을 포함한 통학 기준</span></div>
 <div><span>현재 버전은 대중교통 노선·역간시간을 바탕으로 한 예상치이며, 실시간 교통 API 연동 전까지는 범위형 참고값입니다.</span></div>
 </div><section class="panel trend-panel">
@@ -170,7 +173,7 @@ function previewUrl(l){return 'https://image.thum.io/get/width/700/crop/500/noan
 function listingCardHtml(l){
  const hits=lifestyleHits(l,selPrefs());
  const prefHtml=hits.length?'<div class="pref-hits">'+hits.map(x=>'<span class="pref-hit">✓ '+prefNames[x]+'</span>').join('')+'</div>':'';
- const preview='<div class="listing-photo"><div class="listing-photo-fallback">실제 매물 원문 사진 미리보기<br>미리보기가 막히면 아래 원문 버튼에서 확인</div><img src="'+previewUrl(l)+'" alt="'+displayTitle(l)+' 실매물 원문 미리보기" loading="lazy" onerror="this.remove()"><span class="listing-photo-label">실매물 원문 미리보기</span></div>';
+ const preview='<div class="listing-photo"><div class="listing-photo-fallback">실매물 원문 캡처<br>미리보기가 막히면 아래 원문 버튼에서 확인</div><img src="'+previewUrl(l)+'" alt="'+displayTitle(l)+' 실매물 원문 캡처" loading="lazy" onerror="this.remove()"><span class="listing-photo-label">실매물 원문 캡처</span></div>';
  return '<article class="card">'+preview+'<div class="card-body"><div class="loc">'+l.province+' › '+l.city+' › '+l.dong+'</div><h3>'+displayTitle(l)+'</h3><div class="price">'+l.dep.toLocaleString()+' / '+l.rent+'</div><div class="meta"><span class="tag">'+l.type+'</span><span class="tag">건국대 기준 약 '+l.time+'분</span><span class="tag">환승 '+l.transfer+'회</span></div>'+prefHtml+'<div class="source">'+l.source+' · '+l.note+'</div><a class="link" href="'+l.url+'" target="_blank" rel="noopener">실매물 사진·원문 보기</a></div></article>';
 }
 function cityPortalLinks(city,dong){
@@ -183,8 +186,8 @@ function groupedHtml(items){
    const p=areaProfiles[city]||null;
    const facilities=p?'<div class="facilities"><div class="facilities-title">생활권 핵심 편의시설</div><div class="facility-list">'+p.fac.map(x=>'<div class="facility"><b>'+x[0]+'</b><span>'+x[1]+'</span></div>').join('')+'</div></div>':'';
    const byDong={};rows.forEach(l=>{(byDong[l.dong]??=[]).push(l)});
-   const dongHtml=Object.entries(byDong).map(([dong,ls])=>'<div class="dong-title">'+dong+' · 내부수집 '+ls.length+'건</div><div class="cards">'+ls.map(listingCardHtml).join('')+'</div>'+cityPortalLinks(city,dong)).join('');
-   return '<section class="city-group"><div class="city-hero"><div class="city-info"><h2>'+city+' <span class="city-time">건국대 최소 약 '+cityMin(city)+'분~</span></h2><div class="city-count">현재 조건에 맞는 내부수집 매물 '+rows.length+'건 · 매물별 원문 미리보기/실제사진 링크 제공</div>'+facilities+cityPortalLinks(city,'')+'</div></div><div class="dong-group">'+dongHtml+'</div></section>';
+   const dongHtml=Object.entries(byDong).map(([dong,ls])=>'<div class="dong-title">'+dong+' · 내부 검증 '+ls.length+'건</div><div class="cards">'+ls.map(listingCardHtml).join('')+'</div>'+cityPortalLinks(city,dong)).join('');
+   return '<section class="city-group"><div class="city-hero"><div class="city-info"><h2>'+city+' <span class="city-time">건국대 최소 약 '+cityMin(city)+'분~</span></h2><div class="city-count">현재 조건에 맞는 내부 검증 매물 '+rows.length+'건 · 매물별 원문 미리보기/실제사진 링크 제공</div>'+facilities+cityPortalLinks(city,'')+'</div></div><div class="dong-group">'+dongHtml+'</div></section>';
  }).join('');
 }
 function search(){
