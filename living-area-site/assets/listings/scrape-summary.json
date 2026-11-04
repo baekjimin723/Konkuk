@@ -1,6 +1,7 @@
 {
   "total": 123,
-  "saved": 79,
-  "failed": 44,
-  "manifest": 79
+  "saved": 123,
+  "failed": 0,
+  "manifest": 123,
+  "source": "repository jpg inventory"
 }
