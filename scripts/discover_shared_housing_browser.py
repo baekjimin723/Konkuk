@@ -33,11 +33,13 @@ def harvest(text,ids):
 def collect(page,url):
     ids=set()
     network_text=[]
+    network_urls=set()
 
     def on_response(resp):
         try:
             ctype=(resp.headers.get("content-type") or "").lower()
             if "gobang.kr" not in resp.url:return
+            if "json" in ctype or "/api/" in resp.url or "graphql" in resp.url.lower(): network_urls.add(resp.url)
             if "json" not in ctype and "javascript" not in ctype:return
             txt=resp.text()
             if txt and len(txt)<=6_000_000:
@@ -68,6 +70,7 @@ def collect(page,url):
     for txt in network_text:
         harvest(txt,ids)
     page.remove_listener("response",on_response)
+    print("NETWORK_URLS", url, json.dumps(sorted(network_urls)[:80], ensure_ascii=False))
     return sorted(ids)
 
 def main():
