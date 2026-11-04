@@ -18,6 +18,11 @@ m = re.search(r"const listings=(\[.*?\]);\nconst qs=", html, re.S)
 if not m:
     raise SystemExit("Could not parse listings from index.html")
 listings = json.loads(m.group(1))
+SHARD_TOTAL = max(1, int(os.environ.get("SHARD_TOTAL", "1")))
+SHARD_INDEX = int(os.environ.get("SHARD_INDEX", "0"))
+all_count = len(listings)
+listings = [x for i, x in enumerate(listings) if i % SHARD_TOTAL == SHARD_INDEX]
+print(f"SHARD {SHARD_INDEX+1}/{SHARD_TOTAL}: {len(listings)} of {all_count} listings", flush=True)
 
 opts = Options()
 opts.add_argument("--headless=new")
@@ -200,13 +205,17 @@ for idx, listing in enumerate(listings, start=1):
 driver.quit()
 
 # JS manifest loaded before the main app.
-photos_js = "window.LISTING_PHOTOS=" + json.dumps(manifest, ensure_ascii=False, separators=(",",":")) + ";\n"
-(OUT_DIR / "photos.js").write_text(photos_js, encoding="utf-8")
-(OUT_DIR / "scrape-report.json").write_text(json.dumps({
+(OUT_DIR / f"manifest-shard-{SHARD_INDEX}.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+(OUT_DIR / f"scrape-report-shard-{SHARD_INDEX}.json").write_text(json.dumps({
+    "shard_index": SHARD_INDEX,
+    "shard_total": SHARD_TOTAL,
     "total": len(listings),
     "saved": len(manifest),
     "failed": len(listings)-len(manifest),
     "results": results
 }, ensure_ascii=False, indent=2), encoding="utf-8")
+if SHARD_TOTAL == 1:
+    photos_js = "window.LISTING_PHOTOS=" + json.dumps(manifest, ensure_ascii=False, separators=(",",":")) + ";\n"
+    (OUT_DIR / "photos.js").write_text(photos_js, encoding="utf-8")
 
-print(f"DONE saved={len(manifest)} failed={len(listings)-len(manifest)}", flush=True)
+print(f"DONE shard={SHARD_INDEX} saved={len(manifest)} failed={len(listings)-len(manifest)}", flush=True)
