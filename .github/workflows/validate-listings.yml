@@ -2,6 +2,7 @@ name: Sync and validate property listings
 
 on:
   workflow_dispatch:
+  push:
   schedule:
     - cron: "7,22,37,52 * * * *"
 
