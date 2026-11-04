@@ -300,8 +300,15 @@ for idx, listing in enumerate(listings, start=1):
             results.append({"id": str(listing["id"]), "status": "ok", "url": url, "photo": rel})
             print(f"  saved {rel}", flush=True)
         else:
-            results.append({"id": str(listing["id"]), "status": "no-photo", "url": url})
-            print("  no suitable property image found", flush=True)
+            diag = {"title": "", "current_url": "", "body": "", "meta_images": metadata_image_urls()}
+            try:
+                diag["title"] = driver.title or ""
+                diag["current_url"] = driver.current_url or ""
+                diag["body"] = (driver.find_element(By.TAG_NAME, "body").text or "")[:500]
+            except Exception:
+                pass
+            results.append({"id": str(listing["id"]), "status": "no-photo", "url": url, "diag": diag})
+            print("  no suitable property image found", diag["title"][:80], flush=True)
     except WebDriverException as e:
         results.append({"id": str(listing.get("id")), "status": "browser-error", "url": url, "error": str(e)[:180]})
         print("  browser error", str(e)[:120], flush=True)
