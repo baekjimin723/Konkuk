@@ -1,7 +1,18 @@
 {
-  "before": 137,
-  "cached_real_photos": 137,
-  "removed_without_cached_real_photo": 0,
-  "newly_cached_this_run": 137,
-  "failed": []
+  "before": 135,
+  "cached_real_photos": 133,
+  "removed_without_cached_real_photo": 2,
+  "newly_cached_this_run": 133,
+  "failed": [
+    {
+      "id": "gobang-2908",
+      "source": "고방",
+      "reason": "page_http:500"
+    },
+    {
+      "id": "gobang-6079",
+      "source": "고방",
+      "reason": "page_http:500"
+    }
+  ]
 }
