@@ -154,7 +154,7 @@ function openDetail(id){
  const posts=communityStore()[String(id)]||[];
  const postHtml=posts.length?posts.map(p=>'<div class="community-item"><b>'+escapeHtml(p.topic||'기타')+' · '+('★'.repeat(Number(p.rating)||0))+'</b><small>'+escapeHtml(p.when||'')+'</small><p>'+escapeHtml(p.text||'')+'</p></div>').join(''):'<div class="community-item"><p>아직 생활권ON 후기가 없습니다. 방음·채광·관리비·통학·주변상권에 대한 첫 후기를 남겨보세요.</p></div>';
  qs('#modalTitle').textContent=displayTitle(l);
- qs('#modalBody').innerHTML='<div class="detail-grid"><div class="detail-box"><h3>🏠 매물 정보</h3><div class="price">'+priceText(l)+'</div><div class="meta"><span class="tag">'+l.deal+'</span><span class="tag">'+l.type+'</span><span class="tag">'+(l.py?l.py+'평':'평수 확인 필요')+'</span><span class="tag">건국대 약 '+l.time+'분</span></div><p style="font-size:11px;line-height:1.55">'+escapeHtml(l.note||'')+'</p><div class="card-actions"><a class="link" style="margin:0" href="'+l.url+'" target="_blank" rel="noopener">실매물 원문</a><button class="wish-btn '+(wishCount(String(id))?'on':'')+'" data-modal-wish="'+escapeHtml(String(id))+'">♡ 위시 '+wishCount(String(id))+'</button></div></div><div class="detail-box"><h3>📰 관련 주요 뉴스</h3><div class="news-links">'+newsSearchLinks(l)+'</div><div class="prototype-note">지역·단지명을 기준으로 최신 뉴스 검색결과를 연결합니다.</div></div></div><div class="detail-box" style="margin-top:16px"><h3>💬 이 집 커뮤니티 · 후기 '+posts.length+'개</h3><div class="community-list">'+postHtml+'</div><div class="community-form"><select id="communityTopic"><option>방음</option><option>채광</option><option>관리비</option><option>통학</option><option>주변상권</option><option>안전</option><option>기타</option></select><select id="communityRating"><option value="5">★★★★★</option><option value="4">★★★★</option><option value="3">★★★</option><option value="2">★★</option><option value="1">★</option></select><input id="communityText" placeholder="궁금한 점이나 후기를 남겨보세요"><button type="button" id="communitySubmit" data-id="'+escapeHtml(String(id))+'">등록</button></div><div class="prototype-note">현재 프로토타입 커뮤니티는 이 브라우저에 저장됩니다. 실제 서비스에서는 로그인 기반 서버 커뮤니티로 전환합니다.</div></div>';
+ qs('#modalBody').innerHTML='<div class="detail-grid"><div class="detail-box"><h3>🏠 매물 정보</h3><div class="price">'+priceText(l)+'</div><div class="meta"><span class="tag">'+l.deal+'</span><span class="tag">'+typeLabel(l.type)+'</span><span class="tag">'+(l.py?l.py+'평':'평수 확인 필요')+'</span><span class="tag">건국대 약 '+l.time+'분</span></div><p style="font-size:11px;line-height:1.55">'+escapeHtml(l.note||'')+'</p><div class="card-actions"><a class="link" style="margin:0" href="'+l.url+'" target="_blank" rel="noopener">실매물 원문</a><button class="wish-btn '+(wishCount(String(id))?'on':'')+'" data-modal-wish="'+escapeHtml(String(id))+'">♡ 위시 '+wishCount(String(id))+'</button></div></div><div class="detail-box"><h3>📰 관련 주요 뉴스</h3><div class="news-links">'+newsSearchLinks(l)+'</div><div class="prototype-note">지역·단지명을 기준으로 최신 뉴스 검색결과를 연결합니다.</div></div></div><div class="detail-box" style="margin-top:16px"><h3>💬 이 집 커뮤니티 · 후기 '+posts.length+'개</h3><div class="community-list">'+postHtml+'</div><div class="community-form"><select id="communityTopic"><option>방음</option><option>채광</option><option>관리비</option><option>통학</option><option>주변상권</option><option>안전</option><option>기타</option></select><select id="communityRating"><option value="5">★★★★★</option><option value="4">★★★★</option><option value="3">★★★</option><option value="2">★★</option><option value="1">★</option></select><input id="communityText" placeholder="궁금한 점이나 후기를 남겨보세요"><button type="button" id="communitySubmit" data-id="'+escapeHtml(String(id))+'">등록</button></div><div class="prototype-note">현재 프로토타입 커뮤니티는 이 브라우저에 저장됩니다. 실제 서비스에서는 로그인 기반 서버 커뮤니티로 전환합니다.</div></div>';
  qs('#detailModal').classList.add('open');
 }
 function addCommunity(id){
@@ -291,6 +291,15 @@ const areaProfiles={
  '부평구':{photo:'https://d3hwaim9vs2gfj.cloudfront.net/229-1308961465.jpg',photoName:'부평 문화의거리',credit:'부평 생활권 대표사진',source:'https://www.icbp.go.kr/',fac:[['🛍 부평 문화의거리','쇼핑·외식'],['🚇 부평역','1호선·인천1호선'],['🎬 롯데시네마 부평','영화·문화'],['🛒 부평역 지하상가','대형 지하상권']]}
 };
 function profileFor(l){return areaProfiles[l.city]||null}
+function typeLabel(t){return t==='다세대·빌라'?'다세대·연립':t==='오피스텔'?'주거용 오피스텔':t}
+function neighborhoodPitch(l){
+ const keys=(lifestyleByCity[l.city]||[]).slice(0,3);
+ return keys.length?'<div class="matchline"><b>동네 포인트</b> · '+keys.map(k=>prefNames[k]).join(' · ')+'</div>':'';
+}
+function hogangLink(l){
+ const q='site:hogangnono.com '+l.city+' '+l.dong+' '+(l.name||'');
+ return 'https://www.google.com/search?q='+encodeURIComponent(q);
+}
 function displayTitle(l){
  const sizeText=l.py?(' · '+l.py+'평'):' · 평수 확인 필요';
  if(l.name) return l.name+' · '+l.layout+sizeText;
@@ -302,7 +311,7 @@ function listingCardHtml(l){
  const hits=lifestyleHits(l,selPrefs()),id=String(l.id);
  const prefHtml=hits.length?'<div class="pref-hits">'+hits.map(x=>'<span class="pref-hit">✓ '+prefNames[x]+'</span>').join('')+'</div>':'';
  const preview='<div class="listing-photo"><div class="listing-photo-fallback">실매물 대표사진 준비 중</div><img src="'+previewUrl(l)+'" alt="'+displayTitle(l)+' 실매물 대표사진" loading="eager" fetchpriority="high" decoding="async" onerror="this.closest(\'.card\').style.display=\'none\'"><span class="listing-photo-label">실매물 대표사진 · '+l.source+'</span></div>';
- return '<article class="card" data-detail-id="'+escapeHtml(id)+'">'+preview+'<div class="card-body"><div class="loc">'+l.province+' › '+l.city+' › '+l.dong+'</div><h3>'+displayTitle(l)+'</h3><div class="price">'+priceText(l)+'</div><div class="meta"><span class="tag">'+l.deal+'</span><span class="tag">'+l.type+'</span><span class="tag">건대입구역 기준 약 '+l.time+'분</span></div>'+prefHtml+'<div class="source">'+l.source+' · '+escapeHtml(l.note||'')+'</div><div class="community-meta"><span>후기 '+reviewCount(id)+'</span><span>위시 '+wishCount(id)+'</span><span>등록 '+(l.addedAt||'-')+'</span></div><div class="card-actions"><button type="button" class="detail-btn" data-open-detail="'+escapeHtml(id)+'">상세 · 커뮤니티 · 뉴스</button><button type="button" class="wish-btn '+(wishCount(id)?'on':'')+'" data-wish="'+escapeHtml(id)+'">♡ '+wishCount(id)+'</button></div><a class="link" href="'+l.url+'" target="_blank" rel="noopener">실매물 사진·원문 보기</a></div></article>';
+ return '<article class="card" data-detail-id="'+escapeHtml(id)+'">'+preview+'<div class="card-body"><div class="loc">'+l.province+' › '+l.city+' › '+l.dong+'</div><h3>'+displayTitle(l)+'</h3><div class="price">'+priceText(l)+'</div><div class="meta"><span class="tag">'+l.deal+'</span><span class="tag">'+typeLabel(l.type)+'</span><span class="tag">건대입구역 기준 약 '+l.time+'분</span></div>'+neighborhoodPitch(l)+prefHtml+'<div class="source">'+l.source+' · '+escapeHtml(l.note||'')+'</div><div class="community-meta"><span>후기 '+reviewCount(id)+'</span><span>위시 '+wishCount(id)+'</span><span>등록 '+(l.addedAt||'-')+'</span></div><div class="card-actions"><button type="button" class="detail-btn" data-open-detail="'+escapeHtml(id)+'">상세 · 커뮤니티 · 뉴스</button><button type="button" class="wish-btn '+(wishCount(id)?'on':'')+'" data-wish="'+escapeHtml(id)+'">♡ '+wishCount(id)+'</button></div><div class="portal-inline"><a href="'+l.url+'" target="_blank" rel="noopener">실매물 원문</a><a href="'+hogangLink(l)+'" target="_blank" rel="noopener">호갱노노 확인</a></div></div></article>';
 }
 function cityPortalLinks(city,dong){
  const place=city+' '+(dong||'');
@@ -396,7 +405,7 @@ function resetLHDefaults(){
 }
 function applyPreset(name){
  resetLHDefaults();
- let msg='수도권 전체 · 60분 · 환승 1회 이하 · LH 대상주택';
+ let msg='수도권 전체에서 먼저 펼쳐봤어요. 이제 가까운 곳·환승 적게·월세 부담 적게 중 하나를 눌러 더 좁혀보세요.';
  if(name==='near'){qs('#time').value='45';qs('#timeValue').textContent='45분';msg='가까운 곳부터 · 45분 이내';}
  if(name==='easy'){qs('#transfer').value='1';msg='환승 적게 · 1회 이하';}
  if(name==='cheap'){qs('#rent').value='40';qs('#sort').value='priceAsc';msg='월세 부담 적게 · 40만원 이하';}
