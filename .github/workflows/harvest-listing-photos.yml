@@ -8,6 +8,10 @@ on:
       - ".github/workflows/harvest-listing-photos.yml"
       - "scripts/scrape_listing_photos.py"
 
+concurrency:
+  group: harvest-listing-photos
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
