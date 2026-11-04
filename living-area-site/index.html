@@ -323,12 +323,14 @@ function search(){
     penalty-=lifestyleHits(l,state.prefs).length*8;
     return {...l,penalty};
   };
-  const sameArea=listings.filter(l=>l.province===state.province&&cityDongMatch(l)).map(rankNear).sort((a,b)=>a.penalty-b.penalty);
-  const sameProvince=listings.filter(l=>l.province===state.province).map(rankNear).sort((a,b)=>a.penalty-b.penalty);
+  const modeOk=l=>!state.livingModes.length||state.livingModes.includes(livingModeOf(l));
+  const sameArea=listings.filter(l=>l.province===state.province&&cityDongMatch(l)&&modeOk(l)).map(rankNear).sort((a,b)=>a.penalty-b.penalty);
+  const sameProvince=listings.filter(l=>l.province===state.province&&modeOk(l)).map(rankNear).sort((a,b)=>a.penalty-b.penalty);
   const fallback=sameArea.length?sameArea:sameProvince;currentResults=fallback;
   const loc=[qs('#province option:checked').textContent,...state.areas,state.dongs.map(v=>v.split('|||')[1])].join(' ');
-  const q=encodeURIComponent(loc+' 전세 보증부월세 1억 8천 이하 원룸 투룸 다세대 다가구 오피스텔 아파트');
-  let html='<div class="empty"><b>선택한 세부 조건은 내부 직접수집을 더 확대 중입니다.</b><div style="margin-top:6px;font-size:12px;color:#71829a">시장에 매물이 없다는 뜻이 아닙니다. 우선 가장 가까운 실제 매물을 보여주고, 아래에서 현재 매물을 더 찾을 수 있습니다.</div></div>';
+  const modeQuery=(state.livingModes.length?state.livingModes.join(' '):'일반주거 쉐어하우스 코리빙 기숙사 고시원 원룸텔');
+  const q=encodeURIComponent(loc+' '+modeQuery+' 전세 보증부월세 1억 8천 이하 원룸 투룸');
+  let html='<div class="empty"><b>선택한 세부 조건은 내부 직접수집을 더 확대 중입니다.</b><div style="margin-top:6px;font-size:12px;color:#71829a">시장에 매물이 없다는 뜻이 아닙니다. 선택한 거주방식 안에서 가장 가까운 실제 매물만 보여주고, 아래에서 현재 매물을 더 찾을 수 있습니다.</div></div>';
   if(fallback.length){
     html+='<div class="near-title">'+(sameArea.length?'같은 지역의 근접 실제 매물 전체':'같은 시·도의 근접 실제 매물 전체')+'</div>'+groupedHtml(sortResults(fallback));
   }
