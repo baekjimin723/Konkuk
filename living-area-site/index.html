@@ -14,7 +14,7 @@
 </style>
 </head>
 <body>
-<header><div class="brand">생활권ON</div><div style="font-size:10px;color:#6f8197;margin-top:3px">전세·보증부월세 통합검색 · 자동검증 <b id="inventoryCount">0</b>건 · <span id="syncStatus">상태 확인 준비 중</span> · 외부 포털 전체재고는 동별 검색 연결</div><div class="build">LIVE VALIDATION BUILD 2026-11-04 · v16</div></header>
+<header><div class="brand">생활권ON</div><div style="font-size:10px;color:#6f8197;margin-top:3px">전세·보증부월세 통합검색 · 자동동기화 <b id="inventoryCount">0</b>건 · <span id="syncStatus">상태 확인 준비 중</span> · 외부 포털 전체재고는 동별 검색 연결</div><div class="build">LIVE VALIDATION BUILD 2026-11-04 · v16</div></header>
 <main class="wrap">
 <section class="panel">
 <h2>매물 조건</h2><div class="sub">시·군·구와 동·읍·면은 복수선택 가능합니다. 검색 버튼은 form 제출이 아니어서 선택값이 초기화되지 않습니다.</div>
@@ -262,11 +262,12 @@ const areaProfiles={
 };
 function profileFor(l){return areaProfiles[l.city]||null}
 function displayTitle(l){
- if(l.name) return l.name+' · '+l.layout+' · '+l.py+'평';
- if(['아파트','오피스텔','도시형생활주택'].includes(l.type)) return '건물명 확인 필요 · '+l.layout+' · '+l.py+'평';
- return l.dong.split(' ').slice(-1)[0]+' '+l.layout+' · '+l.py+'평';
+ const sizeText=l.py?(' · '+l.py+'평'):' · 평수 확인 필요';
+ if(l.name) return l.name+' · '+l.layout+sizeText;
+ if(['아파트','오피스텔','도시형생활주택'].includes(l.type)) return '건물명 확인 필요 · '+l.layout+sizeText;
+ return l.dong.split(' ').slice(-1)[0]+' '+l.layout+sizeText;
 }
-function previewUrl(l){return 'https://api.microlink.io/?url='+encodeURIComponent(l.url)+'&embed=image.url&prerender=true'}
+function previewUrl(l){return l.photo||('https://api.microlink.io/?url='+encodeURIComponent(l.url)+'&embed=image.url&prerender=true')}
 function listingCardHtml(l){
  const hits=lifestyleHits(l,selPrefs()),id=String(l.id);
  const prefHtml=hits.length?'<div class="pref-hits">'+hits.map(x=>'<span class="pref-hit">✓ '+prefNames[x]+'</span>').join('')+'</div>':'';
@@ -295,7 +296,7 @@ function renderCurrentResults(){
 }
 function search(){
  const state={province:qs('#province').value,time:+qs('#time').value,transfer:+qs('#transfer').value,type:qs('#type').value,layout:qs('#layout').value,sizes:selSizes(),prefs:selPrefs(),deals:selDeals(),dep:Math.min(18000,+qs('#dep').value||0),rent:+qs('#rent').value||0,areas:selAreas(),dongs:selDongs()};
- const out=listings.filter(l=>l.province===state.province&&cityDongMatch(l)&&l.time<=state.time&&l.transfer<=state.transfer&&(state.type==='전체'||l.type===state.type)&&(state.layout==='전체'||l.layout===state.layout)&&(!state.sizes.length||state.sizes.includes(band(l.py)))&&(!state.deals.length||state.deals.includes(l.deal))&&l.dep<=state.dep&&(l.deal==='전세'||l.rent<=state.rent)).sort((a,b)=>lifestyleHits(b,state.prefs).length-lifestyleHits(a,state.prefs).length || a.rent-b.rent || a.time-b.time);
+ const out=listings.filter(l=>l.province===state.province&&cityDongMatch(l)&&l.time<=state.time&&l.transfer<=state.transfer&&(state.type==='전체'||l.type===state.type)&&(state.layout==='전체'||l.layout===state.layout)&&(!state.sizes.length||!l.py||state.sizes.includes(band(l.py)))&&(!state.deals.length||state.deals.includes(l.deal))&&l.dep<=state.dep&&(l.deal==='전세'||l.rent<=state.rent)).sort((a,b)=>lifestyleHits(b,state.prefs).length-lifestyleHits(a,state.prefs).length || a.rent-b.rent || a.time-b.time);
  qs('#applied').innerHTML='<span>시·도 <b>'+qs('#province option:checked').textContent+'</b></span><span>시간 내 선택가능 지역 <b>'+eligibleCities().length+'곳</b></span><span>시·군·구 <b>'+(state.areas.join(', ')||'시간 내 전체')+'</b></span><span>동·읍·면 <b>'+(state.dongs.length?state.dongs.map(v=>v.split('|||')[1]).join(', '):'전체')+'</b></span><span>통근 <b>'+state.time+'분</b></span><span>환승 <b>'+state.transfer+'회 이하</b></span><span>거래유형 <b>'+(state.deals.join(' + ')||'전체')+'</b></span><span>보증금 <b>'+formatManwon(state.dep)+' 이하</b></span><span>월세 <b>'+state.rent+'만원 이하</b></span>';
  if(out.length){
   currentResults=out;renderCurrentResults();
