@@ -1,5 +1,5 @@
 {
-  "synced_at": "2026-11-04T13:11:25+09:00",
+  "synced_at": "2026-11-04T13:13:19+09:00",
   "discovery_pages": {
     "https://gobang.kr/share": 0,
     "https://gobang.kr/coliving": 0,
@@ -7,29 +7,27 @@
     "https://gobang.kr/map?p=houseList": 0
   },
   "candidate_place_ids": 48,
-  "shared_housing_added": 20,
+  "shared_housing_added": 16,
   "by_mode": {
     "고시원·원룸텔": 9,
-    "쉐어하우스·코리빙": 11
+    "쉐어하우스·코리빙": 7
   },
   "by_province": {
-    "경기도": 9,
-    "서울특별시": 10,
-    "인천광역시": 1
+    "경기도": 7,
+    "서울특별시": 9
   },
   "by_city": {
     "경기도 광명시": 1,
     "경기도 구리시": 1,
-    "경기도 성남시": 2,
-    "경기도 수원시": 2,
+    "경기도 성남시": 1,
+    "경기도 수원시": 1,
     "경기도 시흥시": 1,
     "경기도 안양시": 1,
     "경기도 하남시": 1,
-    "서울특별시 강서구": 1,
     "서울특별시 관악구": 1,
-    "서울특별시 광진구": 7,
-    "서울특별시 용산구": 1,
-    "인천광역시 서해구": 1
+    "서울특별시 광진구": 6,
+    "서울특별시 서초구": 1,
+    "서울특별시 용산구": 1
   },
-  "failed_or_out_of_scope_count": 28
+  "failed_or_out_of_scope_count": 32
 }
