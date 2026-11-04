@@ -1,29 +1,10 @@
 {
-  "checked_at": "2026-11-04T04:26:19+00:00",
-  "before": 160,
-  "active_or_unconfirmed": 160,
+  "checked_at": "2026-11-04T04:30:33+00:00",
+  "before": 166,
+  "active_or_unconfirmed": 166,
   "removed_this_run": 0,
-  "unknown_this_run": 3,
+  "unknown_this_run": 0,
   "removed": [],
-  "unknown": [
-    {
-      "id": "gobang-3609",
-      "source": "고방",
-      "url": "https://gobang.kr/place/3609",
-      "reason": "http:500"
-    },
-    {
-      "id": "gobang-6171",
-      "source": "고방",
-      "url": "https://gobang.kr/place/6171",
-      "reason": "http:500"
-    },
-    {
-      "id": "gobang-3471",
-      "source": "고방",
-      "url": "https://gobang.kr/place/3471",
-      "reason": "http:500"
-    }
-  ],
+  "unknown": [],
   "policy": "Definitive 404/410, provider redirect, or visible inactive marker only. Temporary/network failures are retained."
 }
