@@ -1,15 +1,27 @@
 {
-  "checked_at": "2026-11-04T04:24:01+00:00",
-  "before": 151,
-  "active_or_unconfirmed": 151,
+  "checked_at": "2026-11-04T04:26:19+00:00",
+  "before": 160,
+  "active_or_unconfirmed": 160,
   "removed_this_run": 0,
-  "unknown_this_run": 1,
+  "unknown_this_run": 3,
   "removed": [],
   "unknown": [
     {
-      "id": "gobang-25539",
+      "id": "gobang-3609",
       "source": "고방",
-      "url": "https://gobang.kr/place/25539",
+      "url": "https://gobang.kr/place/3609",
+      "reason": "http:500"
+    },
+    {
+      "id": "gobang-6171",
+      "source": "고방",
+      "url": "https://gobang.kr/place/6171",
+      "reason": "http:500"
+    },
+    {
+      "id": "gobang-3471",
+      "source": "고방",
+      "url": "https://gobang.kr/place/3471",
       "reason": "http:500"
     }
   ],
