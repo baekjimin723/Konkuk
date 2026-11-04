@@ -55,7 +55,7 @@ def living_mode(title,text):
  return "일반주거"
 
 def parse_article(url,province,city,minutes):
- try:r=S.get(url,timeout=6,allow_redirects=True)
+ try:r=S.get(url,timeout=4,allow_redirects=True)
  except:return None
  if r.status_code>=400:return None
  soup=BeautifulSoup(r.text,"html.parser")
@@ -108,7 +108,7 @@ def parse_article(url,province,city,minutes):
 
 def discover(province,city,deal,channel):
  url="https://realty.daangn.com/map/{}/{}/{}/{}".format(quote(province,safe=""),quote(city,safe=""),quote(deal,safe=""),quote(channel,safe=""))
- try:r=S.get(url,timeout=6)
+ try:r=S.get(url,timeout=4)
  except:return []
  if r.status_code>=400:return []
  soup=BeautifulSoup(r.text,"html.parser")
@@ -154,11 +154,11 @@ def main():
      item=parse_article(url,province,city,minutes)
      if item:
       existing.add(aid);new.append(item)
-     if checked>=30:break
-     time.sleep(0.05)
-    if checked>=30:break
-   if checked>=30:break
-  if checked>=30:break
+     if checked>=10:break
+     time.sleep(0.02)
+    if checked>=10:break
+   if checked>=10:break
+  if checked>=10:break
 
  merged=new+listings
  compact=json.dumps(merged,ensure_ascii=False,separators=(",",":"))
