@@ -18,7 +18,7 @@
 </style>
 </head>
 <body>
-<header><div class="brand">생활권ON</div><div style="font-size:10px;color:#6f8197;margin-top:3px">전세·보증부월세 통합검색 · 전체 DB <b id="inventoryCount">0</b>건 · 현재 조건 <b id="headerResultCount">0</b>건 · <span id="syncStatus">상태 확인 준비 중</span></div><div class="build">EASY SEARCH BUILD 2026-11-04 · v21</div></header>
+<header><div class="brand">생활권ON</div><div style="font-size:10px;color:#6f8197;margin-top:3px">전세·보증부월세 통합검색 · 전체 DB <b id="inventoryCount">0</b>건 · 현재 조건 <b id="headerResultCount">0</b>건 · <span id="syncStatus">상태 확인 준비 중</span></div><div class="build">EXPANSION VALUE BUILD 2026-11-04 · v22</div></header>
 <main class="wrap">
 <section class="panel quick-panel">
 <h2>어디서부터 볼지 몰라도 괜찮아요</h2>
@@ -29,13 +29,14 @@
 <button type="button" class="preset-btn" data-preset="near">가까운 곳부터</button>
 <button type="button" class="preset-btn" data-preset="easy">환승 적게</button>
 <button type="button" class="preset-btn" data-preset="cheap">월세 부담 적게</button>
+<button type="button" class="preset-btn" data-preset="better">조금 멀어도 더 나은 집</button>
 <button type="button" class="preset-btn" data-preset="lh">LH 대상주택만</button>
 </div>
 <div class="quick-status" id="quickStatus">기본값 · 수도권 전체 · 건대입구역 60분 이내 · 환승 1회 이하 · LH 대상주택 유형 우선</div>
 </section>
 <div class="commerce-toolbar">
 <div class="commerce-left"><span class="result-count" id="resultCount">검색 결과 <b>0</b>건</span>
-<select id="sort"><option value="recommend">추천순</option><option value="priceAsc">낮은 가격순 (보증금→월세)</option><option value="priceDesc">높은 가격순 (보증금→월세)</option><option value="reviewDesc">후기 많은 순</option><option value="wishDesc">위시 많은 순</option><option value="newest">신상품순 (내부 등록일)</option><option value="timeAsc">통학시간 짧은 순</option><option value="sizeDesc">넓은 평수 순</option></select></div>
+<select id="sort"><option value="recommend">추천순</option><option value="priceAsc">낮은 가격순 (보증금→월세)</option><option value="priceDesc">높은 가격순 (보증금→월세)</option><option value="reviewDesc">후기 많은 순</option><option value="wishDesc">위시 많은 순</option><option value="newest">신상품순 (내부 등록일)</option><option value="timeAsc">통학시간 짧은 순</option><option value="upgradeDesc">생활권 확장 효과순</option><option value="sizeDesc">넓은 평수 순</option></select></div>
 <div class="commerce-right"><button type="button" class="view-btn active" id="gridView">▦ 3열 보기</button><button type="button" class="view-btn" id="listView">☰ 1열 보기</button></div></div><div id="applied" class="applied"></div>
 <section id="results"></section>
 <details class="panel advanced-filter">
@@ -66,7 +67,7 @@
 <div class="field"><label>8. 환승 횟수</label><select id="transfer"><option value="0">0회</option><option value="1" selected>1회 이하</option><option value="2">2회 이하</option><option value="3">3회 이하</option></select></div>
 <div class="multi"><div class="multi-head"><span class="title">9. 거래유형</span><div><button class="mini" id="dealAll" type="button">전체선택</button> <button class="mini" id="dealClear" type="button">해제</button></div></div>
 <div class="choices" id="deals"><label class="choice"><input type="checkbox" value="보증부월세" checked><span>보증부월세</span></label><label class="choice"><input type="checkbox" value="전세" checked><span>전세</span></label></div><div class="selected" id="dealText">보증부월세 + 전세</div></div>
-<div class="multi"><div class="multi-head"><span class="title">10. 동네 취향 (선택사항)</span><div><button class="mini" id="prefClear" type="button">선택해제</button></div></div>
+<div class="multi"><div class="multi-head"><span class="title">10. 동네 취향 (보조요소 · 선택사항)</span><div><button class="mini" id="prefClear" type="button">선택해제</button></div></div>
 <div class="choices" id="prefs">
 <label class="choice"><input type="checkbox" value="tea"><span>🧋 카페·티</span></label><label class="choice"><input type="checkbox" value="dessert"><span>🍡 디저트</span></label><label class="choice"><input type="checkbox" value="cinema"><span>🎬 영화관</span></label><label class="choice"><input type="checkbox" value="popup"><span>🧸 팝업·굿즈</span></label><label class="choice"><input type="checkbox" value="park"><span>🌳 공원·산책</span></label><label class="choice"><input type="checkbox" value="culture"><span>🎨 문화생활</span></label><label class="choice"><input type="checkbox" value="medical"><span>🏥 병원</span></label><label class="choice"><input type="checkbox" value="shopping"><span>🛒 쇼핑·마트</span></label>
 </div><div class="selected" id="prefText">선택하지 않아도 됩니다</div></div>
@@ -82,7 +83,7 @@
 <div><b>현재 이동시간 기준점 · 건대입구역</b><span>건대입구역 도착 기준의 생활권 탐색 · 향후 다른 목적지역으로 확장 예정</span></div>
 <div><span>현재 버전은 대중교통 노선·역간시간을 바탕으로 한 예상치이며, 실시간 교통 API 연동 전까지는 범위형 참고값입니다.</span></div>
 </div><section class="panel trend-panel">
-<div class="trend-head"><div><h2>이번 달 생활 키워드</h2><div class="sub" style="margin:4px 0 0">검색량·오픈런·신규 출점·콘텐츠 화제성을 바탕으로 매달 교체하는 추천 레이어</div></div><span class="trend-month">2026.11</span></div>
+<div class="trend-head"><div><h2>이번 달 생활 키워드</h2><div class="sub" style="margin:4px 0 0">주거수준 상승을 우선하고, 생활 취향은 후보를 고른 뒤 비교하는 보조정보</div></div><span class="trend-month">2026.11</span></div>
 <div class="trend-keywords">
 <a class="trend-key" href="https://m.etoday.co.kr/news/view/2613860" target="_blank" rel="noopener"><b>#차백도 #차지</b><span>2030 중심 티 전문점 확산</span></a>
 <a class="trend-key" href="https://korean.visitseoul.net/area/hanjungsun/KOPp1q4s4" target="_blank" rel="noopener"><b>#한정선 #떡지순례</b><span>성수·잠실 인기 디저트</span></a>
@@ -128,7 +129,8 @@ function priceSortKey(l){return l.dep*1000+l.rent}
 function recommendScore(l){
  const prefs=selPrefs(),hits=lifestyleHits(l,prefs).length;
  const affordability=Math.max(0,18000-l.dep)/1800+Math.max(0,100-l.rent)/20;
- return hits*20+Math.max(0,100-l.time)+affordability+reviewCount(String(l.id))*8+wishCount(String(l.id))*5;
+ const expansion=expansionMetrics(l,currentResults).score;
+ return expansion*1.4+hits*8+Math.max(0,100-l.time)*0.35+affordability+reviewCount(String(l.id))*8+wishCount(String(l.id))*5;
 }
 function sortResults(items){
  const mode=qs('#sort')?qs('#sort').value:'recommend',arr=[...items];
@@ -138,6 +140,7 @@ function sortResults(items){
  else if(mode==='wishDesc')arr.sort((a,b)=>wishCount(String(b.id))-wishCount(String(a.id))||recommendScore(b)-recommendScore(a));
  else if(mode==='newest')arr.sort((a,b)=>String(b.addedAt||'').localeCompare(String(a.addedAt||''))||recommendScore(b)-recommendScore(a));
  else if(mode==='timeAsc')arr.sort((a,b)=>(Number(a.time)||999)-(Number(b.time)||999)||String(a.city).localeCompare(String(b.city),'ko')||priceSortKey(a)-priceSortKey(b)||String(a.id).localeCompare(String(b.id)));
+ else if(mode==='upgradeDesc')arr.sort((a,b)=>expansionMetrics(b,items).score-expansionMetrics(a,items).score||Number(a.time)-Number(b.time)||priceSortKey(a)-priceSortKey(b));
  else if(mode==='sizeDesc')arr.sort((a,b)=>b.py-a.py||priceSortKey(a)-priceSortKey(b));
  else arr.sort((a,b)=>recommendScore(b)-recommendScore(a));
  return arr;
@@ -292,9 +295,45 @@ const areaProfiles={
 };
 function profileFor(l){return areaProfiles[l.city]||null}
 function typeLabel(t){return t==='다세대·빌라'?'다세대·연립':t==='오피스텔'?'주거용 오피스텔':t}
-function neighborhoodPitch(l){
- const keys=(lifestyleByCity[l.city]||[]).slice(0,3);
- return keys.length?'<div class="matchline"><b>동네 포인트</b> · '+keys.map(k=>prefNames[k]).join(' · ')+'</div>':'';
+function median(nums){
+ const a=nums.filter(Number.isFinite).sort((x,y)=>x-y);if(!a.length)return 0;
+ const m=Math.floor(a.length/2);return a.length%2?a[m]:(a[m-1]+a[m])/2;
+}
+function expansionMetrics(l,pool){
+ const rows=(pool&&pool.length?pool:listings).filter(x=>String(x.id)!==String(l.id)&&lhTypeCandidate(x)&&x.deal===l.deal&&Number(x.time)<=Number(l.time)-10);
+ const out=[];let score=0;
+ if(!rows.length)return {score:0,text:''};
+
+ const sameBudget=rows.filter(x=>x.dep<=l.dep+500&&(l.deal==='전세'||x.rent<=l.rent+5));
+ if(l.py>0){
+  const sizeRows=sameBudget.filter(x=>x.py>0);
+  if(sizeRows.length>=2){
+   const base=median(sizeRows.map(x=>Number(x.py)));
+   const diff=Math.round((Number(l.py)-base)*10)/10;
+   if(diff>=1.5){out.push('같은 예산권의 가까운 후보보다 약 '+diff+'평 넓음');score+=Math.min(35,diff*6)}
+  }
+ }
+
+ const similarSize=rows.filter(x=>!l.py||!x.py||x.py>=Math.max(0,l.py-1.5));
+ if(l.deal!=='전세'&&similarSize.length>=2){
+  const baseRent=median(similarSize.map(x=>Number(x.rent||0)));
+  const save=Math.round(baseRent-Number(l.rent||0));
+  if(save>=8){out.push('비슷한 크기의 가까운 후보보다 월세 약 '+save+'만원 낮음');score+=Math.min(30,save)}
+ }
+ if(similarSize.length>=2){
+  const baseDep=median(similarSize.map(x=>Number(x.dep||0)));
+  const saveDep=Math.round((baseDep-Number(l.dep||0))/100)*100;
+  if(saveDep>=2000){out.push('비슷한 조건의 가까운 후보보다 보증금 약 '+formatManwon(saveDep)+' 낮음');score+=Math.min(25,saveDep/500)}
+ }
+
+ if(['아파트','오피스텔'].includes(l.type)&&sameBudget.length>=2&&!sameBudget.some(x=>x.type===l.type)){
+  out.push(typeLabel(l.type)+' 선택지까지 넓어짐');score+=15;
+ }
+ return {score:Math.round(score),text:out.slice(0,2).join(' · ')};
+}
+function expansionPitch(l){
+ const m=expansionMetrics(l,currentResults);
+ return m.text?'<div class="matchline"><b>생활권 확장 효과</b> · '+m.text+' <span style="color:#8a98aa">(현재 수집 매물 비교)</span></div>':'';
 }
 function hogangLink(l){
  const q='site:hogangnono.com '+l.city+' '+l.dong+' '+(l.name||'');
@@ -311,7 +350,7 @@ function listingCardHtml(l){
  const hits=lifestyleHits(l,selPrefs()),id=String(l.id);
  const prefHtml=hits.length?'<div class="pref-hits">'+hits.map(x=>'<span class="pref-hit">✓ '+prefNames[x]+'</span>').join('')+'</div>':'';
  const preview='<div class="listing-photo"><div class="listing-photo-fallback">실매물 대표사진 준비 중</div><img src="'+previewUrl(l)+'" alt="'+displayTitle(l)+' 실매물 대표사진" loading="eager" fetchpriority="high" decoding="async" onerror="this.closest(\'.card\').style.display=\'none\'"><span class="listing-photo-label">실매물 대표사진 · '+l.source+'</span></div>';
- return '<article class="card" data-detail-id="'+escapeHtml(id)+'">'+preview+'<div class="card-body"><div class="loc">'+l.province+' › '+l.city+' › '+l.dong+'</div><h3>'+displayTitle(l)+'</h3><div class="price">'+priceText(l)+'</div><div class="meta"><span class="tag">'+l.deal+'</span><span class="tag">'+typeLabel(l.type)+'</span><span class="tag">건대입구역 기준 약 '+l.time+'분</span></div>'+neighborhoodPitch(l)+prefHtml+'<div class="source">'+l.source+' · '+escapeHtml(l.note||'')+'</div><div class="community-meta"><span>후기 '+reviewCount(id)+'</span><span>위시 '+wishCount(id)+'</span><span>등록 '+(l.addedAt||'-')+'</span></div><div class="card-actions"><button type="button" class="detail-btn" data-open-detail="'+escapeHtml(id)+'">상세 · 커뮤니티 · 뉴스</button><button type="button" class="wish-btn '+(wishCount(id)?'on':'')+'" data-wish="'+escapeHtml(id)+'">♡ '+wishCount(id)+'</button></div><div class="portal-inline"><a href="'+l.url+'" target="_blank" rel="noopener">실매물 원문</a><a href="'+hogangLink(l)+'" target="_blank" rel="noopener">호갱노노 확인</a></div></div></article>';
+ return '<article class="card" data-detail-id="'+escapeHtml(id)+'">'+preview+'<div class="card-body"><div class="loc">'+l.province+' › '+l.city+' › '+l.dong+'</div><h3>'+displayTitle(l)+'</h3><div class="price">'+priceText(l)+'</div><div class="meta"><span class="tag">'+l.deal+'</span><span class="tag">'+typeLabel(l.type)+'</span><span class="tag">건대입구역 기준 약 '+l.time+'분</span></div>'+expansionPitch(l)+prefHtml+'<div class="source">'+l.source+' · '+escapeHtml(l.note||'')+'</div><div class="community-meta"><span>후기 '+reviewCount(id)+'</span><span>위시 '+wishCount(id)+'</span><span>등록 '+(l.addedAt||'-')+'</span></div><div class="card-actions"><button type="button" class="detail-btn" data-open-detail="'+escapeHtml(id)+'">상세 · 커뮤니티 · 뉴스</button><button type="button" class="wish-btn '+(wishCount(id)?'on':'')+'" data-wish="'+escapeHtml(id)+'">♡ '+wishCount(id)+'</button></div><div class="portal-inline"><a href="'+l.url+'" target="_blank" rel="noopener">실매물 원문</a><a href="'+hogangLink(l)+'" target="_blank" rel="noopener">호갱노노 확인</a></div></div></article>';
 }
 function cityPortalLinks(city,dong){
  const place=city+' '+(dong||'');
@@ -329,7 +368,7 @@ function groupedHtml(items){
 }
 function flatSortedHtml(items){
  const mode=qs('#sort')?qs('#sort').value:'recommend';
- const labels={priceAsc:'낮은 가격순',priceDesc:'높은 가격순',reviewDesc:'후기 많은 순',wishDesc:'위시 많은 순',newest:'신상품순',timeAsc:'통학시간 짧은 순',sizeDesc:'넓은 평수 순'};
+ const labels={priceAsc:'낮은 가격순',priceDesc:'높은 가격순',reviewDesc:'후기 많은 순',wishDesc:'위시 많은 순',newest:'신상품순',timeAsc:'통학시간 짧은 순',upgradeDesc:'생활권 확장 효과순',sizeDesc:'넓은 평수 순'};
  const heading=labels[mode]||'정렬 결과';
  return '<section class="city-group"><div class="city-hero"><div class="city-info"><h2>'+heading+'</h2><div class="city-count">선택한 조건의 전체 매물을 지역 구분 없이 정렬합니다.</div></div></div><div class="cards">'+items.map((l,i)=>'<div style="position:relative"><span style="position:absolute;z-index:3;top:8px;left:8px;background:#174a92;color:#fff;border-radius:999px;padding:4px 7px;font-size:10px;font-weight:800">#'+(i+1)+'</span>'+listingCardHtml(l)+'</div>').join('')+'</div></section>';
 }
@@ -409,6 +448,7 @@ function applyPreset(name){
  if(name==='near'){qs('#time').value='45';qs('#timeValue').textContent='45분';msg='가까운 곳부터 · 45분 이내';}
  if(name==='easy'){qs('#transfer').value='1';msg='환승 적게 · 1회 이하';}
  if(name==='cheap'){qs('#rent').value='40';qs('#sort').value='priceAsc';msg='월세 부담 적게 · 40만원 이하';}
+ if(name==='better'){qs('#time').value='90';qs('#timeValue').textContent='90분';qs('#transfer').value='1';qs('#sort').value='upgradeDesc';msg='시간 범위를 넓혀 같은 예산으로 주거수준이 올라가는 후보부터 보여드려요.';}
  if(name==='lh'){msg='LH 대상주택 유형만';}
  qs('#quickStatus').textContent=msg;renderAreas();updateDealMoneyText();search();
 }
