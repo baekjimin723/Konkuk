@@ -14,7 +14,7 @@
 </style>
 </head>
 <body>
-<header><div class="brand">생활권ON</div><div style="font-size:10px;color:#6f8197;margin-top:3px">전세·보증부월세 통합검색 · 자동동기화 <b id="inventoryCount">0</b>건 · <span id="syncStatus">상태 확인 준비 중</span> · 외부 포털 전체재고는 동별 검색 연결</div><div class="build">LIVING MODE BUILD 2026-11-04 · v18</div></header>
+<header><div class="brand">생활권ON</div><div style="font-size:10px;color:#6f8197;margin-top:3px">전세·보증부월세 통합검색 · 전체 DB <b id="inventoryCount">0</b>건 · 현재 조건 <b id="headerResultCount">0</b>건 · <span id="syncStatus">상태 확인 준비 중</span></div><div class="build">COUNT CLARITY BUILD 2026-11-04 · v19</div></header>
 <main class="wrap">
 <section class="panel">
 <h2>매물 조건</h2><div class="sub">시·군·구와 동·읍·면은 복수선택 가능합니다. 검색 버튼은 form 제출이 아니어서 선택값이 초기화되지 않습니다.</div>
@@ -304,6 +304,7 @@ function groupedHtml(items){
 function renderCurrentResults(){
  const sorted=sortResults(currentResults);
  qs('#resultCount').innerHTML='검색 결과 <b>'+sorted.length+'</b>건';
+ if(qs('#headerResultCount')) qs('#headerResultCount').textContent=sorted.length;
  qs('#results').className=currentView==='list'?'view-list':'view-grid';
  qs('#results').innerHTML=groupedHtml(sorted);
 }
@@ -335,7 +336,7 @@ function search(){
     html+='<div class="near-title">'+(sameArea.length?'같은 지역의 근접 실제 매물 전체':'같은 시·도의 근접 실제 매물 전체')+'</div>'+groupedHtml(sortResults(fallback));
   }
   html+='<div class="near-title">현재 매물 더 찾기</div><div class="portal"><a target="_blank" href="https://www.google.com/search?q='+encodeURIComponent(loc+' 당근부동산 월세')+'">당근부동산 검색</a><a target="_blank" href="https://www.google.com/search?q='+encodeURIComponent(loc+' 네이버부동산 월세')+'">네이버부동산 검색</a><a target="_blank" href="https://www.google.com/search?q='+encodeURIComponent(loc+' 직방 월세')+'">직방 검색</a><a target="_blank" href="https://www.google.com/search?q='+encodeURIComponent(loc+' 다방 월세')+'">다방 검색</a><a target="_blank" href="https://www.google.com/search?q='+encodeURIComponent(loc+' 피터팬 월세')+'">피터팬 검색</a><a target="_blank" href="https://www.google.com/search?q='+q+'">통합검색</a></div>';
-  qs('#resultCount').innerHTML='검색 결과 <b>0</b>건 · 근접매물 '+fallback.length+'건';qs('#results').className=currentView==='list'?'view-list':'view-grid';qs('#results').innerHTML=html;
+  qs('#resultCount').innerHTML='검색 결과 <b>0</b>건 · 근접매물 '+fallback.length+'건';if(qs('#headerResultCount')) qs('#headerResultCount').textContent='0';qs('#results').className=currentView==='list'?'view-list':'view-grid';qs('#results').innerHTML=html;
  }
 }
 qs('#province').addEventListener('change',()=>{renderAreas();search();});
