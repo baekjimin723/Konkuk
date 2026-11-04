@@ -1,0 +1,10 @@
+{
+  "checked_at": null,
+  "before": 106,
+  "active_or_unconfirmed": 106,
+  "removed_this_run": 0,
+  "unknown_this_run": 0,
+  "removed": [],
+  "unknown": [],
+  "policy": "Automated source validation configured; first scheduled run pending."
+}
