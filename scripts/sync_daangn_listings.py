@@ -45,7 +45,7 @@ def price(title):
  return (deal,dep,rent) if dep is not None and rent is not None else None
 
 def parse_article(url,province,city,minutes):
- try:r=S.get(url,timeout=15,allow_redirects=True)
+ try:r=S.get(url,timeout=6,allow_redirects=True)
  except:return None
  if r.status_code>=400:return None
  soup=BeautifulSoup(r.text,"html.parser")
@@ -98,7 +98,7 @@ def parse_article(url,province,city,minutes):
 
 def discover(province,city,deal,channel):
  url="https://realty.daangn.com/map/{}/{}/{}/{}".format(quote(province,safe=""),quote(city,safe=""),quote(deal,safe=""),quote(channel,safe=""))
- try:r=S.get(url,timeout=15)
+ try:r=S.get(url,timeout=6)
  except:return []
  if r.status_code>=400:return []
  soup=BeautifulSoup(r.text,"html.parser")
@@ -116,30 +116,45 @@ def main():
  listings=json.loads(m.group(1))
  existing={str(x.get("id")) for x in listings}
  new=[]
- pages=0; checked=0
 
+ flat=[]
  for province,cities in AREAS.items():
   for city,minutes in cities.items():
-   for deal in ("전세","월세"):
-    for channel in ("중개","직거래"):
-     pages+=1
-     for aid,url in discover(province,city,deal,channel)[:20]:
-      if aid in existing:continue
-      checked+=1
-      item=parse_article(url,province,city,minutes)
-      if item:
-       existing.add(aid);new.append(item)
-      if checked>=120:break
-      time.sleep(0.15)
-     if checked>=120:break
-    if checked>=120:break
-   if checked>=120:break
-  if checked>=120:break
+   flat.append((province,city,minutes))
+
+ cursor=0
+ if STATUS.exists():
+  try:
+   prev=json.loads(STATUS.read_text(encoding="utf-8"))
+   cursor=int(prev.get("cursor",0))%len(flat)
+  except:
+   cursor=0
+
+ batch_size=10
+ chosen=[flat[(cursor+i)%len(flat)] for i in range(min(batch_size,len(flat)))]
+ pages=0; checked=0
+
+ for province,city,minutes in chosen:
+  for deal in ("전세","월세"):
+   for channel in ("중개","직거래"):
+    pages+=1
+    for aid,url in discover(province,city,deal,channel)[:10]:
+     if aid in existing:continue
+     checked+=1
+     item=parse_article(url,province,city,minutes)
+     if item:
+      existing.add(aid);new.append(item)
+     if checked>=30:break
+     time.sleep(0.05)
+    if checked>=30:break
+   if checked>=30:break
+  if checked>=30:break
 
  merged=new+listings
  compact=json.dumps(merged,ensure_ascii=False,separators=(",",":"))
  TARGET.write_text(src[:m.start(1)]+compact+src[m.end(1):],encoding="utf-8")
- status={"synced_at":datetime.now(ZoneInfo("Asia/Seoul")).isoformat(timespec="seconds"),"map_pages_checked":pages,"candidate_articles_checked":checked,"new_listings_added":len(new),"inventory_after_sync":len(merged),"source":"당근부동산","channels":["중개","직거래"],"deals":["전세","월세"]}
+ next_cursor=(cursor+batch_size)%len(flat)
+ status={"synced_at":datetime.now(ZoneInfo("Asia/Seoul")).isoformat(timespec="seconds"),"cursor":next_cursor,"cities_checked":[p+" "+c for p,c,_ in chosen],"map_pages_checked":pages,"candidate_articles_checked":checked,"new_listings_added":len(new),"inventory_after_sync":len(merged),"source":"당근부동산","channels":["중개","직거래"],"deals":["전세","월세"]}
  STATUS.write_text(json.dumps(status,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
  print(json.dumps(status,ensure_ascii=False))
 
