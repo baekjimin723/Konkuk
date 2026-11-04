@@ -13,22 +13,61 @@ URLS=[
  "https://gobang.kr/map?p=houseList",
 ]
 
+PATTERNS=[
+ re.compile(r"/place/(\d+)"),
+ re.compile(r'["\']placeId["\']\s*:\s*["\']?(\d+)'),
+ re.compile(r'["\']place_id["\']\s*:\s*["\']?(\d+)'),
+ re.compile(r'["\']placeNo["\']\s*:\s*["\']?(\d+)'),
+ re.compile(r'["\']place_no["\']\s*:\s*["\']?(\d+)'),
+]
+
+def harvest(text,ids):
+    if not text:return
+    for pat in PATTERNS:
+        for m in pat.findall(text):
+            try:
+                v=int(m)
+                if 100 <= v <= 99999999: ids.add(v)
+            except: pass
+
 def collect(page,url):
+    ids=set()
+    network_text=[]
+
+    def on_response(resp):
+        try:
+            ctype=(resp.headers.get("content-type") or "").lower()
+            if "gobang.kr" not in resp.url:return
+            if "json" not in ctype and "javascript" not in ctype:return
+            txt=resp.text()
+            if txt and len(txt)<=6_000_000:
+                network_text.append(txt)
+        except:
+            pass
+
+    page.on("response",on_response)
     page.goto(url,wait_until="domcontentloaded",timeout=60000)
     page.wait_for_timeout(2500)
-    ids=set()
     stagnant=0
-    for _ in range(35):
-        hrefs=page.locator('a[href*="/place/"]').evaluate_all("els => els.map(e => e.href)")
+    for _ in range(40):
+        try:
+            hrefs=page.locator('a[href*="/place/"]').evaluate_all("els => els.map(e => e.href)")
+            for href in hrefs:harvest(href,ids)
+        except: pass
+
+        try:harvest(page.content(),ids)
+        except: pass
+
         before=len(ids)
-        for href in hrefs:
-            m=re.search(r"/place/(\d+)",href or "")
-            if m: ids.add(int(m.group(1)))
-        if len(ids)==before: stagnant+=1
-        else: stagnant=0
-        if stagnant>=5: break
-        page.mouse.wheel(0,4200)
-        page.wait_for_timeout(450)
+        page.mouse.wheel(0,4500)
+        page.wait_for_timeout(500)
+        if len(ids)==before:stagnant+=1
+        else:stagnant=0
+        if stagnant>=7:break
+
+    for txt in network_text:
+        harvest(txt,ids)
+    page.remove_listener("response",on_response)
     return sorted(ids)
 
 def main():
@@ -36,21 +75,19 @@ def main():
     all_ids=set()
     with sync_playwright() as p:
         browser=p.chromium.launch(headless=True)
-        page=browser.new_page(viewport={"width":1440,"height":1000},locale="ko-KR")
+        context=browser.new_context(viewport={"width":1440,"height":1000},locale="ko-KR")
+        page=context.new_page()
         for url in URLS:
-            try:
-                ids=collect(page,url)
-            except Exception:
-                ids=[]
+            try:ids=collect(page,url)
+            except Exception:ids=[]
             by_page[url]=len(ids)
             all_ids.update(ids)
         browser.close()
 
     previous=[]
     if OUT.exists():
-        try: previous=json.loads(OUT.read_text(encoding="utf-8")).get("place_ids",[])
-        except: previous=[]
-    # Keep previously discovered IDs so temporary rendering/network changes do not erase coverage.
+        try:previous=json.loads(OUT.read_text(encoding="utf-8")).get("place_ids",[])
+        except:previous=[]
     all_ids.update(int(x) for x in previous if str(x).isdigit())
 
     OUT.write_text(json.dumps({
