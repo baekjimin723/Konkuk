@@ -42,7 +42,7 @@ GROUPS=[
  ("고시원·원룸텔",["GOSIWON","ONE_ROOM_TEL"]),
 ]
 PER_CITY_MODE_LIMIT=10
-PAGE_SIZE=100
+PAGE_SIZE=40
 MAX_PAGES=40
 
 S=requests.Session()
@@ -77,7 +77,7 @@ def fetch_group(province,code,house_types):
  for page in range(1,MAX_PAGES+1):
   params=[("dongliCode",code)]
   params += [("houseTypes",t) for t in house_types]
-  params += [("pageNo",page),("pageSize",PAGE_SIZE),("randomSeed",20261104)]
+  params += [("pageNo",page),("pageSize",PAGE_SIZE),("randomSeed",1668)]
   try:r=S.get("https://api.gobang.kr/v2/houses",params=params,timeout=12)
   except Exception:break
   if r.status_code>=400:break
