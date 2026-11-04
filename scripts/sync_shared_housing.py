@@ -14,7 +14,7 @@ ARRAY_RE=re.compile(r"const listings=(\[.*?\]);\nconst qs=",re.S)
 
 SEEDS=[
   6079,3609,6171,6566,9419,10102,9122,7535,11260,
-  10822,11584,2168,8121,9305,11345,8519,11451,7436,3585
+  10822,11584,2168,8121,9305,11345,8519,11451,7436,3585,2908,10766,11715
 ]
 
 SEOUL_TIME={
@@ -23,6 +23,7 @@ SEOUL_TIME={
  "서초구":40,"동작구":40,"마포구":40,"관악구":45,"서대문구":45,"영등포구":45,
  "강북구":45,"도봉구":50,"양천구":50,"구로구":50,"금천구":55,"은평구":55,"강서구":60
 }
+GYEONGGI_TIME={"구리시":35}
 
 S=requests.Session()
 S.headers.update({"User-Agent":"Mozilla/5.0","Accept-Language":"ko-KR,ko;q=0.9"})
@@ -45,10 +46,16 @@ def parse_place(pid):
  if "페이지를 찾을 수 없습니다" in text or "삭제" in title:
   return None
 
+ province="서울특별시"
  loc=re.search(r"서울\s+([가-힣]+구)\s+([가-힣0-9]+(?:동|가))",text)
+ time_map=SEOUL_TIME
+ if not loc:
+  loc=re.search(r"경기\s+([가-힣]+시)\s+([가-힣0-9]+(?:동|가))",text)
+  province="경기도"
+  time_map=GYEONGGI_TIME
  if not loc:return None
  city,dong=loc.group(1),loc.group(2)
- if city not in SEOUL_TIME:return None
+ if city not in time_map:return None
 
  rentm=re.search(r"월세\s*([0-9,]+)(?:\s*~\s*([0-9,]+))?만원",text)
  if not rentm:return None
@@ -94,7 +101,7 @@ def parse_place(pid):
 
  item={
    "id":f"gobang-{pid}",
-   "province":"서울특별시",
+   "province":province,
    "city":city,
    "dong":dong,
    "type":typ,
@@ -103,7 +110,7 @@ def parse_place(pid):
    "py":0,
    "dep":dep_min,
    "rent":rent_min,
-   "time":SEOUL_TIME[city],
+   "time":time_map[city],
    "transfer":1,
    "source":"고방",
    "url":url,
