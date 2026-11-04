@@ -1,5 +1,5 @@
 {
-  "synced_at": "2026-11-04T13:21:40+09:00",
+  "synced_at": "2026-11-04T13:24:14+09:00",
   "discovery_pages": {
     "https://gobang.kr/share": 0,
     "https://gobang.kr/coliving": 0,
@@ -7,29 +7,1562 @@
     "https://gobang.kr/map?p=houseList": 0
   },
   "candidate_place_ids": 48,
-  "shared_housing_added": 18,
+  "shared_housing_added": 21,
   "by_mode": {
-    "고시원·원룸텔": 7,
+    "고시원·원룸텔": 10,
     "쉐어하우스·코리빙": 11
   },
   "by_province": {
-    "경기도": 8,
-    "서울특별시": 10
+    "경기도": 9,
+    "서울특별시": 11,
+    "인천광역시": 1
   },
   "by_city": {
     "경기도 광명시": 1,
     "경기도 구리시": 1,
     "경기도 성남시": 1,
     "경기도 수원시": 1,
-    "경기도 시흥시": 1,
-    "경기도 안양시": 1,
-    "경기도 의정부시": 1,
+    "경기도 시흥시": 2,
+    "경기도 안양시": 2,
     "경기도 하남시": 1,
     "서울특별시 관악구": 1,
-    "서울특별시 광진구": 5,
-    "서울특별시 서초구": 1,
-    "서울특별시 성북구": 2,
-    "서울특별시 용산구": 1
+    "서울특별시 광진구": 8,
+    "서울특별시 금천구": 1,
+    "서울특별시 용산구": 1,
+    "인천광역시 서해구": 1
   },
-  "failed_or_out_of_scope_count": 30
+  "failed_or_out_of_scope_count": 27,
+  "api_probe": {
+    "status": 200,
+    "type": "dict",
+    "sample": {
+      "result": [
+        {
+          "no": 4090,
+          "domain": "UCEO",
+          "imageKey": "4090",
+          "houseTypes": [
+            "SHARE_HOUSE"
+          ],
+          "name": "에브리 쉐어하우스  방배점",
+          "latitude": 37.4884145085339,
+          "longitude": 126.996864622246,
+          "dongliCode": "1165010100",
+          "location": null,
+          "eupmyeondongName": "방배동",
+          "eupmyeondongFullName": "서울 서초구 방배동",
+          "minPrice": 47.0,
+          "maxPrice": 80.0,
+          "minDeposit": 100.0,
+          "maxDeposit": 200.0,
+          "hasTourVideo": true,
+          "promoBannerType": "PROMO01",
+          "isUcareOnAirEnabled": false,
+          "isKrgGuaranteez": false,
+          "titleImageFileName": "bf533c6a-3608-4e47-84b7-992b0e0e8437.png",
+          "membershipGrade": "PREMIUM",
+          "isLiked": false,
+          "zzimMemoText": null,
+          "reviewCount": 0,
+          "tags": [
+            {
+              "name": "1개월~",
+              "fixed": true,
+              "type": null
+            },
+            {
+              "name": "30일~",
+              "fixed": true,
+              "type": "MIN_RESIDENCE_PERIOD"
+            },
+            {
+              "name": "관리비 7만",
+              "fixed": true,
+              "type": "MAINTENANCE_FEE"
+            },
+            {
+              "name": "여성전용",
+              "fixed": true,
+              "type": "GENDER"
+            },
+            {
+              "name": "청소업체",
+              "fixed": false,
+              "type": "PROVIDED_SERVICE"
+            },
+            {
+              "name": "신용카드",
+              "fixed": false,
+              "type": "PROVIDED_SERVICE"
+            },
+            {
+              "name": "현금영수증",
+              "fixed": false,
+              "type": "PROVIDED_SERVICE"
+            },
+            {
+              "name": "개인에어컨",
+              "fixed": false,
+              "type": "PRIVATE_FACILITY"
+            },
+            {
+              "name": "개인화장실",
+              "fixed": false,
+              "type": "PRIVATE_FACILITY"
+            }
+          ],
+          "youthImageUrl": null,
+          "nearSubways": [
+            {
+              "name": "내방역",
+              "nameEn": "Naebang",
+              "distance": 0.2998148460265404,
+              "line": "수도권7호선"
+            },
+            {
+              "name": "방배역",
+              "nameEn": "Bangbae",
+              "distance": 0.7755336863260941,
+              "line": "수도권2호선"
+            }
+          ],
+          "titleImages": [
+            {
+              "id": 2065507,
+              "seq": 1,
+              "fileName": "bf533c6a-3608-4e47-84b7-992b0e0e8437.png",
+              "width": 1200,
+              "height": 800,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 2,
+              "fileName": "848b59e1-85e6-463d-b8e0-ebb6d58ac681.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 3,
+              "fileName": "beda7f2e-0997-4b18-b4b9-b7c302c12d5d.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 4,
+              "fileName": "cea5c6bd-373e-4466-ad61-f36521c4f33c.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 5,
+              "fileName": "30e829c6-400f-4808-9b42-338667606ba2.JPG",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 6,
+              "fileName": "71bc1059-9c41-4bcb-b3b6-05b6f684c617.JPG",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 7,
+              "fileName": "dbaa7b3c-2eb9-460f-bf1a-6be4bb20b50e.JPG",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 8,
+              "fileName": "dcd06922-397a-4851-9a4d-2c78c0ef7768.JPG",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 9,
+              "fileName": "23213b52-09aa-4bf7-8bde-53b045a90aee.JPG",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 10,
+              "fileName": "678d9ef8-226d-4495-926e-2154c894b55b.JPG",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 11,
+              "fileName": "2e21857a-691c-4a7d-96b5-b725c8971274.JPG",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 12,
+              "fileName": "557f4ae6-1a33-43d6-947a-a8de5b30f284.JPG",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 13,
+              "fileName": "0769de80-4c3e-4339-8327-392e89b44141.JPG",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 14,
+              "fileName": "c2170d3f-c12d-4770-ab69-596b59e69af6.JPG",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 15,
+              "fileName": "2a8a67b0-12e2-43a3-9efa-72a8ee5709a9.JPG",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 16,
+              "fileName": "b90b9cf5-e8d3-4fbf-a89f-ca9824dd436c.JPG",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 17,
+              "fileName": "1d69a1a6-ae0e-4ef7-af95-28a1b59e9f32.JPG",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 18,
+              "fileName": "6b76866f-9bd1-46d3-be99-decf77d0f6bc.JPG",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 19,
+              "fileName": "87b730d4-5f27-427e-9c84-18ce2bfb05e2.JPG",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 20,
+              "fileName": "d71988cf-e473-4487-bdf4-2b551a582e83.JPG",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 21,
+              "fileName": "5bf913b8-06d1-4a02-9dfc-ff99b7819e62.JPG",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 22,
+              "fileName": "c4546db9-3535-46ee-8958-4eff4d8e726b.JPG",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 23,
+              "fileName": "37a5f742-94ef-4258-8adc-366de7dc3256.JPG",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 24,
+              "fileName": "f4245f78-8d19-4ee5-b157-88d4ee5fbda5.JPG",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 25,
+              "fileName": "79d0740f-745d-41cd-ab28-f9cb43b1a431.JPG",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 26,
+              "fileName": "a8e87ff2-995b-4988-a4d4-4f0d43a6100a.JPG",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 27,
+              "fileName": "23c60d5f-5548-4071-b469-bbc68add0c2d.JPG",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 28,
+              "fileName": "dd8b2c67-5152-4d1b-9479-e01d9abc908e.JPG",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 29,
+              "fileName": "abcfffc4-2da3-4eba-b502-cc1dadc42415.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 30,
+              "fileName": "0ed11813-9537-4e9d-aa83-87204857901e.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 31,
+              "fileName": "b1015b54-b9a7-428e-b673-935d6a7d5896.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 32,
+              "fileName": "9e51e594-4907-4219-b7c3-0b0192cfbc0c.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 33,
+              "fileName": "000d32de-f253-4fe5-9242-db20f3173350.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 34,
+              "fileName": "4148b3fe-a884-4d14-af49-73585119ad48.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 35,
+              "fileName": "4f079bb5-b0db-49b2-9d6e-9cae7c0f60af.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 36,
+              "fileName": "5be8bab1-9343-482c-8dd7-c2d6fae7156f.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 37,
+              "fileName": "0d090aac-ec6c-411c-b1bb-f568450f2608.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065507,
+              "seq": 38,
+              "fileName": "40b3c3f7-8da5-42cd-8045-356a41d3159b.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065508,
+              "seq": 1,
+              "fileName": "f1e0031b-981d-4631-86a4-afb876c9f841.jpeg",
+              "width": 2400,
+              "height": 1792,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065509,
+              "seq": 1,
+              "fileName": "84879c42-1335-471b-890c-6c46a51ceda1.jpeg",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065510,
+              "seq": 1,
+              "fileName": "8f1d5cf0-2920-4f64-ab69-d5d99e481d9b.JPG",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065511,
+              "seq": 1,
+              "fileName": "ca3a7817-3261-4fe1-a3d3-a9305c76a803.jpeg",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065512,
+              "seq": 1,
+              "fileName": "0b94a242-9761-40dd-8dc3-884233abd308.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065513,
+              "seq": 1,
+              "fileName": "27cb4f7e-c686-4ce7-8e18-9bc1c9606ab7.jpeg",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065514,
+              "seq": 1,
+              "fileName": "de9cc8f2-1e57-4d26-9591-f76ea0c76581.jpeg",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065515,
+              "seq": 1,
+              "fileName": "b92b24b3-ad3a-40f7-b436-aa66fc159f5b.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065516,
+              "seq": 1,
+              "fileName": "d3f940fa-8709-4a31-a0fb-badce707056d.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065517,
+              "seq": 1,
+              "fileName": "dcdb7dc2-0c82-4919-bc46-e1ad56fb2fd3.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065518,
+              "seq": 1,
+              "fileName": "e356b709-a244-4334-af77-803708841e45.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065519,
+              "seq": 1,
+              "fileName": "4fd98fdd-b94f-4b60-bd82-bb83ca9e5585.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065520,
+              "seq": 1,
+              "fileName": "9ad11ee3-9af0-44ea-a612-da8106a89d9d.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065521,
+              "seq": 1,
+              "fileName": "799a3907-043e-4594-acff-3afeb012b503.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065522,
+              "seq": 1,
+              "fileName": "2f6703f6-55e5-4b21-ba55-801dba736816.jpeg",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065523,
+              "seq": 1,
+              "fileName": "605c7d08-62d0-4ed4-9b3b-4d6833bb29dc.jpeg",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065524,
+              "seq": 1,
+              "fileName": "86cd10e3-fcf8-44ad-ac11-8998295d5cfb.JPG",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065525,
+              "seq": 1,
+              "fileName": "9047a57a-e484-4f39-8671-c0b93ffc9ea8.JPG",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065526,
+              "seq": 1,
+              "fileName": "acab5747-6805-42f4-9114-7f2b8fc40bff.jpg",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065527,
+              "seq": 1,
+              "fileName": "99251c05-0f61-4b21-90bf-6d4fe210a458.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065528,
+              "seq": 1,
+              "fileName": "814e1117-3821-47a0-a0ae-00281d18f088.JPG",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065529,
+              "seq": 1,
+              "fileName": "def9f198-cd8b-4f3f-91c7-6777a29427b9.jpg",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065530,
+              "seq": 1,
+              "fileName": "dd15343e-155c-4f03-bd0f-644fe6dbe99b.JPG",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065531,
+              "seq": 1,
+              "fileName": "d4565df7-d6b2-42b0-8b4a-0231b02d2a50.JPG",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065532,
+              "seq": 1,
+              "fileName": "4517c79b-8366-49c2-b93f-6537cc80f1da.jpeg",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065533,
+              "seq": 1,
+              "fileName": "9da38d92-0fdd-4a70-a8c6-1ce4d4826401.jpeg",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065534,
+              "seq": 1,
+              "fileName": "d63e1842-6896-492a-8565-5c6de82238fa.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065535,
+              "seq": 1,
+              "fileName": "90fd3b53-a4e7-4cdc-916d-c5c905a4bbb1.jpeg",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065536,
+              "seq": 1,
+              "fileName": "cfe98b17-9fa0-4744-91f4-bf4f742c08cc.jpg",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065537,
+              "seq": 1,
+              "fileName": "49e75df0-4467-4c0b-a01e-d4ecd4417e2c.JPG",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065538,
+              "seq": 1,
+              "fileName": "81bae075-8b67-463f-ab7f-09ddca379e5c.JPG",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065539,
+              "seq": 1,
+              "fileName": "2d3fb065-a29d-46be-9a9a-9619d74b0a7f.JPG",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065540,
+              "seq": 1,
+              "fileName": "de759e30-aa13-4244-932e-f1a3dd5333a3.JPG",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065541,
+              "seq": 1,
+              "fileName": "b830c775-f19e-4d74-98e2-37b3ebcfaebd.jpeg",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065542,
+              "seq": 1,
+              "fileName": "0231240c-877b-4ab1-9dfe-177050b6fa98.jpeg",
+              "width": 4000,
+              "height": 3000,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065543,
+              "seq": 1,
+              "fileName": "652b15eb-9720-4490-94ad-25cc56767c0c.jpeg",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065544,
+              "seq": 1,
+              "fileName": "bbe6eb43-6894-4347-90e5-59e4d100d77b.JPG",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065545,
+              "seq": 1,
+              "fileName": "974bf71e-50c5-4afa-8499-a7852b979e0b.png",
+              "width": 479,
+              "height": 479,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065546,
+              "seq": 1,
+              "fileName": "485817fd-2904-4071-a04c-3280f75a1eda.jpeg",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2065547,
+              "seq": 1,
+              "fileName": "13be2153-a2d8-496e-bb3d-d87c2bc176cd.jpeg",
+              "width": 4000,
+              "height": 3000,
+              "tags": null,
+              "category": null
+            }
+          ],
+          "youthHouse": null
+        },
+        {
+          "no": 8669,
+          "domain": "UCEO",
+          "imageKey": "8669",
+          "houseTypes": [
+            "SHARE_HOUSE",
+            "CO_LIVING_HOUSE"
+          ],
+          "name": "에브리 쉐어하우스 한성성균관대점",
+          "latitude": 37.5928845524098,
+          "longitude": 127.005458253479,
+          "dongliCode": "1129010100",
+          "location": null,
+          "eupmyeondongName": "성북동",
+          "eupmyeondongFullName": "서울 성북구 성북동",
+          "minPrice": 40.0,
+          "maxPrice": 53.0,
+          "minDeposit": 38.0,
+          "maxDeposit": 100.0,
+          "hasTourVideo": true,
+          "promoBannerType": "PROMO01",
+          "isUcareOnAirEnabled": false,
+          "isKrgGuaranteez": false,
+          "titleImageFileName": "c52be707-0d9e-431c-8a09-c62d8a87eac6.jpg",
+          "membershipGrade": "PREMIUM",
+          "isLiked": false,
+          "zzimMemoText": null,
+          "reviewCount": 1,
+          "tags": [
+            {
+              "name": "1개월~",
+              "fixed": true,
+              "type": null
+            },
+            {
+              "name": "30일~",
+              "fixed": true,
+              "type": "MIN_RESIDENCE_PERIOD"
+            },
+            {
+              "name": "관리비 3~9만",
+              "fixed": true,
+              "type": "MAINTENANCE_FEE"
+            },
+            {
+              "name": "남녀분리",
+              "fixed": true,
+              "type": "GENDER"
+            },
+            {
+              "name": "현금영수증",
+              "fixed": false,
+              "type": "PROVIDED_SERVICE"
+            },
+            {
+              "name": "청소업체",
+              "fixed": false,
+              "type": "PROVIDED_SERVICE"
+            },
+            {
+              "name": "개인에어컨",
+              "fixed": false,
+              "type": "PRIVATE_FACILITY"
+            },
+            {
+              "name": "코워킹",
+              "fixed": false,
+              "type": "PRIVATE_SPACE"
+            },
+            {
+              "name": "커피머신",
+              "fixed": false,
+              "type": "KITCHEN_FACILITY"
+            },
+            {
+              "name": "외국어 응대",
+              "fixed": false,
+              "type": "FOREIGN_SUPPORT"
+            },
+            {
+              "name": "주소이전",
+              "fixed": false,
+              "type": "ETC_ITEM"
+            },
+            {
+              "name": "주차공간",
+              "fixed": false,
+              "type": "PARKING"
+            },
+            {
+              "name": "식사제공",
+              "fixed": false,
+              "type": "PROVIDED_SERVICE"
+            }
+          ],
+          "youthImageUrl": null,
+          "nearSubways": [
+            {
+              "name": "한성대입구역",
+              "nameEn": "Hansung Univ. (Samseongyo)",
+              "distance": 0.49799114947002854,
+              "line": "수도권4호선"
+            }
+          ],
+          "titleImages": [
+            {
+              "id": 2061631,
+              "seq": 1,
+              "fileName": "c52be707-0d9e-431c-8a09-c62d8a87eac6.jpg",
+              "width": 1280,
+              "height": 719,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061631,
+              "seq": 2,
+              "fileName": "627ecabc-3f72-4d6c-bb09-e5192265b129.jpg",
+              "width": 1280,
+              "height": 719,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061631,
+              "seq": 3,
+              "fileName": "d90f5de3-ba71-4337-8b6f-bca8c62d1b6b.jpg",
+              "width": 1280,
+              "height": 719,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061631,
+              "seq": 4,
+              "fileName": "aa2a89ba-0e91-4dea-94dc-69d2958842c0.jpg",
+              "width": 1280,
+              "height": 719,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061631,
+              "seq": 5,
+              "fileName": "7d9615bd-ef47-49f5-8f14-000b8df98442.jpg",
+              "width": 1280,
+              "height": 719,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061631,
+              "seq": 6,
+              "fileName": "e05e874d-f63e-4764-81a7-5ba5c4a7145f.jpg",
+              "width": 1280,
+              "height": 719,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061631,
+              "seq": 7,
+              "fileName": "614ee283-a934-4032-88f7-f94c5b4b6838.jpg",
+              "width": 1280,
+              "height": 719,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061631,
+              "seq": 8,
+              "fileName": "5dd962ca-29b5-4005-b6c3-e0e7d90be114.jpg",
+              "width": 1280,
+              "height": 719,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061631,
+              "seq": 9,
+              "fileName": "5951914d-472b-4d08-9c4a-0f16d84559fc.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061631,
+              "seq": 10,
+              "fileName": "091969af-c0bc-4a51-88ef-626db4758d3d.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061631,
+              "seq": 11,
+              "fileName": "9d4b9191-d525-4a60-94c6-15054d5f88b7.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061631,
+              "seq": 12,
+              "fileName": "e865497a-fa8e-49d8-9d51-bab37abc2ba1.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061631,
+              "seq": 13,
+              "fileName": "1b680a78-9d11-4352-b4d0-10f9e00ad7ae.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061631,
+              "seq": 14,
+              "fileName": "12f2cc10-d218-4cc4-8700-a42e3321eac0",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061631,
+              "seq": 15,
+              "fileName": "f15e2002-55d4-4cdd-9cf6-9d4c72cf687d",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061631,
+              "seq": 16,
+              "fileName": "9ce37277-9b0a-4176-bfe7-6e12db6d3ae6",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061631,
+              "seq": 17,
+              "fileName": "a7b82e7d-f164-4d49-8a7e-916520d1990f",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061631,
+              "seq": 18,
+              "fileName": "88dd5b77-d70a-4263-aca8-34358bb2e684",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061631,
+              "seq": 19,
+              "fileName": "1efe0b79-3383-410f-86b9-8531d523ae68",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061631,
+              "seq": 20,
+              "fileName": "5bc565f5-a69a-44cc-b504-c797a384307c",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061633,
+              "seq": 1,
+              "fileName": "98085c9a-30b0-411d-93f1-4ebca6b399e1.png",
+              "width": 2500,
+              "height": 1875,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061642,
+              "seq": 1,
+              "fileName": "141aa363-a417-44b7-a71a-0402fedbbc46.JPG",
+              "width": 3024,
+              "height": 4032,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061643,
+              "seq": 1,
+              "fileName": "a5ad6190-3de3-4817-ad4c-4075fbc76c18.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061644,
+              "seq": 1,
+              "fileName": "9fb7de9d-589d-4e2d-8060-24040c9f390d.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061645,
+              "seq": 1,
+              "fileName": "4289e9f5-c2c8-48d1-bb10-6e324e421da3.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061646,
+              "seq": 1,
+              "fileName": "35511598-7934-4527-b4b9-ae2a087f31bd",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061647,
+              "seq": 1,
+              "fileName": "ae26e334-b875-4912-9ac9-1b4681be7047.jpg",
+              "width": 4000,
+              "height": 3000,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061648,
+              "seq": 1,
+              "fileName": "8beef04a-9749-456c-89dd-7fdc3afb1a02.jpg",
+              "width": 4000,
+              "height": 3000,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061649,
+              "seq": 1,
+              "fileName": "88fc97d8-1aff-40bb-8b3b-7c42ed49b17a.jpg",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061650,
+              "seq": 1,
+              "fileName": "009258ea-5022-4d7e-a79a-06cf399dd659.jpeg",
+              "width": 2400,
+              "height": 1792,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061651,
+              "seq": 1,
+              "fileName": "f5431193-d000-49bf-90e7-bc833f6102e9.jpeg",
+              "width": 2400,
+              "height": 1792,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061652,
+              "seq": 1,
+              "fileName": "74892e4c-f6d4-4990-baad-4847b6681d74.jpg",
+              "width": 4000,
+              "height": 3000,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061653,
+              "seq": 1,
+              "fileName": "2e51459d-fb81-448a-877b-357b0646860b.jpg",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061654,
+              "seq": 1,
+              "fileName": "d740483c-52cc-4c5a-9c66-7d8bc111fada.jpeg",
+              "width": 2400,
+              "height": 1792,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061655,
+              "seq": 1,
+              "fileName": "9fc500e1-002d-4f03-9d1b-ba7393a8cbfc.png",
+              "width": 1349,
+              "height": 1008,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061656,
+              "seq": 1,
+              "fileName": "710de8c0-3150-40c8-8462-da01324b4414.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061657,
+              "seq": 1,
+              "fileName": "c464ab98-7890-47dd-b4fc-e211b38901a0.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2061658,
+              "seq": 1,
+              "fileName": "8c654db0-b37a-498a-afc5-210bfc51f6bf.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            }
+          ],
+          "youthHouse": null
+        },
+        {
+          "no": 8700,
+          "domain": "UCEO",
+          "imageKey": "8700",
+          "houseTypes": [
+            "SHARE_HOUSE"
+          ],
+          "name": "쉐어하우스  연신내점",
+          "latitude": 37.6179944740579,
+          "longitude": 126.927993777549,
+          "dongliCode": "1138010300",
+          "location": null,
+          "eupmyeondongName": "불광동",
+          "eupmyeondongFullName": "서울 은평구 불광동",
+          "minPrice": 34.0,
+          "maxPrice": 48.0,
+          "minDeposit": 50.0,
+          "maxDeposit": 50.0,
+          "hasTourVideo": true,
+          "promoBannerType": "PROMO01",
+          "isUcareOnAirEnabled": false,
+          "isKrgGuaranteez": false,
+          "titleImageFileName": "1de49d0b-8515-41c7-ad73-98f8046f178e.JPG",
+          "membershipGrade": "PREMIUM",
+          "isLiked": false,
+          "zzimMemoText": null,
+          "reviewCount": 1,
+          "tags": [
+            {
+              "name": "1개월~",
+              "fixed": true,
+              "type": null
+            },
+            {
+              "name": "30일~",
+              "fixed": true,
+              "type": "MIN_RESIDENCE_PERIOD"
+            },
+            {
+              "name": "관리비 6~9만",
+              "fixed": true,
+              "type": "MAINTENANCE_FEE"
+            },
+            {
+              "name": "현금영수증",
+              "fixed": false,
+              "type": "PROVIDED_SERVICE"
+            },
+            {
+              "name": "청소업체",
+              "fixed": false,
+              "type": "PROVIDED_SERVICE"
+            },
+            {
+              "name": "주소이전",
+              "fixed": false,
+              "type": "ETC_ITEM"
+            },
+            {
+              "name": "개인에어컨",
+              "fixed": false,
+              "type": "PRIVATE_FACILITY"
+            },
+            {
+              "name": "주차공간",
+              "fixed": false,
+              "type": "PARKING"
+            },
+            {
+              "name": "테라스",
+              "fixed": false,
+              "type": "PRIVATE_SPACE"
+            },
+            {
+              "name": "외국어 응대",
+              "fixed": false,
+              "type": "FOREIGN_SUPPORT"
+            },
+            {
+              "name": "신용카드",
+              "fixed": false,
+              "type": "PROVIDED_SERVICE"
+            }
+          ],
+          "youthImageUrl": null,
+          "nearSubways": [
+            {
+              "name": "독바위역",
+              "nameEn": "Dokbawi",
+              "distance": 0.4477572219518242,
+              "line": "수도권6호선"
+            },
+            {
+              "name": "연신내역",
+              "nameEn": "Yeonsinnae",
+              "distance": 0.6211763597720125,
+              "line": "수도권3호선"
+            },
+            {
+              "name": "연신내역",
+              "nameEn": "Yeonsinnae",
+              "distance": 0.6660314740907204,
+              "line": "수도권6호선"
+            }
+          ],
+          "titleImages": [
+            {
+              "id": 2144190,
+              "seq": 1,
+              "fileName": "1de49d0b-8515-41c7-ad73-98f8046f178e.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2144190,
+              "seq": 2,
+              "fileName": "909798a4-c97f-448e-a7a4-080715a50f05.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2144190,
+              "seq": 3,
+              "fileName": "b2ddcf29-2005-42fe-ae51-fc0f5e21342a.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2144190,
+              "seq": 4,
+              "fileName": "ec15fc9f-bef8-4573-8de0-84f7abba63b5.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2144190,
+              "seq": 5,
+              "fileName": "e49987d4-c4eb-465b-b969-ad37d24793fd.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2144190,
+              "seq": 6,
+              "fileName": "75a6a9de-e10d-4650-bacb-6a2fa7c6ff64.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2144190,
+              "seq": 7,
+              "fileName": "5635e5fd-318f-4524-9be3-48a71d1360b5.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2144190,
+              "seq": 8,
+              "fileName": "5bc52f78-1ad9-4b23-8915-77e5c2438902.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2144192,
+              "seq": 1,
+              "fileName": "20a6f4b4-ed91-430f-9c13-f4662f30e0ac.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2144193,
+              "seq": 1,
+              "fileName": "079620ee-c8e9-4ced-85a9-c429cd0752bf.png",
+              "width": 1195,
+              "height": 896,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2144194,
+              "seq": 1,
+              "fileName": "5d8aa8ab-13a7-4b3a-9e52-13040e9ed3dd.png",
+              "width": 1195,
+              "height": 896,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2144195,
+              "seq": 1,
+              "fileName": "896ca803-8c89-423b-a8c0-2b6ef7160fe8.jpg",
+              "width": 1195,
+              "height": 896,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2144196,
+              "seq": 1,
+              "fileName": "842250a1-bb7b-440a-989f-4d14aa8fa618.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2144197,
+              "seq": 1,
+              "fileName": "55d2e46d-c120-421c-8e8f-f4c35789b851.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2144198,
+              "seq": 1,
+              "fileName": "21c11ee4-06f2-45e8-89cb-0d359d85e63d.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2144199,
+              "seq": 1,
+              "fileName": "c1e2da30-d215-43ee-bc1e-eac06910cac5.JPG",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2144200,
+              "seq": 1,
+              "fileName": "32640eff-0d18-4f34-b0d9-bb205c281f85.png",
+              "width": 1274,
+              "height": 714,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2144201,
+              "seq": 1,
+              "fileName": "a08b21b1-b908-406a-9bd7-b5e6289427c0.JPG",
+              "width": 1440,
+              "height": 1081,
+              "tags": null,
+              "category": null
+            },
+            {
+              "id": 2144202,
+              "seq": 1,
+              "fileName": "df681e91-48a4-46f9-9d5a-7d300a170990.jpg",
+              "width": 4032,
+              "height": 3024,
+              "tags": null,
+              "category": null
+            }
+          ],
+          "youthHouse": null
+        }
+      ]
+    }
+  }
 }

@@ -1,10 +1,17 @@
 {
-  "checked_at": "2026-11-04T04:21:28+00:00",
-  "before": 148,
-  "active_or_unconfirmed": 148,
+  "checked_at": "2026-11-04T04:24:01+00:00",
+  "before": 151,
+  "active_or_unconfirmed": 151,
   "removed_this_run": 0,
-  "unknown_this_run": 0,
+  "unknown_this_run": 1,
   "removed": [],
-  "unknown": [],
+  "unknown": [
+    {
+      "id": "gobang-25539",
+      "source": "고방",
+      "url": "https://gobang.kr/place/25539",
+      "reason": "http:500"
+    }
+  ],
   "policy": "Definitive 404/410, provider redirect, or visible inactive marker only. Temporary/network failures are retained."
 }
