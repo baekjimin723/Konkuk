@@ -68,6 +68,15 @@ S.headers.update({
  "Accept-Language":"ko-KR,ko;q=0.9"
 })
 
+def api_probe():
+ try:
+  r=S.get("https://api.gobang.kr/v2/houses?dongliCode=11&houseTypes=SHARE_HOUSE&pageNo=1&pageSize=3&randomSeed=1668",timeout=10)
+  if r.status_code>=400:return {"status":r.status_code}
+  data=r.json()
+  return {"status":r.status_code,"type":type(data).__name__,"sample":data}
+ except Exception as e:
+  return {"error":type(e).__name__}
+
 def first_num(s):
  m=re.search(r"(\d+)",(s or "").replace(",",""))
  return int(m.group(1)) if m else 0
@@ -235,7 +244,8 @@ def main():
   "by_mode":by_mode,
   "by_province":by_province,
   "by_city":dict(sorted(by_city.items(),key=lambda kv:(kv[0]))),
-  "failed_or_out_of_scope_count":len(failed)
+  "failed_or_out_of_scope_count":len(failed),
+  "api_probe":api_probe()
  },ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
  print(json.dumps({"shared_housing_added":len(shared),"by_mode":by_mode,"by_province":by_province},ensure_ascii=False))
 
