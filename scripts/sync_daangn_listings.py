@@ -44,6 +44,16 @@ def price(title):
  a,b=raw.split("/",1); dep,rent=money(a),money(b)
  return (deal,dep,rent) if dep is not None and rent is not None else None
 
+def living_mode(title,text):
+ joined=(title+" "+text).lower()
+ if any(k in joined for k in ("쉐어하우스","쉐어 하우스","share house","코리빙","co-living","coliving","공유주택","공유 주택")):
+  return "쉐어하우스·코리빙"
+ if any(k in joined for k in ("기숙사형","기숙사","학생생활관","생활관")):
+  return "기숙사형 주거"
+ if any(k in joined for k in ("고시원","고시텔","원룸텔","리빙텔")):
+  return "고시원·원룸텔"
+ return "일반주거"
+
 def parse_article(url,province,city,minutes):
  try:r=S.get(url,timeout=6,allow_redirects=True)
  except:return None
@@ -92,7 +102,7 @@ def parse_article(url,province,city,minutes):
 
  og=soup.find("meta",attrs={"property":"og:image"})
  photo=og.get("content","").strip() if og else ""
- item={"id":aid,"province":province,"city":city,"dong":dong,"type":typ,"layout":layout,"py":py,"dep":dep,"rent":rent,"time":minutes,"transfer":1,"source":"당근부동산","url":"https://realty.daangn.com/articles/"+aid,"note":"자동동기화 · 원문 확인","deal":deal,"addedAt":datetime.now(ZoneInfo("Asia/Seoul")).date().isoformat()}
+ item={"id":aid,"province":province,"city":city,"dong":dong,"type":typ,"layout":layout,"livingMode":living_mode(title,text),"py":py,"dep":dep,"rent":rent,"time":minutes,"transfer":1,"source":"당근부동산","url":"https://realty.daangn.com/articles/"+aid,"note":"자동동기화 · 원문 확인","deal":deal,"addedAt":datetime.now(ZoneInfo("Asia/Seoul")).date().isoformat()}
  if photo:item["photo"]=photo
  return item
 
