@@ -245,7 +245,8 @@ def main():
   "by_province":by_province,
   "by_city":dict(sorted(by_city.items(),key=lambda kv:(kv[0]))),
   "failed_or_out_of_scope_count":len(failed),
-  "api_probe":api_probe()
+  "api_probe":api_probe(),
+  "image_probe":(lambda: (lambda r: BeautifulSoup(r.text,"html.parser").find("meta",attrs={"property":"og:image"}).get("content","") if r.status_code<400 and BeautifulSoup(r.text,"html.parser").find("meta",attrs={"property":"og:image"}) else "")(S.get("https://gobang.kr/place/4090",timeout=10)))()
  },ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
  print(json.dumps({"shared_housing_added":len(shared),"by_mode":by_mode,"by_province":by_province},ensure_ascii=False))
 
