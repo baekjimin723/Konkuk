@@ -14,7 +14,7 @@
 </style>
 </head>
 <body>
-<header><div class="brand">생활권ON</div><div style="font-size:10px;color:#6f8197;margin-top:3px">전세·보증부월세 통합검색 · 자동동기화 <b id="inventoryCount">0</b>건 · <span id="syncStatus">상태 확인 준비 중</span> · 외부 포털 전체재고는 동별 검색 연결</div><div class="build">LIVE VALIDATION BUILD 2026-11-04 · v16</div></header>
+<header><div class="brand">생활권ON</div><div style="font-size:10px;color:#6f8197;margin-top:3px">전세·보증부월세 통합검색 · 자동동기화 <b id="inventoryCount">0</b>건 · <span id="syncStatus">상태 확인 준비 중</span> · 외부 포털 전체재고는 동별 검색 연결</div><div class="build">LOCAL PHOTO CACHE BUILD 2026-11-04 · v17</div></header>
 <main class="wrap">
 <section class="panel">
 <h2>매물 조건</h2><div class="sub">시·군·구와 동·읍·면은 복수선택 가능합니다. 검색 버튼은 form 제출이 아니어서 선택값이 초기화되지 않습니다.</div>
@@ -267,11 +267,11 @@ function displayTitle(l){
  if(['아파트','오피스텔','도시형생활주택'].includes(l.type)) return '건물명 확인 필요 · '+l.layout+sizeText;
  return l.dong.split(' ').slice(-1)[0]+' '+l.layout+sizeText;
 }
-function previewUrl(l){return l.photo||('https://api.microlink.io/?url='+encodeURIComponent(l.url)+'&embed=image.url&prerender=true')}
+function previewUrl(l){return l.photo||''}
 function listingCardHtml(l){
  const hits=lifestyleHits(l,selPrefs()),id=String(l.id);
  const prefHtml=hits.length?'<div class="pref-hits">'+hits.map(x=>'<span class="pref-hit">✓ '+prefNames[x]+'</span>').join('')+'</div>':'';
- const preview='<div class="listing-photo"><div class="listing-photo-fallback">실매물 대표사진를 불러오는 중입니다.<br>외부 사이트가 차단하면 아래 원문 버튼에서 실제 사진을 확인하세요.</div><img src="'+previewUrl(l)+'" alt="'+displayTitle(l)+' 실매물 대표사진" loading="lazy" onerror="this.remove()"><span class="listing-photo-label">실매물 대표사진 · '+l.source+'</span></div>';
+ const preview='<div class="listing-photo"><div class="listing-photo-fallback">실매물 대표사진 준비 중</div><img src="'+previewUrl(l)+'" alt="'+displayTitle(l)+' 실매물 대표사진" loading="eager" fetchpriority="high" decoding="async" onerror="this.closest(\'.card\').style.display=\'none\'"><span class="listing-photo-label">실매물 대표사진 · '+l.source+'</span></div>';
  return '<article class="card" data-detail-id="'+escapeHtml(id)+'">'+preview+'<div class="card-body"><div class="loc">'+l.province+' › '+l.city+' › '+l.dong+'</div><h3>'+displayTitle(l)+'</h3><div class="price">'+priceText(l)+'</div><div class="meta"><span class="tag">'+l.deal+'</span><span class="tag">'+l.type+'</span><span class="tag">건국대 기준 약 '+l.time+'분</span></div>'+prefHtml+'<div class="source">'+l.source+' · '+escapeHtml(l.note||'')+'</div><div class="community-meta"><span>후기 '+reviewCount(id)+'</span><span>위시 '+wishCount(id)+'</span><span>등록 '+(l.addedAt||'-')+'</span></div><div class="card-actions"><button type="button" class="detail-btn" data-open-detail="'+escapeHtml(id)+'">상세 · 커뮤니티 · 뉴스</button><button type="button" class="wish-btn '+(wishCount(id)?'on':'')+'" data-wish="'+escapeHtml(id)+'">♡ '+wishCount(id)+'</button></div><a class="link" href="'+l.url+'" target="_blank" rel="noopener">실매물 사진·원문 보기</a></div></article>';
 }
 function cityPortalLinks(city,dong){
