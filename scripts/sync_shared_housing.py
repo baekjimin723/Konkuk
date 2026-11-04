@@ -11,6 +11,7 @@ from bs4 import BeautifulSoup
 
 TARGET=Path("living-area-site/index.html")
 STATUS=Path("living-area-site/shared-housing-status.json")
+DISCOVERED=Path("living-area-site/shared-place-ids.json")
 ARRAY_RE=re.compile(r"const listings=(\[.*?\]);\nconst qs=",re.S)
 
 # Current provider category pages. We discover place IDs here every run instead of
@@ -73,6 +74,12 @@ def first_num(s):
 
 def discover_ids():
  ids=set(FALLBACK_IDS)
+ if DISCOVERED.exists():
+  try:
+   data=json.loads(DISCOVERED.read_text(encoding="utf-8"))
+   ids.update(int(x) for x in data.get("place_ids",[]) if str(x).isdigit())
+  except Exception:
+   pass
  discovered_by={}
  for url in DISCOVERY_URLS:
   try:r=S.get(url,timeout=10,allow_redirects=True)
