@@ -6,7 +6,6 @@ on:
     paths:
       - "scripts/**"
       - ".github/workflows/validate-listings.yml"
-      - "living-area-site/index.html"
   schedule:
     - cron: "7,22,37,52 * * * *"
 
@@ -46,7 +45,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add living-area-site/index.html living-area-site/listing-status.json living-area-site/sync-status.json living-area-site/image-cache-status.json living-area-site/assets/listings living-area-site/image-cache-status.json living-area-site/assets/listings
+          git add living-area-site/index.html living-area-site/listing-status.json living-area-site/sync-status.json living-area-site/image-cache-status.json living-area-site/assets/listings
           if git diff --cached --quiet; then
             echo "No main-branch changes."
           else
@@ -59,7 +58,7 @@ jobs:
           git fetch origin choonsikkk-repo-fix
           git checkout choonsikkk-repo-fix
           git checkout main -- living-area-site/index.html living-area-site/listing-status.json living-area-site/sync-status.json living-area-site/image-cache-status.json living-area-site/assets/listings
-          git add living-area-site/index.html living-area-site/listing-status.json living-area-site/sync-status.json
+          git add living-area-site/index.html living-area-site/listing-status.json living-area-site/sync-status.json living-area-site/image-cache-status.json living-area-site/assets/listings
           if git diff --cached --quiet; then
             echo "Pages branch already current."
           else
