@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import json, re
 from datetime import datetime
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -124,10 +125,15 @@ def main():
  base=[x for x in listings if x.get("source")!="고방"]
  shared=[]
  failed=[]
- for pid in SEEDS:
-  item=parse_place(pid)
-  if item: shared.append(item)
-  else: failed.append(pid)
+ with ThreadPoolExecutor(max_workers=8) as ex:
+  futs={ex.submit(parse_place,pid):pid for pid in SEEDS}
+  for fut in as_completed(futs):
+   pid=futs[fut]
+   try:item=fut.result()
+   except Exception:item=None
+   if item: shared.append(item)
+   else: failed.append(pid)
+ shared.sort(key=lambda x:(x["city"],x["dong"],x["livingMode"],x["rent"],x["name"]))
 
  merged=shared+base
  compact=json.dumps(merged,ensure_ascii=False,separators=(",",":"))
