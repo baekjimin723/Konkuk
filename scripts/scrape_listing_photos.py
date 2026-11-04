@@ -1,5 +1,6 @@
-import json, os, re, time, base64
+import json, os, re, time, base64, html as htmlmod
 from pathlib import Path
+import requests
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -40,6 +41,96 @@ driver = webdriver.Chrome(options=opts)
 driver.set_page_load_timeout(8)
 
 BAD = ("logo","avatar","profile","icon","emoji","map","marker","banner","advert","ads","qrcode","qr","sprite","favicon","badge","button")
+UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/131.0.0.0 Safari/537.36"
+
+def save_url_image(url, path, referer=""):
+    if not url:
+        return False
+    try:
+        url = htmlmod.unescape(str(url)).replace("\\/", "/")
+        if url.startswith("//"):
+            url = "https:" + url
+        if not url.startswith("http"):
+            return False
+        low = url.lower()
+        if any(k in low for k in BAD):
+            return False
+        cookies = {c["name"]: c["value"] for c in driver.get_cookies()}
+        headers = {"User-Agent": UA, "Accept": "image/avif,image/webp,image/apng,image/*,*/*;q=0.8"}
+        if referer:
+            headers["Referer"] = referer
+        r = requests.get(url, headers=headers, cookies=cookies, timeout=10)
+        if r.status_code != 200 or len(r.content) < 5000:
+            return False
+        im = Image.open(BytesIO(r.content)).convert("RGB")
+        if im.width < 300 or im.height < 180:
+            return False
+        if im.width > 1200:
+            ratio = 1200 / im.width
+            im = im.resize((1200, int(im.height * ratio)))
+        im.save(path, "JPEG", quality=88, optimize=True)
+        return True
+    except Exception:
+        return False
+
+def metadata_image_urls():
+    urls = []
+    selectors = [
+        'meta[property="og:image"]',
+        'meta[property="og:image:secure_url"]',
+        'meta[name="twitter:image"]',
+        'meta[name="twitter:image:src"]',
+        'link[rel="image_src"]'
+    ]
+    for sel in selectors:
+        try:
+            el = driver.find_element(By.CSS_SELECTOR, sel)
+            v = el.get_attribute("content") or el.get_attribute("href")
+            if v and v not in urls:
+                urls.append(v)
+        except Exception:
+            pass
+    return urls
+
+def lazy_image_urls():
+    urls = []
+    try:
+        imgs = driver.find_elements(By.TAG_NAME, "img")
+    except Exception:
+        return urls
+    for el in imgs:
+        for attr in ("src", "data-src", "data-original", "data-lazy-src", "poster"):
+            try:
+                v = el.get_attribute(attr)
+                if v and v.startswith(("http://","https://","//")) and v not in urls:
+                    urls.append(v)
+            except Exception:
+                pass
+        try:
+            srcset = el.get_attribute("srcset") or el.get_attribute("data-srcset") or ""
+            for part in srcset.split(","):
+                v = part.strip().split(" ")[0]
+                if v.startswith(("http://","https://","//")) and v not in urls:
+                    urls.append(v)
+        except Exception:
+            pass
+    return urls
+
+def source_image_urls():
+    try:
+        src = htmlmod.unescape(driver.page_source).replace("\\/", "/")
+    except Exception:
+        return []
+    found = re.findall(r'https?://[^"\'<>\s]+', src)
+    urls = []
+    for u in found:
+        u = u.rstrip("),;]")
+        low = u.lower()
+        if any(ext in low for ext in (".jpg", ".jpeg", ".png", ".webp", "image", "photo", "cdn")):
+            if not any(k in low for k in BAD) and u not in urls:
+                urls.append(u)
+    return urls[:100]
+
 manifest = {}
 results = []
 
@@ -160,6 +251,12 @@ for idx, listing in enumerate(listings, start=1):
     if not url:
         continue
     out = OUT_DIR / f"{lid}.jpg"
+    rel = f"assets/listings/{lid}.jpg"
+    if out.exists() and out.stat().st_size > 5000:
+        manifest[str(listing["id"])] = rel
+        results.append({"id": str(listing["id"]), "status": "existing", "url": url, "photo": rel})
+        print(f"[{idx}/{len(listings)}] {lid} existing", flush=True)
+        continue
     print(f"[{idx}/{len(listings)}] {lid} {url}", flush=True)
     try:
         try:
@@ -187,8 +284,18 @@ for idx, listing in enumerate(listings, start=1):
             chosen = candidate_backgrounds()
 
         ok = bool(chosen and save_element(chosen, out))
+        if not ok:
+            candidates = metadata_image_urls() + lazy_image_urls() + source_image_urls()
+            seen = set()
+            for img_url in candidates:
+                if img_url in seen:
+                    continue
+                seen.add(img_url)
+                if save_url_image(img_url, out, url):
+                    ok = True
+                    print(f"  saved direct image {img_url[:120]}", flush=True)
+                    break
         if ok:
-            rel = f"assets/listings/{lid}.jpg"
             manifest[str(listing["id"])] = rel
             results.append({"id": str(listing["id"]), "status": "ok", "url": url, "photo": rel})
             print(f"  saved {rel}", flush=True)
