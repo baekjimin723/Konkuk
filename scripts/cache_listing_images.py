@@ -92,7 +92,33 @@ def candidates(item, raw, final_url):
         cleaned.append(u)
     return cleaned
 
+def image_from_url(item,url):
+    if not url or str(url).startswith("./assets/"):
+        return None
+    try:
+        ir=S.get(url,timeout=8,allow_redirects=True)
+    except:
+        return None
+    if ir.status_code>=400:return None
+    ctype=(ir.headers.get("content-type") or "").lower()
+    if "image" not in ctype and len(ir.content)<5000:return None
+    try:
+        im=Image.open(io.BytesIO(ir.content))
+        im=ImageOps.exif_transpose(im).convert("RGB")
+        if im.width<240 or im.height<140:return None
+        fitted=ImageOps.fit(im,(640,360),method=Image.Resampling.LANCZOS,centering=(0.5,0.5))
+        return fitted
+    except:
+        return None
+
 def download_actual(item):
+    # Newly synced provider rows already carry their verified OG/representative image.
+    # Cache that first so a temporary 500 on the detail page does not delete a valid row.
+    direct=item.get("photo","")
+    im=image_from_url(item,direct)
+    if im is not None:
+        return item,im,direct
+
     try:
         r=S.get(item["url"],timeout=8,allow_redirects=True)
     except Exception as e:
@@ -101,24 +127,9 @@ def download_actual(item):
         return item,None,"page_http:"+str(r.status_code)
 
     for url in candidates(item,r.text,r.url):
-        try:
-            ir=S.get(url,timeout=8,allow_redirects=True)
-        except:
-            continue
-        if ir.status_code>=400: continue
-        ctype=(ir.headers.get("content-type") or "").lower()
-        if "image" not in ctype and len(ir.content)<5000: continue
-        try:
-            im=Image.open(io.BytesIO(ir.content))
-            im=ImageOps.exif_transpose(im).convert("RGB")
-            if im.width<240 or im.height<140: continue
-            im.thumbnail((640,420),Image.Resampling.LANCZOS)
-            canvas=Image.new("RGB",(640,360),"white")
-            fitted=ImageOps.fit(im,(640,360),method=Image.Resampling.LANCZOS,centering=(0.5,0.5))
-            canvas.paste(fitted,(0,0))
-            return item,canvas,url
-        except:
-            continue
+        im=image_from_url(item,url)
+        if im is not None:
+            return item,im,url
     return item,None,"no_actual_image"
 
 def main():
