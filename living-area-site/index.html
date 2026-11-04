@@ -322,14 +322,14 @@ function search(){
   qs('#resultCount').innerHTML='검색 결과 <b>0</b>건 · 근접매물 '+fallback.length+'건';qs('#results').className=currentView==='list'?'view-list':'view-grid';qs('#results').innerHTML=html;
  }
 }
-qs('#province').addEventListener('change',renderAreas);
+qs('#province').addEventListener('change',()=>{renderAreas();search();});
 qs('#areas').addEventListener('change',renderDongs);
 qs('#dongs').addEventListener('change',updateTexts);
 qs('#areaAll').addEventListener('click',()=>{qsa('#areas input').forEach(x=>x.checked=true);renderDongs()});
 qs('#areaClear').addEventListener('click',()=>{qsa('#areas input').forEach(x=>x.checked=false);renderDongs()});
 qs('#dongAll').addEventListener('click',()=>{qsa('#dongs input').forEach(x=>x.checked=true);updateTexts()});
 qs('#dongClear').addEventListener('click',()=>{qsa('#dongs input').forEach(x=>x.checked=false);updateTexts()});
-qs('#time').addEventListener('input',()=>{qs('#timeValue').textContent=qs('#time').value+'분';renderAreas();});
+qs('#time').addEventListener('input',()=>{qs('#timeValue').textContent=qs('#time').value+'분';renderAreas();search();});
 qs('#sizes').addEventListener('change',updateSizePrefText);qs('#prefs').addEventListener('change',updateSizePrefText);qs('#deals').addEventListener('change',updateDealMoneyText);
 qs('#sizeAll').addEventListener('click',()=>{qsa('#sizes input').forEach(x=>x.checked=true);updateSizePrefText()});qs('#sizeClear').addEventListener('click',()=>{qsa('#sizes input').forEach(x=>x.checked=false);updateSizePrefText()});qs('#prefClear').addEventListener('click',()=>{qsa('#prefs input').forEach(x=>x.checked=false);updateSizePrefText()});qs('#dealAll').addEventListener('click',()=>{qsa('#deals input').forEach(x=>x.checked=true);updateDealMoneyText()});qs('#dealClear').addEventListener('click',()=>{qsa('#deals input').forEach(x=>x.checked=false);updateDealMoneyText()});
 qs('#sort').addEventListener('change',()=>{if(currentResults.length)renderCurrentResults()});
