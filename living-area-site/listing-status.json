@@ -1,0 +1,299 @@
+{
+  "checked_at": "2026-11-04T02:35:54+00:00",
+  "before": 106,
+  "active_or_unconfirmed": 58,
+  "removed_this_run": 48,
+  "unknown_this_run": 0,
+  "removed": [
+    {
+      "id": "19996065",
+      "source": "피터팬",
+      "url": "https://www.peterpanz.com/house/19996065",
+      "reason": "marker:거래완료"
+    },
+    {
+      "id": "20098600",
+      "source": "피터팬",
+      "url": "https://www.peterpanz.com/house/20098600",
+      "reason": "marker:거래완료"
+    },
+    {
+      "id": "4641727",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4641727",
+      "reason": "http:404"
+    },
+    {
+      "id": "20059270",
+      "source": "피터팬",
+      "url": "https://www.peterpanz.com/house/20059270",
+      "reason": "marker:거래완료"
+    },
+    {
+      "id": "20055304",
+      "source": "피터팬",
+      "url": "https://www.peterpanz.com/house/20055304",
+      "reason": "marker:거래완료"
+    },
+    {
+      "id": "20029787",
+      "source": "피터팬",
+      "url": "https://www.peterpanz.com/house/20029787",
+      "reason": "marker:거래완료"
+    },
+    {
+      "id": "20084306",
+      "source": "피터팬",
+      "url": "https://www.peterpanz.com/house/20084306",
+      "reason": "marker:거래완료"
+    },
+    {
+      "id": "19986296",
+      "source": "피터팬",
+      "url": "https://www.peterpanz.com/house/19986296",
+      "reason": "marker:삭제된 매물"
+    },
+    {
+      "id": "4728516",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4728516",
+      "reason": "http:404"
+    },
+    {
+      "id": "4644804",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4644804",
+      "reason": "http:404"
+    },
+    {
+      "id": "4760745",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4760745",
+      "reason": "http:404"
+    },
+    {
+      "id": "4864467",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4864467",
+      "reason": "http:404"
+    },
+    {
+      "id": "4767389",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4767389",
+      "reason": "http:404"
+    },
+    {
+      "id": "4797393",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4797393",
+      "reason": "http:404"
+    },
+    {
+      "id": "4520358",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4520358",
+      "reason": "marker:거래 완료"
+    },
+    {
+      "id": "4777157",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4777157",
+      "reason": "marker:숨김 처리된 게시글"
+    },
+    {
+      "id": "4848896",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4848896",
+      "reason": "marker:거래 완료"
+    },
+    {
+      "id": "1798261",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/1798261",
+      "reason": "http:404"
+    },
+    {
+      "id": "4395904",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4395904",
+      "reason": "marker:숨김 처리된 게시글"
+    },
+    {
+      "id": "20047997",
+      "source": "피터팬",
+      "url": "https://www.peterpanz.com/house/20047997",
+      "reason": "marker:삭제된 매물"
+    },
+    {
+      "id": "20101925",
+      "source": "피터팬",
+      "url": "https://www.peterpanz.com/house/20101925",
+      "reason": "marker:거래완료"
+    },
+    {
+      "id": "20027436",
+      "source": "피터팬",
+      "url": "https://www.peterpanz.com/house/20027436",
+      "reason": "marker:거래완료"
+    },
+    {
+      "id": "20010943",
+      "source": "피터팬",
+      "url": "https://www.peterpanz.com/house/20010943",
+      "reason": "marker:거래완료"
+    },
+    {
+      "id": "20091618",
+      "source": "피터팬",
+      "url": "https://www.peterpanz.com/house/20091618",
+      "reason": "marker:거래완료"
+    },
+    {
+      "id": "4533925",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4533925",
+      "reason": "http:404"
+    },
+    {
+      "id": "4649751",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4649751",
+      "reason": "http:404"
+    },
+    {
+      "id": "4508798",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4508798",
+      "reason": "http:404"
+    },
+    {
+      "id": "20033234",
+      "source": "피터팬",
+      "url": "https://www.peterpanz.com/house/20033234",
+      "reason": "marker:거래완료"
+    },
+    {
+      "id": "20045067",
+      "source": "피터팬",
+      "url": "https://www.peterpanz.com/house/20045067",
+      "reason": "marker:삭제된 매물"
+    },
+    {
+      "id": "20064227",
+      "source": "피터팬",
+      "url": "https://www.peterpanz.com/house/20064227",
+      "reason": "marker:삭제된 매물"
+    },
+    {
+      "id": "20070901",
+      "source": "피터팬",
+      "url": "https://www.peterpanz.com/house/20070901",
+      "reason": "marker:삭제된 매물"
+    },
+    {
+      "id": "20079388",
+      "source": "피터팬",
+      "url": "https://www.peterpanz.com/house/20079388",
+      "reason": "marker:거래완료"
+    },
+    {
+      "id": "20082293",
+      "source": "피터팬",
+      "url": "https://www.peterpanz.com/house/20082293",
+      "reason": "marker:거래완료"
+    },
+    {
+      "id": "19979114",
+      "source": "피터팬",
+      "url": "https://www.peterpanz.com/house/19979114",
+      "reason": "marker:거래완료"
+    },
+    {
+      "id": "20012200",
+      "source": "피터팬",
+      "url": "https://www.peterpanz.com/house/20012200",
+      "reason": "marker:거래완료"
+    },
+    {
+      "id": "20012191",
+      "source": "피터팬",
+      "url": "https://www.peterpanz.com/house/20012191",
+      "reason": "marker:거래완료"
+    },
+    {
+      "id": "20095509",
+      "source": "피터팬",
+      "url": "https://www.peterpanz.com/house/20095509",
+      "reason": "marker:거래완료"
+    },
+    {
+      "id": "19990468",
+      "source": "피터팬",
+      "url": "https://www.peterpanz.com/house/19990468",
+      "reason": "marker:거래완료"
+    },
+    {
+      "id": "20087812",
+      "source": "피터팬",
+      "url": "https://www.peterpanz.com/house/20087812",
+      "reason": "marker:거래완료"
+    },
+    {
+      "id": "20037209",
+      "source": "피터팬",
+      "url": "https://www.peterpanz.com/house/20037209",
+      "reason": "marker:거래완료"
+    },
+    {
+      "id": "20094893",
+      "source": "피터팬",
+      "url": "https://www.peterpanz.com/house/20094893",
+      "reason": "marker:거래완료"
+    },
+    {
+      "id": "20047420",
+      "source": "피터팬",
+      "url": "https://www.peterpanz.com/house/20047420",
+      "reason": "marker:거래완료"
+    },
+    {
+      "id": "4800796",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4800796",
+      "reason": "http:404"
+    },
+    {
+      "id": "4644007",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4644007",
+      "reason": "http:404"
+    },
+    {
+      "id": "4814194",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4814194",
+      "reason": "marker:숨김 처리된 게시글"
+    },
+    {
+      "id": "4664195",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4664195",
+      "reason": "http:404"
+    },
+    {
+      "id": "4729582",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4729582",
+      "reason": "http:404"
+    },
+    {
+      "id": "4866874",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4866874",
+      "reason": "http:404"
+    }
+  ],
+  "unknown": [],
+  "policy": "Definitive 404/410, provider redirect, or visible inactive marker only. Temporary/network failures are retained."
+}
