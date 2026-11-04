@@ -4,6 +4,7 @@ import json
 import re
 from datetime import datetime, timezone
 from pathlib import Path
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import requests
 from bs4 import BeautifulSoup
@@ -47,7 +48,7 @@ def visible_text(raw: str) -> str:
 def check_listing(item):
     url = item.get("url", "")
     try:
-        r = session.get(url, timeout=20, allow_redirects=True)
+        r = session.get(url, timeout=8, allow_redirects=True)
     except requests.RequestException as e:
         return "unknown", f"network:{type(e).__name__}"
 
@@ -80,9 +81,20 @@ def main():
 
     listings = json.loads(m.group(1))
     active, removed, unknown = [], [], []
+    results = {}
+
+    with ThreadPoolExecutor(max_workers=12) as executor:
+        future_map = {executor.submit(check_listing, item): item for item in listings}
+        for future in as_completed(future_map):
+            item = future_map[future]
+            try:
+                state, reason = future.result()
+            except Exception as e:
+                state, reason = "unknown", f"validator:{type(e).__name__}"
+            results[str(item.get("id", ""))] = (state, reason)
 
     for item in listings:
-        state, reason = check_listing(item)
+        state, reason = results.get(str(item.get("id", "")), ("unknown", "missing-result"))
         record = {"id": str(item.get("id", "")), "source": item.get("source", ""), "url": item.get("url", ""), "reason": reason}
         if state == "inactive":
             removed.append(record)
