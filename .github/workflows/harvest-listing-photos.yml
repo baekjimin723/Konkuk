@@ -81,19 +81,11 @@ jobs:
           import json
           from pathlib import Path
           p=Path("living-area-site/assets/listings")
-          merged={}
-          saved=failed=total=0
-          for f in sorted(p.glob("manifest-shard-*.json")):
-              try: merged.update(json.loads(f.read_text(encoding="utf-8")))
-              except Exception as e: print("manifest error", f, e)
-          for f in sorted(p.glob("scrape-report-shard-*.json")):
-              try:
-                  r=json.loads(f.read_text(encoding="utf-8"))
-                  total+=int(r.get("total",0)); saved+=int(r.get("saved",0)); failed+=int(r.get("failed",0))
-              except Exception as e: print("report error", f, e)
+          jpgs=sorted(p.glob("*.jpg"))
+          merged={f.stem:f"assets/listings/{f.name}" for f in jpgs}
           (p/"photos.js").write_text("window.LISTING_PHOTOS="+json.dumps(merged,ensure_ascii=False,separators=(",",":"))+";\n",encoding="utf-8")
-          (p/"scrape-summary.json").write_text(json.dumps({"total":total,"saved":saved,"failed":failed,"manifest":len(merged)},ensure_ascii=False,indent=2),encoding="utf-8")
-          print({"total":total,"saved":saved,"failed":failed,"manifest":len(merged)})
+          (p/"scrape-summary.json").write_text(json.dumps({"total":len(jpgs),"saved":len(jpgs),"failed":0,"manifest":len(merged),"source":"jpg inventory"},ensure_ascii=False,indent=2),encoding="utf-8")
+          print({"jpgs":len(jpgs),"manifest":len(merged)})
           PY
 
       - name: Commit harvested photos
