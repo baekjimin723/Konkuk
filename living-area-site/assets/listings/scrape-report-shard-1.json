@@ -1,0 +1,176 @@
+{
+  "shard_index": 1,
+  "shard_total": 4,
+  "total": 31,
+  "saved": 12,
+  "failed": 19,
+  "results": [
+    {
+      "id": "3691756",
+      "status": "ok",
+      "url": "https://realty.daangn.com/articles/3691756",
+      "photo": "assets/listings/3691756.jpg"
+    },
+    {
+      "id": "4839189",
+      "status": "no-photo",
+      "url": "https://realty.daangn.com/articles/4839189"
+    },
+    {
+      "id": "4833002",
+      "status": "no-photo",
+      "url": "https://realty.daangn.com/articles/4833002"
+    },
+    {
+      "id": "4641727",
+      "status": "no-photo",
+      "url": "https://realty.daangn.com/articles/4641727"
+    },
+    {
+      "id": "2354575",
+      "status": "no-photo",
+      "url": "https://realty.daangn.com/articles/2354575"
+    },
+    {
+      "id": "4761948",
+      "status": "ok",
+      "url": "https://realty.daangn.com/articles/4761948",
+      "photo": "assets/listings/4761948.jpg"
+    },
+    {
+      "id": "4804792",
+      "status": "ok",
+      "url": "https://realty.daangn.com/articles/4804792",
+      "photo": "assets/listings/4804792.jpg"
+    },
+    {
+      "id": "4716305",
+      "status": "no-photo",
+      "url": "https://realty.daangn.com/articles/4716305"
+    },
+    {
+      "id": "4857173",
+      "status": "ok",
+      "url": "https://realty.daangn.com/articles/4857173",
+      "photo": "assets/listings/4857173.jpg"
+    },
+    {
+      "id": "4882882",
+      "status": "ok",
+      "url": "https://realty.daangn.com/articles/4882882",
+      "photo": "assets/listings/4882882.jpg"
+    },
+    {
+      "id": "4873651",
+      "status": "no-photo",
+      "url": "https://realty.daangn.com/articles/4873651"
+    },
+    {
+      "id": "4658084",
+      "status": "no-photo",
+      "url": "https://realty.daangn.com/articles/4658084"
+    },
+    {
+      "id": "4806656",
+      "status": "no-photo",
+      "url": "https://realty.daangn.com/articles/4806656"
+    },
+    {
+      "id": "4735810",
+      "status": "ok",
+      "url": "https://realty.daangn.com/articles/4735810",
+      "photo": "assets/listings/4735810.jpg"
+    },
+    {
+      "id": "3089265",
+      "status": "ok",
+      "url": "https://realty.daangn.com/articles/3089265",
+      "photo": "assets/listings/3089265.jpg"
+    },
+    {
+      "id": "4391301",
+      "status": "no-photo",
+      "url": "https://realty.daangn.com/articles/4391301"
+    },
+    {
+      "id": "4854525",
+      "status": "no-photo",
+      "url": "https://realty.daangn.com/articles/4854525"
+    },
+    {
+      "id": "4860624",
+      "status": "no-photo",
+      "url": "https://realty.daangn.com/articles/4860624"
+    },
+    {
+      "id": "4855691",
+      "status": "no-photo",
+      "url": "https://realty.daangn.com/articles/4855691"
+    },
+    {
+      "id": "20047997",
+      "status": "no-photo",
+      "url": "https://www.peterpanz.com/house/20047997"
+    },
+    {
+      "id": "20091618",
+      "status": "ok",
+      "url": "https://www.peterpanz.com/house/20091618",
+      "photo": "assets/listings/20091618.jpg"
+    },
+    {
+      "id": "4649751",
+      "status": "no-photo",
+      "url": "https://realty.daangn.com/articles/4649751"
+    },
+    {
+      "id": "gobang-11462",
+      "status": "ok",
+      "url": "https://gobang.kr/place/11462",
+      "photo": "assets/listings/gobang-11462.jpg"
+    },
+    {
+      "id": "wishes-1257511",
+      "status": "no-photo",
+      "url": "https://wishes-iota-lemon.vercel.app/map/1257511"
+    },
+    {
+      "id": "20070901",
+      "status": "no-photo",
+      "url": "https://www.peterpanz.com/house/20070901"
+    },
+    {
+      "id": "20012200",
+      "status": "ok",
+      "url": "https://www.peterpanz.com/house/20012200",
+      "photo": "assets/listings/20012200.jpg"
+    },
+    {
+      "id": "20087812",
+      "status": "ok",
+      "url": "https://www.peterpanz.com/house/20087812",
+      "photo": "assets/listings/20087812.jpg"
+    },
+    {
+      "id": "4861672",
+      "status": "no-photo",
+      "url": "https://realty.daangn.com/articles/4861672"
+    },
+    {
+      "id": "4500505",
+      "status": "no-photo",
+      "url": "https://realty.daangn.com/articles/4500505"
+    },
+    {
+      "id": "4664195",
+      "status": "no-photo",
+      "url": "https://realty.daangn.com/articles/4664195"
+    },
+    {
+      "id": "4844694",
+      "status": "ok",
+      "url": "https://realty.daangn.com/articles/4844694",
+      "photo": "assets/listings/4844694.jpg"
+    }
+  ]
+}

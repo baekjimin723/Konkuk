@@ -1,0 +1,180 @@
+{
+  "shard_index": 0,
+  "shard_total": 4,
+  "total": 31,
+  "saved": 16,
+  "failed": 15,
+  "results": [
+    {
+      "id": "4863202",
+      "status": "ok",
+      "url": "https://realty.daangn.com/articles/4863202",
+      "photo": "assets/listings/4863202.jpg"
+    },
+    {
+      "id": "3331412",
+      "status": "no-photo",
+      "url": "https://realty.daangn.com/articles/3331412"
+    },
+    {
+      "id": "20098600",
+      "status": "ok",
+      "url": "https://www.peterpanz.com/house/20098600",
+      "photo": "assets/listings/20098600.jpg"
+    },
+    {
+      "id": "4745147",
+      "status": "ok",
+      "url": "https://realty.daangn.com/articles/4745147",
+      "photo": "assets/listings/4745147.jpg"
+    },
+    {
+      "id": "20055304",
+      "status": "ok",
+      "url": "https://www.peterpanz.com/house/20055304",
+      "photo": "assets/listings/20055304.jpg"
+    },
+    {
+      "id": "20084306",
+      "status": "ok",
+      "url": "https://www.peterpanz.com/house/20084306",
+      "photo": "assets/listings/20084306.jpg"
+    },
+    {
+      "id": "4498439",
+      "status": "no-photo",
+      "url": "https://realty.daangn.com/articles/4498439"
+    },
+    {
+      "id": "4728516",
+      "status": "no-photo",
+      "url": "https://realty.daangn.com/articles/4728516"
+    },
+    {
+      "id": "4644804",
+      "status": "no-photo",
+      "url": "https://realty.daangn.com/articles/4644804"
+    },
+    {
+      "id": "4861144",
+      "status": "no-photo",
+      "url": "https://realty.daangn.com/articles/4861144"
+    },
+    {
+      "id": "4803117",
+      "status": "ok",
+      "url": "https://realty.daangn.com/articles/4803117",
+      "photo": "assets/listings/4803117.jpg"
+    },
+    {
+      "id": "4767389",
+      "status": "no-photo",
+      "url": "https://realty.daangn.com/articles/4767389"
+    },
+    {
+      "id": "4863879",
+      "status": "no-photo",
+      "url": "https://realty.daangn.com/articles/4863879"
+    },
+    {
+      "id": "3727003",
+      "status": "ok",
+      "url": "https://realty.daangn.com/articles/3727003",
+      "photo": "assets/listings/3727003.jpg"
+    },
+    {
+      "id": "4878655",
+      "status": "ok",
+      "url": "https://realty.daangn.com/articles/4878655",
+      "photo": "assets/listings/4878655.jpg"
+    },
+    {
+      "id": "4885257",
+      "status": "ok",
+      "url": "https://realty.daangn.com/articles/4885257",
+      "photo": "assets/listings/4885257.jpg"
+    },
+    {
+      "id": "4777157",
+      "status": "no-photo",
+      "url": "https://realty.daangn.com/articles/4777157"
+    },
+    {
+      "id": "4848896",
+      "status": "ok",
+      "url": "https://realty.daangn.com/articles/4848896",
+      "photo": "assets/listings/4848896.jpg"
+    },
+    {
+      "id": "4834481",
+      "status": "no-photo",
+      "url": "https://realty.daangn.com/articles/4834481"
+    },
+    {
+      "id": "4342741",
+      "status": "no-photo",
+      "url": "https://realty.daangn.com/articles/4342741"
+    },
+    {
+      "id": "20010943",
+      "status": "ok",
+      "url": "https://www.peterpanz.com/house/20010943",
+      "photo": "assets/listings/20010943.jpg"
+    },
+    {
+      "id": "4533925",
+      "status": "no-photo",
+      "url": "https://realty.daangn.com/articles/4533925"
+    },
+    {
+      "id": "4508798",
+      "status": "no-photo",
+      "url": "https://realty.daangn.com/articles/4508798"
+    },
+    {
+      "id": "wishes-826227",
+      "status": "no-photo",
+      "url": "https://wishes.co.kr/map/826227"
+    },
+    {
+      "id": "20064227",
+      "status": "no-photo",
+      "url": "https://www.peterpanz.com/house/20064227"
+    },
+    {
+      "id": "19979114",
+      "status": "ok",
+      "url": "https://www.peterpanz.com/house/19979114",
+      "photo": "assets/listings/19979114.jpg"
+    },
+    {
+      "id": "19990468",
+      "status": "ok",
+      "url": "https://www.peterpanz.com/house/19990468",
+      "photo": "assets/listings/19990468.jpg"
+    },
+    {
+      "id": "20047420",
+      "status": "ok",
+      "url": "https://www.peterpanz.com/house/20047420",
+      "photo": "assets/listings/20047420.jpg"
+    },
+    {
+      "id": "4644007",
+      "status": "no-photo",
+      "url": "https://realty.daangn.com/articles/4644007"
+    },
+    {
+      "id": "4760990",
+      "status": "ok",
+      "url": "https://realty.daangn.com/articles/4760990",
+      "photo": "assets/listings/4760990.jpg"
+    },
+    {
+      "id": "4867903",
+      "status": "ok",
+      "url": "https://realty.daangn.com/articles/4867903",
+      "photo": "assets/listings/4867903.jpg"
+    }
+  ]
+}
