@@ -14,7 +14,7 @@
 </style>
 </head>
 <body>
-<header><div class="brand">생활권ON</div><div style="font-size:10px;color:#6f8197;margin-top:3px">전세·보증부월세 통합검색 · 전체 DB <b id="inventoryCount">0</b>건 · 현재 조건 <b id="headerResultCount">0</b>건 · <span id="syncStatus">상태 확인 준비 중</span></div><div class="build">COUNT CLARITY BUILD 2026-11-04 · v19</div></header>
+<header><div class="brand">생활권ON</div><div style="font-size:10px;color:#6f8197;margin-top:3px">전세·보증부월세 통합검색 · 전체 DB <b id="inventoryCount">0</b>건 · 현재 조건 <b id="headerResultCount">0</b>건 · <span id="syncStatus">상태 확인 준비 중</span></div><div class="build">GLOBAL SORT BUILD 2026-11-04 · v20</div></header>
 <main class="wrap">
 <section class="panel">
 <h2>매물 조건</h2><div class="sub">시·군·구와 동·읍·면은 복수선택 가능합니다. 검색 버튼은 form 제출이 아니어서 선택값이 초기화되지 않습니다.</div>
@@ -131,7 +131,7 @@ function sortResults(items){
  else if(mode==='reviewDesc')arr.sort((a,b)=>reviewCount(String(b.id))-reviewCount(String(a.id))||recommendScore(b)-recommendScore(a));
  else if(mode==='wishDesc')arr.sort((a,b)=>wishCount(String(b.id))-wishCount(String(a.id))||recommendScore(b)-recommendScore(a));
  else if(mode==='newest')arr.sort((a,b)=>String(b.addedAt||'').localeCompare(String(a.addedAt||''))||recommendScore(b)-recommendScore(a));
- else if(mode==='timeAsc')arr.sort((a,b)=>a.time-b.time||priceSortKey(a)-priceSortKey(b));
+ else if(mode==='timeAsc')arr.sort((a,b)=>(Number(a.time)||999)-(Number(b.time)||999)||String(a.city).localeCompare(String(b.city),'ko')||priceSortKey(a)-priceSortKey(b)||String(a.id).localeCompare(String(b.id)));
  else if(mode==='sizeDesc')arr.sort((a,b)=>b.py-a.py||priceSortKey(a)-priceSortKey(b));
  else arr.sort((a,b)=>recommendScore(b)-recommendScore(a));
  return arr;
@@ -301,12 +301,19 @@ function groupedHtml(items){
    return '<section class="city-group"><div class="city-hero"><div class="city-info"><h2>'+city+' <span class="city-time">건국대 최소 약 '+cityMin(city)+'분~</span></h2><div class="city-count">현재 조건에 맞는 내부 검증 매물 '+rows.length+'건</div>'+facilities+cityPortalLinks(city,'')+'</div></div><div class="dong-group">'+dongHtml+'</div></section>';
  }).join('');
 }
+function flatSortedHtml(items){
+ const mode=qs('#sort')?qs('#sort').value:'recommend';
+ const labels={priceAsc:'낮은 가격순',priceDesc:'높은 가격순',reviewDesc:'후기 많은 순',wishDesc:'위시 많은 순',newest:'신상품순',timeAsc:'통학시간 짧은 순',sizeDesc:'넓은 평수 순'};
+ const heading=labels[mode]||'정렬 결과';
+ return '<section class="city-group"><div class="city-hero"><div class="city-info"><h2>'+heading+'</h2><div class="city-count">선택한 조건의 전체 매물을 지역 구분 없이 정렬합니다.</div></div></div><div class="cards">'+items.map((l,i)=>'<div style="position:relative"><span style="position:absolute;z-index:3;top:8px;left:8px;background:#174a92;color:#fff;border-radius:999px;padding:4px 7px;font-size:10px;font-weight:800">#'+(i+1)+'</span>'+listingCardHtml(l)+'</div>').join('')+'</div></section>';
+}
 function renderCurrentResults(){
  const sorted=sortResults(currentResults);
+ const mode=qs('#sort')?qs('#sort').value:'recommend';
  qs('#resultCount').innerHTML='검색 결과 <b>'+sorted.length+'</b>건';
  if(qs('#headerResultCount')) qs('#headerResultCount').textContent=sorted.length;
  qs('#results').className=currentView==='list'?'view-list':'view-grid';
- qs('#results').innerHTML=groupedHtml(sorted);
+ qs('#results').innerHTML=mode==='recommend'?groupedHtml(sorted):flatSortedHtml(sorted);
 }
 function search(){
  const state={province:qs('#province').value,time:+qs('#time').value,transfer:+qs('#transfer').value,livingModes:selLivingModes(),type:qs('#type').value,layout:qs('#layout').value,sizes:selSizes(),prefs:selPrefs(),deals:selDeals(),dep:Math.min(18000,+qs('#dep').value||0),rent:+qs('#rent').value||0,areas:selAreas(),dongs:selDongs()};
