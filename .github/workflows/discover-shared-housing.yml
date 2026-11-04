@@ -2,6 +2,10 @@ name: Discover shared housing with browser
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - "scripts/discover_shared_housing_browser.py"
+      - ".github/workflows/discover-shared-housing.yml"
   schedule:
     - cron: "13 */6 * * *"
 
