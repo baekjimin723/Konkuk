@@ -1,8 +1,8 @@
 {
-  "before": 135,
-  "cached_real_photos": 133,
-  "removed_without_cached_real_photo": 2,
-  "newly_cached_this_run": 133,
+  "before": 143,
+  "cached_real_photos": 134,
+  "removed_without_cached_real_photo": 9,
+  "newly_cached_this_run": 134,
   "failed": [
     {
       "id": "gobang-2908",
@@ -10,7 +10,42 @@
       "reason": "page_http:500"
     },
     {
+      "id": "gobang-6267",
+      "source": "고방",
+      "reason": "page_http:500"
+    },
+    {
+      "id": "gobang-5812",
+      "source": "고방",
+      "reason": "page_http:500"
+    },
+    {
+      "id": "gobang-2168",
+      "source": "고방",
+      "reason": "page_http:500"
+    },
+    {
       "id": "gobang-6079",
+      "source": "고방",
+      "reason": "page_http:500"
+    },
+    {
+      "id": "gobang-4447",
+      "source": "고방",
+      "reason": "page_http:500"
+    },
+    {
+      "id": "gobang-3609",
+      "source": "고방",
+      "reason": "page_http:500"
+    },
+    {
+      "id": "gobang-3585",
+      "source": "고방",
+      "reason": "page_http:500"
+    },
+    {
+      "id": "gobang-6566",
       "source": "고방",
       "reason": "page_http:500"
     }
