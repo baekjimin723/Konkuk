@@ -11,7 +11,7 @@ permissions:
 
 concurrency:
   group: validate-property-listings
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   validate:
@@ -29,11 +29,11 @@ jobs:
       - name: Install validator dependencies
         run: python -m pip install --disable-pip-version-check requests beautifulsoup4
 
-      - name: Sync listing inventory
-        run: python scripts/sync_daangn_listings.py
-
       - name: Validate listing source pages
         run: python scripts/validate_listings.py
+
+      - name: Sync listing inventory
+        run: python scripts/sync_daangn_listings.py
 
       - name: Commit refreshed status
         run: |
