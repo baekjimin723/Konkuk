@@ -2,179 +2,194 @@
   "shard_index": 2,
   "shard_total": 4,
   "total": 31,
-  "saved": 16,
-  "failed": 15,
+  "saved": 31,
+  "failed": 0,
   "results": [
     {
       "id": "19996065",
-      "status": "ok",
+      "status": "existing",
       "url": "https://www.peterpanz.com/house/19996065",
       "photo": "assets/listings/19996065.jpg"
     },
     {
       "id": "4865241",
-      "status": "no-photo",
-      "url": "https://realty.daangn.com/articles/4865241"
+      "status": "ok",
+      "url": "https://realty.daangn.com/articles/4865241",
+      "photo": "assets/listings/4865241.jpg"
     },
     {
       "id": "4767803",
-      "status": "no-photo",
-      "url": "https://realty.daangn.com/articles/4767803"
+      "status": "ok",
+      "url": "https://realty.daangn.com/articles/4767803",
+      "photo": "assets/listings/4767803.jpg"
     },
     {
       "id": "20059270",
-      "status": "ok",
+      "status": "existing",
       "url": "https://www.peterpanz.com/house/20059270",
       "photo": "assets/listings/20059270.jpg"
     },
     {
       "id": "4865742",
-      "status": "no-photo",
-      "url": "https://realty.daangn.com/articles/4865742"
+      "status": "ok",
+      "url": "https://realty.daangn.com/articles/4865742",
+      "photo": "assets/listings/4865742.jpg"
     },
     {
       "id": "19986296",
-      "status": "no-photo",
-      "url": "https://www.peterpanz.com/house/19986296"
+      "status": "ok",
+      "url": "https://www.peterpanz.com/house/19986296",
+      "photo": "assets/listings/19986296.jpg"
     },
     {
       "id": "4807600",
-      "status": "ok",
+      "status": "existing",
       "url": "https://realty.daangn.com/articles/4807600",
       "photo": "assets/listings/4807600.jpg"
     },
     {
       "id": "4854232",
-      "status": "ok",
+      "status": "existing",
       "url": "https://realty.daangn.com/articles/4854232",
       "photo": "assets/listings/4854232.jpg"
     },
     {
       "id": "4857401",
-      "status": "ok",
+      "status": "existing",
       "url": "https://realty.daangn.com/articles/4857401",
       "photo": "assets/listings/4857401.jpg"
     },
     {
       "id": "4760745",
-      "status": "no-photo",
-      "url": "https://realty.daangn.com/articles/4760745"
+      "status": "ok",
+      "url": "https://realty.daangn.com/articles/4760745",
+      "photo": "assets/listings/4760745.jpg"
     },
     {
       "id": "4752087",
-      "status": "no-photo",
-      "url": "https://realty.daangn.com/articles/4752087"
+      "status": "ok",
+      "url": "https://realty.daangn.com/articles/4752087",
+      "photo": "assets/listings/4752087.jpg"
     },
     {
       "id": "4815195",
-      "status": "no-photo",
-      "url": "https://realty.daangn.com/articles/4815195"
+      "status": "ok",
+      "url": "https://realty.daangn.com/articles/4815195",
+      "photo": "assets/listings/4815195.jpg"
     },
     {
       "id": "4797393",
-      "status": "no-photo",
-      "url": "https://realty.daangn.com/articles/4797393"
+      "status": "ok",
+      "url": "https://realty.daangn.com/articles/4797393",
+      "photo": "assets/listings/4797393.jpg"
     },
     {
       "id": "4769226",
-      "status": "no-photo",
-      "url": "https://realty.daangn.com/articles/4769226"
+      "status": "ok",
+      "url": "https://realty.daangn.com/articles/4769226",
+      "photo": "assets/listings/4769226.jpg"
     },
     {
       "id": "4657300",
-      "status": "no-photo",
-      "url": "https://realty.daangn.com/articles/4657300"
+      "status": "ok",
+      "url": "https://realty.daangn.com/articles/4657300",
+      "photo": "assets/listings/4657300.jpg"
     },
     {
       "id": "4868387",
-      "status": "no-photo",
-      "url": "https://realty.daangn.com/articles/4868387"
+      "status": "ok",
+      "url": "https://realty.daangn.com/articles/4868387",
+      "photo": "assets/listings/4868387.jpg"
     },
     {
       "id": "4864513",
-      "status": "ok",
+      "status": "existing",
       "url": "https://realty.daangn.com/articles/4864513",
       "photo": "assets/listings/4864513.jpg"
     },
     {
       "id": "4876723",
-      "status": "ok",
+      "status": "existing",
       "url": "https://realty.daangn.com/articles/4876723",
       "photo": "assets/listings/4876723.jpg"
     },
     {
       "id": "4885184",
-      "status": "no-photo",
-      "url": "https://realty.daangn.com/articles/4885184"
+      "status": "ok",
+      "url": "https://realty.daangn.com/articles/4885184",
+      "photo": "assets/listings/4885184.jpg"
     },
     {
       "id": "20101925",
-      "status": "ok",
+      "status": "existing",
       "url": "https://www.peterpanz.com/house/20101925",
       "photo": "assets/listings/20101925.jpg"
     },
     {
       "id": "4835620",
-      "status": "ok",
+      "status": "existing",
       "url": "https://realty.daangn.com/articles/4835620",
       "photo": "assets/listings/4835620.jpg"
     },
     {
       "id": "4811515",
-      "status": "ok",
+      "status": "existing",
       "url": "https://realty.daangn.com/articles/4811515",
       "photo": "assets/listings/4811515.jpg"
     },
     {
       "id": "gobang-11485",
-      "status": "ok",
+      "status": "existing",
       "url": "https://gobang.kr/place/11485",
       "photo": "assets/listings/gobang-11485.jpg"
     },
     {
       "id": "20033234",
-      "status": "ok",
+      "status": "existing",
       "url": "https://www.peterpanz.com/house/20033234",
       "photo": "assets/listings/20033234.jpg"
     },
     {
       "id": "20079388",
-      "status": "ok",
+      "status": "existing",
       "url": "https://www.peterpanz.com/house/20079388",
       "photo": "assets/listings/20079388.jpg"
     },
     {
       "id": "20012191",
-      "status": "ok",
+      "status": "existing",
       "url": "https://www.peterpanz.com/house/20012191",
       "photo": "assets/listings/20012191.jpg"
     },
     {
       "id": "20037209",
-      "status": "ok",
+      "status": "existing",
       "url": "https://www.peterpanz.com/house/20037209",
       "photo": "assets/listings/20037209.jpg"
     },
     {
       "id": "4893226",
-      "status": "ok",
+      "status": "existing",
       "url": "https://realty.daangn.com/articles/4893226",
       "photo": "assets/listings/4893226.jpg"
     },
     {
       "id": "4814194",
-      "status": "no-photo",
-      "url": "https://realty.daangn.com/articles/4814194"
+      "status": "ok",
+      "url": "https://realty.daangn.com/articles/4814194",
+      "photo": "assets/listings/4814194.jpg"
     },
     {
       "id": "4729582",
-      "status": "no-photo",
-      "url": "https://realty.daangn.com/articles/4729582"
+      "status": "ok",
+      "url": "https://realty.daangn.com/articles/4729582",
+      "photo": "assets/listings/4729582.jpg"
     },
     {
       "id": "4866874",
-      "status": "no-photo",
-      "url": "https://realty.daangn.com/articles/4866874"
+      "status": "ok",
+      "url": "https://realty.daangn.com/articles/4866874",
+      "photo": "assets/listings/4866874.jpg"
     }
   ]
 }
