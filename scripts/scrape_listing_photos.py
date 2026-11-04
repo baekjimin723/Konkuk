@@ -29,9 +29,10 @@ opts.add_argument("--lang=ko-KR")
 opts.add_argument("--disable-notifications")
 opts.add_argument("--disable-popup-blocking")
 opts.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/131.0.0.0 Safari/537.36")
+opts.page_load_strategy = "eager"
 
 driver = webdriver.Chrome(options=opts)
-driver.set_page_load_timeout(18)
+driver.set_page_load_timeout(8)
 
 BAD = ("logo","avatar","profile","icon","emoji","map","marker","banner","advert","ads","qrcode","qr","sprite","favicon","badge","button")
 manifest = {}
@@ -88,8 +89,9 @@ def candidate_images():
             y = float(data.get("y",9999))
             area = w*h
             score = area
-            if y < 1600: score += 400000
-            if y < 900: score += 250000
+            if y < 1800: score += 1800000
+            if y < 900: score += 1200000
+            if y < 500: score += 800000
             if 1.05 <= ratio <= 2.0: score += 100000
             if "photo" in text or "image" in text or "gallery" in text: score += 120000
             out.append((score, el, data))
@@ -162,12 +164,12 @@ for idx, listing in enumerate(listings, start=1):
                 driver.execute_script("window.stop()")
             except Exception:
                 pass
-        time.sleep(2.2)
+        time.sleep(1.0)
         clean_page()
         # Let lazy images settle.
         try:
             driver.execute_script("window.scrollTo(0, 350)")
-            time.sleep(0.8)
+            time.sleep(0.35)
             driver.execute_script("window.scrollTo(0, 0)")
         except Exception:
             pass
