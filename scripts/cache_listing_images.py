@@ -140,8 +140,17 @@ def main():
     ASSET_DIR.mkdir(parents=True,exist_ok=True)
 
     cached=0; failed=[]
+    ready=[]
+    todo=[]
+    for item in listings:
+        p=str(item.get("photo",""))
+        if p.startswith("./assets/listings/") and (ASSET_DIR/Path(p).name).exists():
+            ready.append(item)
+        else:
+            todo.append(item)
+
     with ThreadPoolExecutor(max_workers=10) as ex:
-        futs={ex.submit(download_actual,item):item for item in listings}
+        futs={ex.submit(download_actual,item):item for item in todo}
         for fut in as_completed(futs):
             item,im,source=fut.result()
             if im is None:
@@ -151,10 +160,11 @@ def main():
             out=ASSET_DIR/fname
             im.save(out,"WEBP",quality=68,method=6)
             item["photo"]="./assets/listings/"+fname
+            ready.append(item)
             cached+=1
 
     # Only show cards with a locally cached real listing image.
-    good=[x for x in listings if str(x.get("photo","")).startswith("./assets/listings/") and (ASSET_DIR/Path(x["photo"]).name).exists()]
+    good=[x for x in ready if str(x.get("photo","")).startswith("./assets/listings/") and (ASSET_DIR/Path(x["photo"]).name).exists()]
     removed=len(listings)-len(good)
 
     compact=json.dumps(good,ensure_ascii=False,separators=(",",":"))
