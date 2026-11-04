@@ -1,0 +1,10 @@
+{
+  "synced_at": "2026-11-04T12:01:07+09:00",
+  "seed_count": 19,
+  "shared_housing_added": 19,
+  "by_mode": {
+    "쉐어하우스·코리빙": 10,
+    "고시원·원룸텔": 9
+  },
+  "failed_seed_ids": []
+}
