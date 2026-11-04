@@ -14,7 +14,7 @@
 </style>
 </head>
 <body>
-<header><div class="brand">생활권ON</div><div style="font-size:10px;color:#6f8197;margin-top:3px">전세·보증부월세 통합검색 · 자동동기화 <b id="inventoryCount">0</b>건 · <span id="syncStatus">상태 확인 준비 중</span> · 외부 포털 전체재고는 동별 검색 연결</div><div class="build">LOCAL PHOTO CACHE BUILD 2026-11-04 · v17</div></header>
+<header><div class="brand">생활권ON</div><div style="font-size:10px;color:#6f8197;margin-top:3px">전세·보증부월세 통합검색 · 자동동기화 <b id="inventoryCount">0</b>건 · <span id="syncStatus">상태 확인 준비 중</span> · 외부 포털 전체재고는 동별 검색 연결</div><div class="build">LIVING MODE BUILD 2026-11-04 · v18</div></header>
 <main class="wrap">
 <section class="panel">
 <h2>매물 조건</h2><div class="sub">시·군·구와 동·읍·면은 복수선택 가능합니다. 검색 버튼은 form 제출이 아니어서 선택값이 초기화되지 않습니다.</div>
@@ -23,22 +23,29 @@
 <div class="field"><label>2. 통근시간</label><div class="range-wrap"><input id="time" type="range" min="15" max="90" step="5" value="60"><span class="range-value" id="timeValue">60분</span></div><div class="range-scale"><span>15분</span><span>30</span><span>45</span><span>60</span><span>75</span><span>90분</span></div></div>
 <div class="multi"><div class="multi-head"><span class="title">3. 시·군·구</span><div><button class="mini" id="areaAll" type="button">전체선택</button> <button class="mini" id="areaClear" type="button">해제</button></div></div><div class="choices" id="areas"></div><div class="selected" id="areaText"></div></div>
 <div class="multi"><div class="multi-head"><span class="title">4. 동·읍·면</span><div><button class="mini" id="dongAll" type="button">전체선택</button> <button class="mini" id="dongClear" type="button">해제</button></div></div><div class="choices" id="dongs"></div><div class="selected" id="dongText"></div></div>
-<div class="field"><label>5. 주택유형</label><select id="type"><option value="전체">전체</option><option>단독·다가구</option><option>다세대·빌라</option><option>도시형생활주택</option><option>오피스텔</option><option>아파트</option></select></div>
-<div class="field"><label>6. 방 구조</label><select id="layout"><option value="전체">전체</option><option>원룸</option><option>1.5룸</option><option>투룸</option><option>쓰리룸</option></select></div>
-<div class="multi"><div class="multi-head"><span class="title">7. 평수 (복수선택)</span><div><button class="mini" id="sizeAll" type="button">전체선택</button> <button class="mini" id="sizeClear" type="button">해제</button></div></div>
+<div class="multi"><div class="multi-head"><span class="title">5. 거주 방식 (복수선택)</span><div><button class="mini" id="livingAll" type="button">전체선택</button> <button class="mini" id="livingClear" type="button">해제</button></div></div>
+<div class="choices" id="livingModes">
+<label class="choice"><input type="checkbox" value="일반주거" checked><span>일반주거 · 공동주택 포함</span></label>
+<label class="choice"><input type="checkbox" value="쉐어하우스·코리빙" checked><span>쉐어하우스·코리빙</span></label>
+<label class="choice"><input type="checkbox" value="기숙사형 주거" checked><span>기숙사형 주거</span></label>
+<label class="choice"><input type="checkbox" value="고시원·원룸텔" checked><span>고시원·원룸텔</span></label>
+</div><div class="selected" id="livingText">전체 거주 방식 선택</div></div>
+<div class="field"><label>6. 주택유형</label><select id="type"><option value="전체">전체</option><option>단독·다가구</option><option>다세대·빌라</option><option>도시형생활주택</option><option>오피스텔</option><option>아파트</option></select></div>
+<div class="field"><label>7. 방 구조</label><select id="layout"><option value="전체">전체</option><option>원룸</option><option>1.5룸</option><option>투룸</option><option>쓰리룸</option></select></div>
+<div class="multi"><div class="multi-head"><span class="title">8. 평수 (복수선택)</span><div><button class="mini" id="sizeAll" type="button">전체선택</button> <button class="mini" id="sizeClear" type="button">해제</button></div></div>
 <div class="choices" id="sizes">
 <label class="choice"><input type="checkbox" value="s" checked><span>6평 이하</span></label>
 <label class="choice"><input type="checkbox" value="m" checked><span>6~10평</span></label>
 <label class="choice"><input type="checkbox" value="l" checked><span>10~15평</span></label>
 <label class="choice"><input type="checkbox" value="xl" checked><span>15평 이상</span></label>
 </div><div class="selected" id="sizeText">전체 평수 선택</div></div>
-<div class="field"><label>8. 환승 횟수</label><select id="transfer"><option value="0">0회</option><option value="1">1회</option><option value="2" selected>2회</option><option value="3">3회</option></select></div>
-<div class="multi"><div class="multi-head"><span class="title">9. 거래유형 (복수선택)</span><div><button class="mini" id="dealAll" type="button">전체선택</button> <button class="mini" id="dealClear" type="button">해제</button></div></div>
+<div class="field"><label>9. 환승 횟수</label><select id="transfer"><option value="0">0회</option><option value="1">1회</option><option value="2" selected>2회</option><option value="3">3회</option></select></div>
+<div class="multi"><div class="multi-head"><span class="title">10. 거래유형 (복수선택)</span><div><button class="mini" id="dealAll" type="button">전체선택</button> <button class="mini" id="dealClear" type="button">해제</button></div></div>
 <div class="choices" id="deals">
 <label class="choice"><input type="checkbox" value="보증부월세" checked><span>보증부월세</span></label>
 <label class="choice"><input type="checkbox" value="전세" checked><span>전세</span></label>
 </div><div class="selected" id="dealText">보증부월세 + 전세</div></div>
-<div class="multi"><div class="multi-head"><span class="title">10. 생활 취향·트렌드 (복수선택 · 추천순에만 반영)</span><div><button class="mini" id="prefClear" type="button">선택해제</button></div></div>
+<div class="multi"><div class="multi-head"><span class="title">11. 생활 취향·트렌드 (복수선택 · 추천순에만 반영)</span><div><button class="mini" id="prefClear" type="button">선택해제</button></div></div>
 <div class="choices" id="prefs">
 <label class="choice"><input type="checkbox" value="tea"><span>🧋 티·밀크티 · 차백도·차지·공차</span></label>
 <label class="choice"><input type="checkbox" value="dessert"><span>🍡 모찌·디저트 · 한정선·고디바</span></label>
@@ -141,7 +148,7 @@ function openDetail(id){
  const posts=communityStore()[String(id)]||[];
  const postHtml=posts.length?posts.map(p=>'<div class="community-item"><b>'+escapeHtml(p.topic||'기타')+' · '+('★'.repeat(Number(p.rating)||0))+'</b><small>'+escapeHtml(p.when||'')+'</small><p>'+escapeHtml(p.text||'')+'</p></div>').join(''):'<div class="community-item"><p>아직 생활권ON 후기가 없습니다. 방음·채광·관리비·통학·주변상권에 대한 첫 후기를 남겨보세요.</p></div>';
  qs('#modalTitle').textContent=displayTitle(l);
- qs('#modalBody').innerHTML='<div class="detail-grid"><div class="detail-box"><h3>🏠 매물 정보</h3><div class="price">'+priceText(l)+'</div><div class="meta"><span class="tag">'+l.deal+'</span><span class="tag">'+l.type+'</span><span class="tag">'+l.py+'평</span><span class="tag">건국대 약 '+l.time+'분</span></div><p style="font-size:11px;line-height:1.55">'+escapeHtml(l.note||'')+'</p><div class="card-actions"><a class="link" style="margin:0" href="'+l.url+'" target="_blank" rel="noopener">실매물 원문</a><button class="wish-btn '+(wishCount(String(id))?'on':'')+'" data-modal-wish="'+escapeHtml(String(id))+'">♡ 위시 '+wishCount(String(id))+'</button></div></div><div class="detail-box"><h3>📰 관련 주요 뉴스</h3><div class="news-links">'+newsSearchLinks(l)+'</div><div class="prototype-note">지역·단지명을 기준으로 최신 뉴스 검색결과를 연결합니다.</div></div></div><div class="detail-box" style="margin-top:16px"><h3>💬 이 집 커뮤니티 · 후기 '+posts.length+'개</h3><div class="community-list">'+postHtml+'</div><div class="community-form"><select id="communityTopic"><option>방음</option><option>채광</option><option>관리비</option><option>통학</option><option>주변상권</option><option>안전</option><option>기타</option></select><select id="communityRating"><option value="5">★★★★★</option><option value="4">★★★★</option><option value="3">★★★</option><option value="2">★★</option><option value="1">★</option></select><input id="communityText" placeholder="궁금한 점이나 후기를 남겨보세요"><button type="button" id="communitySubmit" data-id="'+escapeHtml(String(id))+'">등록</button></div><div class="prototype-note">현재 프로토타입 커뮤니티는 이 브라우저에 저장됩니다. 실제 서비스에서는 로그인 기반 서버 커뮤니티로 전환합니다.</div></div>';
+ qs('#modalBody').innerHTML='<div class="detail-grid"><div class="detail-box"><h3>🏠 매물 정보</h3><div class="price">'+priceText(l)+'</div><div class="meta"><span class="tag">'+livingModeOf(l)+'</span><span class="tag">'+l.deal+'</span><span class="tag">'+l.type+'</span><span class="tag">'+(l.py?l.py+'평':'평수 확인 필요')+'</span><span class="tag">건국대 약 '+l.time+'분</span></div><p style="font-size:11px;line-height:1.55">'+escapeHtml(l.note||'')+'</p><div class="card-actions"><a class="link" style="margin:0" href="'+l.url+'" target="_blank" rel="noopener">실매물 원문</a><button class="wish-btn '+(wishCount(String(id))?'on':'')+'" data-modal-wish="'+escapeHtml(String(id))+'">♡ 위시 '+wishCount(String(id))+'</button></div></div><div class="detail-box"><h3>📰 관련 주요 뉴스</h3><div class="news-links">'+newsSearchLinks(l)+'</div><div class="prototype-note">지역·단지명을 기준으로 최신 뉴스 검색결과를 연결합니다.</div></div></div><div class="detail-box" style="margin-top:16px"><h3>💬 이 집 커뮤니티 · 후기 '+posts.length+'개</h3><div class="community-list">'+postHtml+'</div><div class="community-form"><select id="communityTopic"><option>방음</option><option>채광</option><option>관리비</option><option>통학</option><option>주변상권</option><option>안전</option><option>기타</option></select><select id="communityRating"><option value="5">★★★★★</option><option value="4">★★★★</option><option value="3">★★★</option><option value="2">★★</option><option value="1">★</option></select><input id="communityText" placeholder="궁금한 점이나 후기를 남겨보세요"><button type="button" id="communitySubmit" data-id="'+escapeHtml(String(id))+'">등록</button></div><div class="prototype-note">현재 프로토타입 커뮤니티는 이 브라우저에 저장됩니다. 실제 서비스에서는 로그인 기반 서버 커뮤니티로 전환합니다.</div></div>';
  qs('#detailModal').classList.add('open');
 }
 function addCommunity(id){
@@ -212,6 +219,12 @@ const lifestyleByCity={
  '부평구':['shopping','cinema','culture','medical','popup']
 };
 const prefNames={tea:'티·밀크티',dessert:'모찌·디저트',cinema:'IMAX·영화',popup:'팝업·굿즈',park:'공원·산책',culture:'주민센터·문화',medical:'병원·의료',shopping:'쇼핑·마트'};
+function livingModeOf(l){return l.livingMode||'일반주거'}
+function selLivingModes(){return qsa('#livingModes input:checked').map(x=>x.value)}
+function updateLivingText(){
+ const modes=selLivingModes();
+ qs('#livingText').textContent=modes.length===4?'전체 거주 방식 선택':(modes.length?modes.join(' + '):'선택 없음 → 전체');
+}
 function selDeals(){return qsa('#deals input:checked').map(x=>x.value)}
 function formatManwon(v){
  v=Number(v)||0;
@@ -272,7 +285,7 @@ function listingCardHtml(l){
  const hits=lifestyleHits(l,selPrefs()),id=String(l.id);
  const prefHtml=hits.length?'<div class="pref-hits">'+hits.map(x=>'<span class="pref-hit">✓ '+prefNames[x]+'</span>').join('')+'</div>':'';
  const preview='<div class="listing-photo"><div class="listing-photo-fallback">실매물 대표사진 준비 중</div><img src="'+previewUrl(l)+'" alt="'+displayTitle(l)+' 실매물 대표사진" loading="eager" fetchpriority="high" decoding="async" onerror="this.closest(\'.card\').style.display=\'none\'"><span class="listing-photo-label">실매물 대표사진 · '+l.source+'</span></div>';
- return '<article class="card" data-detail-id="'+escapeHtml(id)+'">'+preview+'<div class="card-body"><div class="loc">'+l.province+' › '+l.city+' › '+l.dong+'</div><h3>'+displayTitle(l)+'</h3><div class="price">'+priceText(l)+'</div><div class="meta"><span class="tag">'+l.deal+'</span><span class="tag">'+l.type+'</span><span class="tag">건국대 기준 약 '+l.time+'분</span></div>'+prefHtml+'<div class="source">'+l.source+' · '+escapeHtml(l.note||'')+'</div><div class="community-meta"><span>후기 '+reviewCount(id)+'</span><span>위시 '+wishCount(id)+'</span><span>등록 '+(l.addedAt||'-')+'</span></div><div class="card-actions"><button type="button" class="detail-btn" data-open-detail="'+escapeHtml(id)+'">상세 · 커뮤니티 · 뉴스</button><button type="button" class="wish-btn '+(wishCount(id)?'on':'')+'" data-wish="'+escapeHtml(id)+'">♡ '+wishCount(id)+'</button></div><a class="link" href="'+l.url+'" target="_blank" rel="noopener">실매물 사진·원문 보기</a></div></article>';
+ return '<article class="card" data-detail-id="'+escapeHtml(id)+'">'+preview+'<div class="card-body"><div class="loc">'+l.province+' › '+l.city+' › '+l.dong+'</div><h3>'+displayTitle(l)+'</h3><div class="price">'+priceText(l)+'</div><div class="meta"><span class="tag">'+livingModeOf(l)+'</span><span class="tag">'+l.deal+'</span><span class="tag">'+l.type+'</span><span class="tag">건국대 기준 약 '+l.time+'분</span></div>'+prefHtml+'<div class="source">'+l.source+' · '+escapeHtml(l.note||'')+'</div><div class="community-meta"><span>후기 '+reviewCount(id)+'</span><span>위시 '+wishCount(id)+'</span><span>등록 '+(l.addedAt||'-')+'</span></div><div class="card-actions"><button type="button" class="detail-btn" data-open-detail="'+escapeHtml(id)+'">상세 · 커뮤니티 · 뉴스</button><button type="button" class="wish-btn '+(wishCount(id)?'on':'')+'" data-wish="'+escapeHtml(id)+'">♡ '+wishCount(id)+'</button></div><a class="link" href="'+l.url+'" target="_blank" rel="noopener">실매물 사진·원문 보기</a></div></article>';
 }
 function cityPortalLinks(city,dong){
  const place=city+' '+(dong||'');
@@ -295,26 +308,29 @@ function renderCurrentResults(){
  qs('#results').innerHTML=groupedHtml(sorted);
 }
 function search(){
- const state={province:qs('#province').value,time:+qs('#time').value,transfer:+qs('#transfer').value,type:qs('#type').value,layout:qs('#layout').value,sizes:selSizes(),prefs:selPrefs(),deals:selDeals(),dep:Math.min(18000,+qs('#dep').value||0),rent:+qs('#rent').value||0,areas:selAreas(),dongs:selDongs()};
- const out=listings.filter(l=>l.province===state.province&&cityDongMatch(l)&&l.time<=state.time&&l.transfer<=state.transfer&&(state.type==='전체'||l.type===state.type)&&(state.layout==='전체'||l.layout===state.layout)&&(!state.sizes.length||!l.py||state.sizes.includes(band(l.py)))&&(!state.deals.length||state.deals.includes(l.deal))&&l.dep<=state.dep&&(l.deal==='전세'||l.rent<=state.rent)).sort((a,b)=>lifestyleHits(b,state.prefs).length-lifestyleHits(a,state.prefs).length || a.rent-b.rent || a.time-b.time);
- qs('#applied').innerHTML='<span>시·도 <b>'+qs('#province option:checked').textContent+'</b></span><span>시간 내 선택가능 지역 <b>'+eligibleCities().length+'곳</b></span><span>시·군·구 <b>'+(state.areas.join(', ')||'시간 내 전체')+'</b></span><span>동·읍·면 <b>'+(state.dongs.length?state.dongs.map(v=>v.split('|||')[1]).join(', '):'전체')+'</b></span><span>통근 <b>'+state.time+'분</b></span><span>환승 <b>'+state.transfer+'회 이하</b></span><span>거래유형 <b>'+(state.deals.join(' + ')||'전체')+'</b></span><span>보증금 <b>'+formatManwon(state.dep)+' 이하</b></span><span>월세 <b>'+state.rent+'만원 이하</b></span>';
+ const state={province:qs('#province').value,time:+qs('#time').value,transfer:+qs('#transfer').value,livingModes:selLivingModes(),type:qs('#type').value,layout:qs('#layout').value,sizes:selSizes(),prefs:selPrefs(),deals:selDeals(),dep:Math.min(18000,+qs('#dep').value||0),rent:+qs('#rent').value||0,areas:selAreas(),dongs:selDongs()};
+ const out=listings.filter(l=>l.province===state.province&&cityDongMatch(l)&&l.time<=state.time&&l.transfer<=state.transfer&&(!state.livingModes.length||state.livingModes.includes(livingModeOf(l)))&&(state.type==='전체'||l.type===state.type)&&(state.layout==='전체'||l.layout===state.layout)&&(!state.sizes.length||!l.py||state.sizes.includes(band(l.py)))&&(!state.deals.length||state.deals.includes(l.deal))&&l.dep<=state.dep&&(l.deal==='전세'||l.rent<=state.rent)).sort((a,b)=>lifestyleHits(b,state.prefs).length-lifestyleHits(a,state.prefs).length || a.rent-b.rent || a.time-b.time);
+ qs('#applied').innerHTML='<span>시·도 <b>'+qs('#province option:checked').textContent+'</b></span><span>시간 내 선택가능 지역 <b>'+eligibleCities().length+'곳</b></span><span>시·군·구 <b>'+(state.areas.join(', ')||'시간 내 전체')+'</b></span><span>동·읍·면 <b>'+(state.dongs.length?state.dongs.map(v=>v.split('|||')[1]).join(', '):'전체')+'</b></span><span>통근 <b>'+state.time+'분</b></span><span>환승 <b>'+state.transfer+'회 이하</b></span><span>거주방식 <b>'+(state.livingModes.join(' + ')||'전체')+'</b></span><span>거래유형 <b>'+(state.deals.join(' + ')||'전체')+'</b></span><span>보증금 <b>'+formatManwon(state.dep)+' 이하</b></span><span>월세 <b>'+state.rent+'만원 이하</b></span>';
  if(out.length){
   currentResults=out;renderCurrentResults();
  } else {
   const rankNear=l=>{
     let penalty=Math.abs(l.time-state.time)*2+Math.max(0,l.dep-state.dep)/100+Math.max(0,l.rent-state.rent)*3;
+    if(state.livingModes.length&&!state.livingModes.includes(livingModeOf(l))) penalty+=30;
     if(state.type!=='전체'&&l.type!==state.type) penalty+=25;
     if(state.layout!=='전체'&&l.layout!==state.layout) penalty+=20;
     if(state.sizes.length&&!state.sizes.includes(band(l.py))) penalty+=15;
     penalty-=lifestyleHits(l,state.prefs).length*8;
     return {...l,penalty};
   };
-  const sameArea=listings.filter(l=>l.province===state.province&&cityDongMatch(l)).map(rankNear).sort((a,b)=>a.penalty-b.penalty);
-  const sameProvince=listings.filter(l=>l.province===state.province).map(rankNear).sort((a,b)=>a.penalty-b.penalty);
+  const modeOk=l=>!state.livingModes.length||state.livingModes.includes(livingModeOf(l));
+  const sameArea=listings.filter(l=>l.province===state.province&&cityDongMatch(l)&&modeOk(l)).map(rankNear).sort((a,b)=>a.penalty-b.penalty);
+  const sameProvince=listings.filter(l=>l.province===state.province&&modeOk(l)).map(rankNear).sort((a,b)=>a.penalty-b.penalty);
   const fallback=sameArea.length?sameArea:sameProvince;currentResults=fallback;
   const loc=[qs('#province option:checked').textContent,...state.areas,state.dongs.map(v=>v.split('|||')[1])].join(' ');
-  const q=encodeURIComponent(loc+' 전세 보증부월세 1억 8천 이하 원룸 투룸 다세대 다가구 오피스텔 아파트');
-  let html='<div class="empty"><b>선택한 세부 조건은 내부 직접수집을 더 확대 중입니다.</b><div style="margin-top:6px;font-size:12px;color:#71829a">시장에 매물이 없다는 뜻이 아닙니다. 우선 가장 가까운 실제 매물을 보여주고, 아래에서 현재 매물을 더 찾을 수 있습니다.</div></div>';
+  const modeQuery=(state.livingModes.length?state.livingModes.join(' '):'일반주거 쉐어하우스 코리빙 기숙사 고시원 원룸텔');
+  const q=encodeURIComponent(loc+' '+modeQuery+' 전세 보증부월세 1억 8천 이하 원룸 투룸');
+  let html='<div class="empty"><b>선택한 세부 조건은 내부 직접수집을 더 확대 중입니다.</b><div style="margin-top:6px;font-size:12px;color:#71829a">시장에 매물이 없다는 뜻이 아닙니다. 선택한 거주방식 안에서 가장 가까운 실제 매물만 보여주고, 아래에서 현재 매물을 더 찾을 수 있습니다.</div></div>';
   if(fallback.length){
     html+='<div class="near-title">'+(sameArea.length?'같은 지역의 근접 실제 매물 전체':'같은 시·도의 근접 실제 매물 전체')+'</div>'+groupedHtml(sortResults(fallback));
   }
@@ -330,8 +346,8 @@ qs('#areaClear').addEventListener('click',()=>{qsa('#areas input').forEach(x=>x.
 qs('#dongAll').addEventListener('click',()=>{qsa('#dongs input').forEach(x=>x.checked=true);updateTexts()});
 qs('#dongClear').addEventListener('click',()=>{qsa('#dongs input').forEach(x=>x.checked=false);updateTexts()});
 qs('#time').addEventListener('input',()=>{qs('#timeValue').textContent=qs('#time').value+'분';renderAreas();search();});
-qs('#sizes').addEventListener('change',updateSizePrefText);qs('#prefs').addEventListener('change',updateSizePrefText);qs('#deals').addEventListener('change',updateDealMoneyText);
-qs('#sizeAll').addEventListener('click',()=>{qsa('#sizes input').forEach(x=>x.checked=true);updateSizePrefText()});qs('#sizeClear').addEventListener('click',()=>{qsa('#sizes input').forEach(x=>x.checked=false);updateSizePrefText()});qs('#prefClear').addEventListener('click',()=>{qsa('#prefs input').forEach(x=>x.checked=false);updateSizePrefText()});qs('#dealAll').addEventListener('click',()=>{qsa('#deals input').forEach(x=>x.checked=true);updateDealMoneyText()});qs('#dealClear').addEventListener('click',()=>{qsa('#deals input').forEach(x=>x.checked=false);updateDealMoneyText()});
+qs('#livingModes').addEventListener('change',()=>{updateLivingText();search()});qs('#sizes').addEventListener('change',updateSizePrefText);qs('#prefs').addEventListener('change',updateSizePrefText);qs('#deals').addEventListener('change',updateDealMoneyText);
+qs('#livingAll').addEventListener('click',()=>{qsa('#livingModes input').forEach(x=>x.checked=true);updateLivingText();search()});qs('#livingClear').addEventListener('click',()=>{qsa('#livingModes input').forEach(x=>x.checked=false);updateLivingText();search()});qs('#sizeAll').addEventListener('click',()=>{qsa('#sizes input').forEach(x=>x.checked=true);updateSizePrefText()});qs('#sizeClear').addEventListener('click',()=>{qsa('#sizes input').forEach(x=>x.checked=false);updateSizePrefText()});qs('#prefClear').addEventListener('click',()=>{qsa('#prefs input').forEach(x=>x.checked=false);updateSizePrefText()});qs('#dealAll').addEventListener('click',()=>{qsa('#deals input').forEach(x=>x.checked=true);updateDealMoneyText()});qs('#dealClear').addEventListener('click',()=>{qsa('#deals input').forEach(x=>x.checked=false);updateDealMoneyText()});
 qs('#sort').addEventListener('change',()=>{if(currentResults.length)renderCurrentResults()});
 qs('#gridView').addEventListener('click',()=>{currentView='grid';qs('#gridView').classList.add('active');qs('#listView').classList.remove('active');if(currentResults.length)renderCurrentResults()});
 qs('#listView').addEventListener('click',()=>{currentView='list';qs('#listView').classList.add('active');qs('#gridView').classList.remove('active');if(currentResults.length)renderCurrentResults()});
@@ -347,7 +363,7 @@ qs('#detailModal').addEventListener('click',e=>{
  const sub=e.target.closest('#communitySubmit');if(sub)addCommunity(sub.dataset.id);
 });
 qs('#search').addEventListener('click',search);
-qs('#dep').addEventListener('input',updateDealMoneyText);qs('#rent').addEventListener('input',updateDealMoneyText);renderAreas();updateSizePrefText();updateDealMoneyText();search();
+qs('#dep').addEventListener('input',updateDealMoneyText);qs('#rent').addEventListener('input',updateDealMoneyText);renderAreas();updateLivingText();updateSizePrefText();updateDealMoneyText();search();
 </script>
 </body>
 </html>
