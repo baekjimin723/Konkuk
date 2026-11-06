@@ -1,0 +1,34 @@
+name: Build v22 submission package
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/build-v22-submission.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout v22
+        uses: actions/checkout@v4
+        with:
+          ref: 032aa271471aae60e9d7baa1f7c065750fe0f99c
+
+      - name: Package living-area-site
+        run: |
+          mkdir -p submission
+          cp -R living-area-site submission/생활권ON_v22
+          cd submission
+          zip -r "../생활권ON_v22_제출용.zip" "생활권ON_v22"
+
+      - name: Upload submission package
+        uses: actions/upload-artifact@v4
+        with:
+          name: 생활권ON-v22-제출용
+          path: 생활권ON_v22_제출용.zip
+          if-no-files-found: error
+          retention-days: 7
