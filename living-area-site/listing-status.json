@@ -1,10 +1,17 @@
 {
-  "checked_at": "2026-11-06T23:28:01+00:00",
-  "before": 174,
-  "active_or_unconfirmed": 174,
-  "removed_this_run": 0,
+  "checked_at": "2026-11-07T03:08:04+00:00",
+  "before": 183,
+  "active_or_unconfirmed": 182,
+  "removed_this_run": 1,
   "unknown_this_run": 0,
-  "removed": [],
+  "removed": [
+    {
+      "id": "3120928",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/3120928",
+      "reason": "http:404"
+    }
+  ],
   "unknown": [],
   "policy": "Definitive 404/410, provider redirect, or visible inactive marker only. Temporary/network failures are retained."
 }
