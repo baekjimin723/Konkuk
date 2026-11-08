@@ -1,20 +1,14 @@
 {
-  "checked_at": "2026-11-08T05:49:38+00:00",
-  "before": 190,
-  "active_or_unconfirmed": 188,
-  "removed_this_run": 2,
+  "checked_at": "2026-11-08T12:14:53+00:00",
+  "before": 192,
+  "active_or_unconfirmed": 191,
+  "removed_this_run": 1,
   "unknown_this_run": 0,
   "removed": [
     {
-      "id": "4188691",
+      "id": "4916247",
       "source": "당근부동산",
-      "url": "https://realty.daangn.com/articles/4188691",
-      "reason": "http:404"
-    },
-    {
-      "id": "4920556",
-      "source": "당근부동산",
-      "url": "https://realty.daangn.com/articles/4920556",
+      "url": "https://realty.daangn.com/articles/4916247",
       "reason": "http:404"
     }
   ],
