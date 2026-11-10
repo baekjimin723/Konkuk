@@ -1,14 +1,14 @@
 {
-  "checked_at": "2026-11-09T19:13:42+00:00",
-  "before": 201,
-  "active_or_unconfirmed": 200,
+  "checked_at": "2026-11-10T02:14:34+00:00",
+  "before": 208,
+  "active_or_unconfirmed": 207,
   "removed_this_run": 1,
   "unknown_this_run": 0,
   "removed": [
     {
-      "id": "4867870",
+      "id": "4963484",
       "source": "당근부동산",
-      "url": "https://realty.daangn.com/articles/4867870",
+      "url": "https://realty.daangn.com/articles/4963484",
       "reason": "http:404"
     }
   ],
