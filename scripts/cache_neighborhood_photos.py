@@ -10,6 +10,7 @@ import hashlib
 import io
 import json
 import re
+import shutil
 import time
 from pathlib import Path
 from urllib.parse import quote, unquote, urlsplit
@@ -53,6 +54,14 @@ def official_urls(filename: str) -> list[str]:
         print(f"  Wikimedia API unavailable for {filename}: {exc}", flush=True)
     return [original_url(filename)]
 
+previous_manifest = OUTPUT / "manifest.json"
+previous_files = {}
+if previous_manifest.exists():
+    for region_photos in json.loads(previous_manifest.read_text(encoding="utf-8")).values():
+        for source in region_photos:
+            if len(source) >= 5:
+                previous_files[source[4]] = ROOT / "living-area-site" / source[0]
+
 manifest: dict[str, list] = {}
 success = 0
 failures = []
@@ -65,7 +74,13 @@ for region, photos in raw_gallery.items():
         saved = False
         if local.exists() and local.stat().st_size > 2000:
             saved = True
-        else:
+        elif file_page in previous_files and previous_files[file_page].exists():
+            shutil.copy2(previous_files[file_page], local)
+            saved = local.stat().st_size > 2000
+        if not saved:
+            # Avoid burning Wikimedia's per-host rate budget on photos that
+            # already exist in this repository.
+            time.sleep(1.1)
             candidates = official_urls(filename)
             # Fall back to the source image link only when Commons' API/canonical
             # source does not serve an image.
