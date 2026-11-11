@@ -285,7 +285,7 @@ header .brand{font-size:24px;letter-spacing:-.04em}
 </style>
 </head>
 <body>
-<header><div><div class="brand">생활권ON</div><div class="header-subtitle">살고 싶은 동네부터 찾는 주거 탐색</div></div><div class="header-system-status" style="font-size:10px;color:#6f8197;margin-top:3px">전세·보증부월세 통합검색 · 전체 DB <b id="inventoryCount">0</b>건 · 현재 조건 <b id="headerResultCount">0</b>건 · <span id="syncStatus">상태 확인 준비 중</span></div><div class="build">KEYWORD PHOTO CARDS 2026-11-11 · v37</div></header>
+<header><div><div class="brand">생활권ON</div><div class="header-subtitle">살고 싶은 동네부터 찾는 주거 탐색</div></div><div class="header-system-status" style="font-size:10px;color:#6f8197;margin-top:3px">전세·보증부월세 통합검색 · 전체 DB <b id="inventoryCount">0</b>건 · 현재 조건 <b id="headerResultCount">0</b>건 · <span id="syncStatus">상태 확인 준비 중</span></div><div class="build">DONGAN DISTRICT RECOMMENDATIONS 2026-11-11 · v39</div></header>
 <main class="wrap">
 <section class="panel discovery-panel" id="discovery">
 <div class="discovery-kicker">FIND YOUR NEXT NEIGHBORHOOD</div>
@@ -722,6 +722,13 @@ function featuredRailRoute(l){
 
 
 const regionGuideV29={"광진구":["건대 상권과 서울 동부 주거지가 공존하는 생활권","서울어린이대공원·한강공원","건대 스타시티·건국대병원·중곡문화체육센터","2·7호선 건대입구역, 7호선 중곡역","https://www.sisul.or.kr/open_content/childrenpark/"],"구리시":["호수공원과 구리역 상권을 함께 이용하는 서울 동부 인접 생활권","장자호수공원·이문안호수공원","구리역 롯데백화점·한양대구리병원","8호선·경의중앙선 구리역, 강변역행 버스","https://www.guri.go.kr/environment/contents.do?key=8156"],"남양주시":["마석·별내 등 동네에 따라 주거환경이 다른 넓은 생활권","천마산 녹지·별내천(지역에 따라 다름)","화도체육문화센터·마석역 상권(화도읍 예시)","경춘선 마석역·8호선 별내역·M2316","https://4season.ncuc.or.kr/main/104"],"의정부시":["경전철과 1호선이 이어지는 경기 북부 생활권","부용천 산책로·추동공원","의정부성모병원·경기북부청사","의정부경전철·수도권 1호선","https://www.ikld.kr/news/articleView.html?idxno=283840"],"안양시":["평촌 상권과 인덕원 교통축을 이용하는 주거 생활권","학의천·평촌중앙공원","동편마을 카페거리·평촌 상권","4호선 인덕원역·범계역 등","https://www.anyang.go.kr/dongan/contents.do?key=1185"],"인덕원역·관양동":["관악산·학의천 사이의 주거지와 카페거리가 어우러진 동네","학의천·동편마을 수변공원","동편마을 카페거리·인덕원 상권","4호선 인덕원역 → 이수역 7호선 환승","https://anyang.go.kr/tour/contents.do?key=1919"]},localGuideV29={"광진구|중곡동":[["서울어린이대공원"],["중곡문화체육센터"],["7호선 중곡역"]],"구리시|교문동":[["이문안호수공원","장자호수공원 하류"],["한양대구리병원"],["교문사거리 1번 버스","구리역(시내)"]],"남양주시|화도읍":[["천마산 일대 녹지"],["화도체육문화센터","마석역 상권"],["경춘선 마석역","M2316 잠실행"]],"의정부시|금오동":[["부용천 산책로","추동공원"],["의정부성모병원"],["의정부경전철 동오역"]],"안양시|동안구 관양동":[["학의천·동편마을 수변공원"],["동편마을 카페거리"],["인덕원역 접근성 별도 확인"]],"구리시|수택동":[["장자호수공원"],["구리역 상권"],["8호선 장자호수공원역"]]},busGuideV29={"구리시|교문동":["일반버스 1번 + 지하철 2호선","교문사거리","1번 버스","강변역","2호선 → 건대입구역","https://life.ttpk.co.kr/bus/51570"],"남양주시|화도읍":["광역급행 M2316 + 지하철 2호선","마석역 인근 정류장","M2316","잠실광역환승센터","잠실역 2호선 → 건대입구역","https://www.edpk.co.kr/info/bus/print"]};
+regionGuideV29['안양시 동안구']=[
+ '관양동·호계동 등 동안구의 주거지와 평촌 생활권을 함께 살펴보는 지역',
+ '학의천·평촌중앙공원(매물에 따라 접근성 다름)',
+ '동편마을 카페거리·평촌 상권(대표시설)',
+ '4호선 인덕원역·범계역 및 지역 버스(매물별 접근성 확인)',
+ 'https://www.anyang.go.kr/dongan/contents.do?key=1185'
+];
 function regionGuideMarkupV29(key){
  const g=regionGuideV29[key];if(!g)return '';
  return '<div class="discovery-neighborhood"><div class="discovery-neighborhood-intro">'+escapeHtml(g[0])+'</div>'
@@ -779,8 +786,9 @@ async function loadKeywordImagesV37(){
   const data=await response.json();
   if(!data||typeof data!=='object')return;
   keywordImagesV37=data;
+  keywordImagesV37['안양시 동안구']=data['인덕원역·관양동']||{};
   if(selectedHomeRegion&&!qs('#discoveryTypePanel').hidden){
-   const key=selectedHomeRegion.dong?'인덕원역·관양동':selectedHomeRegion.city;
+   const key=selectedHomeRegion.label||selectedHomeRegion.city;
    qs('#discoveryNeighborhoodGuide').innerHTML=selectedRegionGuideV30(key);
   }
  }catch(e){/* The area descriptions remain usable without optional photos. */}
@@ -813,6 +821,7 @@ function selectedRegionGuideV30(key){
 
 
 const galleryByAreaV32={"광진구":[["assets/areas/fd31e4796e4c051d.webp","서울어린이대공원 산책","Kang Byeong Kee","BY-SA 3.0","https://commons.wikimedia.org/wiki/File:SeoulChildrensGrandPark.JPG"],["assets/areas/b49ab51f56019d56.webp","어린이대공원 어린이회관","Piotrus","BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Buildings_near_konkuk_university_01.JPG"],["assets/areas/945ff241da0edf64.webp","대공원 벚꽃 산책길","Peachy1234","BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Cherry_Blossoms_along_path.jpg"]],"구리시":[["assets/areas/bd4e8199e964be32.webp","장자호수공원","Mark Hambleton","BY-SA 2.0","https://commons.wikimedia.org/wiki/File:Korea-Guri_City-03.jpg"],["assets/areas/49cdce85c9ab6876.webp","구리시 공원","Mark Hambleton","BY-SA 2.0","https://commons.wikimedia.org/wiki/File:Korea-Guri_City-02.jpg"],["assets/areas/da4687822ce5fabb.webp","구리시 생활 풍경","Mark Hambleton","BY-SA 2.0","https://commons.wikimedia.org/wiki/File:Korea-Guri_City-01.jpg"]],"남양주시":[["assets/areas/883df550facb160f.webp","마석 일대","Sadopaul","BY-SA 4.0","https://commons.wikimedia.org/wiki/File:View_of_Maseok_%282025%29.jpg"],["assets/areas/875d4dd4d7481c2a.webp","별내 카페거리","시원한바람","BY-SA 3.0","https://commons.wikimedia.org/wiki/File:별내카페거리1.jpg"],["assets/areas/89133bc58a38a465.webp","별내 은하수물길공원","시원한바람","BY-SA 3.0","https://commons.wikimedia.org/wiki/File:별내은하수물길공원1.jpg"]],"의정부시":[["assets/areas/9392d0e90cb5d70a.webp","회룡천 산책길","Yann Michel Cueroni","BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Hoeryongcheon_Stream_-_Uijeongbu.jpg"],["assets/areas/d84484c6118e9142.webp","의정부 부대찌개 거리","Christian Bolz","BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Budaejjigae-Street_in_Uijeongbu.jpg"]],"인덕원역·관양동":[["assets/areas/c16a1dd2bbb2406a.webp","관악산의 푸른 봄 풍경","lamoix","CC BY 2.0","https://commons.wikimedia.org/wiki/File:Gwanak_Mountain.jpg"],["assets/areas/a58e765f2a3b4895.webp","동편마을·관양도서관","고려","BY 4.0","https://commons.wikimedia.org/wiki/File:Anyang_Municipal_Gwanyang_Library,_Photographed_from_Dongpyeonmaeul_4-danji_Apartment.jpg"],["assets/areas/eaebcfd243e3150b.webp","동편마을 카페거리","한국관광공사","KOGL 제1유형","https://xn--o39a1rk22ai9cq45b.kr/place/tourapi-2874858/"]]};
+galleryByAreaV32['안양시 동안구']=galleryByAreaV32['인덕원역·관양동'];
 let rankedAreasV31=[],slideIndexV31=0;
 function pickHomesV31(rows){return [...rows].sort((a,b)=>Number(Boolean(b.photo))-Number(Boolean(a.photo))||(Number(b.py)||0)-(Number(a.py)||0)||Number(a.time)-Number(b.time))}
 function scoreAreaV31(a){
@@ -856,24 +865,24 @@ function renderHomeDiscovery(rows){
  homeDiscoveryInitialized=true;homeDiscoverySource=[...rows];
  const byCity=new Map();rows.forEach(l=>{if(!byCity.has(l.city))byCity.set(l.city,[]);byCity.get(l.city).push(l)});
  if(!rows.length){qs('#discoveryRegions').innerHTML='<div class="empty">현재 조건의 매물 정보가 없습니다.</div>';return}
- const preferred=['광진구','구리시','남양주시','의정부시','안양시','성북구','양천구'];
- const popular=[...byCity.keys()].sort((x,y)=>byCity.get(y).length-byCity.get(x).length);
- rankedAreasV31=[...new Set([...preferred.filter(x=>byCity.has(x)),...popular])].slice(0,4).map(city=>({label:city,city,province:byCity.get(city)[0].province,rows:byCity.get(city)}));
- const indeokwon=(byCity.get('안양시')||[]).filter(l=>l.province==='경기도'&&l.dong==='동안구 관양동');
- if(indeokwon.length)rankedAreasV31.push({label:'인덕원역·관양동',city:'안양시',province:'경기도',rows:indeokwon});
+ const preferred=['구리시','남양주시','의정부시'];
+ rankedAreasV31=preferred.filter(city=>byCity.has(city)).map(city=>({label:city,city,province:byCity.get(city)[0].province,rows:byCity.get(city)}));
+ const dongan=(byCity.get('안양시')||[]).filter(l=>l.province==='경기도'&&String(l.dong).startsWith('동안구 '));
+ if(dongan.length)rankedAreasV31.push({label:'안양시 동안구',city:'안양시',province:'경기도',rows:dongan});
+ if(!rankedAreasV31.length){qs('#discoveryRegions').innerHTML='<div class="discovery-empty">현재 조건의 추천 생활권 매물이 없습니다. 조건을 조정해 주세요.</div>';qs('#discoveryListings').innerHTML='';qs('#discoveryCount').textContent=' · 0 / 0';qs('#slideDotsV31').innerHTML='';return}
  rankedAreasV31.sort((x,y)=>scoreAreaV31(y)-scoreAreaV31(x));
  slideToV31(0);
 }
 function updateHomeTypeSelection(){
  const checked=qsa('#discoveryTypeOptions input:checked').map(x=>x.value);
- const n=selectedHomeRegion?homeDiscoverySource.filter(l=>l.city===selectedHomeRegion.city&&l.province===selectedHomeRegion.province&&(!selectedHomeRegion.dong||l.dong===selectedHomeRegion.dong)&&checked.includes(l.type)).length:0;
+ const n=selectedHomeRegion?homeDiscoverySource.filter(l=>l.city===selectedHomeRegion.city&&l.province===selectedHomeRegion.province&&(!selectedHomeRegion.district||String(l.dong).startsWith(selectedHomeRegion.district+' '))&&(!selectedHomeRegion.dong||l.dong===selectedHomeRegion.dong)&&checked.includes(l.type)).length:0;
  const btn=qs('#discoveryApplyTypes');
  btn.disabled=checked.length===0||n===0;
  qs('#discoveryTypeStatus').textContent=checked.length?checked.length+'개 유형 선택 · 기본 조건 매물 '+n+'건':'주택 유형을 선택해 주세요.';
 }
 function openHomeRegionChooser(city,province){
- selectedHomeRegion={city:city==='인덕원역·관양동'?'안양시':city,province,dong:city==='인덕원역·관양동'?'동안구 관양동':''};
- const matching=homeDiscoverySource.filter(l=>l.city===selectedHomeRegion.city&&l.province===province&&(!selectedHomeRegion.dong||l.dong===selectedHomeRegion.dong));
+ selectedHomeRegion={city:city==='안양시 동안구'?'안양시':city,province,district:city==='안양시 동안구'?'동안구':'',dong:'',label:city};
+ const matching=homeDiscoverySource.filter(l=>l.city===selectedHomeRegion.city&&l.province===province&&(!selectedHomeRegion.district||String(l.dong).startsWith(selectedHomeRegion.district+' '))&&(!selectedHomeRegion.dong||l.dong===selectedHomeRegion.dong));
  const counts={};matching.forEach(l=>{counts[l.type]=(counts[l.type]||0)+1});
  const panel=qs('#discoveryTypePanel');
  qs('#discoveryTypeHeading').textContent=city+' 매물 찾기';
@@ -890,14 +899,17 @@ function openHomeRegionChooser(city,province){
 }
 function applyHomeRegionTypes(all){
  if(!selectedHomeRegion)return;
- const available=homeDiscoverySource.filter(l=>l.city===selectedHomeRegion.city&&l.province===selectedHomeRegion.province&&(!selectedHomeRegion.dong||l.dong===selectedHomeRegion.dong));
+ const available=homeDiscoverySource.filter(l=>l.city===selectedHomeRegion.city&&l.province===selectedHomeRegion.province&&(!selectedHomeRegion.district||String(l.dong).startsWith(selectedHomeRegion.district+' '))&&(!selectedHomeRegion.dong||l.dong===selectedHomeRegion.dong));
  const types=all?[...new Set(available.map(l=>l.type))]:qsa('#discoveryTypeOptions input:checked').map(x=>x.value);
  if(!types.length)return;
  qs('#province').value=selectedHomeRegion.province;
  renderAreas();
  qsa('#areas input').forEach(box=>{box.checked=box.value===selectedHomeRegion.city});
  renderDongs();
- if(selectedHomeRegion.dong){qsa('#dongs input').forEach(x=>x.checked=x.value===selectedHomeRegion.city+'|||'+selectedHomeRegion.dong);updateTexts()}
+ if(selectedHomeRegion.district){
+  qsa('#dongs input').forEach(x=>x.checked=x.value.startsWith(selectedHomeRegion.city+'|||'+selectedHomeRegion.district+' '));
+  updateTexts();
+ }else if(selectedHomeRegion.dong){qsa('#dongs input').forEach(x=>x.checked=x.value===selectedHomeRegion.city+'|||'+selectedHomeRegion.dong);updateTexts()}
  qsa('#types input').forEach(x=>{x.checked=types.includes(x.value)});
  updateTypeText();
  qs('#discoveryTypePanel').hidden=true;
