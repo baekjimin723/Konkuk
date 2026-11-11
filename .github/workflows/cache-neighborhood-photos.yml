@@ -13,7 +13,7 @@ permissions:
 
 concurrency:
   group: cache-neighborhood-photos
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   cache:
