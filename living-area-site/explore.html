@@ -937,6 +937,32 @@ qs('#naturalQuery').addEventListener('keydown',e=>{if(e.key==='Enter'){applyNatu
 
 qs('#search').addEventListener('click',()=>{search();showResultsV31()});
 qs('#dep').addEventListener('input',updateDealMoneyText);qs('#rent').addEventListener('input',updateDealMoneyText);renderAreas();updateTypeText();updateSizePrefText();updateDealMoneyText();search();
+
+/* Keep the independent design page current when scheduled inventory sync
+   regenerates index.html from an older template. Same-origin only. */
+async function refreshPublishedInventoryV31(){
+ try{
+  const response=await fetch('./index.html?refresh='+Date.now(),{cache:'no-store'});
+  if(!response.ok)return;
+  const page=await response.text(),marker='const listings=',suffix=';\nconst qs=';
+  const start=page.indexOf(marker),end=page.indexOf(suffix,start+marker.length);
+  if(start<0||end<=start)return;
+  const current=JSON.parse(page.slice(start+marker.length,end));
+  if(!Array.isArray(current)||current.length<listings.length)return;
+  const oldIds=new Set(listings.map(l=>String(l.id)));
+  if(current.length===listings.length&&current.every(l=>oldIds.has(String(l.id))))return;
+  listings.splice(0,listings.length,...current);
+  const selectedBefore=slideIndexV31;
+  search();
+  if(qs('#homeResultsV31').hidden){
+   renderHomeDiscovery(currentResults);
+   if(rankedAreasV31.length)slideToV31(Math.min(selectedBefore,rankedAreasV31.length-1));
+  }
+  if(qs('#inventoryCount'))qs('#inventoryCount').textContent=listings.length;
+ }catch(e){/* Keep last cached inventory and layout on connection failure. */}
+}
+refreshPublishedInventoryV31();
+
 </script>
 </body>
 </html>
