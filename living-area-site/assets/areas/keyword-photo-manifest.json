@@ -1,0 +1,117 @@
+{
+  "인덕원역·관양동": {
+    "환경": {
+      "src": "assets/areas/keyword-d7a15ea93def3051.webp",
+      "label": "관악산 근교 녹지",
+      "info": "관악산·학의천 수변 산책",
+      "source": "https://commons.wikimedia.org/wiki/File:Gwanaksan%2C_Anyang_-_20251110-012941416.jpg",
+      "attribution": "Wikimedia Commons 원본 파일에서 저작자·라이선스 확인"
+    },
+    "편의": {
+      "src": "assets/areas/keyword-2809c6742fe624a2.webp",
+      "label": "관양1동 행정복지센터",
+      "info": "동편마을 카페거리·관양1동 행정복지센터",
+      "source": "https://commons.wikimedia.org/wiki/File:Gwanyang_1-dong_Community_Service_Center.jpg",
+      "attribution": "Wikimedia Commons 원본 파일에서 저작자·라이선스 확인"
+    },
+    "교통": {
+      "src": "assets/areas/keyword-18818eebfab4af9e.webp",
+      "label": "인덕원역 출입구",
+      "info": "4호선 인덕원역·버스 연계",
+      "source": "https://commons.wikimedia.org/wiki/File:20200903_%EC%9D%B8%EB%8D%95%EC%9B%90%EC%97%AD_8%EB%B2%88%EC%B6%9C%EA%B5%AC.jpg",
+      "attribution": "Wikimedia Commons 원본 파일에서 저작자·라이선스 확인"
+    }
+  },
+  "남양주시": {
+    "환경": {
+      "src": "assets/areas/keyword-6a263700c8da0282.webp",
+      "label": "오남호수공원",
+      "info": "오남호수공원·천마산 녹지",
+      "source": "https://commons.wikimedia.org/wiki/File:Onam_lake_park_(2025-01).jpg",
+      "attribution": "Wikimedia Commons 원본 파일에서 저작자·라이선스 확인"
+    },
+    "편의": {
+      "src": "assets/areas/keyword-d854e3be10c5153b.webp",
+      "label": "별내동 생활권 거리",
+      "info": "별내동 생활권·마석역 상권",
+      "source": "https://commons.wikimedia.org/wiki/File:Byeolle-dong,_Namyangju.JPG",
+      "attribution": "Wikimedia Commons 원본 파일에서 저작자·라이선스 확인"
+    },
+    "교통": {
+      "src": "assets/areas/keyword-6adc632949d40f24.webp",
+      "label": "별내역 역사",
+      "info": "8호선·경춘선 별내역",
+      "source": "https://commons.wikimedia.org/wiki/File:Byeollae-station.jpg",
+      "attribution": "Wikimedia Commons 원본 파일에서 저작자·라이선스 확인"
+    }
+  },
+  "광진구": {
+    "환경": {
+      "src": "assets/areas/keyword-806324edee58c1a4.webp",
+      "label": "서울어린이대공원 분수",
+      "info": "서울어린이대공원 산책",
+      "source": "https://commons.wikimedia.org/wiki/File:Fountain_in_children%E2%80%99s_Grand_park.jpg",
+      "attribution": "Wikimedia Commons 원본 파일에서 저작자·라이선스 확인"
+    },
+    "편의": {
+      "src": "assets/areas/keyword-245150756eea986e.webp",
+      "label": "건대 일감호·스타시티",
+      "info": "건대 스타시티 일대",
+      "source": "https://commons.wikimedia.org/wiki/File:Konkukuniversitylake.JPG",
+      "attribution": "Wikimedia Commons 원본 파일에서 저작자·라이선스 확인"
+    },
+    "교통": {
+      "src": "assets/areas/keyword-7a4b698538da5eff.webp",
+      "label": "건대입구역 출입구",
+      "info": "2·7호선 건대입구역",
+      "source": "https://commons.wikimedia.org/wiki/File:Seoul-metro-Konkuk-university-station-entrance-1-20181123-084942.jpg",
+      "attribution": "Wikimedia Commons 원본 파일에서 저작자·라이선스 확인"
+    }
+  },
+  "구리시": {
+    "환경": {
+      "src": "assets/areas/keyword-5eb5d414ac06a51b.webp",
+      "label": "동구릉 녹지",
+      "info": "동구릉 숲길·장자호수공원",
+      "source": "https://commons.wikimedia.org/wiki/File:%EB%8F%99%EA%B5%AC%EB%A6%89_%EC%88%98%EB%A6%89.JPG",
+      "attribution": "Wikimedia Commons 원본 파일에서 저작자·라이선스 확인"
+    },
+    "편의": {
+      "src": "assets/areas/keyword-134adb2418c81541.webp",
+      "label": "구리 전통시장",
+      "info": "전통시장·구리역 상권",
+      "source": "https://commons.wikimedia.org/wiki/File:2025_Guri_Photowalk(main_street_in_market).jpg",
+      "attribution": "Wikimedia Commons 원본 파일에서 저작자·라이선스 확인"
+    },
+    "교통": {
+      "src": "assets/areas/keyword-30e3ee2711736200.webp",
+      "label": "구리역 역사",
+      "info": "경의중앙선·8호선 구리역",
+      "source": "https://commons.wikimedia.org/wiki/File:2025_Guri_Photowalk(Guri_station_building).jpg",
+      "attribution": "Wikimedia Commons 원본 파일에서 저작자·라이선스 확인"
+    }
+  },
+  "의정부시": {
+    "환경": {
+      "src": "assets/areas/keyword-a209f01d9e72dc51.webp",
+      "label": "사패산 녹지 풍경",
+      "info": "사패산·부용천 생활환경",
+      "source": "https://commons.wikimedia.org/wiki/File:Mt._Sapaesan_(%EC%82%AC%ED%8C%A8%EC%82%B0)_-_Bukhansan.jpg",
+      "attribution": "Wikimedia Commons 원본 파일에서 저작자·라이선스 확인"
+    },
+    "편의": {
+      "src": "assets/areas/keyword-abb8e0ead15a9b18.webp",
+      "label": "의정부 부대찌개 거리",
+      "info": "의정부 먹거리 상권·성모병원",
+      "source": "https://commons.wikimedia.org/wiki/File:%EC%9D%98%EC%A0%95%EB%B6%80_%EB%B6%80%EB%8C%80%EC%B0%8C%EA%B0%9C_%EA%B1%B0%EB%A6%AC.jpg",
+      "attribution": "Wikimedia Commons 원본 파일에서 저작자·라이선스 확인"
+    },
+    "교통": {
+      "src": "assets/areas/keyword-a1c52726c26a94da.webp",
+      "label": "의정부역 역사",
+      "info": "1호선 의정부역·경전철 연계",
+      "source": "https://commons.wikimedia.org/wiki/File:Uijeongbu_Station.JPG",
+      "attribution": "Wikimedia Commons 원본 파일에서 저작자·라이선스 확인"
+    }
+  }
+}
