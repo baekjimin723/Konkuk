@@ -135,3 +135,88 @@ if failures:
     raise RuntimeError(f"Could not cache {len(failures)} required neighborhood photos.")
 if success < 5:
     raise RuntimeError("Fewer than five neighborhood photos cached; refusing incomplete cache.")
+
+
+# Separate keyword photographs: these are NOT the hero-slide photographs.
+# Store only successfully validated local images; preserve earlier downloads.
+KEYWORD_CATALOG = OUTPUT / "keyword-photo-catalog.json"
+KEYWORD_MANIFEST = OUTPUT / "keyword-photo-manifest.json"
+if KEYWORD_CATALOG.exists():
+    keyword_source = json.loads(KEYWORD_CATALOG.read_text(encoding="utf-8"))
+    previous_keyword = json.loads(KEYWORD_MANIFEST.read_text(encoding="utf-8")) if KEYWORD_MANIFEST.exists() else {}
+    keyword_manifest = {}
+    keyword_missing = []
+    for city, topics in keyword_source.items():
+        keyword_manifest[city] = {}
+        for topic, entry in topics.items():
+            filename = entry["filename"]
+            label = entry["label"]
+            local = OUTPUT / ("keyword-" + hashlib.sha1((city+"|"+topic+"|"+filename).encode()).hexdigest()[:16] + ".webp")
+            source_file = entry["source"]
+            reused = False
+            # Preserve previously downloaded local assets without redownloading
+            prior = previous_keyword.get(city, {}).get(topic)
+            if prior and prior.get("source") == source_file:
+                src = ROOT / "living-area-site" / prior["src"]
+                if src.exists() and src.stat().st_size > 2500:
+                    if src != local:
+                        shutil.copy2(src, local)
+                    reused = True
+            # Search older local catalog assets by filename URL, not by place name.
+            if not reused:
+                for photo in (manifest.get(city, []) + list(previous_manifest and [
+                    p for arr in json.loads(previous_manifest.read_text(encoding="utf-8")).values() for p in arr
+                ] or [])):
+                    if len(photo) >= 5 and filename.lower() in unquote(photo[4]).replace("_", " ").lower():
+                        src = ROOT / "living-area-site" / photo[0]
+                        if src.exists() and src.stat().st_size > 2500:
+                            shutil.copy2(src, local)
+                            reused = True
+                            break
+            if not reused and local.exists() and local.stat().st_size > 2500:
+                reused = True
+            if not reused:
+                candidates = [original_url(filename)]
+                try:
+                    candidates += official_urls(filename)
+                except Exception:
+                    pass
+                for candidate in dict.fromkeys(candidates):
+                    for attempt in range(2):
+                        try:
+                            req = session.get(candidate, timeout=22)
+                            if req.status_code == 429:
+                                time.sleep(6 if attempt == 0 else 12)
+                                continue
+                            req.raise_for_status()
+                            with Image.open(io.BytesIO(req.content)) as img:
+                                img = ImageOps.exif_transpose(img)
+                                if img.width < 350 or img.height < 190:
+                                    continue
+                                img = img.convert("RGB")
+                                img.thumbnail((850, 640))
+                                img.save(local, "WEBP", quality=78, method=5)
+                            if local.stat().st_size > 2500:
+                                reused = True
+                                break
+                        except Exception as exc:
+                            print(f" Keyword image failed {city}/{topic}: {str(exc)[:110]}", flush=True)
+                        time.sleep(1.0)
+                    if reused:
+                        break
+                time.sleep(1.1)
+            if reused:
+                keyword_manifest[city][topic] = {
+                    "src": "assets/areas/" + local.name,
+                    "label": label,
+                    "info": entry["info"],
+                    "source": source_file,
+                    "attribution": "Wikimedia Commons 원본 파일에서 저작자·라이선스 확인",
+                }
+                print(" keyword cached:", city, topic, local.name, flush=True)
+            else:
+                keyword_missing.append(city + "/" + topic + "/" + filename)
+                print(" keyword MISSING:", city, topic, filename, flush=True)
+    KEYWORD_MANIFEST.write_text(json.dumps(keyword_manifest, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
+    (OUTPUT/"keyword-photo-status.json").write_text(json.dumps({"cached":sum(len(x) for x in keyword_manifest.values()),"missing":keyword_missing}, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
+    print("KEYWORD PHOTO CACHE", sum(len(x) for x in keyword_manifest.values()),"missing:",keyword_missing, flush=True)
