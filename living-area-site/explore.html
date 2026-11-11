@@ -231,10 +231,33 @@ header .brand{font-size:24px;letter-spacing:-.04em}
 .home-extra-body{padding:8px 18px 18px}
 @media(max-width:850px){.slide-grid{grid-template-columns:1fr 1fr}.slide-body{padding:19px}.home-feature-card{grid-template-columns:1fr}.home-feature-img{height:165px;min-height:165px}}
 @media(max-width:630px){header{padding:13px 16px}.wrap{padding:18px 12px}.discovery-panel h1{font-size:26px}.discovery-lead{font-size:11px}.slide-grid{display:block;min-height:0}.slide-visual{height:246px;min-height:246px}.slide-body{padding:18px}.slide-body h2{font-size:28px}.slide-about{font-size:12px;margin-bottom:12px}.slide-chips{margin-bottom:11px}.slide-small-stats{padding:10px 0;margin-bottom:14px}.slide-small-stats span{font-size:10px}.slide-action button{width:100%}.slide-action em{display:none}.home-feature-list{grid-template-columns:1fr}.home-feature-card{grid-template-columns:40% 60%;min-height:150px}.home-feature-img{min-height:150px;height:auto}.home-feature-body{padding:12px}.home-feature-price{font-size:15px}.home-feature-links button,.home-feature-links a{font-size:9px}.home-extra .origin-box{display:block}}
+
+/* v32: compact three-up photo gallery on ranked region slides */
+.slide-grid{display:block;min-height:0}
+.slide-visual.slide-gallery{height:auto;min-height:0;display:block;background:#fff;padding:10px 10px 0;overflow:visible}
+.slide-visual.slide-gallery:after{display:none}
+.slide-gallery-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.slide-gallery-row.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.slide-gallery-tile{margin:0;min-width:0}
+.slide-gallery-image{height:165px;position:relative;overflow:hidden;border-radius:11px;background:linear-gradient(135deg,#d5e4ef,#aebfd0)}
+.slide-gallery-image img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.slide-gallery-image:after{content:'';position:absolute;inset:45% 0 0;background:linear-gradient(transparent,rgba(15,34,55,.6));pointer-events:none}
+.slide-gallery-label{position:absolute;z-index:2;left:10px;bottom:10px;color:white;font-weight:800;font-size:10px;line-height:1.35;text-shadow:0 1px 3px #23384c}
+.slide-gallery-credit{display:block;margin:5px 3px 0;color:#8292a4;font-size:8px;text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.slide-gallery-credit:hover{text-decoration:underline}
+.slide-body.slide-body-gallery{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:23px;padding:19px 26px 24px}
+.slide-body-gallery h2{font-size:28px;margin:6px 0}
+.slide-body-gallery .slide-about{font-size:12px;margin-bottom:11px}
+.slide-body-gallery .slide-chips{margin:0;gap:5px}
+.slide-body-gallery .slide-chips span{font-size:9px;padding:6px 8px}
+.slide-body-gallery .slide-small-stats{margin:0 0 12px;padding:9px 0}
+.slide-body-gallery .slide-small-stats span{font-size:10px;padding:6px 9px}
+.slide-body-gallery .slide-action button{font-size:11px;padding:11px 12px}
+@media(max-width:700px){.slide-visual.slide-gallery{height:auto;min-height:0;padding:7px 7px 0}.slide-gallery-row{gap:5px}.slide-gallery-image{height:108px;border-radius:8px}.slide-gallery-label{font-size:9px;left:6px;bottom:6px}.slide-gallery-credit{font-size:7px}.slide-body.slide-body-gallery{display:block;padding:16px}.slide-body-gallery .slide-about{margin-bottom:10px}.slide-body-gallery .slide-chips{margin-bottom:11px}.slide-body-gallery .slide-small-stats{margin:0 0 11px}.slide-body-gallery .slide-action button{width:100%}}
 </style>
 </head>
 <body>
-<header><div><div class="brand">생활권ON</div><div class="header-subtitle">살고 싶은 동네부터 찾는 주거 탐색</div></div><div class="header-system-status" style="font-size:10px;color:#6f8197;margin-top:3px">전세·보증부월세 통합검색 · 전체 DB <b id="inventoryCount">0</b>건 · 현재 조건 <b id="headerResultCount">0</b>건 · <span id="syncStatus">상태 확인 준비 중</span></div><div class="build">PHOTO RANKED CAROUSEL 2026-11-11 · v31</div></header>
+<header><div><div class="brand">생활권ON</div><div class="header-subtitle">살고 싶은 동네부터 찾는 주거 탐색</div></div><div class="header-system-status" style="font-size:10px;color:#6f8197;margin-top:3px">전세·보증부월세 통합검색 · 전체 DB <b id="inventoryCount">0</b>건 · 현재 조건 <b id="headerResultCount">0</b>건 · <span id="syncStatus">상태 확인 준비 중</span></div><div class="build">NEIGHBORHOOD PHOTO GALLERY 2026-11-11 · v32</div></header>
 <main class="wrap">
 <section class="panel discovery-panel" id="discovery">
 <div class="discovery-kicker">FIND YOUR NEXT NEIGHBORHOOD</div>
@@ -720,7 +743,7 @@ function selectedRegionGuideV30(key){
 }
 
 
-const photosByAreaV31={"광진구":["https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b3/Seoul_Childrens_Grand_Park_Main_Gate.jpg/960px-Seoul_Childrens_Grand_Park_Main_Gate.jpg","https://commons.wikimedia.org/wiki/File:Seoul_Childrens_Grand_Park_Main_Gate.jpg","Integral","CC BY-SA 3.0","서울어린이대공원 정문"],"구리시":["https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c1/Korea-Guri_City-03.jpg/960px-Korea-Guri_City-03.jpg","https://commons.wikimedia.org/wiki/File:Korea-Guri_City-03.jpg","Mark Hambleton","CC BY-SA 2.0","장자호수공원"],"남양주시":["https://thumb.wikimedia.org/wikipedia/commons/thumb/3/34/View_of_Maseok_%282025%29.jpg/960px-View_of_Maseok_%282025%29.jpg","https://commons.wikimedia.org/wiki/File:View_of_Maseok_(2025).jpg","Sadopaul","CC BY-SA 4.0","마석 일대 전경"],"의정부시":["https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1a/Hoeryongcheon_Stream_-_Uijeongbu.jpg/960px-Hoeryongcheon_Stream_-_Uijeongbu.jpg","https://commons.wikimedia.org/wiki/File:Hoeryongcheon_Stream_-_Uijeongbu.jpg","Yann Michel Cueroni","CC BY-SA 4.0","의정부 회룡천"],"인덕원역·관양동":["https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/20200903_%EC%9D%B8%EB%8D%95%EC%9B%90%EC%97%AD_8%EB%B2%88%EC%B6%9C%EA%B5%AC.jpg/960px-20200903_%EC%9D%B8%EB%8D%95%EC%9B%90%EC%97%AD_8%EB%B2%88%EC%B6%9C%EA%B5%AC.jpg","https://commons.wikimedia.org/wiki/File:20200903_%EC%9D%B8%EB%8D%95%EC%9B%90%EC%97%AD_8%EB%B2%88%EC%B6%9C%EA%B5%AC.jpg","Kth696586","CC BY-SA 4.0","인덕원역 8번 출구"]};
+const galleryByAreaV32={"광진구":[["https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/SeoulChildrensGrandPark.JPG/640px-SeoulChildrensGrandPark.JPG","서울어린이대공원 산책","Kang Byeong Kee","BY-SA 3.0","https://commons.wikimedia.org/wiki/File:SeoulChildrensGrandPark.JPG"],["https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Buildings_near_konkuk_university_01.JPG/640px-Buildings_near_konkuk_university_01.JPG","어린이대공원 어린이회관","Piotrus","BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Buildings_near_konkuk_university_01.JPG"],["https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Cherry_Blossoms_along_path.jpg/640px-Cherry_Blossoms_along_path.jpg","대공원 벚꽃 산책길","Peachy1234","BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Cherry_Blossoms_along_path.jpg"]],"구리시":[["https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Korea-Guri_City-03.jpg/640px-Korea-Guri_City-03.jpg","장자호수공원","Mark Hambleton","BY-SA 2.0","https://commons.wikimedia.org/wiki/File:Korea-Guri_City-03.jpg"],["https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Korea-Guri_City-02.jpg/640px-Korea-Guri_City-02.jpg","구리시 공원","Mark Hambleton","BY-SA 2.0","https://commons.wikimedia.org/wiki/File:Korea-Guri_City-02.jpg"],["https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Korea-Guri_City-01.jpg/640px-Korea-Guri_City-01.jpg","구리시 생활 풍경","Mark Hambleton","BY-SA 2.0","https://commons.wikimedia.org/wiki/File:Korea-Guri_City-01.jpg"]],"남양주시":[["https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/View_of_Maseok_%282025%29.jpg/640px-View_of_Maseok_%282025%29.jpg","마석 일대","Sadopaul","BY-SA 4.0","https://commons.wikimedia.org/wiki/File:View_of_Maseok_%282025%29.jpg"],["https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/View_of_Pyeongnae_and_Hopyeong_%282025%29.jpg/640px-View_of_Pyeongnae_and_Hopyeong_%282025%29.jpg","평내·호평 일대","Sadopaul","BY-SA 4.0","https://commons.wikimedia.org/wiki/File:View_of_Pyeongnae_and_Hopyeong_%282025%29.jpg"]],"의정부시":[["https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Hoeryongcheon_Stream_-_Uijeongbu.jpg/640px-Hoeryongcheon_Stream_-_Uijeongbu.jpg","회룡천 산책길","Yann Michel Cueroni","BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Hoeryongcheon_Stream_-_Uijeongbu.jpg"],["https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Budaejjigae-Street_in_Uijeongbu.jpg/640px-Budaejjigae-Street_in_Uijeongbu.jpg","의정부 부대찌개 거리","Christian Bolz","BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Budaejjigae-Street_in_Uijeongbu.jpg"]],"인덕원역·관양동":[["https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Gwanaksan%2C_Anyang_-_20251110-012941416.jpg/640px-Gwanaksan%2C_Anyang_-_20251110-012941416.jpg","관양동 인근 관악산","Sikander Iqbal","BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Gwanaksan%2C_Anyang_-_20251110-012941416.jpg"],["https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Playground_of_Indeogwon_Elementry_School.jpg/640px-Playground_of_Indeogwon_Elementry_School.jpg","인덕원초 인근 놀이터","고려","BY 4.0","https://commons.wikimedia.org/wiki/File:Playground_of_Indeogwon_Elementry_School.jpg"],["https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Looking_upstream_along_the_Hakuicheon_from_the_Anyangcheon_-_2009-04-18.JPG/640px-Looking_upstream_along_the_Hakuicheon_from_the_Anyangcheon_-_2009-04-18.JPG","안양 학의천 하류(참고)","Jpbarrass","Public domain","https://commons.wikimedia.org/wiki/File:Looking_upstream_along_the_Hakuicheon_from_the_Anyangcheon_-_2009-04-18.JPG"]]};
 let rankedAreasV31=[],slideIndexV31=0;
 function pickHomesV31(rows){return [...rows].sort((a,b)=>Number(Boolean(b.photo))-Number(Boolean(a.photo))||(Number(b.py)||0)-(Number(a.py)||0)||Number(a.time)-Number(b.time))}
 function scoreAreaV31(a){
@@ -734,17 +757,18 @@ function slideToV31(index){
  if(!rankedAreasV31.length)return;
  slideIndexV31=(index+rankedAreasV31.length)%rankedAreasV31.length;
  const a=rankedAreasV31[slideIndexV31],g=regionGuideV29[a.label]||regionGuideV29[a.city];
- const p=photosByAreaV31[a.label],fastest=[...a.rows].sort((x,y)=>Number(x.time)-Number(y.time)||Number(x.transfer)-Number(y.transfer))[0];
- const pic=p?'<img src="'+escapeHtml(p[0])+'" alt="'+escapeHtml(p[4])+' 지역 사진" loading="eager" decoding="async" onerror="this.remove()">':'';
- const credit=p?'<a class="slide-photo-credit" href="'+escapeHtml(p[1])+'" target="_blank" rel="noopener noreferrer">사진 '+escapeHtml(p[2])+' · '+escapeHtml(p[3])+' · 화면에 맞게 크롭</a>':'';
+ const pictures=galleryByAreaV32[a.label]||[],fastest=[...a.rows].sort((x,y)=>Number(x.time)-Number(y.time)||Number(x.transfer)-Number(y.transfer))[0];
+ const gallery=pictures.map((p,i)=>'<figure class="slide-gallery-tile"><div class="slide-gallery-image">'
+  +'<img src="'+escapeHtml(p[0])+'" alt="'+escapeHtml(p[1])+'" '+(i?'loading="lazy"':'loading="eager"')+' decoding="async" onerror="this.remove()">'
+  +'<span class="slide-gallery-label">'+escapeHtml(p[1])+'</span></div>'
+  +'<figcaption><a class="slide-gallery-credit" href="'+escapeHtml(p[4])+'" target="_blank" rel="noopener noreferrer" title="사진 저작자: '+escapeHtml(p[2])+' · CC '+escapeHtml(p[3])+' · 화면에 맞게 크롭">'+escapeHtml(p[2])+' · '+escapeHtml(p[3])+' · 크롭</a></figcaption></figure>').join('');
  const tags=g?['🌳 '+g[1].split('·')[0],'🛍 '+g[2].split('·')[0],'🚇 '+g[3].split(',')[0]]:[];
  qs('#discoveryCount').textContent=' · '+(slideIndexV31+1)+' / '+rankedAreasV31.length;
- qs('#discoveryRegions').innerHTML='<div class="slide-grid"><div class="slide-visual">'+pic+'<div class="slide-place-caption">'+escapeHtml(p?p[4]:'사진을 준비 중입니다')+'</div>'+credit+'</div>'
- +'<div class="slide-body"><div class="slide-rank">추천 '+(slideIndexV31+1)+'순위 · '+escapeHtml(a.province)+'</div><h2>'+escapeHtml(a.label)+'</h2>'
- +'<p class="slide-about">'+escapeHtml(g?g[0]:'등록 매물과 이동 조건을 기준으로 살펴볼 후보 지역')+'</p>'
- +'<div class="slide-chips">'+tags.map(x=>'<span>'+escapeHtml(x)+'</span>').join('')+'</div>'
- +'<div class="slide-small-stats"><span>⏱ 약 '+escapeHtml(String(fastest.time))+'분</span><span>⇄ 환승 '+escapeHtml(String(fastest.transfer))+'회</span><span>매물 '+a.rows.length+'건</span><small>건대입구역 기준 · 등록 매물의 참고용 예상치</small></div>'
- +'<div class="slide-action"><button type="button" data-home-region="'+escapeHtml(a.label)+'" data-home-province="'+escapeHtml(a.province)+'">이 동네에 살면? →</button><em>생활환경 확인 · 주택 유형 선택</em></div></div></div>';
+ qs('#discoveryRegions').innerHTML='<div class="slide-grid"><div class="slide-visual slide-gallery"><div class="slide-gallery-row '+(pictures.length===2?'two':'')+'">'+gallery+'</div></div>'
+ +'<div class="slide-body slide-body-gallery"><div class="slide-gallery-copy"><div class="slide-rank">추천 '+(slideIndexV31+1)+'순위 · '+escapeHtml(a.province)+'</div><h2>'+escapeHtml(a.label)+'</h2>'
+ +'<p class="slide-about">'+escapeHtml(g?g[0]:'등록 매물과 이동 조건을 기준으로 살펴볼 후보 지역')+'</p><div class="slide-chips">'+tags.map(x=>'<span>'+escapeHtml(x)+'</span>').join('')+'</div></div>'
+ +'<div class="slide-gallery-travel"><div class="slide-small-stats"><span>⏱ 약 '+escapeHtml(String(fastest.time))+'분</span><span>⇄ 환승 '+escapeHtml(String(fastest.transfer))+'회</span><span>매물 '+a.rows.length+'건</span><small>건대입구역 기준 · 등록 매물의 참고용 예상치</small></div>'
+ +'<div class="slide-action"><button type="button" data-home-region="'+escapeHtml(a.label)+'" data-home-province="'+escapeHtml(a.province)+'">이 동네에 살면? →</button><em>생활환경 확인 · 주택 유형 선택</em></div></div></div></div>';
  qs('#slideDotsV31').innerHTML=rankedAreasV31.map((v,i)=>'<button type="button" class="slide-dot" data-slide-index="'+i+'" aria-label="'+(i+1)+'순위 '+escapeHtml(v.label)+' 보기" aria-current="'+String(i===slideIndexV31)+'"></button>').join('');
  qs('#homeFeatureTitleV31').textContent=a.label+'에서 눈여겨볼 집';
  qs('#discoveryListings').innerHTML=pickHomesV31(a.rows).slice(0,2).map(l=>{
