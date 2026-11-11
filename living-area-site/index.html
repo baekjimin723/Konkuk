@@ -71,10 +71,29 @@
 .discovery-type-status{font-size:11px;color:#637994}
 @media(max-width:700px){.discovery-type-options{grid-template-columns:repeat(2,minmax(0,1fr))}.discovery-type-panel{padding:13px}.discovery-type-option{padding:9px 8px;font-size:10px;gap:6px}.discovery-type-option small{font-size:9px}}
 
+
+/* Visually prioritize estimated travel time and transfers */
+.commute-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:11px 0}
+.commute-item{min-width:0;border-radius:11px;border:1px solid #bcd8fa;background:#e9f3ff;padding:10px}
+.commute-item.transfer{border-color:#c3e6d8;background:#e8f7f1}
+.commute-label{display:block;color:#376999;font-size:10px;font-weight:800;line-height:1.3}
+.commute-item.transfer .commute-label{color:#377e65}
+.commute-number{display:block;font-size:20px;font-weight:900;line-height:1.4;color:#124c92;margin-top:2px}
+.commute-item.transfer .commute-number{color:#12674e}
+.commute-unit{font-size:13px;font-weight:800}
+.commute-note{margin:-4px 0 10px;color:#728398;font-size:9px;line-height:1.5}
+.discovery-region .commute-row{gap:6px;margin:10px 0 6px}
+.discovery-region .commute-item,.discovery-listing .commute-item{padding:8px}
+.discovery-region .commute-number,.discovery-listing .commute-number{font-size:18px}
+.discovery-region .commute-label,.discovery-listing .commute-label{font-size:9px}
+.discovery-region .commute-unit,.discovery-listing .commute-unit{font-size:11px}
+.discovery-region .commute-note{margin:0 0 9px}
+.discovery-listing .commute-row{gap:6px}
+@media(max-width:600px){.discovery-region .commute-row,.discovery-listing .commute-row{grid-template-columns:1fr;gap:5px}.discovery-region .commute-item,.discovery-listing .commute-item{padding:6px 8px}.discovery-region .commute-number,.discovery-listing .commute-number{font-size:17px}}
 </style>
 </head>
 <body>
-<header><div class="brand">생활권ON</div><div style="font-size:10px;color:#6f8197;margin-top:3px">전세·보증부월세 통합검색 · 전체 DB <b id="inventoryCount">0</b>건 · 현재 조건 <b id="headerResultCount">0</b>건 · <span id="syncStatus">상태 확인 준비 중</span></div><div class="build">REGION TYPE PICKER 2026-11-11 · v24</div></header>
+<header><div class="brand">생활권ON</div><div style="font-size:10px;color:#6f8197;margin-top:3px">전세·보증부월세 통합검색 · 전체 DB <b id="inventoryCount">0</b>건 · 현재 조건 <b id="headerResultCount">0</b>건 · <span id="syncStatus">상태 확인 준비 중</span></div><div class="build">COMMUTE HIGHLIGHT 2026-11-11 · v25</div></header>
 <main class="wrap">
 <section class="panel discovery-panel" id="discovery">
 <div class="discovery-kicker">생활권ON · 바로 둘러보기</div>
@@ -228,7 +247,7 @@ function openDetail(id){
  const posts=communityStore()[String(id)]||[];
  const postHtml=posts.length?posts.map(p=>'<div class="community-item"><b>'+escapeHtml(p.topic||'기타')+' · '+('★'.repeat(Number(p.rating)||0))+'</b><small>'+escapeHtml(p.when||'')+'</small><p>'+escapeHtml(p.text||'')+'</p></div>').join(''):'<div class="community-item"><p>아직 생활권ON 후기가 없습니다. 방음·채광·관리비·통학·주변상권에 대한 첫 후기를 남겨보세요.</p></div>';
  qs('#modalTitle').textContent=displayTitle(l);
- qs('#modalBody').innerHTML='<div class="detail-grid"><div class="detail-box"><h3>🏠 매물 정보</h3><div class="price">'+priceText(l)+'</div><div class="meta"><span class="tag">'+l.deal+'</span><span class="tag">'+typeLabel(l.type)+'</span><span class="tag">'+(l.py?l.py+'평':'평수 확인 필요')+'</span><span class="tag">건국대 약 '+l.time+'분</span></div><p style="font-size:11px;line-height:1.55">'+escapeHtml(l.note||'')+'</p><div class="card-actions"><a class="link" style="margin:0" href="'+l.url+'" target="_blank" rel="noopener">실매물 원문</a><button class="wish-btn '+(wishCount(String(id))?'on':'')+'" data-modal-wish="'+escapeHtml(String(id))+'">♡ 위시 '+wishCount(String(id))+'</button></div></div><div class="detail-box"><h3>📰 관련 주요 뉴스</h3><div class="news-links">'+newsSearchLinks(l)+'</div><div class="prototype-note">지역·단지명을 기준으로 최신 뉴스 검색결과를 연결합니다.</div></div></div><div class="detail-box" style="margin-top:16px"><h3>💬 이 집 커뮤니티 · 후기 '+posts.length+'개</h3><div class="community-list">'+postHtml+'</div><div class="community-form"><select id="communityTopic"><option>방음</option><option>채광</option><option>관리비</option><option>통학</option><option>주변상권</option><option>안전</option><option>기타</option></select><select id="communityRating"><option value="5">★★★★★</option><option value="4">★★★★</option><option value="3">★★★</option><option value="2">★★</option><option value="1">★</option></select><input id="communityText" placeholder="궁금한 점이나 후기를 남겨보세요"><button type="button" id="communitySubmit" data-id="'+escapeHtml(String(id))+'">등록</button></div><div class="prototype-note">현재 프로토타입 커뮤니티는 이 브라우저에 저장됩니다. 실제 서비스에서는 로그인 기반 서버 커뮤니티로 전환합니다.</div></div>';
+ qs('#modalBody').innerHTML='<div class="detail-grid"><div class="detail-box"><h3>🏠 매물 정보</h3><div class="price">'+priceText(l)+'</div><div class="meta"><span class="tag">'+l.deal+'</span><span class="tag">'+typeLabel(l.type)+'</span><span class="tag">'+(l.py?l.py+'평':'평수 확인 필요')+'</span></div>'+commuteBadges(l)+'<div class="commute-note">건대입구역 기준 · 실시간 경로가 아닌 예상치</div><p style="font-size:11px;line-height:1.55">'+escapeHtml(l.note||'')+'</p><div class="card-actions"><a class="link" style="margin:0" href="'+l.url+'" target="_blank" rel="noopener">실매물 원문</a><button class="wish-btn '+(wishCount(String(id))?'on':'')+'" data-modal-wish="'+escapeHtml(String(id))+'">♡ 위시 '+wishCount(String(id))+'</button></div></div><div class="detail-box"><h3>📰 관련 주요 뉴스</h3><div class="news-links">'+newsSearchLinks(l)+'</div><div class="prototype-note">지역·단지명을 기준으로 최신 뉴스 검색결과를 연결합니다.</div></div></div><div class="detail-box" style="margin-top:16px"><h3>💬 이 집 커뮤니티 · 후기 '+posts.length+'개</h3><div class="community-list">'+postHtml+'</div><div class="community-form"><select id="communityTopic"><option>방음</option><option>채광</option><option>관리비</option><option>통학</option><option>주변상권</option><option>안전</option><option>기타</option></select><select id="communityRating"><option value="5">★★★★★</option><option value="4">★★★★</option><option value="3">★★★</option><option value="2">★★</option><option value="1">★</option></select><input id="communityText" placeholder="궁금한 점이나 후기를 남겨보세요"><button type="button" id="communitySubmit" data-id="'+escapeHtml(String(id))+'">등록</button></div><div class="prototype-note">현재 프로토타입 커뮤니티는 이 브라우저에 저장됩니다. 실제 서비스에서는 로그인 기반 서버 커뮤니티로 전환합니다.</div></div>';
  qs('#detailModal').classList.add('open');
 }
 function addCommunity(id){
@@ -417,11 +436,19 @@ function displayTitle(l){
  return l.dong.split(' ').slice(-1)[0]+' '+l.layout+sizeText;
 }
 function previewUrl(l){return l.photo||''}
+
+function commuteBadges(l){
+ const mins=Number(l.time),changes=Number(l.transfer);
+ const minuteText=Number.isFinite(mins)&&mins>=0?'약 '+escapeHtml(String(mins))+'<span class="commute-unit">분</span>':'확인 필요';
+ const transferText=Number.isInteger(changes)&&changes>=0?escapeHtml(String(changes))+'<span class="commute-unit">회</span>':'확인 필요';
+ return '<div class="commute-row"><div class="commute-item"><span class="commute-label">⏱ 예상 이동시간</span><span class="commute-number">'+minuteText+'</span></div><div class="commute-item transfer"><span class="commute-label">⇄ 예상 환승 횟수</span><span class="commute-number">'+transferText+'</span></div></div>';
+}
+
 function listingCardHtml(l){
  const hits=lifestyleHits(l,selPrefs()),id=String(l.id);
  const prefHtml=hits.length?'<div class="pref-hits">'+hits.map(x=>'<span class="pref-hit">✓ '+prefNames[x]+'</span>').join('')+'</div>':'';
  const preview='<div class="listing-photo"><div class="listing-photo-fallback">실매물 대표사진 준비 중</div><img src="'+previewUrl(l)+'" alt="'+displayTitle(l)+' 실매물 대표사진" loading="eager" fetchpriority="high" decoding="async" onerror="this.closest(\'.card\').style.display=\'none\'"><span class="listing-photo-label">실매물 대표사진 · '+l.source+'</span></div>';
- return '<article class="card" data-detail-id="'+escapeHtml(id)+'">'+preview+'<div class="card-body"><div class="loc">'+l.province+' › '+l.city+' › '+l.dong+'</div><h3>'+displayTitle(l)+'</h3><div class="price">'+priceText(l)+'</div><div class="meta"><span class="tag">'+l.deal+'</span><span class="tag">'+typeLabel(l.type)+'</span><span class="tag">건대입구역 기준 약 '+l.time+'분</span></div>'+expansionPitch(l)+prefHtml+'<div class="source">'+l.source+' · '+escapeHtml(l.note||'')+'</div><div class="community-meta"><span>후기 '+reviewCount(id)+'</span><span>위시 '+wishCount(id)+'</span><span>등록 '+(l.addedAt||'-')+'</span></div><div class="card-actions"><button type="button" class="detail-btn" data-open-detail="'+escapeHtml(id)+'">상세 · 커뮤니티 · 뉴스</button><button type="button" class="wish-btn '+(wishCount(id)?'on':'')+'" data-wish="'+escapeHtml(id)+'">♡ '+wishCount(id)+'</button></div><div class="portal-inline"><a href="'+l.url+'" target="_blank" rel="noopener">실매물 원문</a><a href="'+hogangLink(l)+'" target="_blank" rel="noopener">호갱노노 확인</a></div></div></article>';
+ return '<article class="card" data-detail-id="'+escapeHtml(id)+'">'+preview+'<div class="card-body"><div class="loc">'+l.province+' › '+l.city+' › '+l.dong+'</div><h3>'+displayTitle(l)+'</h3><div class="price">'+priceText(l)+'</div><div class="meta"><span class="tag">'+l.deal+'</span><span class="tag">'+typeLabel(l.type)+'</span></div>'+commuteBadges(l)+'<div class="commute-note">건대입구역 기준 · 실시간 경로가 아닌 예상치</div>'+expansionPitch(l)+prefHtml+'<div class="source">'+l.source+' · '+escapeHtml(l.note||'')+'</div><div class="community-meta"><span>후기 '+reviewCount(id)+'</span><span>위시 '+wishCount(id)+'</span><span>등록 '+(l.addedAt||'-')+'</span></div><div class="card-actions"><button type="button" class="detail-btn" data-open-detail="'+escapeHtml(id)+'">상세 · 커뮤니티 · 뉴스</button><button type="button" class="wish-btn '+(wishCount(id)?'on':'')+'" data-wish="'+escapeHtml(id)+'">♡ '+wishCount(id)+'</button></div><div class="portal-inline"><a href="'+l.url+'" target="_blank" rel="noopener">실매물 원문</a><a href="'+hogangLink(l)+'" target="_blank" rel="noopener">호갱노노 확인</a></div></div></article>';
 }
 function cityPortalLinks(city,dong){
  const place=city+' '+(dong||'');
@@ -477,16 +504,16 @@ function renderHomeDiscovery(rows){
  })[0];
  regions.innerHTML=selected.map(city=>{
   const items=byCity.get(city),rep=selectListing(city);
-  const shortest=Math.min(...items.map(l=>Number(l.time)||999));
+  const fastest=[...items].sort((a,b)=>Number(a.time)-Number(b.time)||Number(a.transfer)-Number(b.transfer))[0];
   const suffix=city==='광진구'?'기준 생활권':'확장 후보 생활권';
-  return '<button type="button" class="discovery-region" data-home-region="'+escapeHtml(city)+'" data-home-province="'+escapeHtml(rep.province)+'"><b>'+escapeHtml(city)+'</b><span>건대입구역 약 '+shortest+'분부터 · 매물 '+items.length+'건</span><small>'+suffix+' · '+escapeHtml(typeLabel(rep.type))+' 등 확인하기</small></button>';
+  return '<button type="button" class="discovery-region" data-home-region="'+escapeHtml(city)+'" data-home-province="'+escapeHtml(rep.province)+'"><b>'+escapeHtml(city)+'</b>'+commuteBadges(fastest)+'<div class="commute-note">건대입구역 기준 · 등록 매물 중 가장 빠른 예상치</div><span>등록 매물 '+items.length+'건</span><small>'+suffix+' · 주택 유형 선택하기</small></button>';
  }).join('');
  preview.innerHTML=selected.map(city=>{
   const l=selectListing(city),id=escapeHtml(String(l.id));
   const title=escapeHtml(displayTitle(l));
   const img=l.photo?'<img src="'+escapeHtml(l.photo)+'" alt="'+title+' 매물 사진" loading="lazy" decoding="async" onerror="this.remove()">':'';
   const size=l.py?(escapeHtml(String(l.py))+'평'):'면적 미확인';
-  return '<article class="discovery-listing"><div class="discovery-photo">사진 확인 중'+img+'</div><div class="discovery-listing-body"><div class="discovery-listing-place">'+escapeHtml(l.province+' '+l.city+' '+l.dong)+'</div><h3 title="'+title+'">'+title+'</h3><div class="discovery-listing-price">'+escapeHtml(priceText(l))+'</div><div class="discovery-listing-meta">'+escapeHtml(typeLabel(l.type))+' · '+size+' · 예상 '+escapeHtml(String(l.time))+'분 · 환승 '+escapeHtml(String(l.transfer))+'회</div><div class="discovery-links"><button type="button" data-home-detail="'+id+'">매물 자세히</button><a href="'+escapeHtml(l.url)+'" target="_blank" rel="noopener">매물 원문</a></div></div></article>';
+  return '<article class="discovery-listing"><div class="discovery-photo">사진 확인 중'+img+'</div><div class="discovery-listing-body"><div class="discovery-listing-place">'+escapeHtml(l.province+' '+l.city+' '+l.dong)+'</div><h3 title="'+title+'">'+title+'</h3><div class="discovery-listing-price">'+escapeHtml(priceText(l))+'</div><div class="discovery-listing-meta">'+escapeHtml(typeLabel(l.type))+' · '+size+'</div>'+commuteBadges(l)+'<div class="commute-note">건대입구역 기준 · 참고용 예상치</div><div class="discovery-links"><button type="button" data-home-detail="'+id+'">매물 자세히</button><a href="'+escapeHtml(l.url)+'" target="_blank" rel="noopener">매물 원문</a></div></div></article>';
  }).join('');
 }
 function updateHomeTypeSelection(){
