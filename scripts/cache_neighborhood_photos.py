@@ -146,7 +146,11 @@ if KEYWORD_CATALOG.exists():
     previous_keyword = json.loads(KEYWORD_MANIFEST.read_text(encoding="utf-8")) if KEYWORD_MANIFEST.exists() else {}
     keyword_manifest = {}
     keyword_missing = []
-    for city, topics in keyword_source.items():
+    priority = ["인덕원역·관양동", "남양주시", "광진구", "구리시", "의정부시"]
+    for city in [*priority, *[k for k in keyword_source if k not in priority]]:
+        if city not in keyword_source:
+            continue
+        topics = keyword_source[city]
         keyword_manifest[city] = {}
         for topic, entry in topics.items():
             filename = entry["filename"]
@@ -176,23 +180,22 @@ if KEYWORD_CATALOG.exists():
             if not reused and local.exists() and local.stat().st_size > 2500:
                 reused = True
             if not reused:
+                # Prefer one canonical direct image URL. Hit the metadata API
+                # only if that URL is not found; Wikimedia rate-limits bursts.
                 candidates = [original_url(filename)]
-                try:
-                    candidates += official_urls(filename)
-                except Exception:
-                    pass
-                for candidate in dict.fromkeys(candidates):
+                for candidate in candidates:
                     for attempt in range(2):
                         try:
-                            req = session.get(candidate, timeout=22)
+                            req = session.get(candidate, timeout=12)
                             if req.status_code == 429:
-                                time.sleep(6 if attempt == 0 else 12)
+                                print(" rate limited",city,topic,flush=True)
+                                time.sleep(5)
                                 continue
                             req.raise_for_status()
                             with Image.open(io.BytesIO(req.content)) as img:
                                 img = ImageOps.exif_transpose(img)
                                 if img.width < 350 or img.height < 190:
-                                    continue
+                                    break
                                 img = img.convert("RGB")
                                 img.thumbnail((850, 640))
                                 img.save(local, "WEBP", quality=78, method=5)
@@ -201,10 +204,10 @@ if KEYWORD_CATALOG.exists():
                                 break
                         except Exception as exc:
                             print(f" Keyword image failed {city}/{topic}: {str(exc)[:110]}", flush=True)
-                        time.sleep(1.0)
+                            time.sleep(1.0)
                     if reused:
                         break
-                time.sleep(1.1)
+                time.sleep(2.4)
             if reused:
                 keyword_manifest[city][topic] = {
                     "src": "assets/areas/" + local.name,
