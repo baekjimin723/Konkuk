@@ -41,5 +41,9 @@ jobs:
             echo "All images already cached"
           else
             git commit -m "Cache licensed neighborhood photos locally for Pages"
+            # The site UI can change during a photo job. Rebase the photo-only
+            # commit onto the current branch before pushing to avoid losing it.
+            git fetch origin choonsikkk-repo-fix
+            git rebase origin/choonsikkk-repo-fix
             git push origin HEAD:choonsikkk-repo-fix
           fi
