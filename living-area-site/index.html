@@ -103,10 +103,13 @@
 .featured-route-link{color:#1761e9;font-weight:800;text-decoration:underline;text-underline-offset:2px}
 @media(max-width:600px){.featured-route{padding:9px 8px}.featured-route-stations{font-size:10px}.featured-route-leg{font-size:9px}}
 
+
+@media(min-width:1101px){.discovery-regions,.discovery-listings{grid-template-columns:repeat(5,minmax(0,1fr))}}
+@media(min-width:701px) and (max-width:1100px){.discovery-regions,.discovery-listings{grid-template-columns:repeat(3,minmax(0,1fr))}}
 </style>
 </head>
 <body>
-<header><div class="brand">생활권ON</div><div style="font-size:10px;color:#6f8197;margin-top:3px">전세·보증부월세 통합검색 · 전체 DB <b id="inventoryCount">0</b>건 · 현재 조건 <b id="headerResultCount">0</b>건 · <span id="syncStatus">상태 확인 준비 중</span></div><div class="build">DETAIL ROUTE EXPANSION 2026-11-11 · v27</div></header>
+<header><div class="brand">생활권ON</div><div style="font-size:10px;color:#6f8197;margin-top:3px">전세·보증부월세 통합검색 · 전체 DB <b id="inventoryCount">0</b>건 · 현재 조건 <b id="headerResultCount">0</b>건 · <span id="syncStatus">상태 확인 준비 중</span></div><div class="build">INDEOKWON DISCOVERY 2026-11-11 · v28</div></header>
 <main class="wrap">
 <section class="panel discovery-panel" id="discovery">
 <div class="discovery-kicker">생활권ON · 바로 둘러보기</div>
@@ -514,6 +517,10 @@ const featuredRailExamples={
  '의정부시|금오동':{
   stations:['의정부역','도봉산역','건대입구역'], interchange:1,
   legs:[['1호선','약 8분'],['7호선','약 32분']], origin:'의정부역'
+ },
+ '안양시|동안구 관양동':{
+  stations:['인덕원역','이수역','건대입구역'],interchange:1,
+  legs:[['4호선','약 20분(추정)'],['7호선','약 20분(추정)']],origin:'인덕원역'
  }
 };
 function featuredRailRoute(l){
@@ -549,14 +556,18 @@ function renderHomeDiscovery(rows){
  const priorities=['광진구','구리시','남양주시','의정부시','안양시','성북구','양천구'];
  const popular=[...byCity.keys()].sort((a,b)=>byCity.get(b).length-byCity.get(a).length);
  const selected=[...new Set([...priorities.filter(city=>byCity.has(city)),...popular])].slice(0,4);
- const selectListing=city=>[...byCity.get(city)].sort((a,b)=>{
+ const indeokwonLabel='인덕원역·관양동';
+ const indeokwonRows=(byCity.get('안양시')||[]).filter(l=>l.province==='경기도'&&l.dong==='동안구 관양동');
+ if(indeokwonRows.length)selected.push(indeokwonLabel);
+ const areaRows=city=>city===indeokwonLabel?indeokwonRows:byCity.get(city)||[];
+ const selectListing=city=>[...areaRows(city)].sort((a,b)=>{
   const pa=(Number(a.py)||0),pb=(Number(b.py)||0);
   return (Number(Boolean(b.photo))-Number(Boolean(a.photo)))||pb-pa||Number(a.time)-Number(b.time);
  })[0];
  regions.innerHTML=selected.map(city=>{
-  const items=byCity.get(city),rep=selectListing(city);
+  const items=areaRows(city),rep=selectListing(city);
   const fastest=[...items].sort((a,b)=>Number(a.time)-Number(b.time)||Number(a.transfer)-Number(b.transfer))[0];
-  const suffix=city==='광진구'?'기준 생활권':'확장 후보 생활권';
+  const suffix=city===indeokwonLabel?'관양동 매물 기준 · 인덕원역 접근 확인 필요':city==='광진구'?'기준 생활권':'확장 후보 생활권';
   return '<button type="button" class="discovery-region" data-home-region="'+escapeHtml(city)+'" data-home-province="'+escapeHtml(rep.province)+'"><b>'+escapeHtml(city)+'</b>'+commuteBadges(fastest)+'<div class="commute-note">건대입구역 기준 · 등록 매물 중 가장 빠른 예상치</div><span>등록 매물 '+items.length+'건</span><small>'+suffix+' · 주택 유형 선택하기</small></button>';
  }).join('');
  preview.innerHTML=selected.map(city=>{
@@ -569,14 +580,14 @@ function renderHomeDiscovery(rows){
 }
 function updateHomeTypeSelection(){
  const checked=qsa('#discoveryTypeOptions input:checked').map(x=>x.value);
- const n=selectedHomeRegion?homeDiscoverySource.filter(l=>l.city===selectedHomeRegion.city&&l.province===selectedHomeRegion.province&&checked.includes(l.type)).length:0;
+ const n=selectedHomeRegion?homeDiscoverySource.filter(l=>l.city===selectedHomeRegion.city&&l.province===selectedHomeRegion.province&&(!selectedHomeRegion.dong||l.dong===selectedHomeRegion.dong)&&checked.includes(l.type)).length:0;
  const btn=qs('#discoveryApplyTypes');
  btn.disabled=checked.length===0||n===0;
  qs('#discoveryTypeStatus').textContent=checked.length?checked.length+'개 유형 선택 · 기본 조건 매물 '+n+'건':'주택 유형을 선택해 주세요.';
 }
 function openHomeRegionChooser(city,province){
- selectedHomeRegion={city,province};
- const matching=homeDiscoverySource.filter(l=>l.city===city&&l.province===province);
+ selectedHomeRegion={city:city==='인덕원역·관양동'?'안양시':city,province,dong:city==='인덕원역·관양동'?'동안구 관양동':''};
+ const matching=homeDiscoverySource.filter(l=>l.city===selectedHomeRegion.city&&l.province===province&&(!selectedHomeRegion.dong||l.dong===selectedHomeRegion.dong));
  const counts={};matching.forEach(l=>{counts[l.type]=(counts[l.type]||0)+1});
  const panel=qs('#discoveryTypePanel');
  qs('#discoveryTypeHeading').textContent=city+' · 주택 유형 선택';
@@ -591,13 +602,14 @@ function openHomeRegionChooser(city,province){
 }
 function applyHomeRegionTypes(all){
  if(!selectedHomeRegion)return;
- const available=homeDiscoverySource.filter(l=>l.city===selectedHomeRegion.city&&l.province===selectedHomeRegion.province);
+ const available=homeDiscoverySource.filter(l=>l.city===selectedHomeRegion.city&&l.province===selectedHomeRegion.province&&(!selectedHomeRegion.dong||l.dong===selectedHomeRegion.dong));
  const types=all?[...new Set(available.map(l=>l.type))]:qsa('#discoveryTypeOptions input:checked').map(x=>x.value);
  if(!types.length)return;
  qs('#province').value=selectedHomeRegion.province;
  renderAreas();
  qsa('#areas input').forEach(box=>{box.checked=box.value===selectedHomeRegion.city});
  renderDongs();
+ if(selectedHomeRegion.dong){qsa('#dongs input').forEach(x=>x.checked=x.value===selectedHomeRegion.city+'|||'+selectedHomeRegion.dong);updateTexts()}
  qsa('#types input').forEach(x=>{x.checked=types.includes(x.value)});
  updateTypeText();
  qs('#discoveryTypePanel').hidden=true;
