@@ -30,6 +30,9 @@ match = re.search(r"const galleryByAreaV32=(\{.*?\});\s*\nlet rankedAreasV31", s
 if not match:
     raise RuntimeError("Cannot locate photo gallery metadata in explore.html")
 raw_gallery = json.loads(match.group(1))
+CATALOG = ROOT / "living-area-site" / "assets" / "areas" / "photo-catalog.json"
+if CATALOG.exists():
+    raw_gallery = json.loads(CATALOG.read_text(encoding="utf-8"))
 
 def original_url(filename: str) -> str:
     digest = hashlib.md5(filename.replace(" ", "_").encode()).hexdigest()
@@ -58,7 +61,7 @@ for region, photos in raw_gallery.items():
     for i, photo in enumerate(photos):
         remote, label, author, license_name, file_page = photo
         filename = unquote(urlsplit(file_page).path.split("File:", 1)[-1]).replace("_", " ")
-        local = OUTPUT / f"{hashlib.sha1((region+'|'+str(i)).encode()).hexdigest()[:16]}.webp"
+        local = OUTPUT / f"{hashlib.sha1((region+'|'+filename).encode()).hexdigest()[:16]}.webp"
         saved = False
         if local.exists() and local.stat().st_size > 2000:
             saved = True
@@ -106,5 +109,7 @@ for region, photos in raw_gallery.items():
     encoding="utf-8",
 )
 print(json.dumps({"cached": success, "failed": failures}, ensure_ascii=False), flush=True)
+if failures:
+    raise RuntimeError(f"Could not cache {len(failures)} required neighborhood photos.")
 if success < 5:
     raise RuntimeError("Fewer than five neighborhood photos cached; refusing incomplete cache.")
