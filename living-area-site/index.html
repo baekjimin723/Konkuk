@@ -106,10 +106,33 @@
 
 @media(min-width:1101px){.discovery-regions,.discovery-listings{grid-template-columns:repeat(5,minmax(0,1fr))}}
 @media(min-width:701px) and (max-width:1100px){.discovery-regions,.discovery-listings{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+@media(min-width:1101px){.discovery-regions{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(min-width:701px) and (max-width:1100px){.discovery-regions{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.discovery-regions{grid-template-columns:1fr}}
+.discovery-neighborhood{border-top:1px solid #dfe7f2;padding-top:11px;margin:10px 0;text-align:left}
+.discovery-neighborhood-intro{font-size:11px;font-weight:500;color:#415d78;line-height:1.5;margin-bottom:7px}
+.discovery-neighborhood-row{display:flex;gap:9px;padding:4px 0;font-size:10px;line-height:1.4}
+.discovery-neighborhood-row span{flex:none;width:70px;color:#477094;font-weight:800}
+.discovery-neighborhood-row b{color:#2a4665;font-weight:600}
+.discovery-neighborhood-note{font-size:9px;color:#8595a7;margin:8px 0}
+.living-summary{background:#f7faff;border:1px solid #dce8f5;border-radius:10px;padding:11px;margin:10px 0}
+.living-summary>b{display:block;font-size:12px;color:#214e80;margin-bottom:9px}
+.living-chips{display:flex;flex-wrap:wrap;gap:5px}
+.living-chips span{font-size:10px;background:white;padding:6px 8px;border:1px solid #dce7f3;border-radius:999px;color:#395775}
+.living-summary small{display:block;font-size:9px;color:#8292a4;margin-top:9px}
+.living-summary a{display:inline-block;font-size:10px;color:#1761e9;margin-top:7px}
+.bus-route-card{border:1px solid #cae2d2;border-radius:10px;padding:11px;background:#f4faf6;margin:9px 0}
+.bus-route-head{font-size:11px;font-weight:800;color:#24694b}
+.bus-route-line{font-size:11px;color:#37684f;line-height:1.6;display:block;margin-top:8px}
+.bus-route-line strong{background:#dff3e5;border-radius:5px;padding:3px 5px}
+.bus-route-note{font-size:9px;color:#6e8977;margin-top:8px;line-height:1.55}
+.bus-route-note a{color:#1761e9;font-weight:700}
+
 </style>
 </head>
 <body>
-<header><div class="brand">생활권ON</div><div style="font-size:10px;color:#6f8197;margin-top:3px">전세·보증부월세 통합검색 · 전체 DB <b id="inventoryCount">0</b>건 · 현재 조건 <b id="headerResultCount">0</b>건 · <span id="syncStatus">상태 확인 준비 중</span></div><div class="build">INDEOKWON DISCOVERY 2026-11-11 · v28</div></header>
+<header><div class="brand">생활권ON</div><div style="font-size:10px;color:#6f8197;margin-top:3px">전세·보증부월세 통합검색 · 전체 DB <b id="inventoryCount">0</b>건 · 현재 조건 <b id="headerResultCount">0</b>건 · <span id="syncStatus">상태 확인 준비 중</span></div><div class="build">NEIGHBORHOOD AND BUS ROUTES 2026-11-11 · v29</div></header>
 <main class="wrap">
 <section class="panel discovery-panel" id="discovery">
 <div class="discovery-kicker">생활권ON · 바로 둘러보기</div>
@@ -263,7 +286,7 @@ function openDetail(id){
  const posts=communityStore()[String(id)]||[];
  const postHtml=posts.length?posts.map(p=>'<div class="community-item"><b>'+escapeHtml(p.topic||'기타')+' · '+('★'.repeat(Number(p.rating)||0))+'</b><small>'+escapeHtml(p.when||'')+'</small><p>'+escapeHtml(p.text||'')+'</p></div>').join(''):'<div class="community-item"><p>아직 생활권ON 후기가 없습니다. 방음·채광·관리비·통학·주변상권에 대한 첫 후기를 남겨보세요.</p></div>';
  qs('#modalTitle').textContent=displayTitle(l);
- qs('#modalBody').innerHTML='<div class="detail-grid"><div class="detail-box"><h3>🏠 매물 정보</h3><div class="price">'+priceText(l)+'</div><div class="meta"><span class="tag">'+l.deal+'</span><span class="tag">'+typeLabel(l.type)+'</span><span class="tag">'+(l.py?l.py+'평':'평수 확인 필요')+'</span></div>'+commuteBadges(l)+'<div class="commute-note">건대입구역 기준 · 실시간 경로가 아닌 예상치</div>'+featuredRailRoute(l)+'<p style="font-size:11px;line-height:1.55">'+escapeHtml(l.note||'')+'</p><div class="card-actions"><a class="link" style="margin:0" href="'+l.url+'" target="_blank" rel="noopener">실매물 원문</a><button class="wish-btn '+(wishCount(String(id))?'on':'')+'" data-modal-wish="'+escapeHtml(String(id))+'">♡ 위시 '+wishCount(String(id))+'</button></div></div><div class="detail-box"><h3>📰 관련 주요 뉴스</h3><div class="news-links">'+newsSearchLinks(l)+'</div><div class="prototype-note">지역·단지명을 기준으로 최신 뉴스 검색결과를 연결합니다.</div></div></div><div class="detail-box" style="margin-top:16px"><h3>💬 이 집 커뮤니티 · 후기 '+posts.length+'개</h3><div class="community-list">'+postHtml+'</div><div class="community-form"><select id="communityTopic"><option>방음</option><option>채광</option><option>관리비</option><option>통학</option><option>주변상권</option><option>안전</option><option>기타</option></select><select id="communityRating"><option value="5">★★★★★</option><option value="4">★★★★</option><option value="3">★★★</option><option value="2">★★</option><option value="1">★</option></select><input id="communityText" placeholder="궁금한 점이나 후기를 남겨보세요"><button type="button" id="communitySubmit" data-id="'+escapeHtml(String(id))+'">등록</button></div><div class="prototype-note">현재 프로토타입 커뮤니티는 이 브라우저에 저장됩니다. 실제 서비스에서는 로그인 기반 서버 커뮤니티로 전환합니다.</div></div>';
+ qs('#modalBody').innerHTML='<div class="detail-grid"><div class="detail-box"><h3>🏠 매물 정보</h3><div class="price">'+priceText(l)+'</div><div class="meta"><span class="tag">'+l.deal+'</span><span class="tag">'+typeLabel(l.type)+'</span><span class="tag">'+(l.py?l.py+'평':'평수 확인 필요')+'</span></div>'+commuteBadges(l)+'<div class="commute-note">건대입구역 기준 · 실시간 경로가 아닌 예상치</div>'+transitRoutesV29(l)+listingGuideMarkupV29(l)+'<p style="font-size:11px;line-height:1.55">'+escapeHtml(l.note||'')+'</p><div class="card-actions"><a class="link" style="margin:0" href="'+l.url+'" target="_blank" rel="noopener">실매물 원문</a><button class="wish-btn '+(wishCount(String(id))?'on':'')+'" data-modal-wish="'+escapeHtml(String(id))+'">♡ 위시 '+wishCount(String(id))+'</button></div></div><div class="detail-box"><h3>📰 관련 주요 뉴스</h3><div class="news-links">'+newsSearchLinks(l)+'</div><div class="prototype-note">지역·단지명을 기준으로 최신 뉴스 검색결과를 연결합니다.</div></div></div><div class="detail-box" style="margin-top:16px"><h3>💬 이 집 커뮤니티 · 후기 '+posts.length+'개</h3><div class="community-list">'+postHtml+'</div><div class="community-form"><select id="communityTopic"><option>방음</option><option>채광</option><option>관리비</option><option>통학</option><option>주변상권</option><option>안전</option><option>기타</option></select><select id="communityRating"><option value="5">★★★★★</option><option value="4">★★★★</option><option value="3">★★★</option><option value="2">★★</option><option value="1">★</option></select><input id="communityText" placeholder="궁금한 점이나 후기를 남겨보세요"><button type="button" id="communitySubmit" data-id="'+escapeHtml(String(id))+'">등록</button></div><div class="prototype-note">현재 프로토타입 커뮤니티는 이 브라우저에 저장됩니다. 실제 서비스에서는 로그인 기반 서버 커뮤니티로 전환합니다.</div></div>';
  qs('#detailModal').classList.add('open');
 }
 function addCommunity(id){
@@ -539,6 +562,38 @@ function featuredRailRoute(l){
   +'<a class="featured-route-link" href="https://map.naver.com/p/search/'+mapQuery+'" target="_blank" rel="noopener noreferrer">네이버 지도에서 확인</a></div></div>';
 }
 
+
+const regionGuideV29={"광진구":["건대 상권과 서울 동부 주거지가 공존하는 생활권","서울어린이대공원·한강공원","건대 스타시티·건국대병원·중곡문화체육센터","2·7호선 건대입구역, 7호선 중곡역","https://www.sisul.or.kr/open_content/childrenpark/"],"구리시":["호수공원과 구리역 상권을 함께 이용하는 서울 동부 인접 생활권","장자호수공원·이문안호수공원","구리역 롯데백화점·한양대구리병원","8호선·경의중앙선 구리역, 강변역행 버스","https://www.guri.go.kr/environment/contents.do?key=8156"],"남양주시":["마석·별내 등 동네에 따라 주거환경이 다른 넓은 생활권","천마산 녹지·별내천(지역에 따라 다름)","화도체육문화센터·마석역 상권(화도읍 예시)","경춘선 마석역·8호선 별내역·M2316","https://4season.ncuc.or.kr/main/104"],"의정부시":["경전철과 1호선이 이어지는 경기 북부 생활권","부용천 산책로·추동공원","의정부성모병원·경기북부청사","의정부경전철·수도권 1호선","https://www.ikld.kr/news/articleView.html?idxno=283840"],"안양시":["평촌 상권과 인덕원 교통축을 이용하는 주거 생활권","학의천·평촌중앙공원","동편마을 카페거리·평촌 상권","4호선 인덕원역·범계역 등","https://www.anyang.go.kr/dongan/contents.do?key=1185"],"인덕원역·관양동":["관악산·학의천 사이의 주거지와 카페거리가 어우러진 동네","학의천·동편마을 수변공원","동편마을 카페거리·인덕원 상권","4호선 인덕원역 → 이수역 7호선 환승","https://anyang.go.kr/tour/contents.do?key=1919"]},localGuideV29={"광진구|중곡동":[["서울어린이대공원"],["중곡문화체육센터"],["7호선 중곡역"]],"구리시|교문동":[["이문안호수공원","장자호수공원 하류"],["한양대구리병원"],["교문사거리 1번 버스","구리역(시내)"]],"남양주시|화도읍":[["천마산 일대 녹지"],["화도체육문화센터","마석역 상권"],["경춘선 마석역","M2316 잠실행"]],"의정부시|금오동":[["부용천 산책로","추동공원"],["의정부성모병원"],["의정부경전철 동오역"]],"안양시|동안구 관양동":[["학의천·동편마을 수변공원"],["동편마을 카페거리"],["인덕원역 접근성 별도 확인"]],"구리시|수택동":[["장자호수공원"],["구리역 상권"],["8호선 장자호수공원역"]]},busGuideV29={"구리시|교문동":["일반버스 1번 + 지하철 2호선","교문사거리","1번 버스","강변역","2호선 → 건대입구역","https://life.ttpk.co.kr/bus/51570"],"남양주시|화도읍":["광역급행 M2316 + 지하철 2호선","마석역 인근 정류장","M2316","잠실광역환승센터","잠실역 2호선 → 건대입구역","https://www.edpk.co.kr/info/bus/print"]};
+function regionGuideMarkupV29(key){
+ const g=regionGuideV29[key];if(!g)return '';
+ return '<div class="discovery-neighborhood"><div class="discovery-neighborhood-intro">'+escapeHtml(g[0])+'</div>'
+ +[['🌳 공원·산책',g[1]],['🛒 생활시설',g[2]],['🚇 교통접근',g[3]]].map(x=>'<div class="discovery-neighborhood-row"><span>'+escapeHtml(x[0])+'</span><b>'+escapeHtml(x[1])+'</b></div>').join('')
+ +'<div class="discovery-neighborhood-note">지역 대표정보 · 개별 매물과의 도보거리는 확인 필요</div></div>';
+}
+function listingGuideMarkupV29(l){
+ const x=localGuideV29[l.city+'|'+l.dong];const cg=regionGuideV29[l.city];
+ let groups=[],scope='동네 대표정보',source='';
+ if(x){groups=x;source=cg?cg[4]:''}
+ else if(cg){groups=[[cg[1]],[cg[2]],[cg[3]]];scope='시·구 단위 대표시설';source=cg[4]}
+ else if(areaProfiles[l.city]){
+  const p=areaProfiles[l.city],a=p.fac||[];
+  groups=[a.filter(v=>/[🌳🌺🌊]/.test(v[0])).map(v=>v[0]).slice(0,2),a.filter(v=>/[🛍🎬🏥]/.test(v[0])).map(v=>v[0]).slice(0,2),a.filter(v=>/[🚇🚄]/.test(v[0])).map(v=>v[0]).slice(0,2)];
+  scope='시·구 단위 대표시설';source=p.source||'';
+ }
+ if(!groups.length)return '<div class="living-summary"><b>📍 생활환경</b><p>지역별 시설 정보 확장 중</p></div>';
+ const tags=groups.flatMap((arr,i)=>arr.map(v=>['🌳 ','🛒 ','🚇 '][i]+v));
+ return '<div class="living-summary"><b>📍 '+escapeHtml(l.city)+' '+escapeHtml(l.dong)+' · 생활 키워드</b><div class="living-chips">'
+ +tags.slice(0,6).map(x=>'<span>'+escapeHtml(x)+'</span>').join('')+'</div><small>'+escapeHtml(scope)+' · 실제 매물까지의 거리·접근성은 미확인</small>'
+ +(source?'<a href="'+escapeHtml(source)+'" target="_blank" rel="noopener noreferrer">지역정보 출처</a>':'')+'</div>';
+}
+function transitRoutesV29(l){
+ const rail=featuredRailRoute(l),b=busGuideV29[l.city+'|'+l.dong];
+ if(!b)return rail;
+ const q=encodeURIComponent(b[1]+' 건대입구역 대중교통');
+ return rail+'<div class="bus-route-card"><div class="bus-route-head">🚌 버스 대안 · '+escapeHtml(b[0])+'</div><div class="bus-route-line"><span>'+escapeHtml(b[1])+'</span> → <strong>'+escapeHtml(b[2])+'</strong> → <span>'+escapeHtml(b[3])+'</span> → <strong>'+escapeHtml(b[4])+'</strong></div>'
+ +'<div class="bus-route-note">정류장 출발 기준 예시. 해당 매물에서 정류장까지의 이동, 버스 탑승·대기시간은 확인되지 않았습니다. <a href="'+escapeHtml(b[5])+'" target="_blank" rel="noopener noreferrer">노선 근거</a> · <a href="https://map.naver.com/p/search/'+q+'" target="_blank" rel="noopener noreferrer">지도에서 확인</a></div></div>';
+}
+
 function renderHomeDiscovery(rows){
  homeDiscoveryInitialized=true;
  homeDiscoverySource=[...rows];
@@ -568,14 +623,14 @@ function renderHomeDiscovery(rows){
   const items=areaRows(city),rep=selectListing(city);
   const fastest=[...items].sort((a,b)=>Number(a.time)-Number(b.time)||Number(a.transfer)-Number(b.transfer))[0];
   const suffix=city===indeokwonLabel?'관양동 매물 기준 · 인덕원역 접근 확인 필요':city==='광진구'?'기준 생활권':'확장 후보 생활권';
-  return '<button type="button" class="discovery-region" data-home-region="'+escapeHtml(city)+'" data-home-province="'+escapeHtml(rep.province)+'"><b>'+escapeHtml(city)+'</b>'+commuteBadges(fastest)+'<div class="commute-note">건대입구역 기준 · 등록 매물 중 가장 빠른 예상치</div><span>등록 매물 '+items.length+'건</span><small>'+suffix+' · 주택 유형 선택하기</small></button>';
+  return '<button type="button" class="discovery-region" data-home-region="'+escapeHtml(city)+'" data-home-province="'+escapeHtml(rep.province)+'"><b>'+escapeHtml(city)+'</b>'+commuteBadges(fastest)+'<div class="commute-note">건대입구역 기준 · 등록 매물 중 가장 빠른 예상치</div><span>등록 매물 '+items.length+'건</span>'+regionGuideMarkupV29(city)+'<small>'+suffix+' · 주택 유형 선택하기</small></button>';
  }).join('');
  preview.innerHTML=selected.map(city=>{
   const l=selectListing(city),id=escapeHtml(String(l.id));
   const title=escapeHtml(displayTitle(l));
   const img=l.photo?'<img src="'+escapeHtml(l.photo)+'" alt="'+title+' 매물 사진" loading="lazy" decoding="async" onerror="this.remove()">':'';
   const size=l.py?(escapeHtml(String(l.py))+'평'):'면적 미확인';
-  return '<article class="discovery-listing"><div class="discovery-photo">사진 확인 중'+img+'</div><div class="discovery-listing-body"><div class="discovery-listing-place">'+escapeHtml(l.province+' '+l.city+' '+l.dong)+'</div><h3 title="'+title+'">'+title+'</h3><div class="discovery-listing-price">'+escapeHtml(priceText(l))+'</div><div class="discovery-listing-meta">'+escapeHtml(typeLabel(l.type))+' · '+size+'</div>'+commuteBadges(l)+'<div class="commute-note">건대입구역 기준 · 참고용 예상치</div>'+featuredRailRoute(l)+'<div class="discovery-links"><button type="button" data-home-detail="'+id+'">매물 자세히</button><a href="'+escapeHtml(l.url)+'" target="_blank" rel="noopener">매물 원문</a></div></div></article>';
+  return '<article class="discovery-listing"><div class="discovery-photo">사진 확인 중'+img+'</div><div class="discovery-listing-body"><div class="discovery-listing-place">'+escapeHtml(l.province+' '+l.city+' '+l.dong)+'</div><h3 title="'+title+'">'+title+'</h3><div class="discovery-listing-price">'+escapeHtml(priceText(l))+'</div><div class="discovery-listing-meta">'+escapeHtml(typeLabel(l.type))+' · '+size+'</div>'+commuteBadges(l)+'<div class="commute-note">건대입구역 기준 · 참고용 예상치</div>'+transitRoutesV29(l)+'<div class="discovery-links"><button type="button" data-home-detail="'+id+'">매물 자세히</button><a href="'+escapeHtml(l.url)+'" target="_blank" rel="noopener">매물 원문</a></div></div></article>';
  }).join('');
 }
 function updateHomeTypeSelection(){
