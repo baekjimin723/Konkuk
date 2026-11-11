@@ -254,10 +254,19 @@ header .brand{font-size:24px;letter-spacing:-.04em}
 .slide-body-gallery .slide-small-stats span{font-size:10px;padding:6px 9px}
 .slide-body-gallery .slide-action button{font-size:11px;padding:11px 12px}
 @media(max-width:700px){.slide-visual.slide-gallery{height:auto;min-height:0;padding:7px 7px 0}.slide-gallery-row{gap:5px}.slide-gallery-image{height:108px;border-radius:8px}.slide-gallery-label{font-size:9px;left:6px;bottom:6px}.slide-gallery-credit{font-size:7px}.slide-body.slide-body-gallery{display:block;padding:16px}.slide-body-gallery .slide-about{margin-bottom:10px}.slide-body-gallery .slide-chips{margin-bottom:11px}.slide-body-gallery .slide-small-stats{margin:0 0 11px}.slide-body-gallery .slide-action button{width:100%}}
+
+.neighborhood-small-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:14px 0 15px}
+.neighborhood-small-gallery figure{margin:0;min-width:0}
+.neighborhood-small-gallery .thumb-visual{height:100px;position:relative;background:#eaf1f6;overflow:hidden;border-radius:9px}
+.neighborhood-small-gallery .thumb-visual img{width:100%;height:100%;object-fit:cover;display:block}
+.neighborhood-small-gallery .thumb-caption{display:block;margin-top:5px;color:#526f8c;font-size:10px;font-weight:750;line-height:1.4}
+.neighborhood-small-gallery .thumb-source{display:block;margin-top:2px;color:#8395a6;font-size:8px;line-height:1.35;text-decoration:none}
+@media(max-width:600px){.neighborhood-small-gallery{gap:6px;margin:12px 0}.neighborhood-small-gallery .thumb-visual{height:77px}.neighborhood-small-gallery .thumb-caption{font-size:9px}.neighborhood-small-gallery .thumb-source{font-size:7px}}
+
 </style>
 </head>
 <body>
-<header><div><div class="brand">생활권ON</div><div class="header-subtitle">살고 싶은 동네부터 찾는 주거 탐색</div></div><div class="header-system-status" style="font-size:10px;color:#6f8197;margin-top:3px">전세·보증부월세 통합검색 · 전체 DB <b id="inventoryCount">0</b>건 · 현재 조건 <b id="headerResultCount">0</b>건 · <span id="syncStatus">상태 확인 준비 중</span></div><div class="build">LOCAL NEIGHBORHOOD GALLERY 2026-11-11 · v33</div></header>
+<header><div><div class="brand">생활권ON</div><div class="header-subtitle">살고 싶은 동네부터 찾는 주거 탐색</div></div><div class="header-system-status" style="font-size:10px;color:#6f8197;margin-top:3px">전세·보증부월세 통합검색 · 전체 DB <b id="inventoryCount">0</b>건 · 현재 조건 <b id="headerResultCount">0</b>건 · <span id="syncStatus">상태 확인 준비 중</span></div><div class="build">NEIGHBORHOOD PHOTO DETAILS 2026-11-11 · v34</div></header>
 <main class="wrap">
 <section class="panel discovery-panel" id="discovery">
 <div class="discovery-kicker">FIND YOUR NEXT NEIGHBORHOOD</div>
@@ -730,6 +739,18 @@ function conciseRegionIntroV30(key){
  if(!g)return '';
  return '<span class="discovery-brief">'+escapeHtml(g[0])+'</span>';
 }
+
+function neighborhoodPhotosV34(key){
+ const pictures=(galleryByAreaV32[key]||[]).slice(0,3);
+ if(!pictures.length)return '';
+ const items=pictures.map(p=>
+  '<figure><div class="thumb-visual"><img src="'+escapeHtml(p[0])+'" alt="'+escapeHtml(p[1])+'" loading="lazy" decoding="async" onerror="this.remove()"></div>'
+  +'<span class="thumb-caption">'+escapeHtml(p[1])+'</span>'
+  +'<a class="thumb-source" href="'+escapeHtml(p[4])+'" target="_blank" rel="noopener noreferrer">사진 '+escapeHtml(p[2])+' · CC '+escapeHtml(p[3])+'</a></figure>'
+ ).join('');
+ return '<div class="neighborhood-small-gallery" aria-label="'+escapeHtml(key)+' 지역 대표 사진">'+items+'</div>';
+}
+
 function selectedRegionGuideV30(key){
  const g=regionGuideV29[key];
  if(!g)return '<div class="neighborhood-kicker">이 동네에 살면?</div><p class="neighborhood-subtitle">지역 생활정보를 확인하고 있어요.</p>';
@@ -737,6 +758,7 @@ function selectedRegionGuideV30(key){
  return '<div class="neighborhood-kicker">이 동네에 살면?</div>'
   +'<h4>'+escapeHtml(key)+'</h4>'
   +'<p class="neighborhood-subtitle">'+escapeHtml(g[0])+'</p>'
+  +neighborhoodPhotosV34(key)
   +'<div class="neighborhood-facts">'+info.map(([label,value])=>'<div class="neighborhood-fact"><span class="neighborhood-fact-label">'+escapeHtml(label)+'</span><strong class="neighborhood-fact-value">'+escapeHtml(value)+'</strong></div>').join('')+'</div>'
   +'<div class="neighborhood-disclaimer"><span>지역 대표시설 기준 · 매물에서의 실제 거리와 이동시간은 별도 확인</span>'
   +(g[4]?'<a href="'+escapeHtml(g[4])+'" target="_blank" rel="noopener noreferrer">지역정보 출처</a>':'')+'</div>';
