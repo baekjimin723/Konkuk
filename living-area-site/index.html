@@ -48,10 +48,33 @@
 @media(max-width:1000px){.discovery-regions,.discovery-listings{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.discovery-panel{padding:17px 14px}.discovery-panel h1{font-size:21px}.discovery-lead{font-size:11px}.discovery-regions{gap:7px}.discovery-region{padding:11px 10px}.discovery-region b{font-size:14px}.discovery-region span,.discovery-region small{font-size:10px}.discovery-listings{grid-template-columns:1fr 1fr;gap:8px}.discovery-photo{height:103px}.discovery-listing-body{padding:10px 9px}.discovery-listing-body h3{font-size:11px}.discovery-listing-price{font-size:13px}.discovery-listing-meta{font-size:9px}.discovery-links button,.discovery-links a{font-size:9px;padding:7px}.discovery-section-title h2{font-size:14px}}
 
+
+/* Region-selected housing type picker */
+.discovery-region[aria-expanded="true"]{background:#eaf3ff;border-color:#1761e9;box-shadow:0 0 0 1px rgba(23,97,233,.12)}
+.discovery-type-panel{margin:12px 0 5px;padding:17px;border:1px solid #cbdff7;background:#f7fbff;border-radius:14px}
+.discovery-type-panel[hidden]{display:none}
+.discovery-type-head{display:flex;gap:12px;align-items:flex-start;justify-content:space-between}
+.discovery-type-head h3{margin:0 0 5px;color:#174a92;font-size:16px}
+.discovery-type-head p{margin:0;color:#657c95;font-size:11px;line-height:1.5}
+.discovery-type-close{appearance:none;border:0;background:#e6effb;color:#385f88;width:30px;height:30px;border-radius:8px;cursor:pointer;font-size:18px}
+.discovery-type-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:14px 0}
+.discovery-type-option{display:flex;align-items:center;gap:9px;border:1px solid #dce7f4;border-radius:10px;background:white;padding:10px;cursor:pointer;font-size:12px;min-width:0}
+.discovery-type-option:has(input:checked){background:#e8f1ff;border-color:#1761e9;color:#154e9a;font-weight:800}
+.discovery-type-option:has(input:disabled){opacity:.48;cursor:not-allowed}
+.discovery-type-option input{width:17px;height:17px;accent-color:#1761e9;flex:none;margin:0}
+.discovery-type-option span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.discovery-type-option small{margin-left:auto;color:#71849a;flex:none}
+.discovery-type-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.discovery-type-actions button{border:1px solid #1761e9;background:#1761e9;color:#fff;border-radius:9px;padding:10px 15px;font-weight:800;font-size:12px;cursor:pointer}
+.discovery-type-actions button.secondary{background:white;color:#1761e9}
+.discovery-type-actions button:disabled{opacity:.45;cursor:not-allowed}
+.discovery-type-status{font-size:11px;color:#637994}
+@media(max-width:700px){.discovery-type-options{grid-template-columns:repeat(2,minmax(0,1fr))}.discovery-type-panel{padding:13px}.discovery-type-option{padding:9px 8px;font-size:10px;gap:6px}.discovery-type-option small{font-size:9px}}
+
 </style>
 </head>
 <body>
-<header><div class="brand">생활권ON</div><div style="font-size:10px;color:#6f8197;margin-top:3px">전세·보증부월세 통합검색 · 전체 DB <b id="inventoryCount">0</b>건 · 현재 조건 <b id="headerResultCount">0</b>건 · <span id="syncStatus">상태 확인 준비 중</span></div><div class="build">FIRST-VISIT RECOMMENDATIONS 2026-11-11 · v23</div></header>
+<header><div class="brand">생활권ON</div><div style="font-size:10px;color:#6f8197;margin-top:3px">전세·보증부월세 통합검색 · 전체 DB <b id="inventoryCount">0</b>건 · 현재 조건 <b id="headerResultCount">0</b>건 · <span id="syncStatus">상태 확인 준비 중</span></div><div class="build">REGION TYPE PICKER 2026-11-11 · v24</div></header>
 <main class="wrap">
 <section class="panel discovery-panel" id="discovery">
 <div class="discovery-kicker">생활권ON · 바로 둘러보기</div>
@@ -59,6 +82,11 @@
 <p class="discovery-lead">조건 입력 없이 건대입구역 통학권의 지역과 등록 매물을 먼저 보여드려요. 마음에 드는 지역을 고른 다음 필요한 조건만 바꿔보세요.</p>
 <div class="discovery-section-title"><h2>먼저 둘러볼 추천 지역</h2><small id="discoveryCount">등록 매물 기준으로 구성 중</small></div>
 <div class="discovery-regions" id="discoveryRegions"><div class="discovery-empty">추천 지역을 불러오는 중입니다.</div></div>
+<div class="discovery-type-panel" id="discoveryTypePanel" hidden>
+  <div class="discovery-type-head"><div><h3 id="discoveryTypeHeading">선택한 지역의 주택 유형</h3><p>원하는 유형을 하나 이상 고르세요. 여러 유형을 함께 선택할 수 있어요.</p></div><button type="button" class="discovery-type-close" data-home-close aria-label="주택 유형 선택 닫기">×</button></div>
+  <div class="discovery-type-options" id="discoveryTypeOptions"></div>
+  <div class="discovery-type-actions"><button type="button" id="discoveryApplyTypes" data-home-apply disabled>선택한 유형으로 매물 보기</button><button type="button" class="secondary" data-home-all>전체 주택 유형 보기</button><span class="discovery-type-status" id="discoveryTypeStatus">주택 유형을 선택해 주세요.</span></div>
+</div>
 <div class="discovery-section-title"><h2>이 지역에서 볼 만한 매물</h2><small>지역별 등록 매물 미리보기</small></div>
 <div class="discovery-listings" id="discoveryListings"><div class="discovery-empty">추천 매물을 불러오는 중입니다.</div></div>
 <p class="discovery-note">예상 통학시간은 참고값이며, 매물의 거래 가능 여부·가격·LH 전세임대 적격성은 원문과 LH 심사를 통해 별도 확인해야 합니다.</p>
@@ -416,8 +444,21 @@ function flatSortedHtml(items){
  return '<section class="city-group"><div class="city-hero"><div class="city-info"><h2>'+heading+'</h2><div class="city-count">선택한 조건의 전체 매물을 지역 구분 없이 정렬합니다.</div></div></div><div class="cards">'+items.map((l,i)=>'<div style="position:relative"><span style="position:absolute;z-index:3;top:8px;left:8px;background:#174a92;color:#fff;border-radius:999px;padding:4px 7px;font-size:10px;font-weight:800">#'+(i+1)+'</span>'+listingCardHtml(l)+'</div>').join('')+'</div></section>';
 }
 
+let homeDiscoveryInitialized=false;
+let homeDiscoverySource=[];
+let selectedHomeRegion=null;
+const homeTypeOptions=[
+ ['단독·다가구','단독·다가구'],
+ ['다세대·빌라','다세대·연립'],
+ ['아파트','아파트'],
+ ['오피스텔','주거용 오피스텔'],
+ ['도시형생활주택','도시형생활주택']
+];
 function renderHomeDiscovery(rows){
+ homeDiscoveryInitialized=true;
+ homeDiscoverySource=[...rows];
  const regions=qs('#discoveryRegions'),preview=qs('#discoveryListings'),count=qs('#discoveryCount');
+ qs('#discoveryTypePanel').hidden=true;
  const byCity=new Map();
  rows.forEach(l=>{if(!byCity.has(l.city))byCity.set(l.city,[]);byCity.get(l.city).push(l)});
  count.textContent='현재 조건에 맞는 등록 매물 '+rows.length+'건 · '+byCity.size+'개 지역';
@@ -448,17 +489,59 @@ function renderHomeDiscovery(rows){
   return '<article class="discovery-listing"><div class="discovery-photo">사진 확인 중'+img+'</div><div class="discovery-listing-body"><div class="discovery-listing-place">'+escapeHtml(l.province+' '+l.city+' '+l.dong)+'</div><h3 title="'+title+'">'+title+'</h3><div class="discovery-listing-price">'+escapeHtml(priceText(l))+'</div><div class="discovery-listing-meta">'+escapeHtml(typeLabel(l.type))+' · '+size+' · 예상 '+escapeHtml(String(l.time))+'분 · 환승 '+escapeHtml(String(l.transfer))+'회</div><div class="discovery-links"><button type="button" data-home-detail="'+id+'">매물 자세히</button><a href="'+escapeHtml(l.url)+'" target="_blank" rel="noopener">매물 원문</a></div></div></article>';
  }).join('');
 }
+function updateHomeTypeSelection(){
+ const checked=qsa('#discoveryTypeOptions input:checked').map(x=>x.value);
+ const n=selectedHomeRegion?homeDiscoverySource.filter(l=>l.city===selectedHomeRegion.city&&l.province===selectedHomeRegion.province&&checked.includes(l.type)).length:0;
+ const btn=qs('#discoveryApplyTypes');
+ btn.disabled=checked.length===0||n===0;
+ qs('#discoveryTypeStatus').textContent=checked.length?checked.length+'개 유형 선택 · 기본 조건 매물 '+n+'건':'주택 유형을 선택해 주세요.';
+}
+function openHomeRegionChooser(city,province){
+ selectedHomeRegion={city,province};
+ const matching=homeDiscoverySource.filter(l=>l.city===city&&l.province===province);
+ const counts={};matching.forEach(l=>{counts[l.type]=(counts[l.type]||0)+1});
+ const panel=qs('#discoveryTypePanel');
+ qs('#discoveryTypeHeading').textContent=city+' · 주택 유형 선택';
+ qs('#discoveryTypeOptions').innerHTML=homeTypeOptions.map(([type,name])=>{
+  const count=counts[type]||0;
+  return '<label class="discovery-type-option"><input type="checkbox" value="'+escapeHtml(type)+'" '+(count?'':'disabled')+'><span>'+escapeHtml(name)+'</span><small>'+count+'건</small></label>';
+ }).join('');
+ qsa('[data-home-region]').forEach(b=>b.setAttribute('aria-expanded',String(b.dataset.homeRegion===city&&b.dataset.homeProvince===province)));
+ panel.hidden=false;
+ updateHomeTypeSelection();
+ panel.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function applyHomeRegionTypes(all){
+ if(!selectedHomeRegion)return;
+ const available=homeDiscoverySource.filter(l=>l.city===selectedHomeRegion.city&&l.province===selectedHomeRegion.province);
+ const types=all?[...new Set(available.map(l=>l.type))]:qsa('#discoveryTypeOptions input:checked').map(x=>x.value);
+ if(!types.length)return;
+ qs('#province').value=selectedHomeRegion.province;
+ renderAreas();
+ qsa('#areas input').forEach(box=>{box.checked=box.value===selectedHomeRegion.city});
+ renderDongs();
+ qsa('#types input').forEach(x=>{x.checked=types.includes(x.value)});
+ updateTypeText();
+ qs('#discoveryTypePanel').hidden=true;
+ qsa('[data-home-region]').forEach(b=>b.setAttribute('aria-expanded','false'));
+ search();
+ qs('#results').scrollIntoView({behavior:'smooth',block:'start'});
+}
 qs('#discovery').addEventListener('click',e=>{
  const detail=e.target.closest('[data-home-detail]');
  if(detail){openDetail(detail.dataset.homeDetail);return}
+ if(e.target.closest('[data-home-close]')){
+  qs('#discoveryTypePanel').hidden=true;
+  qsa('[data-home-region]').forEach(b=>b.setAttribute('aria-expanded','false'));
+  selectedHomeRegion=null;
+  return;
+ }
+ if(e.target.closest('[data-home-all]')){applyHomeRegionTypes(true);return}
+ if(e.target.closest('[data-home-apply]')){applyHomeRegionTypes(false);return}
  const region=e.target.closest('[data-home-region]');
- if(!region)return;
- qs('#province').value=region.dataset.homeProvince;
- renderAreas();
- qsa('#areas input').forEach(box=>{box.checked=box.value===region.dataset.homeRegion});
- renderDongs();search();
- qs('#results').scrollIntoView({behavior:'smooth',block:'start'});
+ if(region)openHomeRegionChooser(region.dataset.homeRegion,region.dataset.homeProvince);
 });
+qs('#discoveryTypeOptions').addEventListener('change',updateHomeTypeSelection);
 
 function renderCurrentResults(){
  const sorted=sortResults(currentResults);
@@ -497,7 +580,7 @@ function search(){
   html+='<div class="near-title">현재 매물 더 찾기</div><div class="portal"><a target="_blank" href="https://www.google.com/search?q='+encodeURIComponent(loc+' 당근부동산 월세')+'">당근부동산 검색</a><a target="_blank" href="https://www.google.com/search?q='+encodeURIComponent(loc+' 네이버부동산 월세')+'">네이버부동산 검색</a><a target="_blank" href="https://www.google.com/search?q='+encodeURIComponent(loc+' 직방 월세')+'">직방 검색</a><a target="_blank" href="https://www.google.com/search?q='+encodeURIComponent(loc+' 다방 월세')+'">다방 검색</a><a target="_blank" href="https://www.google.com/search?q='+encodeURIComponent(loc+' 피터팬 월세')+'">피터팬 검색</a><a target="_blank" href="https://www.google.com/search?q='+q+'">통합검색</a></div>';
   qs('#resultCount').innerHTML='검색 결과 <b>0</b>건 · 근접매물 '+fallback.length+'건';if(qs('#headerResultCount')) qs('#headerResultCount').textContent='0';qs('#results').className=currentView==='list'?'view-list':'view-grid';qs('#results').innerHTML=html;
  }
- renderHomeDiscovery(out);
+ if(!homeDiscoveryInitialized)renderHomeDiscovery(out);
 }
 qs('#province').addEventListener('change',()=>{renderAreas();search();});
 qs('#areas').addEventListener('change',renderDongs);
