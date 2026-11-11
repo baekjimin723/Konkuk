@@ -90,10 +90,23 @@
 .discovery-region .commute-note{margin:0 0 9px}
 .discovery-listing .commute-row{gap:6px}
 @media(max-width:600px){.discovery-region .commute-row,.discovery-listing .commute-row{grid-template-columns:1fr;gap:5px}.discovery-region .commute-item,.discovery-listing .commute-item{padding:6px 8px}.discovery-region .commute-number,.discovery-listing .commute-number{font-size:17px}}
+
+/* Compact illustrative station route: recommended listings only */
+.featured-route{margin:10px 0 11px;padding:11px 10px;background:#f8fafd;border:1px solid #d9e4f1;border-radius:11px}
+.featured-route-title{font-size:10px;font-weight:800;color:#31577b;margin-bottom:8px}
+.featured-route-stations{display:flex;align-items:center;flex-wrap:wrap;gap:5px;line-height:1.5;color:#24456c;font-size:11px;font-weight:800}
+.featured-route-stations .route-arrow{color:#8ca0b7;font-weight:700}
+.featured-route-stations .route-transfer{font-size:9px;padding:2px 5px;color:#1964b0;background:#e4f0ff;border-radius:5px;white-space:nowrap}
+.featured-route-legs{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}
+.featured-route-leg{font-size:10px;color:#47617c;border-radius:6px;background:#edf3fb;padding:4px 6px}
+.featured-route-note{font-size:9px;color:#798a9e;margin-top:8px;line-height:1.5}
+.featured-route-link{color:#1761e9;font-weight:800;text-decoration:underline;text-underline-offset:2px}
+@media(max-width:600px){.featured-route{padding:9px 8px}.featured-route-stations{font-size:10px}.featured-route-leg{font-size:9px}}
+
 </style>
 </head>
 <body>
-<header><div class="brand">생활권ON</div><div style="font-size:10px;color:#6f8197;margin-top:3px">전세·보증부월세 통합검색 · 전체 DB <b id="inventoryCount">0</b>건 · 현재 조건 <b id="headerResultCount">0</b>건 · <span id="syncStatus">상태 확인 준비 중</span></div><div class="build">COMMUTE HIGHLIGHT 2026-11-11 · v25</div></header>
+<header><div class="brand">생활권ON</div><div style="font-size:10px;color:#6f8197;margin-top:3px">전세·보증부월세 통합검색 · 전체 DB <b id="inventoryCount">0</b>건 · 현재 조건 <b id="headerResultCount">0</b>건 · <span id="syncStatus">상태 확인 준비 중</span></div><div class="build">RECOMMENDATION RAIL ROUTES 2026-11-11 · v26</div></header>
 <main class="wrap">
 <section class="panel discovery-panel" id="discovery">
 <div class="discovery-kicker">생활권ON · 바로 둘러보기</div>
@@ -481,6 +494,44 @@ const homeTypeOptions=[
  ['오피스텔','주거용 오피스텔'],
  ['도시형생활주택','도시형생활주택']
 ];
+
+/* Representative station corridors. Source inventory has dong/time/transfer only,
+   not address coordinates or door-to-door itineraries.
+   Never label the sample rail route as a verified listing-level route. */
+const featuredRailExamples={
+ '광진구|중곡동':{
+  stations:['중곡역','건대입구역'], interchange:-1,
+  legs:[['7호선','약 5분']], origin:'중곡역'
+ },
+ '구리시|교문동':{
+  stations:['구리역','잠실역','건대입구역'], interchange:1,
+  legs:[['8호선','약 18분'],['2호선','약 8분']], origin:'구리역'
+ },
+ '남양주시|화도읍':{
+  stations:['마석역','상봉역','건대입구역'], interchange:1,
+  legs:[['경춘선','약 25~30분'],['7호선','약 15분']], origin:'마석역'
+ },
+ '의정부시|금오동':{
+  stations:['의정부역','도봉산역','건대입구역'], interchange:1,
+  legs:[['1호선','약 8분'],['7호선','약 32분']], origin:'의정부역'
+ }
+};
+function featuredRailRoute(l){
+ const path=featuredRailExamples[l.city+'|'+l.dong];
+ if(!path)return '<div class="featured-route"><div class="featured-route-title">🚇 간단 교통 경로</div><div class="featured-route-note">매물 인근 출발역 정보가 없어 환승역과 구간별 소요시간을 아직 표시할 수 없습니다.</div></div>';
+ const stations=path.stations.map((station,index)=>{
+  const marker=index===path.interchange?'<span class="route-transfer">환승</span>':'';
+  return (index?'<span class="route-arrow">→</span>':'')+'<span>'+escapeHtml(station)+'</span>'+marker;
+ }).join('');
+ const legs=path.legs.map(([line,mins])=>'<span class="featured-route-leg">'+escapeHtml(line)+' '+escapeHtml(mins)+'</span>').join('');
+ const mapQuery=encodeURIComponent(path.origin+' 건대입구역 대중교통');
+ return '<div class="featured-route"><div class="featured-route-title">🚇 동네 대표역에서 건대입구역까지 · 경로 예시</div>'
+  +'<div class="featured-route-stations">'+stations+'</div>'
+  +'<div class="featured-route-legs">'+legs+'</div>'
+  +'<div class="featured-route-note">열차 탑승시간 참고 · 매물→출발역 이동·대기·환승 보행시간 미포함. '
+  +'<a class="featured-route-link" href="https://map.naver.com/p/search/'+mapQuery+'" target="_blank" rel="noopener noreferrer">네이버 지도에서 확인</a></div></div>';
+}
+
 function renderHomeDiscovery(rows){
  homeDiscoveryInitialized=true;
  homeDiscoverySource=[...rows];
@@ -513,7 +564,7 @@ function renderHomeDiscovery(rows){
   const title=escapeHtml(displayTitle(l));
   const img=l.photo?'<img src="'+escapeHtml(l.photo)+'" alt="'+title+' 매물 사진" loading="lazy" decoding="async" onerror="this.remove()">':'';
   const size=l.py?(escapeHtml(String(l.py))+'평'):'면적 미확인';
-  return '<article class="discovery-listing"><div class="discovery-photo">사진 확인 중'+img+'</div><div class="discovery-listing-body"><div class="discovery-listing-place">'+escapeHtml(l.province+' '+l.city+' '+l.dong)+'</div><h3 title="'+title+'">'+title+'</h3><div class="discovery-listing-price">'+escapeHtml(priceText(l))+'</div><div class="discovery-listing-meta">'+escapeHtml(typeLabel(l.type))+' · '+size+'</div>'+commuteBadges(l)+'<div class="commute-note">건대입구역 기준 · 참고용 예상치</div><div class="discovery-links"><button type="button" data-home-detail="'+id+'">매물 자세히</button><a href="'+escapeHtml(l.url)+'" target="_blank" rel="noopener">매물 원문</a></div></div></article>';
+  return '<article class="discovery-listing"><div class="discovery-photo">사진 확인 중'+img+'</div><div class="discovery-listing-body"><div class="discovery-listing-place">'+escapeHtml(l.province+' '+l.city+' '+l.dong)+'</div><h3 title="'+title+'">'+title+'</h3><div class="discovery-listing-price">'+escapeHtml(priceText(l))+'</div><div class="discovery-listing-meta">'+escapeHtml(typeLabel(l.type))+' · '+size+'</div>'+commuteBadges(l)+'<div class="commute-note">건대입구역 기준 · 참고용 예상치</div>'+featuredRailRoute(l)+'<div class="discovery-links"><button type="button" data-home-detail="'+id+'">매물 자세히</button><a href="'+escapeHtml(l.url)+'" target="_blank" rel="noopener">매물 원문</a></div></div></article>';
  }).join('');
 }
 function updateHomeTypeSelection(){
