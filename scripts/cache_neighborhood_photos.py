@@ -69,7 +69,12 @@ for region, photos in raw_gallery.items():
     manifest[region] = []
     for i, photo in enumerate(photos):
         remote, label, author, license_name, file_page = photo
-        filename = unquote(urlsplit(file_page).path.split("File:", 1)[-1]).replace("_", " ")
+        is_public_tour_photo = "tong.visitkorea.or.kr" in urlsplit(remote).netloc
+        filename = (
+            unquote(urlsplit(remote).path.rsplit("/", 1)[-1])
+            if is_public_tour_photo
+            else unquote(urlsplit(file_page).path.split("File:", 1)[-1]).replace("_", " ")
+        )
         local = OUTPUT / f"{hashlib.sha1((region+'|'+filename).encode()).hexdigest()[:16]}.webp"
         saved = False
         if local.exists() and local.stat().st_size > 2000:
@@ -81,10 +86,12 @@ for region, photos in raw_gallery.items():
             # Avoid burning Wikimedia's per-host rate budget on photos that
             # already exist in this repository.
             time.sleep(1.1)
-            candidates = official_urls(filename)
-            # Fall back to the source image link only when Commons' API/canonical
-            # source does not serve an image.
-            candidates.append(remote)
+            candidates = [remote] if is_public_tour_photo else official_urls(filename)
+            # Official Korea Tourism Organization source supplies KOGL Type 1
+            # images with attribution through the published tourism API.
+            # Commons photos are retrieved through the original photo metadata.
+            if not is_public_tour_photo:
+                candidates.append(remote)
             for url in dict.fromkeys(candidates):
                 try:
                     response = session.get(url, timeout=22)
