@@ -1,0 +1,45 @@
+name: Cache neighborhood gallery photos
+
+on:
+  push:
+    branches:
+      - choonsikkk-repo-fix
+    paths:
+      - ".github/workflows/cache-neighborhood-photos.yml"
+      - "scripts/cache_neighborhood_photos.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cache-neighborhood-photos
+  cancel-in-progress: false
+
+jobs:
+  cache:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout current live branch
+        uses: actions/checkout@v4
+        with:
+          ref: choonsikkk-repo-fix
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install image dependencies
+        run: python -m pip install requests Pillow
+      - name: Download and validate Commons images
+        run: python scripts/cache_neighborhood_photos.py
+      - name: Commit validated image assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add living-area-site/assets/areas
+          if git diff --cached --quiet; then
+            echo "All images already cached"
+          else
+            git commit -m "Cache licensed neighborhood photos locally for Pages"
+            git push origin HEAD:choonsikkk-repo-fix
+          fi
