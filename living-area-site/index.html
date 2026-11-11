@@ -129,10 +129,34 @@
 .bus-route-note{font-size:9px;color:#6e8977;margin-top:8px;line-height:1.55}
 .bus-route-note a{color:#1761e9;font-weight:700}
 
+
+/* v30: calm discovery cards and a separate "What is this neighborhood like?" panel */
+.discovery-region .discovery-brief{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;margin:9px 0 0;color:#667c94;font-size:11px;font-weight:500;line-height:1.45;min-height:30px}
+.discovery-region{display:flex;flex-direction:column;align-items:stretch}
+.discovery-region .discovery-region-footer{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:10px;gap:8px;font-size:10px;color:#4b7099;border-top:1px solid #e6edf6;font-weight:800}
+.discovery-region .discovery-region-footer span{font-size:10px;margin:0;color:#6d829a}
+.discovery-region .commute-note{margin-bottom:9px}
+.discovery-neighborhood-summary{border-bottom:1px solid #e2eaf4;padding:3px 0 16px;margin-bottom:16px}
+.discovery-neighborhood-summary .neighborhood-kicker{font-size:11px;letter-spacing:.01em;font-weight:800;color:#1761e9;margin:0 0 5px}
+.discovery-neighborhood-summary h4{font-size:18px;color:#244b76;margin:0 0 4px}
+.discovery-neighborhood-summary .neighborhood-subtitle{font-size:11px;line-height:1.5;color:#63768c;margin:0 0 12px}
+.neighborhood-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.neighborhood-fact{background:#fff;border:1px solid #e0e9f4;border-radius:10px;padding:12px;min-width:0}
+.neighborhood-fact-label{display:block;font-size:10px;color:#74869c;font-weight:800;margin-bottom:5px}
+.neighborhood-fact-value{display:block;font-size:12px;line-height:1.6;color:#284764;font-weight:700;overflow-wrap:anywhere}
+.neighborhood-disclaimer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:10px;color:#8291a2;margin-top:10px;line-height:1.5}
+.neighborhood-disclaimer a{color:#396b9c;text-underline-offset:2px}
+.discovery-housing-label{font-weight:800;font-size:13px;color:#234f84;margin:1px 0 4px}
+.discovery-type-options{margin-top:9px}
+.living-summary{padding:11px 12px}
+.living-summary .living-chips{gap:5px;margin-top:8px}
+.living-summary .living-chips span{line-height:1.4}
+@media(max-width:700px){.neighborhood-facts{grid-template-columns:1fr;gap:6px}.neighborhood-fact{padding:9px 11px}.discovery-neighborhood-summary h4{font-size:16px}.discovery-type-panel{padding:13px}}
+
 </style>
 </head>
 <body>
-<header><div class="brand">생활권ON</div><div style="font-size:10px;color:#6f8197;margin-top:3px">전세·보증부월세 통합검색 · 전체 DB <b id="inventoryCount">0</b>건 · 현재 조건 <b id="headerResultCount">0</b>건 · <span id="syncStatus">상태 확인 준비 중</span></div><div class="build">NEIGHBORHOOD AND BUS ROUTES 2026-11-11 · v29</div></header>
+<header><div class="brand">생활권ON</div><div style="font-size:10px;color:#6f8197;margin-top:3px">전세·보증부월세 통합검색 · 전체 DB <b id="inventoryCount">0</b>건 · 현재 조건 <b id="headerResultCount">0</b>건 · <span id="syncStatus">상태 확인 준비 중</span></div><div class="build">CLEAN NEIGHBORHOOD DISCOVERY 2026-11-11 · v30</div></header>
 <main class="wrap">
 <section class="panel discovery-panel" id="discovery">
 <div class="discovery-kicker">생활권ON · 바로 둘러보기</div>
@@ -142,7 +166,9 @@
 <div class="discovery-regions" id="discoveryRegions"><div class="discovery-empty">추천 지역을 불러오는 중입니다.</div></div>
 <div class="discovery-type-panel" id="discoveryTypePanel" hidden>
   <div class="discovery-type-head"><div><h3 id="discoveryTypeHeading">선택한 지역의 주택 유형</h3><p>원하는 유형을 하나 이상 고르세요. 여러 유형을 함께 선택할 수 있어요.</p></div><button type="button" class="discovery-type-close" data-home-close aria-label="주택 유형 선택 닫기">×</button></div>
-  <div class="discovery-type-options" id="discoveryTypeOptions"></div>
+  <div id="discoveryNeighborhoodGuide" class="discovery-neighborhood-summary"></div>
+<div class="discovery-housing-label">주택 유형 선택</div>
+<div class="discovery-type-options" id="discoveryTypeOptions"></div>
   <div class="discovery-type-actions"><button type="button" id="discoveryApplyTypes" data-home-apply disabled>선택한 유형으로 매물 보기</button><button type="button" class="secondary" data-home-all>전체 주택 유형 보기</button><span class="discovery-type-status" id="discoveryTypeStatus">주택 유형을 선택해 주세요.</span></div>
 </div>
 <div class="discovery-section-title"><h2>이 지역에서 볼 만한 매물</h2><small>지역별 등록 매물 미리보기</small></div>
@@ -581,7 +607,7 @@ function listingGuideMarkupV29(l){
   scope='시·구 단위 대표시설';source=p.source||'';
  }
  if(!groups.length)return '<div class="living-summary"><b>📍 생활환경</b><p>지역별 시설 정보 확장 중</p></div>';
- const tags=groups.flatMap((arr,i)=>arr.map(v=>['🌳 ','🛒 ','🚇 '][i]+v));
+ const tags=groups.map((arr,i)=>{const t=arr.filter(Boolean);return t.length?['🌳 ','🛒 ','🚇 '][i]+t[0]:''}).filter(Boolean);
  return '<div class="living-summary"><b>📍 '+escapeHtml(l.city)+' '+escapeHtml(l.dong)+' · 생활 키워드</b><div class="living-chips">'
  +tags.slice(0,6).map(x=>'<span>'+escapeHtml(x)+'</span>').join('')+'</div><small>'+escapeHtml(scope)+' · 실제 매물까지의 거리·접근성은 미확인</small>'
  +(source?'<a href="'+escapeHtml(source)+'" target="_blank" rel="noopener noreferrer">지역정보 출처</a>':'')+'</div>';
@@ -592,6 +618,24 @@ function transitRoutesV29(l){
  const q=encodeURIComponent(b[1]+' 건대입구역 대중교통');
  return rail+'<div class="bus-route-card"><div class="bus-route-head">🚌 버스 대안 · '+escapeHtml(b[0])+'</div><div class="bus-route-line"><span>'+escapeHtml(b[1])+'</span> → <strong>'+escapeHtml(b[2])+'</strong> → <span>'+escapeHtml(b[3])+'</span> → <strong>'+escapeHtml(b[4])+'</strong></div>'
  +'<div class="bus-route-note">정류장 출발 기준 예시. 해당 매물에서 정류장까지의 이동, 버스 탑승·대기시간은 확인되지 않았습니다. <a href="'+escapeHtml(b[5])+'" target="_blank" rel="noopener noreferrer">노선 근거</a> · <a href="https://map.naver.com/p/search/'+q+'" target="_blank" rel="noopener noreferrer">지도에서 확인</a></div></div>';
+}
+
+
+function conciseRegionIntroV30(key){
+ const g=regionGuideV29[key];
+ if(!g)return '';
+ return '<span class="discovery-brief">'+escapeHtml(g[0])+'</span>';
+}
+function selectedRegionGuideV30(key){
+ const g=regionGuideV29[key];
+ if(!g)return '<div class="neighborhood-kicker">이 동네에 살면?</div><p class="neighborhood-subtitle">지역 생활정보를 확인하고 있어요.</p>';
+ const info=[['🌳 생활환경',g[1]],['🛒 주요 편의시설',g[2]],['🚇 교통 접근성',g[3]]];
+ return '<div class="neighborhood-kicker">이 동네에 살면?</div>'
+  +'<h4>'+escapeHtml(key)+'</h4>'
+  +'<p class="neighborhood-subtitle">'+escapeHtml(g[0])+'</p>'
+  +'<div class="neighborhood-facts">'+info.map(([label,value])=>'<div class="neighborhood-fact"><span class="neighborhood-fact-label">'+escapeHtml(label)+'</span><strong class="neighborhood-fact-value">'+escapeHtml(value)+'</strong></div>').join('')+'</div>'
+  +'<div class="neighborhood-disclaimer"><span>지역 대표시설 기준 · 매물에서의 실제 거리와 이동시간은 별도 확인</span>'
+  +(g[4]?'<a href="'+escapeHtml(g[4])+'" target="_blank" rel="noopener noreferrer">지역정보 출처</a>':'')+'</div>';
 }
 
 function renderHomeDiscovery(rows){
@@ -623,7 +667,7 @@ function renderHomeDiscovery(rows){
   const items=areaRows(city),rep=selectListing(city);
   const fastest=[...items].sort((a,b)=>Number(a.time)-Number(b.time)||Number(a.transfer)-Number(b.transfer))[0];
   const suffix=city===indeokwonLabel?'관양동 매물 기준 · 인덕원역 접근 확인 필요':city==='광진구'?'기준 생활권':'확장 후보 생활권';
-  return '<button type="button" class="discovery-region" data-home-region="'+escapeHtml(city)+'" data-home-province="'+escapeHtml(rep.province)+'"><b>'+escapeHtml(city)+'</b>'+commuteBadges(fastest)+'<div class="commute-note">건대입구역 기준 · 등록 매물 중 가장 빠른 예상치</div><span>등록 매물 '+items.length+'건</span>'+regionGuideMarkupV29(city)+'<small>'+suffix+' · 주택 유형 선택하기</small></button>';
+  return '<button type="button" class="discovery-region" data-home-region="'+escapeHtml(city)+'" data-home-province="'+escapeHtml(rep.province)+'" aria-expanded="false"><b>'+escapeHtml(city)+'</b>'+conciseRegionIntroV30(city)+commuteBadges(fastest)+'<div class="commute-note">건대입구역 기준 · 등록 매물 중 가장 빠른 예상치</div><div class="discovery-region-footer"><span>등록 매물 '+items.length+'건</span><strong>동네 알아보기 · 유형 선택 ›</strong></div></button>';
  }).join('');
  preview.innerHTML=selected.map(city=>{
   const l=selectListing(city),id=escapeHtml(String(l.id));
@@ -645,7 +689,9 @@ function openHomeRegionChooser(city,province){
  const matching=homeDiscoverySource.filter(l=>l.city===selectedHomeRegion.city&&l.province===province&&(!selectedHomeRegion.dong||l.dong===selectedHomeRegion.dong));
  const counts={};matching.forEach(l=>{counts[l.type]=(counts[l.type]||0)+1});
  const panel=qs('#discoveryTypePanel');
- qs('#discoveryTypeHeading').textContent=city+' · 주택 유형 선택';
+ qs('#discoveryTypeHeading').textContent=city+' 매물 찾기';
+ qs('#discoveryTypePanel .discovery-type-head p').textContent='생활환경을 먼저 살펴보고 원하는 주택 유형을 선택하세요.';
+ qs('#discoveryNeighborhoodGuide').innerHTML=selectedRegionGuideV30(city);
  qs('#discoveryTypeOptions').innerHTML=homeTypeOptions.map(([type,name])=>{
   const count=counts[type]||0;
   return '<label class="discovery-type-option"><input type="checkbox" value="'+escapeHtml(type)+'" '+(count?'':'disabled')+'><span>'+escapeHtml(name)+'</span><small>'+count+'건</small></label>';
