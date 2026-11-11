@@ -15,12 +15,248 @@
 .quick-panel{background:linear-gradient(135deg,#fff,#f1f6ff);border:1px solid #cfe0f7}
 .quick-panel h2{font-size:22px;margin-bottom:5px}.quick-row{display:grid;grid-template-columns:1fr auto;gap:8px}.quick-row input{height:46px;font-size:13px}.quick-apply{height:46px;border:0;border-radius:10px;padding:0 18px;background:#174a92;color:#fff;font-weight:800;cursor:pointer}.preset-row{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.preset-btn{border:1px solid #cddbed;background:#fff;color:#29547f;border-radius:999px;padding:9px 12px;font-size:11px;font-weight:800;cursor:pointer}.preset-btn:hover{border-color:#1761e9;color:#1761e9}.quick-status{margin-top:9px;font-size:11px;color:#66798e}.advanced-filter{padding:0;overflow:hidden}.advanced-filter>summary{list-style:none;cursor:pointer;padding:16px 20px;font-weight:800;color:#234f84}.advanced-filter>summary::-webkit-details-marker{display:none}.advanced-filter>summary:after{content:'＋';float:right}.advanced-filter[open]>summary:after{content:'－'}.advanced-inner{padding:0 20px 20px}.lh-note{margin:8px 0 12px;padding:10px 12px;border-radius:10px;background:#eef6ff;color:#48657f;font-size:10px;line-height:1.5}.lh-note b{color:#174a92}
 @media(max-width:700px){.quick-row{grid-template-columns:1fr}.quick-apply{width:100%}}
+
+/* First-visit discovery: show regions and listing previews before any filters. */
+.discovery-panel{padding:22px 22px 18px;background:linear-gradient(130deg,#f7fbff 0%,#fff 63%);border-color:#cfddf2}
+.discovery-kicker{font-size:11px;letter-spacing:.03em;font-weight:900;color:#1761e9}
+.discovery-panel h1{margin:6px 0 6px;font-size:27px;line-height:1.35;color:#153b6c}
+.discovery-lead{margin:0 0 17px;color:#667c94;font-size:12px;line-height:1.65}
+.discovery-section-title{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;margin:15px 0 10px}
+.discovery-section-title h2{margin:0;font-size:16px;color:#234f84}
+.discovery-section-title small{font-size:10px;color:#76879a}
+.discovery-regions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.discovery-region{appearance:none;background:#fff;border:1px solid #d7e3f2;border-radius:13px;padding:14px 13px;text-align:left;cursor:pointer;color:#263a55;min-width:0;transition:border-color .15s,transform .15s}
+.discovery-region:hover,.discovery-region:focus-visible{border-color:#1761e9;transform:translateY(-2px);outline:none}
+.discovery-region b{display:block;font-size:16px;color:#174a92}
+.discovery-region span{display:block;font-size:11px;color:#526d8a;margin-top:6px}
+.discovery-region small{display:block;margin-top:8px;font-size:10px;color:#6d8199;line-height:1.5}
+.discovery-listings{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.discovery-listing{background:#fff;border:1px solid #e0e8f1;border-radius:13px;overflow:hidden;min-width:0}
+.discovery-photo{height:128px;position:relative;background:#eaf1f8;color:#8796a7;display:flex;justify-content:center;align-items:center;font-size:11px;overflow:hidden}
+.discovery-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.discovery-listing-body{padding:11px 12px 13px}
+.discovery-listing-place{font-size:10px;color:#6d8199}
+.discovery-listing-body h3{font-size:13px;margin:5px 0 7px;color:#263a55;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.discovery-listing-price{font-size:15px;color:#1761e9;font-weight:900}
+.discovery-listing-meta{margin:8px 0;font-size:10px;color:#678099;line-height:1.6}
+.discovery-links{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.discovery-links button,.discovery-links a{font-size:10px;border-radius:8px;padding:8px 9px;text-decoration:none;font-weight:800;cursor:pointer}
+.discovery-links button{color:#fff;background:#174a92;border:1px solid #174a92}
+.discovery-links a{color:#315f98;background:#f5f9ff;border:1px solid #dae6f5}
+.discovery-note{margin:12px 0 0;color:#8190a2;font-size:10px;line-height:1.65}
+.discovery-empty{font-size:12px;color:#667c94;padding:16px;background:#fff;border-radius:10px}
+@media(max-width:1000px){.discovery-regions,.discovery-listings{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.discovery-panel{padding:17px 14px}.discovery-panel h1{font-size:21px}.discovery-lead{font-size:11px}.discovery-regions{gap:7px}.discovery-region{padding:11px 10px}.discovery-region b{font-size:14px}.discovery-region span,.discovery-region small{font-size:10px}.discovery-listings{grid-template-columns:1fr 1fr;gap:8px}.discovery-photo{height:103px}.discovery-listing-body{padding:10px 9px}.discovery-listing-body h3{font-size:11px}.discovery-listing-price{font-size:13px}.discovery-listing-meta{font-size:9px}.discovery-links button,.discovery-links a{font-size:9px;padding:7px}.discovery-section-title h2{font-size:14px}}
+
+
+/* Region-selected housing type picker */
+.discovery-region[aria-expanded="true"]{background:#eaf3ff;border-color:#1761e9;box-shadow:0 0 0 1px rgba(23,97,233,.12)}
+.discovery-type-panel{margin:12px 0 5px;padding:17px;border:1px solid #cbdff7;background:#f7fbff;border-radius:14px}
+.discovery-type-panel[hidden]{display:none}
+.discovery-type-head{display:flex;gap:12px;align-items:flex-start;justify-content:space-between}
+.discovery-type-head h3{margin:0 0 5px;color:#174a92;font-size:16px}
+.discovery-type-head p{margin:0;color:#657c95;font-size:11px;line-height:1.5}
+.discovery-type-close{appearance:none;border:0;background:#e6effb;color:#385f88;width:30px;height:30px;border-radius:8px;cursor:pointer;font-size:18px}
+.discovery-type-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:14px 0}
+.discovery-type-option{display:flex;align-items:center;gap:9px;border:1px solid #dce7f4;border-radius:10px;background:white;padding:10px;cursor:pointer;font-size:12px;min-width:0}
+.discovery-type-option:has(input:checked){background:#e8f1ff;border-color:#1761e9;color:#154e9a;font-weight:800}
+.discovery-type-option:has(input:disabled){opacity:.48;cursor:not-allowed}
+.discovery-type-option input{width:17px;height:17px;accent-color:#1761e9;flex:none;margin:0}
+.discovery-type-option span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.discovery-type-option small{margin-left:auto;color:#71849a;flex:none}
+.discovery-type-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.discovery-type-actions button{border:1px solid #1761e9;background:#1761e9;color:#fff;border-radius:9px;padding:10px 15px;font-weight:800;font-size:12px;cursor:pointer}
+.discovery-type-actions button.secondary{background:white;color:#1761e9}
+.discovery-type-actions button:disabled{opacity:.45;cursor:not-allowed}
+.discovery-type-status{font-size:11px;color:#637994}
+@media(max-width:700px){.discovery-type-options{grid-template-columns:repeat(2,minmax(0,1fr))}.discovery-type-panel{padding:13px}.discovery-type-option{padding:9px 8px;font-size:10px;gap:6px}.discovery-type-option small{font-size:9px}}
+
+
+/* Visually prioritize estimated travel time and transfers */
+.commute-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:11px 0}
+.commute-item{min-width:0;border-radius:11px;border:1px solid #bcd8fa;background:#e9f3ff;padding:10px}
+.commute-item.transfer{border-color:#c3e6d8;background:#e8f7f1}
+.commute-label{display:block;color:#376999;font-size:10px;font-weight:800;line-height:1.3}
+.commute-item.transfer .commute-label{color:#377e65}
+.commute-number{display:block;font-size:20px;font-weight:900;line-height:1.4;color:#124c92;margin-top:2px}
+.commute-item.transfer .commute-number{color:#12674e}
+.commute-unit{font-size:13px;font-weight:800}
+.commute-note{margin:-4px 0 10px;color:#728398;font-size:9px;line-height:1.5}
+.discovery-region .commute-row{gap:6px;margin:10px 0 6px}
+.discovery-region .commute-item,.discovery-listing .commute-item{padding:8px}
+.discovery-region .commute-number,.discovery-listing .commute-number{font-size:18px}
+.discovery-region .commute-label,.discovery-listing .commute-label{font-size:9px}
+.discovery-region .commute-unit,.discovery-listing .commute-unit{font-size:11px}
+.discovery-region .commute-note{margin:0 0 9px}
+.discovery-listing .commute-row{gap:6px}
+@media(max-width:600px){.discovery-region .commute-row,.discovery-listing .commute-row{grid-template-columns:1fr;gap:5px}.discovery-region .commute-item,.discovery-listing .commute-item{padding:6px 8px}.discovery-region .commute-number,.discovery-listing .commute-number{font-size:17px}}
+
+/* Compact illustrative station route: recommended listings only */
+.featured-route{margin:10px 0 11px;padding:11px 10px;background:#f8fafd;border:1px solid #d9e4f1;border-radius:11px}
+.featured-route-title{font-size:10px;font-weight:800;color:#31577b;margin-bottom:8px}
+.featured-route-stations{display:flex;align-items:center;flex-wrap:wrap;gap:5px;line-height:1.5;color:#24456c;font-size:11px;font-weight:800}
+.featured-route-stations .route-arrow{color:#8ca0b7;font-weight:700}
+.featured-route-stations .route-transfer{font-size:9px;padding:2px 5px;color:#1964b0;background:#e4f0ff;border-radius:5px;white-space:nowrap}
+.featured-route-legs{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}
+.featured-route-leg{font-size:10px;color:#47617c;border-radius:6px;background:#edf3fb;padding:4px 6px}
+.featured-route-note{font-size:9px;color:#798a9e;margin-top:8px;line-height:1.5}
+.featured-route-link{color:#1761e9;font-weight:800;text-decoration:underline;text-underline-offset:2px}
+@media(max-width:600px){.featured-route{padding:9px 8px}.featured-route-stations{font-size:10px}.featured-route-leg{font-size:9px}}
+
+
+@media(min-width:1101px){.discovery-regions,.discovery-listings{grid-template-columns:repeat(5,minmax(0,1fr))}}
+@media(min-width:701px) and (max-width:1100px){.discovery-regions,.discovery-listings{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+@media(min-width:1101px){.discovery-regions{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(min-width:701px) and (max-width:1100px){.discovery-regions{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.discovery-regions{grid-template-columns:1fr}}
+.discovery-neighborhood{border-top:1px solid #dfe7f2;padding-top:11px;margin:10px 0;text-align:left}
+.discovery-neighborhood-intro{font-size:11px;font-weight:500;color:#415d78;line-height:1.5;margin-bottom:7px}
+.discovery-neighborhood-row{display:flex;gap:9px;padding:4px 0;font-size:10px;line-height:1.4}
+.discovery-neighborhood-row span{flex:none;width:70px;color:#477094;font-weight:800}
+.discovery-neighborhood-row b{color:#2a4665;font-weight:600}
+.discovery-neighborhood-note{font-size:9px;color:#8595a7;margin:8px 0}
+.living-summary{background:#f7faff;border:1px solid #dce8f5;border-radius:10px;padding:11px;margin:10px 0}
+.living-summary>b{display:block;font-size:12px;color:#214e80;margin-bottom:9px}
+.living-chips{display:flex;flex-wrap:wrap;gap:5px}
+.living-chips span{font-size:10px;background:white;padding:6px 8px;border:1px solid #dce7f3;border-radius:999px;color:#395775}
+.living-summary small{display:block;font-size:9px;color:#8292a4;margin-top:9px}
+.living-summary a{display:inline-block;font-size:10px;color:#1761e9;margin-top:7px}
+.bus-route-card{border:1px solid #cae2d2;border-radius:10px;padding:11px;background:#f4faf6;margin:9px 0}
+.bus-route-head{font-size:11px;font-weight:800;color:#24694b}
+.bus-route-line{font-size:11px;color:#37684f;line-height:1.6;display:block;margin-top:8px}
+.bus-route-line strong{background:#dff3e5;border-radius:5px;padding:3px 5px}
+.bus-route-note{font-size:9px;color:#6e8977;margin-top:8px;line-height:1.55}
+.bus-route-note a{color:#1761e9;font-weight:700}
+
+
+/* v30: calm discovery cards and a separate "What is this neighborhood like?" panel */
+.discovery-region .discovery-brief{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;margin:9px 0 0;color:#667c94;font-size:11px;font-weight:500;line-height:1.45;min-height:30px}
+.discovery-region{display:flex;flex-direction:column;align-items:stretch}
+.discovery-region .discovery-region-footer{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:10px;gap:8px;font-size:10px;color:#4b7099;border-top:1px solid #e6edf6;font-weight:800}
+.discovery-region .discovery-region-footer span{font-size:10px;margin:0;color:#6d829a}
+.discovery-region .commute-note{margin-bottom:9px}
+.discovery-neighborhood-summary{border-bottom:1px solid #e2eaf4;padding:3px 0 16px;margin-bottom:16px}
+.discovery-neighborhood-summary .neighborhood-kicker{font-size:11px;letter-spacing:.01em;font-weight:800;color:#1761e9;margin:0 0 5px}
+.discovery-neighborhood-summary h4{font-size:18px;color:#244b76;margin:0 0 4px}
+.discovery-neighborhood-summary .neighborhood-subtitle{font-size:11px;line-height:1.5;color:#63768c;margin:0 0 12px}
+.neighborhood-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.neighborhood-fact{background:#fff;border:1px solid #e0e9f4;border-radius:10px;padding:12px;min-width:0}
+.neighborhood-fact-label{display:block;font-size:10px;color:#74869c;font-weight:800;margin-bottom:5px}
+.neighborhood-fact-value{display:block;font-size:12px;line-height:1.6;color:#284764;font-weight:700;overflow-wrap:anywhere}
+.neighborhood-disclaimer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:10px;color:#8291a2;margin-top:10px;line-height:1.5}
+.neighborhood-disclaimer a{color:#396b9c;text-underline-offset:2px}
+.discovery-housing-label{font-weight:800;font-size:13px;color:#234f84;margin:1px 0 4px}
+.discovery-type-options{margin-top:9px}
+.living-summary{padding:11px 12px}
+.living-summary .living-chips{gap:5px;margin-top:8px}
+.living-summary .living-chips span{line-height:1.4}
+@media(max-width:700px){.neighborhood-facts{grid-template-columns:1fr;gap:6px}.neighborhood-fact{padding:9px 11px}.discovery-neighborhood-summary h4{font-size:16px}.discovery-type-panel{padding:13px}}
+
+
+/* v31 first-screen refresh */
+header{position:relative;padding:16px max(24px,calc((100vw - 1240px)/2));display:flex;align-items:center;justify-content:space-between}
+header .build,.header-system-status{display:none}
+header .brand{font-size:24px;letter-spacing:-.04em}
+.header-subtitle{font-size:11px;color:#8090a1;margin-top:3px}
+.wrap{max-width:1240px;padding:26px 22px}
+.discovery-panel{background:transparent;border:0;padding:0}
+.discovery-kicker{letter-spacing:.1em;color:#4e7baa;font-size:10px}
+.discovery-panel h1{font-size:clamp(25px,3vw,35px);letter-spacing:-.05em;color:#1c3b5b;line-height:1.3;margin:8px 0}
+.discovery-lead{font-size:12px;color:#8794a5;margin:0 0 22px}
+.slide-header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0 0 10px}
+.slide-header strong{font-size:13px;color:#345b80}
+.slide-fraction{font-size:12px;color:#6f8aa4;margin-left:5px}
+.slide-control{display:flex;gap:7px}
+.slide-arrow{border:1px solid #d6e2ee;background:white;color:#2c5a87;border-radius:100px;width:39px;height:39px;font-size:21px;cursor:pointer}
+.slide-arrow:hover{background:#eef5fd}
+.slide-grid{display:grid;grid-template-columns:52% 48%;border-radius:20px;overflow:hidden;background:white;border:1px solid #dce6f1;min-height:384px;box-shadow:0 16px 38px rgba(20,54,91,.06)}
+.slide-visual{position:relative;min-height:384px;background:linear-gradient(135deg,#96abbf,#6b8298);overflow:hidden}
+.slide-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.slide-visual:after{content:'';position:absolute;inset:40% 0 0;background:linear-gradient(transparent,rgba(9,34,58,.44));pointer-events:none}
+.slide-place-caption{position:absolute;z-index:1;bottom:20px;left:20px;font-size:12px;color:white;font-weight:900;text-shadow:0 2px 5px #19344c}
+.slide-photo-credit{position:absolute;z-index:2;bottom:18px;right:12px;max-width:56%;font-size:8px;color:white;text-decoration:underline;text-align:right;text-shadow:0 2px 5px #19344c}
+.slide-body{padding:30px clamp(20px,3vw,43px);display:flex;flex-direction:column;justify-content:center}
+.slide-rank{font-size:11px;font-weight:900;color:#2f7aa8;letter-spacing:.03em}
+.slide-body h2{font-size:clamp(25px,3vw,37px);letter-spacing:-.055em;margin:7px 0 10px;color:#204668}
+.slide-about{font-size:13px;line-height:1.7;color:#657c92;margin:0 0 18px}
+.slide-chips{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:17px}
+.slide-chips span{font-size:10px;font-weight:750;padding:8px 10px;border-radius:999px;background:#f2f6fa;color:#526e89}
+.slide-small-stats{padding:14px 0;border-top:1px solid #e7edf4;border-bottom:1px solid #e7edf4;display:flex;gap:6px;flex-wrap:wrap;margin-bottom:19px}
+.slide-small-stats span{font-size:11px;font-weight:800;background:#f2f6fc;border-radius:7px;padding:7px 10px;color:#37658b}
+.slide-small-stats small{width:100%;font-size:9px;color:#8a99a9;margin-top:3px}
+.slide-action{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.slide-action button{border:0;background:#1f5588;color:white;padding:13px 16px;border-radius:10px;font-size:12px;font-weight:900;cursor:pointer}
+.slide-action em{font-style:normal;font-size:10px;color:#8a98a9}
+.slide-dots{display:flex;justify-content:center;align-items:center;gap:7px;padding:14px 0 2px}
+.slide-dot{border:0;border-radius:999px;background:#d7e3ed;height:7px;width:7px;padding:0;cursor:pointer}
+.slide-dot[aria-current="true"]{width:24px;background:#3b7cb6}
+.slide-method{font-size:10px;color:#94a1b0;text-align:center;line-height:1.6;margin:8px 0 19px}
+.discovery-type-panel{background:#fff;box-shadow:0 12px 26px rgba(20,60,100,.06)}
+.home-feature-head{margin:28px 0 12px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.home-feature-head h2{font-size:18px;color:#254967;margin:0}
+.home-feature-head p{font-size:11px;color:#8290a0;margin:5px 0 0}
+.home-feature-head button{background:white;border:1px solid #ceddeb;color:#2d618d;padding:9px 11px;border-radius:9px;font-size:11px;font-weight:900;cursor:pointer}
+.home-feature-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.home-feature-card{display:grid;grid-template-columns:42% 58%;background:white;overflow:hidden;border-radius:14px;border:1px solid #dfe7f0;min-height:175px}
+.home-feature-img{position:relative;min-height:175px;background:#e7eef5}
+.home-feature-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.home-feature-img .fall{position:absolute;inset:0;display:grid;place-items:center;font-size:10px;color:#8193a5;padding:15px;text-align:center}
+.home-feature-body{padding:15px;display:flex;flex-direction:column;justify-content:center;min-width:0}
+.home-feature-loc{font-size:10px;color:#93a0ae}
+.home-feature-body h3{font-size:13px;color:#2a4c6e;margin:3px 0 4px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.home-feature-price{font-size:16px;font-weight:900;color:#1e65a3;margin:5px 0}
+.home-feature-sub{font-size:10px;color:#75879a}
+.home-feature-tags{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.home-feature-tags span{font-size:9px;background:#edf4fc;color:#426f9a;padding:5px 7px;border-radius:6px}
+.home-feature-links{display:flex;gap:6px}
+.home-feature-links button,.home-feature-links a{border-radius:7px;padding:7px 10px;font-weight:800;font-size:10px;text-decoration:none;cursor:pointer}
+.home-feature-links button{background:#20588e;color:white;border:0}
+.home-feature-links a{background:#eaf2fb;color:#255a89}
+.home-small-note{font-size:10px;color:#94a1ae;margin:8px 0 0}
+.home-quick{padding:0;background:white;border:1px solid #dfe8f0;margin-top:22px}
+.home-quick>summary{padding:16px 20px;cursor:pointer;color:#345c84;font-size:13px;font-weight:900;list-style:none}
+.home-quick>summary::-webkit-details-marker{display:none}
+.home-quick>summary:after{content:'＋';float:right}
+.home-quick[open]>summary:after{content:'－'}
+.home-quick-content{padding:0 19px 18px}
+.home-quick-content>h2{display:none}
+.home-results[hidden]{display:none}
+.home-results{margin-top:16px}
+.home-extra{padding:0}
+.home-extra>summary{font-size:11px;color:#7b8d9f;font-weight:800;padding:14px 20px;cursor:pointer;list-style:none}
+.home-extra>summary::-webkit-details-marker{display:none}
+.home-extra>summary:after{content:'＋';float:right}
+.home-extra[open]>summary:after{content:'－'}
+.home-extra-body{padding:8px 18px 18px}
+@media(max-width:850px){.slide-grid{grid-template-columns:1fr 1fr}.slide-body{padding:19px}.home-feature-card{grid-template-columns:1fr}.home-feature-img{height:165px;min-height:165px}}
+@media(max-width:630px){header{padding:13px 16px}.wrap{padding:18px 12px}.discovery-panel h1{font-size:26px}.discovery-lead{font-size:11px}.slide-grid{display:block;min-height:0}.slide-visual{height:246px;min-height:246px}.slide-body{padding:18px}.slide-body h2{font-size:28px}.slide-about{font-size:12px;margin-bottom:12px}.slide-chips{margin-bottom:11px}.slide-small-stats{padding:10px 0;margin-bottom:14px}.slide-small-stats span{font-size:10px}.slide-action button{width:100%}.slide-action em{display:none}.home-feature-list{grid-template-columns:1fr}.home-feature-card{grid-template-columns:40% 60%;min-height:150px}.home-feature-img{min-height:150px;height:auto}.home-feature-body{padding:12px}.home-feature-price{font-size:15px}.home-feature-links button,.home-feature-links a{font-size:9px}.home-extra .origin-box{display:block}}
 </style>
 </head>
 <body>
-<header><div class="brand">생활권ON</div><div style="font-size:10px;color:#6f8197;margin-top:3px">전세·보증부월세 통합검색 · 전체 DB <b id="inventoryCount">0</b>건 · 현재 조건 <b id="headerResultCount">0</b>건 · <span id="syncStatus">상태 확인 준비 중</span></div><div class="build">EXPANSION VALUE BUILD 2026-11-04 · v22</div></header>
+<header><div><div class="brand">생활권ON</div><div class="header-subtitle">살고 싶은 동네부터 찾는 주거 탐색</div></div><div class="header-system-status" style="font-size:10px;color:#6f8197;margin-top:3px">전세·보증부월세 통합검색 · 전체 DB <b id="inventoryCount">0</b>건 · 현재 조건 <b id="headerResultCount">0</b>건 · <span id="syncStatus">상태 확인 준비 중</span></div><div class="build">PHOTO RANKED CAROUSEL 2026-11-11 · v31</div></header>
 <main class="wrap">
-<section class="panel quick-panel">
+<section class="panel discovery-panel" id="discovery">
+<div class="discovery-kicker">FIND YOUR NEXT NEIGHBORHOOD</div>
+<h1>익숙한 동네 밖에도, 살고 싶은 집이 있어.</h1>
+<p class="discovery-lead">동네 사진부터 둘러보고, 마음에 드는 생활권에서 집을 찾아보세요.</p>
+<div class="slide-header"><div><strong>추천 생활권</strong><span class="slide-fraction" id="discoveryCount"></span></div>
+<div class="slide-control"><button type="button" class="slide-arrow" data-slide-prev aria-label="이전 추천">‹</button><button type="button" class="slide-arrow" data-slide-next aria-label="다음 추천">›</button></div></div>
+<div id="discoveryRegions" tabindex="0" role="region" aria-live="polite" aria-label="추천 생활권 슬라이드"></div>
+<div class="slide-dots" id="slideDotsV31"></div>
+<div class="slide-method">추천 순서는 현재 등록된 매물 수·면적·예상 이동시간을 활용한 탐색용 참고 순위입니다.</div>
+<div class="discovery-type-panel" id="discoveryTypePanel" hidden>
+  <div class="discovery-type-head"><div><h3 id="discoveryTypeHeading">선택한 지역의 주택 유형</h3><p>원하는 유형을 하나 이상 고르세요. 여러 유형을 함께 선택할 수 있어요.</p></div><button type="button" class="discovery-type-close" data-home-close aria-label="주택 유형 선택 닫기">×</button></div>
+  <div id="discoveryNeighborhoodGuide" class="discovery-neighborhood-summary"></div>
+<div class="discovery-housing-label">주택 유형 선택</div>
+<div class="discovery-type-options" id="discoveryTypeOptions"></div>
+  <div class="discovery-type-actions"><button type="button" id="discoveryApplyTypes" data-home-apply disabled>선택한 유형으로 매물 보기</button><button type="button" class="secondary" data-home-all>전체 주택 유형 보기</button><span class="discovery-type-status" id="discoveryTypeStatus">주택 유형을 선택해 주세요.</span></div>
+</div>
+<div class="home-feature-head"><div><h2 id="homeFeatureTitleV31">이 동네에서 눈여겨볼 집</h2><p>지금 보고 있는 생활권의 매물 두 곳만 미리 보여줘요.</p></div><button type="button" data-home-select>더 많은 매물 보기</button></div>
+<div class="home-feature-list" id="discoveryListings"><div class="discovery-empty">추천 매물을 불러오는 중입니다.</div></div>
+<p class="discovery-note">예상 통학시간은 참고값이며, 매물의 거래 가능 여부·가격·LH 전세임대 적격성은 원문과 LH 심사를 통해 별도 확인해야 합니다.</p>
+</section>
+<details class="panel quick-panel home-quick" id="homeQuickV31"><summary>원하는 조건으로 다시 찾기</summary><div class="home-quick-content">
 <h2>어디서부터 볼지 몰라도 괜찮아요</h2>
 <div class="sub">조건을 하나씩 고르지 않아도 됩니다. 원하는 걸 한 줄로 쓰거나 아래 버튼 하나만 눌러 시작하세요.</div>
 <div class="quick-row"><input id="naturalQuery" type="text" placeholder="예: 50분 이내, 환승 적게, 오피스텔이나 빌라, 월세 50만원 이하"><button id="applyNatural" type="button" class="quick-apply">조건 적용</button></div>
@@ -33,12 +269,12 @@
 <button type="button" class="preset-btn" data-preset="lh">LH 대상주택만</button>
 </div>
 <div class="quick-status" id="quickStatus">기본값 · 수도권 전체 · 건대입구역 60분 이내 · 환승 1회 이하 · LH 대상주택 유형 우선</div>
-</section>
-<div class="commerce-toolbar">
+</div></details>
+<div class="home-results" id="homeResultsV31" hidden><div class="commerce-toolbar">
 <div class="commerce-left"><span class="result-count" id="resultCount">검색 결과 <b>0</b>건</span>
 <select id="sort"><option value="recommend">추천순</option><option value="priceAsc">낮은 가격순 (보증금→월세)</option><option value="priceDesc">높은 가격순 (보증금→월세)</option><option value="reviewDesc">후기 많은 순</option><option value="wishDesc">위시 많은 순</option><option value="newest">신상품순 (내부 등록일)</option><option value="timeAsc">통학시간 짧은 순</option><option value="upgradeDesc">생활권 확장 효과순</option><option value="sizeDesc">넓은 평수 순</option></select></div>
 <div class="commerce-right"><button type="button" class="view-btn active" id="gridView">▦ 3열 보기</button><button type="button" class="view-btn" id="listView">☰ 1열 보기</button></div></div><div id="applied" class="applied"></div>
-<section id="results"></section>
+<section id="results"></section></div>
 <details class="panel advanced-filter">
 <summary>조건 직접 바꾸기</summary>
 <div class="advanced-inner">
@@ -76,7 +312,7 @@
 <button id="search" type="button" class="btn">이 조건으로 다시 보기</button>
 </div>
 </details>
-<div class="origin-box">
+<details class="panel home-extra"><summary>데이터·사진 출처와 추가 생활정보</summary><div class="home-extra-body"><div class="origin-box">
 <div><b>사진 기준</b><span>매물 카드에는 지역 대표사진을 쓰지 않습니다. 각 카드 이미지는 해당 실매물 원문이 제공하는 대표이미지(OG 이미지)를 사용합니다. 페이지 전체 캡처나 지역사진은 사용하지 않습니다. 대표이미지가 없는 매물은 아래 '실매물 사진·원문 보기'에서 실제 내부·외부 사진을 확인합니다.</span></div>
 <div><b>매물 데이터 현황</b><span>사이트 내부 검증 매물은 현재 전세·보증부월세를 함께 수집 중입니다. 네이버·직방·다방 등 포털 전체재고는 정식 피드가 연결되기 전까지 동별 전체검색으로 분리합니다.</span></div>
 </div><div class="origin-box">
@@ -92,7 +328,7 @@
 <a class="trend-key" href="https://www.hankyung.com/article/202610141284H" target="_blank" rel="noopener"><b>#치이카와 #용산팝업</b><span>굿즈·팝업 수요 급증</span></a>
 <div class="trend-key"><b>#공원 #문화강좌</b><span>유행보다 일상생활을 중시하는 사용자용</span></div>
 </div>
-</section>
+</section></div></details>
 </main><div class="modal-backdrop" id="detailModal"><div class="modal"><div class="modal-head"><h2 id="modalTitle">매물 상세</h2><button type="button" class="modal-close" id="modalClose">×</button></div><div class="modal-body" id="modalBody"></div></div></div>
 <script>
 const areaOptions={"경기도":["가평군","고양시","과천시","광명시","광주시","구리시","군포시","김포시","남양주시","동두천시","부천시","성남시","수원시","시흥시","안산시","안성시","안양시","양주시","양평군","여주시","연천군","오산시","용인시","의왕시","의정부시","이천시","파주시","평택시","포천시","하남시","화성시"],"서울특별시":["강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"],"인천광역시":["강화군","검단구","계양구","남동구","미추홀구","부평구","서해구","연수구","영종구","옹진군","제물포구"]};
@@ -157,7 +393,7 @@ function openDetail(id){
  const posts=communityStore()[String(id)]||[];
  const postHtml=posts.length?posts.map(p=>'<div class="community-item"><b>'+escapeHtml(p.topic||'기타')+' · '+('★'.repeat(Number(p.rating)||0))+'</b><small>'+escapeHtml(p.when||'')+'</small><p>'+escapeHtml(p.text||'')+'</p></div>').join(''):'<div class="community-item"><p>아직 생활권ON 후기가 없습니다. 방음·채광·관리비·통학·주변상권에 대한 첫 후기를 남겨보세요.</p></div>';
  qs('#modalTitle').textContent=displayTitle(l);
- qs('#modalBody').innerHTML='<div class="detail-grid"><div class="detail-box"><h3>🏠 매물 정보</h3><div class="price">'+priceText(l)+'</div><div class="meta"><span class="tag">'+l.deal+'</span><span class="tag">'+typeLabel(l.type)+'</span><span class="tag">'+(l.py?l.py+'평':'평수 확인 필요')+'</span><span class="tag">건국대 약 '+l.time+'분</span></div><p style="font-size:11px;line-height:1.55">'+escapeHtml(l.note||'')+'</p><div class="card-actions"><a class="link" style="margin:0" href="'+l.url+'" target="_blank" rel="noopener">실매물 원문</a><button class="wish-btn '+(wishCount(String(id))?'on':'')+'" data-modal-wish="'+escapeHtml(String(id))+'">♡ 위시 '+wishCount(String(id))+'</button></div></div><div class="detail-box"><h3>📰 관련 주요 뉴스</h3><div class="news-links">'+newsSearchLinks(l)+'</div><div class="prototype-note">지역·단지명을 기준으로 최신 뉴스 검색결과를 연결합니다.</div></div></div><div class="detail-box" style="margin-top:16px"><h3>💬 이 집 커뮤니티 · 후기 '+posts.length+'개</h3><div class="community-list">'+postHtml+'</div><div class="community-form"><select id="communityTopic"><option>방음</option><option>채광</option><option>관리비</option><option>통학</option><option>주변상권</option><option>안전</option><option>기타</option></select><select id="communityRating"><option value="5">★★★★★</option><option value="4">★★★★</option><option value="3">★★★</option><option value="2">★★</option><option value="1">★</option></select><input id="communityText" placeholder="궁금한 점이나 후기를 남겨보세요"><button type="button" id="communitySubmit" data-id="'+escapeHtml(String(id))+'">등록</button></div><div class="prototype-note">현재 프로토타입 커뮤니티는 이 브라우저에 저장됩니다. 실제 서비스에서는 로그인 기반 서버 커뮤니티로 전환합니다.</div></div>';
+ qs('#modalBody').innerHTML='<div class="detail-grid"><div class="detail-box"><h3>🏠 매물 정보</h3><div class="price">'+priceText(l)+'</div><div class="meta"><span class="tag">'+l.deal+'</span><span class="tag">'+typeLabel(l.type)+'</span><span class="tag">'+(l.py?l.py+'평':'평수 확인 필요')+'</span></div>'+commuteBadges(l)+'<div class="commute-note">건대입구역 기준 · 실시간 경로가 아닌 예상치</div>'+transitRoutesV29(l)+listingGuideMarkupV29(l)+'<p style="font-size:11px;line-height:1.55">'+escapeHtml(l.note||'')+'</p><div class="card-actions"><a class="link" style="margin:0" href="'+l.url+'" target="_blank" rel="noopener">실매물 원문</a><button class="wish-btn '+(wishCount(String(id))?'on':'')+'" data-modal-wish="'+escapeHtml(String(id))+'">♡ 위시 '+wishCount(String(id))+'</button></div></div><div class="detail-box"><h3>📰 관련 주요 뉴스</h3><div class="news-links">'+newsSearchLinks(l)+'</div><div class="prototype-note">지역·단지명을 기준으로 최신 뉴스 검색결과를 연결합니다.</div></div></div><div class="detail-box" style="margin-top:16px"><h3>💬 이 집 커뮤니티 · 후기 '+posts.length+'개</h3><div class="community-list">'+postHtml+'</div><div class="community-form"><select id="communityTopic"><option>방음</option><option>채광</option><option>관리비</option><option>통학</option><option>주변상권</option><option>안전</option><option>기타</option></select><select id="communityRating"><option value="5">★★★★★</option><option value="4">★★★★</option><option value="3">★★★</option><option value="2">★★</option><option value="1">★</option></select><input id="communityText" placeholder="궁금한 점이나 후기를 남겨보세요"><button type="button" id="communitySubmit" data-id="'+escapeHtml(String(id))+'">등록</button></div><div class="prototype-note">현재 프로토타입 커뮤니티는 이 브라우저에 저장됩니다. 실제 서비스에서는 로그인 기반 서버 커뮤니티로 전환합니다.</div></div>';
  qs('#detailModal').classList.add('open');
 }
 function addCommunity(id){
@@ -346,11 +582,19 @@ function displayTitle(l){
  return l.dong.split(' ').slice(-1)[0]+' '+l.layout+sizeText;
 }
 function previewUrl(l){return l.photo||''}
+
+function commuteBadges(l){
+ const mins=Number(l.time),changes=Number(l.transfer);
+ const minuteText=Number.isFinite(mins)&&mins>=0?'약 '+escapeHtml(String(mins))+'<span class="commute-unit">분</span>':'확인 필요';
+ const transferText=Number.isInteger(changes)&&changes>=0?escapeHtml(String(changes))+'<span class="commute-unit">회</span>':'확인 필요';
+ return '<div class="commute-row"><div class="commute-item"><span class="commute-label">⏱ 예상 이동시간</span><span class="commute-number">'+minuteText+'</span></div><div class="commute-item transfer"><span class="commute-label">⇄ 예상 환승 횟수</span><span class="commute-number">'+transferText+'</span></div></div>';
+}
+
 function listingCardHtml(l){
  const hits=lifestyleHits(l,selPrefs()),id=String(l.id);
  const prefHtml=hits.length?'<div class="pref-hits">'+hits.map(x=>'<span class="pref-hit">✓ '+prefNames[x]+'</span>').join('')+'</div>':'';
  const preview='<div class="listing-photo"><div class="listing-photo-fallback">실매물 대표사진 준비 중</div><img src="'+previewUrl(l)+'" alt="'+displayTitle(l)+' 실매물 대표사진" loading="eager" fetchpriority="high" decoding="async" onerror="this.closest(\'.card\').style.display=\'none\'"><span class="listing-photo-label">실매물 대표사진 · '+l.source+'</span></div>';
- return '<article class="card" data-detail-id="'+escapeHtml(id)+'">'+preview+'<div class="card-body"><div class="loc">'+l.province+' › '+l.city+' › '+l.dong+'</div><h3>'+displayTitle(l)+'</h3><div class="price">'+priceText(l)+'</div><div class="meta"><span class="tag">'+l.deal+'</span><span class="tag">'+typeLabel(l.type)+'</span><span class="tag">건대입구역 기준 약 '+l.time+'분</span></div>'+expansionPitch(l)+prefHtml+'<div class="source">'+l.source+' · '+escapeHtml(l.note||'')+'</div><div class="community-meta"><span>후기 '+reviewCount(id)+'</span><span>위시 '+wishCount(id)+'</span><span>등록 '+(l.addedAt||'-')+'</span></div><div class="card-actions"><button type="button" class="detail-btn" data-open-detail="'+escapeHtml(id)+'">상세 · 커뮤니티 · 뉴스</button><button type="button" class="wish-btn '+(wishCount(id)?'on':'')+'" data-wish="'+escapeHtml(id)+'">♡ '+wishCount(id)+'</button></div><div class="portal-inline"><a href="'+l.url+'" target="_blank" rel="noopener">실매물 원문</a><a href="'+hogangLink(l)+'" target="_blank" rel="noopener">호갱노노 확인</a></div></div></article>';
+ return '<article class="card" data-detail-id="'+escapeHtml(id)+'">'+preview+'<div class="card-body"><div class="loc">'+l.province+' › '+l.city+' › '+l.dong+'</div><h3>'+displayTitle(l)+'</h3><div class="price">'+priceText(l)+'</div><div class="meta"><span class="tag">'+l.deal+'</span><span class="tag">'+typeLabel(l.type)+'</span></div>'+commuteBadges(l)+'<div class="commute-note">건대입구역 기준 · 실시간 경로가 아닌 예상치</div>'+expansionPitch(l)+prefHtml+'<div class="source">'+l.source+' · '+escapeHtml(l.note||'')+'</div><div class="community-meta"><span>후기 '+reviewCount(id)+'</span><span>위시 '+wishCount(id)+'</span><span>등록 '+(l.addedAt||'-')+'</span></div><div class="card-actions"><button type="button" class="detail-btn" data-open-detail="'+escapeHtml(id)+'">상세 · 커뮤니티 · 뉴스</button><button type="button" class="wish-btn '+(wishCount(id)?'on':'')+'" data-wish="'+escapeHtml(id)+'">♡ '+wishCount(id)+'</button></div><div class="portal-inline"><a href="'+l.url+'" target="_blank" rel="noopener">실매물 원문</a><a href="'+hogangLink(l)+'" target="_blank" rel="noopener">호갱노노 확인</a></div></div></article>';
 }
 function cityPortalLinks(city,dong){
  const place=city+' '+(dong||'');
@@ -372,6 +616,227 @@ function flatSortedHtml(items){
  const heading=labels[mode]||'정렬 결과';
  return '<section class="city-group"><div class="city-hero"><div class="city-info"><h2>'+heading+'</h2><div class="city-count">선택한 조건의 전체 매물을 지역 구분 없이 정렬합니다.</div></div></div><div class="cards">'+items.map((l,i)=>'<div style="position:relative"><span style="position:absolute;z-index:3;top:8px;left:8px;background:#174a92;color:#fff;border-radius:999px;padding:4px 7px;font-size:10px;font-weight:800">#'+(i+1)+'</span>'+listingCardHtml(l)+'</div>').join('')+'</div></section>';
 }
+
+let homeDiscoveryInitialized=false;
+let homeDiscoverySource=[];
+let selectedHomeRegion=null;
+const homeTypeOptions=[
+ ['단독·다가구','단독·다가구'],
+ ['다세대·빌라','다세대·연립'],
+ ['아파트','아파트'],
+ ['오피스텔','주거용 오피스텔'],
+ ['도시형생활주택','도시형생활주택']
+];
+
+/* Representative station corridors. Source inventory has dong/time/transfer only,
+   not address coordinates or door-to-door itineraries.
+   Never label the sample rail route as a verified listing-level route. */
+const featuredRailExamples={
+ '광진구|중곡동':{
+  stations:['중곡역','건대입구역'], interchange:-1,
+  legs:[['7호선','약 5분']], origin:'중곡역'
+ },
+ '구리시|교문동':{
+  stations:['구리역','잠실역','건대입구역'], interchange:1,
+  legs:[['8호선','약 18분'],['2호선','약 8분']], origin:'구리역'
+ },
+ '남양주시|화도읍':{
+  stations:['마석역','상봉역','건대입구역'], interchange:1,
+  legs:[['경춘선','약 25~30분'],['7호선','약 15분']], origin:'마석역'
+ },
+ '의정부시|금오동':{
+  stations:['의정부역','도봉산역','건대입구역'], interchange:1,
+  legs:[['1호선','약 8분'],['7호선','약 32분']], origin:'의정부역'
+ },
+ '안양시|동안구 관양동':{
+  stations:['인덕원역','이수역','건대입구역'],interchange:1,
+  legs:[['4호선','약 20분(추정)'],['7호선','약 20분(추정)']],origin:'인덕원역'
+ }
+};
+function featuredRailRoute(l){
+ const path=featuredRailExamples[l.city+'|'+l.dong];
+ if(!path)return '<div class="featured-route"><div class="featured-route-title">🚇 간단 교통 경로</div><div class="featured-route-note">매물 인근 출발역 정보가 없어 환승역과 구간별 소요시간을 아직 표시할 수 없습니다.</div></div>';
+ const stations=path.stations.map((station,index)=>{
+  const marker=index===path.interchange?'<span class="route-transfer">환승</span>':'';
+  return (index?'<span class="route-arrow">→</span>':'')+'<span>'+escapeHtml(station)+'</span>'+marker;
+ }).join('');
+ const legs=path.legs.map(([line,mins])=>'<span class="featured-route-leg">'+escapeHtml(line)+' '+escapeHtml(mins)+'</span>').join('');
+ const mapQuery=encodeURIComponent(path.origin+' 건대입구역 대중교통');
+ return '<div class="featured-route"><div class="featured-route-title">🚇 동네 대표역에서 건대입구역까지 · 경로 예시</div>'
+  +'<div class="featured-route-stations">'+stations+'</div>'
+  +'<div class="featured-route-legs">'+legs+'</div>'
+  +'<div class="featured-route-note">열차 탑승시간 참고 · 매물→출발역 이동·대기·환승 보행시간 미포함. '
+  +'<a class="featured-route-link" href="https://map.naver.com/p/search/'+mapQuery+'" target="_blank" rel="noopener noreferrer">네이버 지도에서 확인</a></div></div>';
+}
+
+
+const regionGuideV29={"광진구":["건대 상권과 서울 동부 주거지가 공존하는 생활권","서울어린이대공원·한강공원","건대 스타시티·건국대병원·중곡문화체육센터","2·7호선 건대입구역, 7호선 중곡역","https://www.sisul.or.kr/open_content/childrenpark/"],"구리시":["호수공원과 구리역 상권을 함께 이용하는 서울 동부 인접 생활권","장자호수공원·이문안호수공원","구리역 롯데백화점·한양대구리병원","8호선·경의중앙선 구리역, 강변역행 버스","https://www.guri.go.kr/environment/contents.do?key=8156"],"남양주시":["마석·별내 등 동네에 따라 주거환경이 다른 넓은 생활권","천마산 녹지·별내천(지역에 따라 다름)","화도체육문화센터·마석역 상권(화도읍 예시)","경춘선 마석역·8호선 별내역·M2316","https://4season.ncuc.or.kr/main/104"],"의정부시":["경전철과 1호선이 이어지는 경기 북부 생활권","부용천 산책로·추동공원","의정부성모병원·경기북부청사","의정부경전철·수도권 1호선","https://www.ikld.kr/news/articleView.html?idxno=283840"],"안양시":["평촌 상권과 인덕원 교통축을 이용하는 주거 생활권","학의천·평촌중앙공원","동편마을 카페거리·평촌 상권","4호선 인덕원역·범계역 등","https://www.anyang.go.kr/dongan/contents.do?key=1185"],"인덕원역·관양동":["관악산·학의천 사이의 주거지와 카페거리가 어우러진 동네","학의천·동편마을 수변공원","동편마을 카페거리·인덕원 상권","4호선 인덕원역 → 이수역 7호선 환승","https://anyang.go.kr/tour/contents.do?key=1919"]},localGuideV29={"광진구|중곡동":[["서울어린이대공원"],["중곡문화체육센터"],["7호선 중곡역"]],"구리시|교문동":[["이문안호수공원","장자호수공원 하류"],["한양대구리병원"],["교문사거리 1번 버스","구리역(시내)"]],"남양주시|화도읍":[["천마산 일대 녹지"],["화도체육문화센터","마석역 상권"],["경춘선 마석역","M2316 잠실행"]],"의정부시|금오동":[["부용천 산책로","추동공원"],["의정부성모병원"],["의정부경전철 동오역"]],"안양시|동안구 관양동":[["학의천·동편마을 수변공원"],["동편마을 카페거리"],["인덕원역 접근성 별도 확인"]],"구리시|수택동":[["장자호수공원"],["구리역 상권"],["8호선 장자호수공원역"]]},busGuideV29={"구리시|교문동":["일반버스 1번 + 지하철 2호선","교문사거리","1번 버스","강변역","2호선 → 건대입구역","https://life.ttpk.co.kr/bus/51570"],"남양주시|화도읍":["광역급행 M2316 + 지하철 2호선","마석역 인근 정류장","M2316","잠실광역환승센터","잠실역 2호선 → 건대입구역","https://www.edpk.co.kr/info/bus/print"]};
+function regionGuideMarkupV29(key){
+ const g=regionGuideV29[key];if(!g)return '';
+ return '<div class="discovery-neighborhood"><div class="discovery-neighborhood-intro">'+escapeHtml(g[0])+'</div>'
+ +[['🌳 공원·산책',g[1]],['🛒 생활시설',g[2]],['🚇 교통접근',g[3]]].map(x=>'<div class="discovery-neighborhood-row"><span>'+escapeHtml(x[0])+'</span><b>'+escapeHtml(x[1])+'</b></div>').join('')
+ +'<div class="discovery-neighborhood-note">지역 대표정보 · 개별 매물과의 도보거리는 확인 필요</div></div>';
+}
+function listingGuideMarkupV29(l){
+ const x=localGuideV29[l.city+'|'+l.dong];const cg=regionGuideV29[l.city];
+ let groups=[],scope='동네 대표정보',source='';
+ if(x){groups=x;source=cg?cg[4]:''}
+ else if(cg){groups=[[cg[1]],[cg[2]],[cg[3]]];scope='시·구 단위 대표시설';source=cg[4]}
+ else if(areaProfiles[l.city]){
+  const p=areaProfiles[l.city],a=p.fac||[];
+  groups=[a.filter(v=>/[🌳🌺🌊]/.test(v[0])).map(v=>v[0]).slice(0,2),a.filter(v=>/[🛍🎬🏥]/.test(v[0])).map(v=>v[0]).slice(0,2),a.filter(v=>/[🚇🚄]/.test(v[0])).map(v=>v[0]).slice(0,2)];
+  scope='시·구 단위 대표시설';source=p.source||'';
+ }
+ if(!groups.length)return '<div class="living-summary"><b>📍 생활환경</b><p>지역별 시설 정보 확장 중</p></div>';
+ const tags=groups.map((arr,i)=>{const t=arr.filter(Boolean);return t.length?['🌳 ','🛒 ','🚇 '][i]+t[0]:''}).filter(Boolean);
+ return '<div class="living-summary"><b>📍 '+escapeHtml(l.city)+' '+escapeHtml(l.dong)+' · 생활 키워드</b><div class="living-chips">'
+ +tags.slice(0,6).map(x=>'<span>'+escapeHtml(x)+'</span>').join('')+'</div><small>'+escapeHtml(scope)+' · 실제 매물까지의 거리·접근성은 미확인</small>'
+ +(source?'<a href="'+escapeHtml(source)+'" target="_blank" rel="noopener noreferrer">지역정보 출처</a>':'')+'</div>';
+}
+function transitRoutesV29(l){
+ const rail=featuredRailRoute(l),b=busGuideV29[l.city+'|'+l.dong];
+ if(!b)return rail;
+ const q=encodeURIComponent(b[1]+' 건대입구역 대중교통');
+ return rail+'<div class="bus-route-card"><div class="bus-route-head">🚌 버스 대안 · '+escapeHtml(b[0])+'</div><div class="bus-route-line"><span>'+escapeHtml(b[1])+'</span> → <strong>'+escapeHtml(b[2])+'</strong> → <span>'+escapeHtml(b[3])+'</span> → <strong>'+escapeHtml(b[4])+'</strong></div>'
+ +'<div class="bus-route-note">정류장 출발 기준 예시. 해당 매물에서 정류장까지의 이동, 버스 탑승·대기시간은 확인되지 않았습니다. <a href="'+escapeHtml(b[5])+'" target="_blank" rel="noopener noreferrer">노선 근거</a> · <a href="https://map.naver.com/p/search/'+q+'" target="_blank" rel="noopener noreferrer">지도에서 확인</a></div></div>';
+}
+
+
+function conciseRegionIntroV30(key){
+ const g=regionGuideV29[key];
+ if(!g)return '';
+ return '<span class="discovery-brief">'+escapeHtml(g[0])+'</span>';
+}
+function selectedRegionGuideV30(key){
+ const g=regionGuideV29[key];
+ if(!g)return '<div class="neighborhood-kicker">이 동네에 살면?</div><p class="neighborhood-subtitle">지역 생활정보를 확인하고 있어요.</p>';
+ const info=[['🌳 생활환경',g[1]],['🛒 주요 편의시설',g[2]],['🚇 교통 접근성',g[3]]];
+ return '<div class="neighborhood-kicker">이 동네에 살면?</div>'
+  +'<h4>'+escapeHtml(key)+'</h4>'
+  +'<p class="neighborhood-subtitle">'+escapeHtml(g[0])+'</p>'
+  +'<div class="neighborhood-facts">'+info.map(([label,value])=>'<div class="neighborhood-fact"><span class="neighborhood-fact-label">'+escapeHtml(label)+'</span><strong class="neighborhood-fact-value">'+escapeHtml(value)+'</strong></div>').join('')+'</div>'
+  +'<div class="neighborhood-disclaimer"><span>지역 대표시설 기준 · 매물에서의 실제 거리와 이동시간은 별도 확인</span>'
+  +(g[4]?'<a href="'+escapeHtml(g[4])+'" target="_blank" rel="noopener noreferrer">지역정보 출처</a>':'')+'</div>';
+}
+
+
+const photosByAreaV31={"광진구":["https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b3/Seoul_Childrens_Grand_Park_Main_Gate.jpg/960px-Seoul_Childrens_Grand_Park_Main_Gate.jpg","https://commons.wikimedia.org/wiki/File:Seoul_Childrens_Grand_Park_Main_Gate.jpg","Integral","CC BY-SA 3.0","서울어린이대공원 정문"],"구리시":["https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c1/Korea-Guri_City-03.jpg/960px-Korea-Guri_City-03.jpg","https://commons.wikimedia.org/wiki/File:Korea-Guri_City-03.jpg","Mark Hambleton","CC BY-SA 2.0","장자호수공원"],"남양주시":["https://thumb.wikimedia.org/wikipedia/commons/thumb/3/34/View_of_Maseok_%282025%29.jpg/960px-View_of_Maseok_%282025%29.jpg","https://commons.wikimedia.org/wiki/File:View_of_Maseok_(2025).jpg","Sadopaul","CC BY-SA 4.0","마석 일대 전경"],"의정부시":["https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1a/Hoeryongcheon_Stream_-_Uijeongbu.jpg/960px-Hoeryongcheon_Stream_-_Uijeongbu.jpg","https://commons.wikimedia.org/wiki/File:Hoeryongcheon_Stream_-_Uijeongbu.jpg","Yann Michel Cueroni","CC BY-SA 4.0","의정부 회룡천"],"인덕원역·관양동":["https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/20200903_%EC%9D%B8%EB%8D%95%EC%9B%90%EC%97%AD_8%EB%B2%88%EC%B6%9C%EA%B5%AC.jpg/960px-20200903_%EC%9D%B8%EB%8D%95%EC%9B%90%EC%97%AD_8%EB%B2%88%EC%B6%9C%EA%B5%AC.jpg","https://commons.wikimedia.org/wiki/File:20200903_%EC%9D%B8%EB%8D%95%EC%9B%90%EC%97%AD_8%EB%B2%88%EC%B6%9C%EA%B5%AC.jpg","Kth696586","CC BY-SA 4.0","인덕원역 8번 출구"]};
+let rankedAreasV31=[],slideIndexV31=0;
+function pickHomesV31(rows){return [...rows].sort((a,b)=>Number(Boolean(b.photo))-Number(Boolean(a.photo))||(Number(b.py)||0)-(Number(a.py)||0)||Number(a.time)-Number(b.time))}
+function scoreAreaV31(a){
+ const times=a.rows.map(l=>Number(l.time)).filter(Number.isFinite);
+ const min=times.length?Math.min(...times):90;
+ const avg=a.rows.reduce((v,l)=>v+(Number(l.py)||0),0)/a.rows.length;
+ const transfer=Math.min(...a.rows.map(l=>Number(l.transfer)||0));
+ return (90-min)*.42+Math.min(26,Math.log2(a.rows.length+1)*7)+Math.min(18,avg*1.2)-transfer*8;
+}
+function slideToV31(index){
+ if(!rankedAreasV31.length)return;
+ slideIndexV31=(index+rankedAreasV31.length)%rankedAreasV31.length;
+ const a=rankedAreasV31[slideIndexV31],g=regionGuideV29[a.label]||regionGuideV29[a.city];
+ const p=photosByAreaV31[a.label],fastest=[...a.rows].sort((x,y)=>Number(x.time)-Number(y.time)||Number(x.transfer)-Number(y.transfer))[0];
+ const pic=p?'<img src="'+escapeHtml(p[0])+'" alt="'+escapeHtml(p[4])+' 지역 사진" loading="eager" decoding="async" onerror="this.remove()">':'';
+ const credit=p?'<a class="slide-photo-credit" href="'+escapeHtml(p[1])+'" target="_blank" rel="noopener noreferrer">사진 '+escapeHtml(p[2])+' · '+escapeHtml(p[3])+' · 화면에 맞게 크롭</a>':'';
+ const tags=g?['🌳 '+g[1].split('·')[0],'🛍 '+g[2].split('·')[0],'🚇 '+g[3].split(',')[0]]:[];
+ qs('#discoveryCount').textContent=' · '+(slideIndexV31+1)+' / '+rankedAreasV31.length;
+ qs('#discoveryRegions').innerHTML='<div class="slide-grid"><div class="slide-visual">'+pic+'<div class="slide-place-caption">'+escapeHtml(p?p[4]:'사진을 준비 중입니다')+'</div>'+credit+'</div>'
+ +'<div class="slide-body"><div class="slide-rank">추천 '+(slideIndexV31+1)+'순위 · '+escapeHtml(a.province)+'</div><h2>'+escapeHtml(a.label)+'</h2>'
+ +'<p class="slide-about">'+escapeHtml(g?g[0]:'등록 매물과 이동 조건을 기준으로 살펴볼 후보 지역')+'</p>'
+ +'<div class="slide-chips">'+tags.map(x=>'<span>'+escapeHtml(x)+'</span>').join('')+'</div>'
+ +'<div class="slide-small-stats"><span>⏱ 약 '+escapeHtml(String(fastest.time))+'분</span><span>⇄ 환승 '+escapeHtml(String(fastest.transfer))+'회</span><span>매물 '+a.rows.length+'건</span><small>건대입구역 기준 · 등록 매물의 참고용 예상치</small></div>'
+ +'<div class="slide-action"><button type="button" data-home-region="'+escapeHtml(a.label)+'" data-home-province="'+escapeHtml(a.province)+'">이 동네에 살면? →</button><em>생활환경 확인 · 주택 유형 선택</em></div></div></div>';
+ qs('#slideDotsV31').innerHTML=rankedAreasV31.map((v,i)=>'<button type="button" class="slide-dot" data-slide-index="'+i+'" aria-label="'+(i+1)+'순위 '+escapeHtml(v.label)+' 보기" aria-current="'+String(i===slideIndexV31)+'"></button>').join('');
+ qs('#homeFeatureTitleV31').textContent=a.label+'에서 눈여겨볼 집';
+ qs('#discoveryListings').innerHTML=pickHomesV31(a.rows).slice(0,2).map(l=>{
+   const title=escapeHtml(displayTitle(l)),img=l.photo?'<img src="'+escapeHtml(l.photo)+'" alt="'+title+' 실매물 사진" loading="lazy" decoding="async" onerror="this.remove()">':'';
+   return '<article class="home-feature-card"><div class="home-feature-img"><span class="fall">매물 사진은 원문에서 확인</span>'+img+'</div>'
+   +'<div class="home-feature-body"><span class="home-feature-loc">'+escapeHtml(l.city+' '+l.dong)+'</span><h3>'+title+'</h3><div class="home-feature-price">'+escapeHtml(priceText(l))+'</div>'
+   +'<div class="home-feature-sub">'+escapeHtml(typeLabel(l.type))+' · '+(l.py?escapeHtml(String(l.py))+'평':'면적 미확인')+'</div>'
+   +'<div class="home-feature-tags"><span>약 '+escapeHtml(String(l.time))+'분</span><span>환승 '+escapeHtml(String(l.transfer))+'회</span></div>'
+   +'<div class="home-feature-links"><button type="button" data-home-detail="'+escapeHtml(String(l.id))+'">상세 보기</button><a href="'+escapeHtml(l.url)+'" target="_blank" rel="noopener noreferrer">매물 원문</a></div></div></article>';
+ }).join('');
+ qs('#discoveryTypePanel').hidden=true;selectedHomeRegion=null;
+}
+function nextSlideV31(delta){slideToV31(slideIndexV31+delta)}
+function showResultsV31(){const target=qs('#homeResultsV31');target.hidden=false;target.scrollIntoView({behavior:'smooth',block:'start'})}
+function renderHomeDiscovery(rows){
+ homeDiscoveryInitialized=true;homeDiscoverySource=[...rows];
+ const byCity=new Map();rows.forEach(l=>{if(!byCity.has(l.city))byCity.set(l.city,[]);byCity.get(l.city).push(l)});
+ if(!rows.length){qs('#discoveryRegions').innerHTML='<div class="empty">현재 조건의 매물 정보가 없습니다.</div>';return}
+ const preferred=['광진구','구리시','남양주시','의정부시','안양시','성북구','양천구'];
+ const popular=[...byCity.keys()].sort((x,y)=>byCity.get(y).length-byCity.get(x).length);
+ rankedAreasV31=[...new Set([...preferred.filter(x=>byCity.has(x)),...popular])].slice(0,4).map(city=>({label:city,city,province:byCity.get(city)[0].province,rows:byCity.get(city)}));
+ const indeokwon=(byCity.get('안양시')||[]).filter(l=>l.province==='경기도'&&l.dong==='동안구 관양동');
+ if(indeokwon.length)rankedAreasV31.push({label:'인덕원역·관양동',city:'안양시',province:'경기도',rows:indeokwon});
+ rankedAreasV31.sort((x,y)=>scoreAreaV31(y)-scoreAreaV31(x));
+ slideToV31(0);
+}
+function updateHomeTypeSelection(){
+ const checked=qsa('#discoveryTypeOptions input:checked').map(x=>x.value);
+ const n=selectedHomeRegion?homeDiscoverySource.filter(l=>l.city===selectedHomeRegion.city&&l.province===selectedHomeRegion.province&&(!selectedHomeRegion.dong||l.dong===selectedHomeRegion.dong)&&checked.includes(l.type)).length:0;
+ const btn=qs('#discoveryApplyTypes');
+ btn.disabled=checked.length===0||n===0;
+ qs('#discoveryTypeStatus').textContent=checked.length?checked.length+'개 유형 선택 · 기본 조건 매물 '+n+'건':'주택 유형을 선택해 주세요.';
+}
+function openHomeRegionChooser(city,province){
+ selectedHomeRegion={city:city==='인덕원역·관양동'?'안양시':city,province,dong:city==='인덕원역·관양동'?'동안구 관양동':''};
+ const matching=homeDiscoverySource.filter(l=>l.city===selectedHomeRegion.city&&l.province===province&&(!selectedHomeRegion.dong||l.dong===selectedHomeRegion.dong));
+ const counts={};matching.forEach(l=>{counts[l.type]=(counts[l.type]||0)+1});
+ const panel=qs('#discoveryTypePanel');
+ qs('#discoveryTypeHeading').textContent=city+' 매물 찾기';
+ qs('#discoveryTypePanel .discovery-type-head p').textContent='생활환경을 먼저 살펴보고 원하는 주택 유형을 선택하세요.';
+ qs('#discoveryNeighborhoodGuide').innerHTML=selectedRegionGuideV30(city);
+ qs('#discoveryTypeOptions').innerHTML=homeTypeOptions.map(([type,name])=>{
+  const count=counts[type]||0;
+  return '<label class="discovery-type-option"><input type="checkbox" value="'+escapeHtml(type)+'" '+(count?'':'disabled')+'><span>'+escapeHtml(name)+'</span><small>'+count+'건</small></label>';
+ }).join('');
+ qsa('[data-home-region]').forEach(b=>b.setAttribute('aria-expanded',String(b.dataset.homeRegion===city&&b.dataset.homeProvince===province)));
+ panel.hidden=false;
+ updateHomeTypeSelection();
+ panel.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function applyHomeRegionTypes(all){
+ if(!selectedHomeRegion)return;
+ const available=homeDiscoverySource.filter(l=>l.city===selectedHomeRegion.city&&l.province===selectedHomeRegion.province&&(!selectedHomeRegion.dong||l.dong===selectedHomeRegion.dong));
+ const types=all?[...new Set(available.map(l=>l.type))]:qsa('#discoveryTypeOptions input:checked').map(x=>x.value);
+ if(!types.length)return;
+ qs('#province').value=selectedHomeRegion.province;
+ renderAreas();
+ qsa('#areas input').forEach(box=>{box.checked=box.value===selectedHomeRegion.city});
+ renderDongs();
+ if(selectedHomeRegion.dong){qsa('#dongs input').forEach(x=>x.checked=x.value===selectedHomeRegion.city+'|||'+selectedHomeRegion.dong);updateTexts()}
+ qsa('#types input').forEach(x=>{x.checked=types.includes(x.value)});
+ updateTypeText();
+ qs('#discoveryTypePanel').hidden=true;
+ qsa('[data-home-region]').forEach(b=>b.setAttribute('aria-expanded','false'));
+ search();
+ showResultsV31();
+}
+qs('#discovery').addEventListener('click',e=>{
+ const detail=e.target.closest('[data-home-detail]');
+ if(detail){openDetail(detail.dataset.homeDetail);return}
+ if(e.target.closest('[data-home-close]')){
+  qs('#discoveryTypePanel').hidden=true;
+  qsa('[data-home-region]').forEach(b=>b.setAttribute('aria-expanded','false'));
+  selectedHomeRegion=null;
+  return;
+ }
+ if(e.target.closest('[data-home-all]')){applyHomeRegionTypes(true);return}
+ if(e.target.closest('[data-home-apply]')){applyHomeRegionTypes(false);return}
+ if(e.target.closest('[data-slide-prev]')){nextSlideV31(-1);return}
+ if(e.target.closest('[data-slide-next]')){nextSlideV31(1);return}
+ const dot=e.target.closest('[data-slide-index]');
+ if(dot){slideToV31(Number(dot.dataset.slideIndex));return}
+ if(e.target.closest('[data-home-select]')){const a=rankedAreasV31[slideIndexV31];if(a)openHomeRegionChooser(a.label,a.province);return}
+ const region=e.target.closest('[data-home-region]');
+ if(region)openHomeRegionChooser(region.dataset.homeRegion,region.dataset.homeProvince);
+});
+qs('#discoveryTypeOptions').addEventListener('change',updateHomeTypeSelection);
+let homeTouchX=0;
+qs('#discoveryRegions').addEventListener('touchstart',e=>{homeTouchX=e.changedTouches[0].screenX},{passive:true});
+qs('#discoveryRegions').addEventListener('touchend',e=>{const dx=e.changedTouches[0].screenX-homeTouchX;if(Math.abs(dx)>45)nextSlideV31(dx<0?1:-1)},{passive:true});
+qs('#discoveryRegions').addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();nextSlideV31(e.key==='ArrowRight'?1:-1)}});
+
 function renderCurrentResults(){
  const sorted=sortResults(currentResults);
  const mode=qs('#sort')?qs('#sort').value:'recommend';
@@ -409,6 +874,7 @@ function search(){
   html+='<div class="near-title">현재 매물 더 찾기</div><div class="portal"><a target="_blank" href="https://www.google.com/search?q='+encodeURIComponent(loc+' 당근부동산 월세')+'">당근부동산 검색</a><a target="_blank" href="https://www.google.com/search?q='+encodeURIComponent(loc+' 네이버부동산 월세')+'">네이버부동산 검색</a><a target="_blank" href="https://www.google.com/search?q='+encodeURIComponent(loc+' 직방 월세')+'">직방 검색</a><a target="_blank" href="https://www.google.com/search?q='+encodeURIComponent(loc+' 다방 월세')+'">다방 검색</a><a target="_blank" href="https://www.google.com/search?q='+encodeURIComponent(loc+' 피터팬 월세')+'">피터팬 검색</a><a target="_blank" href="https://www.google.com/search?q='+q+'">통합검색</a></div>';
   qs('#resultCount').innerHTML='검색 결과 <b>0</b>건 · 근접매물 '+fallback.length+'건';if(qs('#headerResultCount')) qs('#headerResultCount').textContent='0';qs('#results').className=currentView==='list'?'view-list':'view-grid';qs('#results').innerHTML=html;
  }
+ if(!homeDiscoveryInitialized)renderHomeDiscovery(out);
 }
 qs('#province').addEventListener('change',()=>{renderAreas();search();});
 qs('#areas').addEventListener('change',renderDongs);
@@ -465,11 +931,11 @@ function applyNaturalQuery(){
  if(/원룸/.test(raw))qs('#layout').value='원룸';else if(/투룸/.test(raw))qs('#layout').value='투룸';else if(/쓰리룸|3룸/.test(raw))qs('#layout').value='쓰리룸';
  renderAreas();updateTypeText();updateDealMoneyText();qs('#quickStatus').textContent='말한 조건 적용 · '+raw;search();
 }
-qsa('[data-preset]').forEach(b=>b.addEventListener('click',()=>applyPreset(b.dataset.preset)));
-qs('#applyNatural').addEventListener('click',applyNaturalQuery);
-qs('#naturalQuery').addEventListener('keydown',e=>{if(e.key==='Enter')applyNaturalQuery()});
+qsa('[data-preset]').forEach(b=>b.addEventListener('click',()=>{applyPreset(b.dataset.preset);showResultsV31()}));
+qs('#applyNatural').addEventListener('click',()=>{applyNaturalQuery();showResultsV31()});
+qs('#naturalQuery').addEventListener('keydown',e=>{if(e.key==='Enter'){applyNaturalQuery();showResultsV31()}});
 
-qs('#search').addEventListener('click',search);
+qs('#search').addEventListener('click',()=>{search();showResultsV31()});
 qs('#dep').addEventListener('input',updateDealMoneyText);qs('#rent').addEventListener('input',updateDealMoneyText);renderAreas();updateTypeText();updateSizePrefText();updateDealMoneyText();search();
 </script>
 </body>
