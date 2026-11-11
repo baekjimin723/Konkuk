@@ -263,10 +263,29 @@ header .brand{font-size:24px;letter-spacing:-.04em}
 .neighborhood-small-gallery .thumb-source{display:block;margin-top:2px;color:#8395a6;font-size:8px;line-height:1.35;text-decoration:none}
 @media(max-width:600px){.neighborhood-small-gallery{gap:6px;margin:12px 0}.neighborhood-small-gallery .thumb-visual{height:77px}.neighborhood-small-gallery .thumb-caption{font-size:9px}.neighborhood-small-gallery .thumb-source{font-size:7px}}
 
+
+/* v37: photos explain each lifestyle keyword instead of duplicating hero imagery */
+.discovery-neighborhood-summary .neighborhood-small-gallery{display:none}
+.discovery-neighborhood-summary .neighborhood-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:stretch}
+.discovery-neighborhood-summary .neighborhood-fact{padding:0;overflow:hidden;border:1px solid #e0e8f1;border-radius:12px;background:#fff;display:flex;flex-direction:column}
+.neighborhood-keyword-photo{height:114px;background:linear-gradient(135deg,#e6edf6,#f4f8fc);position:relative;overflow:hidden}
+.neighborhood-keyword-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.neighborhood-keyword-photo:after{content:'';position:absolute;inset:58% 0 0;background:linear-gradient(transparent,rgba(21,44,63,.42));pointer-events:none}
+.neighborhood-keyword-photo .neighborhood-photo-caption{position:absolute;bottom:8px;left:9px;right:9px;z-index:2;font-size:10px;font-weight:800;color:white;line-height:1.35;text-shadow:0 1px 4px rgba(0,0,0,.3)}
+.neighborhood-keyword-photo.is-empty{display:flex;align-items:center;justify-content:center}
+.neighborhood-keyword-photo.is-empty:after{display:none}
+.neighborhood-keyword-photo.is-empty .neighborhood-photo-caption{position:static;text-shadow:none;color:#8799aa;font-weight:500}
+.neighborhood-keyword-body{padding:11px;display:flex;flex-direction:column;gap:4px;flex:1;min-width:0}
+.neighborhood-keyword-body .neighborhood-fact-label{font-size:10px;color:#6683a0;font-weight:900;margin:0}
+.neighborhood-keyword-body .neighborhood-fact-value{font-size:12px;line-height:1.55;color:#2d4f71;font-weight:800}
+.neighborhood-keyword-source{display:inline-block;margin-top:auto;padding-top:7px;font-size:9px;color:#738da6;text-decoration:underline;text-underline-offset:2px}
+.neighborhood-keyword-source:hover{color:#205a91}
+@media(max-width:700px){.discovery-neighborhood-summary .neighborhood-facts{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.neighborhood-keyword-photo{height:81px}.neighborhood-keyword-photo .neighborhood-photo-caption{font-size:9px;left:6px;bottom:5px;right:5px}.neighborhood-keyword-body{padding:8px 6px}.neighborhood-keyword-body .neighborhood-fact-label{font-size:9px}.neighborhood-keyword-body .neighborhood-fact-value{font-size:10px;line-height:1.5}.neighborhood-keyword-source{font-size:8px}}
+
 </style>
 </head>
 <body>
-<header><div><div class="brand">생활권ON</div><div class="header-subtitle">살고 싶은 동네부터 찾는 주거 탐색</div></div><div class="header-system-status" style="font-size:10px;color:#6f8197;margin-top:3px">전세·보증부월세 통합검색 · 전체 DB <b id="inventoryCount">0</b>건 · 현재 조건 <b id="headerResultCount">0</b>건 · <span id="syncStatus">상태 확인 준비 중</span></div><div class="build">GWANAKSAN CAFE STREET GALLERY 2026-11-11 · v36</div></header>
+<header><div><div class="brand">생활권ON</div><div class="header-subtitle">살고 싶은 동네부터 찾는 주거 탐색</div></div><div class="header-system-status" style="font-size:10px;color:#6f8197;margin-top:3px">전세·보증부월세 통합검색 · 전체 DB <b id="inventoryCount">0</b>건 · 현재 조건 <b id="headerResultCount">0</b>건 · <span id="syncStatus">상태 확인 준비 중</span></div><div class="build">KEYWORD PHOTO CARDS 2026-11-11 · v37</div></header>
 <main class="wrap">
 <section class="panel discovery-panel" id="discovery">
 <div class="discovery-kicker">FIND YOUR NEXT NEIGHBORHOOD</div>
@@ -751,16 +770,44 @@ function neighborhoodPhotosV34(key){
  return '<div class="neighborhood-small-gallery" aria-label="'+escapeHtml(key)+' 지역 대표 사진">'+items+'</div>';
 }
 
+
+let keywordImagesV37={};
+async function loadKeywordImagesV37(){
+ try{
+  const response=await fetch('assets/areas/keyword-photo-manifest.json?v=37',{cache:'no-store'});
+  if(!response.ok)return;
+  const data=await response.json();
+  if(!data||typeof data!=='object')return;
+  keywordImagesV37=data;
+  if(selectedHomeRegion&&!qs('#discoveryTypePanel').hidden){
+   const key=selectedHomeRegion.dong?'인덕원역·관양동':selectedHomeRegion.city;
+   qs('#discoveryNeighborhoodGuide').innerHTML=selectedRegionGuideV30(key);
+  }
+ }catch(e){/* The area descriptions remain usable without optional photos. */}
+}
+function keywordImageCardV37(key,kind,label,defaultText){
+ const photo=(keywordImagesV37[key]||{})[kind];
+ const text=photo&&photo.info?photo.info:defaultText;
+ const visual=photo&&photo.src
+  ?'<div class="neighborhood-keyword-photo"><img src="'+escapeHtml(photo.src)+'" alt="'+escapeHtml(photo.label||label)+'" loading="lazy" decoding="async" onerror="this.remove()">'
+     +'<span class="neighborhood-photo-caption">'+escapeHtml(photo.label||label)+'</span></div>'
+  :'<div class="neighborhood-keyword-photo is-empty"><span class="neighborhood-photo-caption">사진 정보 확인 중</span></div>';
+ const source=photo&&photo.source?'<a class="neighborhood-keyword-source" href="'+escapeHtml(photo.source)+'" target="_blank" rel="noopener noreferrer">사진 원본·저작권 정보</a>':'';
+ return '<article class="neighborhood-fact">'+visual+'<div class="neighborhood-keyword-body"><span class="neighborhood-fact-label">'+escapeHtml(label)+'</span>'
+   +'<strong class="neighborhood-fact-value">'+escapeHtml(text)+'</strong>'+source+'</div></article>';
+}
+
 function selectedRegionGuideV30(key){
  const g=regionGuideV29[key];
  if(!g)return '<div class="neighborhood-kicker">이 동네에 살면?</div><p class="neighborhood-subtitle">지역 생활정보를 확인하고 있어요.</p>';
- const info=[['🌳 생활환경',g[1]],['🛒 주요 편의시설',g[2]],['🚇 교통 접근성',g[3]]];
  return '<div class="neighborhood-kicker">이 동네에 살면?</div>'
   +'<h4>'+escapeHtml(key)+'</h4>'
   +'<p class="neighborhood-subtitle">'+escapeHtml(g[0])+'</p>'
-  +neighborhoodPhotosV34(key)
-  +'<div class="neighborhood-facts">'+info.map(([label,value])=>'<div class="neighborhood-fact"><span class="neighborhood-fact-label">'+escapeHtml(label)+'</span><strong class="neighborhood-fact-value">'+escapeHtml(value)+'</strong></div>').join('')+'</div>'
-  +'<div class="neighborhood-disclaimer"><span>지역 대표시설 기준 · 매물에서의 실제 거리와 이동시간은 별도 확인</span>'
+  +'<div class="neighborhood-facts">'
+  +keywordImageCardV37(key,'환경','🌳 생활환경',g[1])
+  +keywordImageCardV37(key,'편의','🛒 주요 편의시설',g[2])
+  +keywordImageCardV37(key,'교통','🚇 교통 접근성',g[3])+'</div>'
+  +'<div class="neighborhood-disclaimer"><span>지역별 대표 시설이며 매물과의 실제 도보거리·이동시간은 별도 확인이 필요합니다.</span>'
   +(g[4]?'<a href="'+escapeHtml(g[4])+'" target="_blank" rel="noopener noreferrer">지역정보 출처</a>':'')+'</div>';
 }
 
@@ -1008,6 +1055,7 @@ async function refreshPublishedInventoryV31(){
  }catch(e){/* Keep last cached inventory and layout on connection failure. */}
 }
 refreshPublishedInventoryV31();
+loadKeywordImagesV37();
 
 </script>
 </body>
