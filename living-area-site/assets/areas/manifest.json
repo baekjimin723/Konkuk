@@ -1,0 +1,103 @@
+{
+  "광진구": [
+    [
+      "assets/areas/9d227582c324c004.webp",
+      "서울어린이대공원 산책",
+      "Kang Byeong Kee",
+      "BY-SA 3.0",
+      "https://commons.wikimedia.org/wiki/File:SeoulChildrensGrandPark.JPG"
+    ],
+    [
+      "assets/areas/97a6c9016c5f4f84.webp",
+      "어린이대공원 어린이회관",
+      "Piotrus",
+      "BY-SA 3.0",
+      "https://commons.wikimedia.org/wiki/File:Buildings_near_konkuk_university_01.JPG"
+    ],
+    [
+      "assets/areas/663cf31c84cdbf36.webp",
+      "대공원 벚꽃 산책길",
+      "Peachy1234",
+      "BY-SA 4.0",
+      "https://commons.wikimedia.org/wiki/File:Cherry_Blossoms_along_path.jpg"
+    ]
+  ],
+  "구리시": [
+    [
+      "assets/areas/15b58aededc0606b.webp",
+      "장자호수공원",
+      "Mark Hambleton",
+      "BY-SA 2.0",
+      "https://commons.wikimedia.org/wiki/File:Korea-Guri_City-03.jpg"
+    ],
+    [
+      "assets/areas/c5370fbd2b55161b.webp",
+      "구리시 공원",
+      "Mark Hambleton",
+      "BY-SA 2.0",
+      "https://commons.wikimedia.org/wiki/File:Korea-Guri_City-02.jpg"
+    ],
+    [
+      "assets/areas/6c4e8c545f17ff06.webp",
+      "구리시 생활 풍경",
+      "Mark Hambleton",
+      "BY-SA 2.0",
+      "https://commons.wikimedia.org/wiki/File:Korea-Guri_City-01.jpg"
+    ]
+  ],
+  "남양주시": [
+    [
+      "assets/areas/985e3de5722d6cd4.webp",
+      "마석 일대",
+      "Sadopaul",
+      "BY-SA 4.0",
+      "https://commons.wikimedia.org/wiki/File:View_of_Maseok_%282025%29.jpg"
+    ],
+    [
+      "assets/areas/75877d2fbb00199e.webp",
+      "평내·호평 일대",
+      "Sadopaul",
+      "BY-SA 4.0",
+      "https://commons.wikimedia.org/wiki/File:View_of_Pyeongnae_and_Hopyeong_%282025%29.jpg"
+    ]
+  ],
+  "의정부시": [
+    [
+      "assets/areas/c7843fb331add77d.webp",
+      "회룡천 산책길",
+      "Yann Michel Cueroni",
+      "BY-SA 4.0",
+      "https://commons.wikimedia.org/wiki/File:Hoeryongcheon_Stream_-_Uijeongbu.jpg"
+    ],
+    [
+      "assets/areas/3434721512b9151e.webp",
+      "의정부 부대찌개 거리",
+      "Christian Bolz",
+      "BY-SA 4.0",
+      "https://commons.wikimedia.org/wiki/File:Budaejjigae-Street_in_Uijeongbu.jpg"
+    ]
+  ],
+  "인덕원역·관양동": [
+    [
+      "assets/areas/701cffe50f505ee8.webp",
+      "관양동 인근 관악산",
+      "Sikander Iqbal",
+      "BY-SA 4.0",
+      "https://commons.wikimedia.org/wiki/File:Gwanaksan%2C_Anyang_-_20251110-012941416.jpg"
+    ],
+    [
+      "assets/areas/9a6341ce4e64b2b0.webp",
+      "인덕원초 인근 놀이터",
+      "고려",
+      "BY 4.0",
+      "https://commons.wikimedia.org/wiki/File:Playground_of_Indeogwon_Elementry_School.jpg"
+    ],
+    [
+      "assets/areas/b86201f8d027aefc.webp",
+      "안양 학의천 하류(참고)",
+      "Jpbarrass",
+      "Public domain",
+      "https://commons.wikimedia.org/wiki/File:Looking_upstream_along_the_Hakuicheon_from_the_Anyangcheon_-_2009-04-18.JPG"
+    ]
+  ]
+}
