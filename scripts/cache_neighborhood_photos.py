@@ -180,22 +180,25 @@ if KEYWORD_CATALOG.exists():
             if not reused and local.exists() and local.stat().st_size > 2500:
                 reused = True
             if not reused:
-                # Prefer one canonical direct image URL. Hit the metadata API
-                # only if that URL is not found; Wikimedia rate-limits bursts.
-                candidates = [original_url(filename)]
-                for candidate in candidates:
+                # Commons thumbnail URLs from imageinfo are preferred over
+                # raw originals, which intermittently return HTTP 429 in CI.
+                try:
+                    candidates = official_urls(filename)
+                except Exception:
+                    candidates = []
+                candidates.append(original_url(filename))
+                for candidate in dict.fromkeys(candidates):
                     for attempt in range(2):
                         try:
-                            req = session.get(candidate, timeout=12)
+                            req = session.get(candidate, timeout=22)
                             if req.status_code == 429:
-                                print(" rate limited",city,topic,flush=True)
-                                time.sleep(5)
+                                time.sleep(6 if attempt == 0 else 12)
                                 continue
                             req.raise_for_status()
                             with Image.open(io.BytesIO(req.content)) as img:
                                 img = ImageOps.exif_transpose(img)
                                 if img.width < 350 or img.height < 190:
-                                    break
+                                    continue
                                 img = img.convert("RGB")
                                 img.thumbnail((850, 640))
                                 img.save(local, "WEBP", quality=78, method=5)
@@ -204,10 +207,10 @@ if KEYWORD_CATALOG.exists():
                                 break
                         except Exception as exc:
                             print(f" Keyword image failed {city}/{topic}: {str(exc)[:110]}", flush=True)
-                            time.sleep(1.0)
+                        time.sleep(1.0)
                     if reused:
                         break
-                time.sleep(2.4)
+                time.sleep(1.1)
             if reused:
                 keyword_manifest[city][topic] = {
                     "src": "assets/areas/" + local.name,
