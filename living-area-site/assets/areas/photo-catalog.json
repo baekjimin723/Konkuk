@@ -1,0 +1,110 @@
+{
+  "광진구": [
+    [
+      "assets/areas/9d227582c324c004.webp",
+      "서울어린이대공원 산책",
+      "Kang Byeong Kee",
+      "BY-SA 3.0",
+      "https://commons.wikimedia.org/wiki/File:SeoulChildrensGrandPark.JPG"
+    ],
+    [
+      "assets/areas/97a6c9016c5f4f84.webp",
+      "어린이대공원 어린이회관",
+      "Piotrus",
+      "BY-SA 3.0",
+      "https://commons.wikimedia.org/wiki/File:Buildings_near_konkuk_university_01.JPG"
+    ],
+    [
+      "assets/areas/663cf31c84cdbf36.webp",
+      "대공원 벚꽃 산책길",
+      "Peachy1234",
+      "BY-SA 4.0",
+      "https://commons.wikimedia.org/wiki/File:Cherry_Blossoms_along_path.jpg"
+    ]
+  ],
+  "구리시": [
+    [
+      "assets/areas/15b58aededc0606b.webp",
+      "장자호수공원",
+      "Mark Hambleton",
+      "BY-SA 2.0",
+      "https://commons.wikimedia.org/wiki/File:Korea-Guri_City-03.jpg"
+    ],
+    [
+      "assets/areas/c5370fbd2b55161b.webp",
+      "구리시 공원",
+      "Mark Hambleton",
+      "BY-SA 2.0",
+      "https://commons.wikimedia.org/wiki/File:Korea-Guri_City-02.jpg"
+    ],
+    [
+      "assets/areas/6c4e8c545f17ff06.webp",
+      "구리시 생활 풍경",
+      "Mark Hambleton",
+      "BY-SA 2.0",
+      "https://commons.wikimedia.org/wiki/File:Korea-Guri_City-01.jpg"
+    ]
+  ],
+  "남양주시": [
+    [
+      "assets/areas/985e3de5722d6cd4.webp",
+      "마석 일대",
+      "Sadopaul",
+      "BY-SA 4.0",
+      "https://commons.wikimedia.org/wiki/File:View_of_Maseok_%282025%29.jpg"
+    ],
+    [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/%EB%B3%84%EB%82%B4%EC%B9%B4%ED%8E%98%EA%B1%B0%EB%A6%AC1.jpg",
+      "별내 카페거리",
+      "시원한바람",
+      "BY-SA 3.0",
+      "https://commons.wikimedia.org/wiki/File:별내카페거리1.jpg"
+    ],
+    [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/%EB%B3%84%EB%82%B4%EC%9D%80%ED%95%98%EC%88%98%EB%AC%BC%EA%B8%B8%EA%B3%B5%EC%9B%901.jpg",
+      "별내 은하수물길공원",
+      "시원한바람",
+      "BY-SA 3.0",
+      "https://commons.wikimedia.org/wiki/File:별내은하수물길공원1.jpg"
+    ]
+  ],
+  "의정부시": [
+    [
+      "assets/areas/c7843fb331add77d.webp",
+      "회룡천 산책길",
+      "Yann Michel Cueroni",
+      "BY-SA 4.0",
+      "https://commons.wikimedia.org/wiki/File:Hoeryongcheon_Stream_-_Uijeongbu.jpg"
+    ],
+    [
+      "assets/areas/3434721512b9151e.webp",
+      "의정부 부대찌개 거리",
+      "Christian Bolz",
+      "BY-SA 4.0",
+      "https://commons.wikimedia.org/wiki/File:Budaejjigae-Street_in_Uijeongbu.jpg"
+    ]
+  ],
+  "인덕원역·관양동": [
+    [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Gwanak_Mountain.jpg",
+      "관악산의 푸른 봄 풍경",
+      "lamoix",
+      "CC BY 2.0",
+      "https://commons.wikimedia.org/wiki/File:Gwanak_Mountain.jpg"
+    ],
+    [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Anyang_Municipal_Gwanyang_Library%2C_Photographed_from_Dongpyeonmaeul_4-danji_Apartment.jpg",
+      "동편마을·관양도서관",
+      "고려",
+      "BY 4.0",
+      "https://commons.wikimedia.org/wiki/File:Anyang_Municipal_Gwanyang_Library,_Photographed_from_Dongpyeonmaeul_4-danji_Apartment.jpg"
+    ],
+    [
+      "https://tong.visitkorea.or.kr/cms/resource/81/4076481_image2_1.jpg",
+      "동편마을 카페거리",
+      "한국관광공사",
+      "KOGL 제1유형",
+      "https://xn--o39a1rk22ai9cq45b.kr/place/tourapi-2874858/"
+    ]
+  ]
+}
