@@ -41,6 +41,7 @@ function renderMap(area){
  const target=qs('#areaMapV40');if(!target)return;
  if(typeof L==='undefined'){noMapFallback(area);return}
  if(!map){
+  target.textContent='';
   map=L.map(target,{zoomControl:true,scrollWheelZoom:false,attributionControl:true}).setView([37.6027778,127.1430889],11);
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors'}).addTo(map);
  }
@@ -64,7 +65,7 @@ function renderMap(area){
 function routeUrl(l){return 'https://www.google.com/maps/dir/?api=1&origin='+encodeURIComponent([l.province,l.city,l.dong].filter(Boolean).join(' '))+'&destination='+encodeURIComponent('건대입구역')+'&travelmode=transit'}
 function durationValue(label){
  const numbers=String(label).match(/\d+/g);
- return numbers?((Number(numbers[0])+(numbers[1]?Number(numbers[1]):Number(numbers[0])))/ (numbers[1]?2:2)):0;
+ return numbers?(numbers.length>1?(Number(numbers[0])+Number(numbers[1]))/2:Number(numbers[0])):0;
 }
 function routeExample(l){
  const exact=featuredRailExamples[l.city+'|'+l.dong];
