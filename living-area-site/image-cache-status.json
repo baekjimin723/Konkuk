@@ -1,7 +1,7 @@
 {
-  "before": 234,
-  "cached_real_photos": 234,
+  "before": 231,
+  "cached_real_photos": 231,
   "removed_without_cached_real_photo": 0,
-  "newly_cached_this_run": 8,
+  "newly_cached_this_run": 2,
   "failed": []
 }
