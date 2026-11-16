@@ -1001,13 +1001,13 @@ function search(){
   const typeOk=l=>lhTypeCandidate(l)&&(!state.types.length||state.types.includes(l.type));
   const sameArea=listings.filter(l=>(state.province==='전체'||l.province===state.province)&&cityDongMatch(l)&&typeOk(l)).map(rankNear).sort((a,b)=>a.penalty-b.penalty);
   const sameProvince=listings.filter(l=>(state.province==='전체'||l.province===state.province)&&typeOk(l)).map(rankNear).sort((a,b)=>a.penalty-b.penalty);
-  const fallback=sameArea.length?sameArea:sameProvince;currentResults=fallback;
+  const fallback=sameArea.length?sameArea:sameProvince;currentResults=[];
   const loc=[qs('#province option:checked').textContent,...state.areas,state.dongs.map(v=>v.split('|||')[1])].join(' ');
   const typeQuery=(state.types.length?state.types.join(' '):'단독 다가구 다세대 연립 아파트 주거용 오피스텔');
   const q=encodeURIComponent(loc+' '+typeQuery+' LH 청년전세임대 전세 보증부월세 1억 8천 이하');
-  let html='<div class="empty"><b>선택한 세부 조건은 내부 직접수집을 더 확대 중입니다.</b><div style="margin-top:6px;font-size:12px;color:#71829a">시장에 매물이 없다는 뜻이 아닙니다. 선택한 LH 대상주택 유형 안에서 가장 가까운 실제 매물만 보여주고, 아래에서 현재 매물을 더 찾을 수 있습니다.</div></div>';
+  let html='<div class="empty"><b>선택한 조건에 정확히 일치하는 등록 매물은 0건입니다.</b><div style="margin-top:6px;font-size:12px;color:#71829a">시장에 매물이 없다는 뜻이 아닙니다. 아래 매물은 조건을 충족하지 않을 수 있는 별도 참고 목록입니다. 가격·이동시간 등 상세 조건을 다시 확인해 주세요.</div></div>';
   if(fallback.length){
-    html+='<div class="near-title">'+(sameArea.length?'같은 지역의 근접 실제 매물 전체':'같은 시·도의 근접 실제 매물 전체')+'</div>'+groupedHtml(sortResults(fallback));
+    html+='<div class="near-title">'+(sameArea.length?'조건 불일치 가능 · 같은 지역의 참고 매물':'조건 불일치 가능 · 같은 시·도의 참고 매물')+'</div>'+groupedHtml(sortResults(fallback));
   }
   html+='<div class="near-title">현재 매물 더 찾기</div><div class="portal"><a target="_blank" href="https://www.google.com/search?q='+encodeURIComponent(loc+' 당근부동산 월세')+'">당근부동산 검색</a><a target="_blank" href="https://www.google.com/search?q='+encodeURIComponent(loc+' 네이버부동산 월세')+'">네이버부동산 검색</a><a target="_blank" href="https://www.google.com/search?q='+encodeURIComponent(loc+' 직방 월세')+'">직방 검색</a><a target="_blank" href="https://www.google.com/search?q='+encodeURIComponent(loc+' 다방 월세')+'">다방 검색</a><a target="_blank" href="https://www.google.com/search?q='+encodeURIComponent(loc+' 피터팬 월세')+'">피터팬 검색</a><a target="_blank" href="https://www.google.com/search?q='+q+'">통합검색</a></div>';
   qs('#resultCount').innerHTML='검색 결과 <b>0</b>건 · 근접매물 '+fallback.length+'건';if(qs('#headerResultCount')) qs('#headerResultCount').textContent='0';qs('#results').className=currentView==='list'?'view-list':'view-grid';qs('#results').innerHTML=html;
