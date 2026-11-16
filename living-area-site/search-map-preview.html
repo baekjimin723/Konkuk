@@ -1127,7 +1127,6 @@ loadKeywordImagesV37();
 
 </script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="./assets/area-map-v40.js?v=40"></script>
 <script>
 (function(){
  let map=null,selected=null,markers=[],saved=[];
@@ -1167,5 +1166,7 @@ loadKeywordImagesV37();
  }
  const observer=new MutationObserver(()=>{probe()});observer.observe($('areaMapV40'),{childList:true,subtree:false});probe();refresh();
 })();
-</script></body>
+</script>
+<script src="./assets/area-map-v40.js?v=40"></script>
+</body>
 </html>
