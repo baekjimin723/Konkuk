@@ -1,41 +1,10 @@
 {
-  "checked_at": "2026-11-17T12:32:02+00:00",
-  "before": 267,
-  "active_or_unconfirmed": 262,
-  "removed_this_run": 5,
+  "checked_at": "2026-11-17T21:17:25+00:00",
+  "before": 270,
+  "active_or_unconfirmed": 270,
+  "removed_this_run": 0,
   "unknown_this_run": 0,
-  "removed": [
-    {
-      "id": "4907065",
-      "source": "당근부동산",
-      "url": "https://realty.daangn.com/articles/4907065",
-      "reason": "http:404"
-    },
-    {
-      "id": "4906843",
-      "source": "당근부동산",
-      "url": "https://realty.daangn.com/articles/4906843",
-      "reason": "http:404"
-    },
-    {
-      "id": "4505399",
-      "source": "당근부동산",
-      "url": "https://realty.daangn.com/articles/4505399",
-      "reason": "http:404"
-    },
-    {
-      "id": "4949859",
-      "source": "당근부동산",
-      "url": "https://realty.daangn.com/articles/4949859",
-      "reason": "http:404"
-    },
-    {
-      "id": "5025141",
-      "source": "당근부동산",
-      "url": "https://realty.daangn.com/articles/5025141",
-      "reason": "http:404"
-    }
-  ],
+  "removed": [],
   "unknown": [],
   "policy": "Definitive 404/410, provider redirect, or visible inactive marker only. Temporary/network failures are retained."
 }
