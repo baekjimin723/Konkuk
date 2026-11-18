@@ -1,14 +1,56 @@
 {
-  "checked_at": "2026-11-18T02:57:00+00:00",
-  "before": 276,
-  "active_or_unconfirmed": 275,
-  "removed_this_run": 1,
+  "checked_at": "2026-11-18T11:28:43+00:00",
+  "before": 281,
+  "active_or_unconfirmed": 273,
+  "removed_this_run": 8,
   "unknown_this_run": 0,
   "removed": [
     {
-      "id": "4956127",
+      "id": "4912285",
       "source": "당근부동산",
-      "url": "https://realty.daangn.com/articles/4956127",
+      "url": "https://realty.daangn.com/articles/4912285",
+      "reason": "marker:숨김 처리된 게시글"
+    },
+    {
+      "id": "4915622",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4915622",
+      "reason": "marker:숨김 처리된 게시글"
+    },
+    {
+      "id": "4769226",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4769226",
+      "reason": "http:404"
+    },
+    {
+      "id": "3089265",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/3089265",
+      "reason": "marker:숨김 처리된 게시글"
+    },
+    {
+      "id": "4946069",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4946069",
+      "reason": "http:404"
+    },
+    {
+      "id": "4974355",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4974355",
+      "reason": "http:404"
+    },
+    {
+      "id": "4792878",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4792878",
+      "reason": "http:404"
+    },
+    {
+      "id": "4997121",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4997121",
       "reason": "http:404"
     }
   ],
