@@ -1,59 +1,10 @@
 {
-  "checked_at": "2026-11-19T09:25:19+00:00",
+  "checked_at": "2026-11-19T18:36:32+00:00",
   "before": 274,
-  "active_or_unconfirmed": 266,
-  "removed_this_run": 8,
+  "active_or_unconfirmed": 274,
+  "removed_this_run": 0,
   "unknown_this_run": 0,
-  "removed": [
-    {
-      "id": "4916772",
-      "source": "당근부동산",
-      "url": "https://realty.daangn.com/articles/4916772",
-      "reason": "http:404"
-    },
-    {
-      "id": "4915027",
-      "source": "당근부동산",
-      "url": "https://realty.daangn.com/articles/4915027",
-      "reason": "http:404"
-    },
-    {
-      "id": "4804792",
-      "source": "당근부동산",
-      "url": "https://realty.daangn.com/articles/4804792",
-      "reason": "http:404"
-    },
-    {
-      "id": "4807600",
-      "source": "당근부동산",
-      "url": "https://realty.daangn.com/articles/4807600",
-      "reason": "http:404"
-    },
-    {
-      "id": "4811515",
-      "source": "당근부동산",
-      "url": "https://realty.daangn.com/articles/4811515",
-      "reason": "http:404"
-    },
-    {
-      "id": "4974311",
-      "source": "당근부동산",
-      "url": "https://realty.daangn.com/articles/4974311",
-      "reason": "http:404"
-    },
-    {
-      "id": "5052827",
-      "source": "당근부동산",
-      "url": "https://realty.daangn.com/articles/5052827",
-      "reason": "http:404"
-    },
-    {
-      "id": "5051827",
-      "source": "당근부동산",
-      "url": "https://realty.daangn.com/articles/5051827",
-      "reason": "http:404"
-    }
-  ],
+  "removed": [],
   "unknown": [],
   "policy": "Definitive 404/410, provider redirect, or visible inactive marker only. Temporary/network failures are retained."
 }
