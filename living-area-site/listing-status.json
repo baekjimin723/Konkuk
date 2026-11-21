@@ -1,20 +1,38 @@
 {
-  "checked_at": "2026-11-21T04:02:17+00:00",
-  "before": 280,
-  "active_or_unconfirmed": 278,
-  "removed_this_run": 2,
+  "checked_at": "2026-11-21T12:28:16+00:00",
+  "before": 286,
+  "active_or_unconfirmed": 281,
+  "removed_this_run": 5,
   "unknown_this_run": 0,
   "removed": [
     {
-      "id": "4570926",
+      "id": "4790311",
       "source": "당근부동산",
-      "url": "https://realty.daangn.com/articles/4570926",
+      "url": "https://realty.daangn.com/articles/4790311",
       "reason": "http:404"
     },
     {
-      "id": "4782815",
+      "id": "4803117",
       "source": "당근부동산",
-      "url": "https://realty.daangn.com/articles/4782815",
+      "url": "https://realty.daangn.com/articles/4803117",
+      "reason": "marker:숨김 처리된 게시글"
+    },
+    {
+      "id": "4885257",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4885257",
+      "reason": "http:404"
+    },
+    {
+      "id": "4883652",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4883652",
+      "reason": "http:404"
+    },
+    {
+      "id": "5022634",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/5022634",
       "reason": "http:404"
     }
   ],
