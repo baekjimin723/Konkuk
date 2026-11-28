@@ -1,23 +1,168 @@
 {
-  "checked_at": "2026-11-28T03:35:03+00:00",
-  "before": 290,
-  "active_or_unconfirmed": 288,
-  "removed_this_run": 2,
-  "unknown_this_run": 0,
+  "checked_at": "2026-11-28T12:16:52+00:00",
+  "before": 293,
+  "active_or_unconfirmed": 287,
+  "removed_this_run": 6,
+  "unknown_this_run": 20,
   "removed": [
     {
-      "id": "5026606",
+      "id": "4868387",
       "source": "당근부동산",
-      "url": "https://realty.daangn.com/articles/5026606",
+      "url": "https://realty.daangn.com/articles/4868387",
+      "reason": "marker:숨김 처리된 게시글"
+    },
+    {
+      "id": "4876723",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4876723",
       "reason": "http:404"
     },
     {
-      "id": "5128038",
+      "id": "4938907",
       "source": "당근부동산",
-      "url": "https://realty.daangn.com/articles/5128038",
+      "url": "https://realty.daangn.com/articles/4938907",
+      "reason": "http:404"
+    },
+    {
+      "id": "4236938",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4236938",
+      "reason": "marker:숨김 처리된 게시글"
+    },
+    {
+      "id": "4679992",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4679992",
+      "reason": "marker:숨김 처리된 게시글"
+    },
+    {
+      "id": "5142773",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/5142773",
       "reason": "http:404"
     }
   ],
-  "unknown": [],
+  "unknown": [
+    {
+      "id": "4864070",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4864070",
+      "reason": "network:ReadTimeout"
+    },
+    {
+      "id": "5009941",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/5009941",
+      "reason": "network:ReadTimeout"
+    },
+    {
+      "id": "4440246",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4440246",
+      "reason": "network:ReadTimeout"
+    },
+    {
+      "id": "4990885",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4990885",
+      "reason": "network:ReadTimeout"
+    },
+    {
+      "id": "4956688",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4956688",
+      "reason": "network:ReadTimeout"
+    },
+    {
+      "id": "5017469",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/5017469",
+      "reason": "network:ReadTimeout"
+    },
+    {
+      "id": "4919172",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4919172",
+      "reason": "network:ReadTimeout"
+    },
+    {
+      "id": "5017145",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/5017145",
+      "reason": "network:ReadTimeout"
+    },
+    {
+      "id": "4951177",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4951177",
+      "reason": "network:ReadTimeout"
+    },
+    {
+      "id": "4703281",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4703281",
+      "reason": "network:ReadTimeout"
+    },
+    {
+      "id": "4973909",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4973909",
+      "reason": "network:ReadTimeout"
+    },
+    {
+      "id": "4477117",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4477117",
+      "reason": "network:ReadTimeout"
+    },
+    {
+      "id": "5095393",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/5095393",
+      "reason": "network:ReadTimeout"
+    },
+    {
+      "id": "3727035",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/3727035",
+      "reason": "network:ReadTimeout"
+    },
+    {
+      "id": "4969057",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4969057",
+      "reason": "network:ReadTimeout"
+    },
+    {
+      "id": "4028619",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/4028619",
+      "reason": "network:ReadTimeout"
+    },
+    {
+      "id": "5096454",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/5096454",
+      "reason": "network:ReadTimeout"
+    },
+    {
+      "id": "5156641",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/5156641",
+      "reason": "network:ReadTimeout"
+    },
+    {
+      "id": "1434423",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/1434423",
+      "reason": "network:ReadTimeout"
+    },
+    {
+      "id": "3978489",
+      "source": "당근부동산",
+      "url": "https://realty.daangn.com/articles/3978489",
+      "reason": "network:ReadTimeout"
+    }
+  ],
   "policy": "Definitive 404/410, provider redirect, or visible inactive marker only. Temporary/network failures are retained."
 }
